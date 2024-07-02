@@ -1,0 +1,15 @@
+#nav {
+    border: 1px solid red;
+    padding: 10px;
+}
+
+#nav-list {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    
+    li {
+        border: 1px solid blue;
+    }
+}
+

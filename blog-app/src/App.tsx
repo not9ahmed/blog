@@ -1,10 +1,34 @@
+import './App.css'
+import Home from './pages/Home/Home'
+// import About from './pages/About/About'
+
+
+function App() {
+
+  return (
+    <>
+
+      <Home/>
+      
+    </>
+  )
+}
+
+export default App
+
+
+
+
+
+
+
+
+
+/*
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Home from './pages/home/Home'
-import About from './pages/about/About'
-
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,11 +56,8 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
 
-      <Home/>
-      <About/>
       
     </>
   )
 }
-
-export default App
+*/
