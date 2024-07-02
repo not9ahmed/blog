@@ -6,6 +6,8 @@ import axios from 'axios'
 
 function Home() {
 
+
+  // sample axios call
   axios.get('https://api.sampleapis.com/baseball/hitsSingleSeason')
   .then(response => {
 
