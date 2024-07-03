@@ -3,14 +3,13 @@ import './nav.css'
 
 function Nav() {
   return (
-    <div id="nav">  
-        <ul id="nav-list">
-            <li>Home</li>
-            <li>About</li>
-            <li>Tools</li>
-            <li>Projects</li>
-            <li>Experience</li>
-        </ul>
+    <div id="nav">
+      <ul className='nav-list'>
+        <li><a>Home</a></li>
+        <li><a>About</a></li>
+        <li><a>Projects</a></li>
+        <li><a>Experience</a></li>
+      </ul>
     </div>
   )
 }

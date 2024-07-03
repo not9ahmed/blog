@@ -1,0 +1,8 @@
+#projects {
+    background-color: var(--secondary-color);
+}
+
+.project {
+
+    background-color: var(--secondary-light-color);
+}

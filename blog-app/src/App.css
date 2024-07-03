@@ -1,11 +1,22 @@
-#content {
+ #root {
+  /* max-width: 1280px; */
+  width: 100vw;
 
-  width: 100%;
-  height: 80%;
-  border: 1px solid black;
 
+  text-align: center;
 }
 
+#app {
+  display: grid;
+  grid-template-rows: 1fr 12fr 1fr;
+  width: 100vw;
+  height: 1200px;
+}
+
+#content {
+  background-color: var(--main-white);
+
+} 
 
 
 
@@ -14,11 +25,8 @@
 
 
 
-
-
-
-
-/* #root {
+/* 
+ #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -59,4 +67,4 @@
 
 .read-the-docs {
   color: #888;
-} */
+}  */

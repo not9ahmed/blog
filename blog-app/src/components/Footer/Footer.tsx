@@ -5,6 +5,8 @@ function Footer() {
   return (
     <div id='footer'>
         Footer
+
+        <span>Made with  </span>
     </div>
   )
 }

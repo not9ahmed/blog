@@ -1,7 +1,8 @@
 import './App.css'
 import Footer from './components/Footer/Footer'
 import Nav from './components/Nav/Nav'
-// import Home from './pages/Home/Home'
+import Home from './pages/Home/Home'
+import Projects from './pages/Projects/Projects'
 // import About from './pages/About/About'
 
 
@@ -9,7 +10,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div id="app">
 
 
 
@@ -18,9 +19,10 @@ function App() {
         {/* pages should be here */}
         <div id='content'>
 
-          {/* <Home/> */}
+          <Home/>
+          Content Here
 
-
+          <Projects/>
         </div>
         
         <Footer />

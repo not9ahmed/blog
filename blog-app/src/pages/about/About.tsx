@@ -13,6 +13,17 @@ function About() {
     <div id='about'>
         About
         name {About.name}
+      <h1>
+        {About.name}
+      </h1>
+          
+      <h2>
+        Sofware Enginer
+      </h2>
+
+      <h4>
+
+      </h4>
     </div>
   )
 }
