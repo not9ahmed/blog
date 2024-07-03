@@ -3,9 +3,9 @@ import './home.css'
 import Nav from '../../components/Nav/Nav'
 import axios from 'axios'
 
-
+// TODO: Create Home Page 
 function Home() {
-
+  
 
   // sample axios call
   axios.get('https://api.sampleapis.com/baseball/hitsSingleSeason')
@@ -18,11 +18,12 @@ function Home() {
 
   return (
     <>
-      <Nav/>
-
-      <div id='home'>
-          Home Page
-      </div>
+    <div id='home'>
+      {/* <Nav/> */}
+      Home Page
+    
+    </div>
+    
     </>
   )
 }

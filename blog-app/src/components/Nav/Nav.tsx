@@ -6,8 +6,10 @@ function Nav() {
     <div id="nav">  
         <ul id="nav-list">
             <li>Home</li>
-            <li>Topics</li>
             <li>About</li>
+            <li>Tools</li>
+            <li>Projects</li>
+            <li>Experience</li>
         </ul>
     </div>
   )

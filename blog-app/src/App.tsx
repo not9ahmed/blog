@@ -1,5 +1,7 @@
 import './App.css'
-import Home from './pages/Home/Home'
+import Footer from './components/Footer/Footer'
+import Nav from './components/Nav/Nav'
+// import Home from './pages/Home/Home'
 // import About from './pages/About/About'
 
 
@@ -7,9 +9,22 @@ function App() {
 
   return (
     <>
+      <div>
 
-      <Home/>
-      
+
+
+        <Nav/>
+
+        {/* pages should be here */}
+        <div id='content'>
+
+          {/* <Home/> */}
+
+
+        </div>
+        
+        <Footer />
+      </div>
     </>
   )
 }
