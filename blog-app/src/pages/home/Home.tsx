@@ -1,6 +1,8 @@
 import React from 'react'
 import './home.css'
-import Nav from '../../components/Nav/Nav'
+import linkedImg from '../../assets/linkedin.png'
+import githubImg from '../../assets/github.png'
+import emailImg from '../../assets/email.png'
 import axios from 'axios'
 
 // TODO: Create Home Page 
@@ -34,11 +36,18 @@ function Home() {
         Hi! I'm {home.name}
       </h1>
   
-      <h2>{home.job1}</h2>
+      <h2>{home.job1} | {home.job2}</h2>
 
-      <h2>{home.job2}</h2>
+      <p>
+        {home.about}
+      </p>
+      <div className='img-links'>
 
-      <h4>{home.about}</h4>
+        <img src={githubImg} width={40}/>
+        <img src={linkedImg} width={40}/>
+        <img src={emailImg} width={40}/>
+      </div>
+        
     </div>
     
     </>

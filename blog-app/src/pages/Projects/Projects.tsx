@@ -22,6 +22,55 @@ function Projects() {
             tools: ["Django", "FastAPI", ""],
             link: "https://github.com/not9ahmed/blog"
         },
+        {
+            id: 2,
+            name: "No More Yo3an",
+            description: "Text",
+            tools: ["Django", "FastAPI", ""],
+            link: "https://github.com/not9ahmed/blog"
+        },
+        {
+            id: 3,
+            name: "No More Yo3an",
+            description: "Text",
+            tools: ["Django", "FastAPI", ""],
+            link: "https://github.com/not9ahmed/blog"
+        },
+        {
+            id: 4,
+            name: "No More Yo3an",
+            description: "Text",
+            tools: ["Django", "FastAPI", ""],
+            link: "https://github.com/not9ahmed/blog"
+        },
+        {
+            id: 4,
+            name: "No More Yo3an",
+            description: "Text",
+            tools: ["Django", "FastAPI", ""],
+            link: "https://github.com/not9ahmed/blog"
+        },
+        {
+            id: 4,
+            name: "No More Yo3an",
+            description: "Text",
+            tools: ["Django", "FastAPI", ""],
+            link: "https://github.com/not9ahmed/blog"
+        },
+        {
+            id: 4,
+            name: "No More Yo3an",
+            description: "Text",
+            tools: ["Django", "FastAPI", ""],
+            link: "https://github.com/not9ahmed/blog"
+        },
+        {
+            id: 4,
+            name: "No More Yo3an",
+            description: "Text",
+            tools: ["Django", "FastAPI", ""],
+            link: "https://github.com/not9ahmed/blog"
+        },
 
     ]
 
@@ -29,20 +78,22 @@ function Projects() {
 
 
   return (
-    <div id='projects'>
+    <div className='content'>
         
-        Projects:
+        Here are some of the Projects I've done:
+
+        <div className='projects'>
 
         {projects.map(el => 
-        <div id="project" key={el.id}>
-            <h6>{el.name}</h6>
-            <h6>{el.description}</h6>
+            <div className="project" key={el.id}>
+                <img className='project-image' src='https://production-media.paperswithcode.com/datasets/Django-0000001059-57707917_hCcTMpx.jpg'/>
+                <h4>{el.name}</h4>
+                <h4>{el.description}</h4>
 
-        </div>
-
-
+            </div>
         )}
 
+        </div>
     </div>
   )
 }
