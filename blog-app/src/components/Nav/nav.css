@@ -16,15 +16,35 @@
     list-style-type: none;
     justify-content: space-evenly;
     flex-flow: row;
-    /* padding: 10px; */
+    padding: 0px;
     
     li {
+        width: 80%;
         padding: 12px 16px;
-
         &:hover{
             background-color: var(--primary-light-color);
             color: var(--primary-color);
             cursor: pointer;
+
+            transition: ease-in-out 0.5s;
+            a {
+                text-decoration: none;
+                color: var(--primary-color);
+    
+                &:hover{
+                    color: var(--primary-color);
+                }
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-light-color);
+
+            &:hover{
+                color: var(--primary-color);
+
+            }
         }
     }
 

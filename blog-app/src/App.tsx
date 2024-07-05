@@ -1,8 +1,11 @@
 import './App.css'
 import Footer from './components/Footer/Footer'
 import Nav from './components/Nav/Nav'
+import About from './pages/About/About'
 import Home from './pages/Home/Home'
 import Projects from './pages/Projects/Projects'
+import Experience from './pages/Experience/Experience'
+import {Routes, Route} from 'react-router-dom'
 // import About from './pages/About/About'
 
 
@@ -13,17 +16,33 @@ function App() {
       <div id="app">
 
 
-
         <Nav/>
+          <Routes>
+          {/* will go to the nav element */}
+
+
+            <Route index element={<Home/>} />
+            <Route path='/about' element={<About/>} />
+            <Route path='/projects' element={<Projects/>} />
+            <Route path='/experience' element={<Experience/>} />
+
+
+        </Routes>
+
 
         {/* pages should be here */}
-        <div id='content'>
+        {/* <div id='content'>
 
-          <Home/>
-          Content Here
 
-          <Projects/>
-        </div>
+
+          {/* <Home/> */}
+          {/* Content Here */}
+
+
+        {/* </div> */}
+
+
+
         
         <Footer />
       </div>
@@ -40,6 +59,9 @@ export default App
 
 
 
+
+
+// TEMPLATE //
 
 /*
 import { useState } from 'react'

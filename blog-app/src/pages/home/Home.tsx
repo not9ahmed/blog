@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <>
-    <div id='home'>
+    <div id='home' className='content'>
       {/* <Nav/> */}
       <h1 id='title'>
         Hi! I'm {home.name}
