@@ -4,13 +4,17 @@ function Experience() {
 
 
         // fetch projects from api
-
+        // tools can be seperate entity
+        // tasks is tightly coupled with experience
+        // org image is tightly coupled with experience
         type Experience = {
             id: number,
             position: string,
             organization: string,
+            startDate: Date,
+            endDate: Date,
             tasks: string[],
-            projects: [""],
+            projects: string[],
             tools: string[],
             orgImgs: string[]
         }
@@ -18,20 +22,43 @@ function Experience() {
         const experiences: Array<Experience> = [
             {
                 id: 1,
-                position: "Assistant Analyst Programmer",
-                organization: "IGA",
-                tasks: ["Support"],
-                projects: [""],
-                tools: ["Java", "JSF"],
+                position: "IT Trainee",
+                organization: "Information & eGovernment Authority",
+                startDate: new Date(),
+                endDate: new Date(),
+                tasks: [
+                    "Developed a Dashboard POC with Microsoft Power BI integrated with Microsoft Intune as a Data Source",
+                ],
+                projects: [
+                    "Power BI Dashboard"
+                ],
+                tools: [
+                    "Power BI",
+                    "JSF"
+                ],
                 orgImgs: [""]
             },
             {
                 id: 2,
-                position: "Assistant Analyst Programmer",
-                organization: "CBB",
-                tasks: ["Support"],
-                projects: [""],
-                tools: ["Java", "JSF"],
+                position: "Analyst Programmer",
+                organization: "Central Bank of Bahrain",
+                startDate: new Date(),
+                endDate: new Date(),
+                tasks: [
+                    "Developed small web application to digitalize process",
+                    "Provided technical support for Entrprise Systems (Accounts, HR & Adminstration)",
+                ],
+                projects: [
+                    "D"
+                ],
+                tools: [
+                    "Java",
+                    "JSF (Java Server Faces)",
+                    "PrimeFaces",
+                    "SQL",
+                    "PL/SQL",
+
+                ],
                 orgImgs: [""]
             },
     
@@ -41,14 +68,14 @@ function Experience() {
 
   return (
     <div className='content'>
-        Experience
 
+        <h1>Experiences Page</h1>
 
         <div className='experiences'>
 
         {experiences.map(el => 
             <div className="experience" key={el.id}>
-                <img className='exp-image' src='https://production-media.paperswithcode.com/datasets/Django-0000001059-57707917_hCcTMpx.jpg'/>
+                <img className='exp-image' src={el.orgImgs[0]} alt='no image'/>
                 <h4>{el.position}</h4>
                 <h4>{el.organization}</h4>
 
