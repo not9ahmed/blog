@@ -79,8 +79,8 @@ function Projects() {
 
   return (
     <div className='content'>
+        <h1>Projects</h1>
         
-        Here are some of the Projects I've done:
 
         <div className='projects'>
 

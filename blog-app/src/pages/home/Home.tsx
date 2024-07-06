@@ -4,6 +4,7 @@ import linkedImg from '../../assets/linkedin.png'
 import githubImg from '../../assets/github.png'
 import emailImg from '../../assets/email.png'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 // TODO: Create Home Page 
 function Home() {
@@ -31,6 +32,13 @@ function Home() {
   return (
     <>
     <div id='home' className='content'>
+
+
+      {/* will have more sections */}
+      {/* <div className='section'>
+
+
+      </div> */}
       {/* <Nav/> */}
       <h1 id='title'>
         Hi! I'm {home.name}
@@ -41,12 +49,25 @@ function Home() {
       <p>
         {home.about}
       </p>
-      <div className='img-links'>
 
-        <img src={githubImg} width={40}/>
-        <img src={linkedImg} width={40}/>
-        <img src={emailImg} width={40}/>
+      <div className='social-links'>
+        <div>
+          <Link to="https://github.com/not9ahmed/">
+            <img src={githubImg} width={40}/>
+          </Link> 
+        </div>
+        <div>
+          <Link to="https://www.linkedin.com/in/ahmed-althawadi/">
+            <img src={linkedImg} width={40}/>
+          </Link> 
+        </div>
+        <div>
+          <Link to="sample">
+            <img src={emailImg} width={40}/>
+          </Link>
+        </div>
       </div>
+
         
     </div>
     

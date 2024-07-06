@@ -7,3 +7,10 @@
     font-weight: 800;
     font-size: 84px;
 }
+
+.social-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
