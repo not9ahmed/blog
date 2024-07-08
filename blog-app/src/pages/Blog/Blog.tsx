@@ -1,4 +1,5 @@
 import React from 'react'
+import './blog.css'
 
 // the following page will be the main blog page
 function Blog() {
@@ -22,8 +23,32 @@ function Blog() {
         <h1>Blog</h1>
 
         <div className='blogs'>
+
+            {/* loop over this */}
             <div className='blog-card'>
-                <img src='sample-tf-code' className='blog-img' alt='blog '/>
+                <div className='blog-image'></div>
+                <div className='blog-text'>
+                    <div className='blog-title'>
+                        <div className='blog-title-text'>Tensorflow and Their Newest Update</div>
+                        <div className='blog-date'>12-12-2023</div>
+                    </div>
+                    <div className='blog-content'>
+                        Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. 
+                    </div>
+                </div>
+            </div>
+            
+            <div className='blog-card'>
+                <div className='blog-image'></div>
+                <div className='blog-text'>
+                    <div className='blog-title'>
+                        <div className='blog-title-text'>Tensorflow and Their Newest Update</div>
+                        <div className='blog-date'>12-12-2023</div>
+                    </div>
+                    <div className='blog-content'>
+                        Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. 
+                    </div>
+                </div>
             </div>
         </div>
     </div>

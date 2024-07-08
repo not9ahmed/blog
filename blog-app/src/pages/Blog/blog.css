@@ -2,3 +2,175 @@
     display: flex;
     flex-direction: column;
 }
+
+
+.blog-card {
+    text-align: left;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+    padding: 20px;
+    gap: 32px;
+
+    /* position: relative; */
+    width: 740px;
+    height: 268.47px;
+
+    background: #E2F3FA;
+    outline: 1px solid var(--primary-color);
+    border-radius: 20px;
+}
+
+/* Blog Image */
+.blog-image {
+    width: 334px;
+    height: 228.47px;
+    
+    background: url(../../assets/sample-tf-code.png);
+    border-radius: 20px;
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+
+
+
+
+
+/* Blog Title */
+.blog-title {
+
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 5px;
+
+    width: 334px;
+    height: 78px;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+
+
+}
+
+
+
+
+
+
+/* Tensorflow and Their Newest Update */
+.blog-title-text {
+
+
+    margin: 0 auto;
+    width: 334px;
+    height: 48px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+
+    color: #1E4886;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+
+}
+
+
+/* 07-07-2024 */
+.blog-date {
+
+
+    margin: 0 auto;
+    width: 334px;
+    height: 17px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+    color: #1E4886;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+
+
+}
+
+
+/* Blog Content */
+.blog-content {
+
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    width: 334px;
+    height: 228px;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+}
+
+
+/* Blog Text */
+
+.blog-text  {
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    
+    width: 334px;
+    height: 228px;
+    
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
