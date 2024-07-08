@@ -22,6 +22,13 @@ function Blog() {
     <div className='content'>
         <h1>Blog</h1>
 
+        <div className='search-area'>
+
+            <input type='search' className='search-field' id='blog-search'/>
+            <button id='blog-search-btn' style={{ backgroundColor: 'var(--secondary-light-color)' }}>Search</button>
+
+        </div>
+
         <div className='blogs'>
 
             {/* loop over this */}
@@ -37,7 +44,7 @@ function Blog() {
                     </div>
                 </div>
             </div>
-            
+
             <div className='blog-card'>
                 <div className='blog-image'></div>
                 <div className='blog-text'>
