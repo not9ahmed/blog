@@ -8,6 +8,7 @@ import Experience from './pages/Experience/Experience'
 import {Routes, Route} from 'react-router-dom'
 import NoMatch from './pages/NoMatch/NoMatch'
 import Blog from './pages/Blog/Blog'
+import Post from './pages/Post/Post'
 // import About from './pages/About/About'
 
 
@@ -28,6 +29,7 @@ function App() {
             <Route path='/projects' element={<Projects/>} />
             <Route path='/experience' element={<Experience/>} />
             <Route path='/blog' element={<Blog/>} />
+            <Route path='/blog/:id' element={<Post/>} />
             <Route path="*" element={<NoMatch />} />
         </Routes>
 

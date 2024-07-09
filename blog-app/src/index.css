@@ -5,9 +5,11 @@
 
   --primary-color: #1E4886;
   --primary-light-color: #48ADD8;
+  --primary-extra-light-color: #E2F3FA;
   --secondary-color: #962929;
   --secondary-light-color: #CA6868;
-  --main-white: #E2F3FA;
+  /* --main-white: #E2F3FA; */
+  --main-white: #F2FBFF;
 
 
   font-family: "Montserrat", sans-serif;

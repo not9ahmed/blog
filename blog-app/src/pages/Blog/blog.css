@@ -1,10 +1,15 @@
-.blogs {
+.posts {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    /* width: fit-content; */
+    /* margin: 0 auto; */
 }
 
 
-.blog-card {
+.post-card {
     text-align: left;
 
     /* Auto layout */
@@ -21,13 +26,13 @@
     width: 740px;
     height: 268.47px;
 
-    background: #E2F3FA;
+    background: var(--primary-extra-light-color);
     outline: 1px solid var(--primary-color);
     border-radius: 20px;
 }
 
 /* Blog Image */
-.blog-image {
+.post-image {
     width: 334px;
     height: 228.47px;
     
@@ -47,7 +52,7 @@
 
 
 /* Blog Title */
-.blog-title {
+.post-title {
 
 
     /* Auto layout */
@@ -76,7 +81,7 @@
 
 
 /* Tensorflow and Their Newest Update */
-.blog-title-text {
+.post-title-text {
 
 
     margin: 0 auto;
@@ -104,7 +109,7 @@
 
 
 /* 07-07-2024 */
-.blog-date {
+.post-date {
 
 
     margin: 0 auto;
@@ -132,7 +137,7 @@
 
 
 /* Blog Content */
-.blog-content {
+.post-content {
 
 
     /* Auto layout */
@@ -156,7 +161,7 @@
 
 /* Blog Text */
 
-.blog-text  {
+.post-text  {
 
     /* Auto layout */
     display: flex;
