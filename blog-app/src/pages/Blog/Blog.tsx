@@ -1,57 +1,17 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { Category } from '../../types/category';
+import { PostDto } from '../../types/postDto';
 import './blog.css'
 
 // the following page will be the main blog page
 function Blog() {
 
 
-    // blog can be of many type
-    // the type will a seperate entity
-    // to be fetched from api 
-
-    // the blog can be filtered on these
-    // Sofware Engineering
-    // Computer Engineering
-    // Data Science
-    // Music
-    // Movies
-    // Shows
-    // Anime etc
-    // Manga/Books
-
-    interface Category {
-        id: number,
-        name: string,
-        isEntertainment: boolean
-    }
 
 
-    // will be subset of Post
-    /*
-    interface Post  {
-        id: number,
-        title: string,
-        description: string,
-        content: string,
-        images: string[] | string,
-        createdDate: Date,
 
-        // can add userid here then join data
-        createdBy: number
-    };
-
-    */
-
-    interface PostDto {
-        id: number,
-        name: string,
-        description: string,
-        createdDate: Date,
-        images: string[] | string,
-    }
-
-
+    // fetch from api category of posts
     const categories: Array<Category> = [
         {
             id: 1,
@@ -122,7 +82,7 @@ function Blog() {
             images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
         },
         {
-            id: 1,
+            id: 2,
             name: "Tensorflow and Their Newest Update",
             description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
             createdDate: new Date(),
@@ -134,11 +94,15 @@ function Blog() {
 
 
     const navigate = useNavigate();
-    navigate('/dashboard');
 
-    const handlePostClick = (postId: number) => {
-        const navigate = useNavigate();
-        navigate(`/post/${postId}`);
+
+
+
+    const handlePostClick = (e: any, postId: number) => {
+
+
+        console.log('post id', postId)
+        navigate(`/blog/${postId}`);
     }
 
 
@@ -171,7 +135,7 @@ function Blog() {
                 
           
 
-                    <div className='post-card' key={post.id} id={post.id.toString()} onClick={handlePostClick(postId: number)}>
+                    <div className='post-card' key={post.id} id={post.id.toString()} onClick={(e) => handlePostClick(e, post.id) }>
                         
                         
                         {/* <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> */}

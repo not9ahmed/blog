@@ -20,30 +20,21 @@ function App() {
 
 
         <Nav/>
-          <Routes>
+        <Routes>
           {/* will go to the nav element */}
 
 
             <Route index element={<Home/>} />
             <Route path='/about' element={<About/>} />
             <Route path='/projects' element={<Projects/>} />
+
+            {/* will be done later */}
+            <Route path='/projects/:id' element={<Projects/>} />
             <Route path='/experience' element={<Experience/>} />
             <Route path='/blog' element={<Blog/>} />
-            <Route path='/blog/:id' element={<Post/>} />
+            <Route path='/blog/:id' element={<Post num={5}/>} />
             <Route path="*" element={<NoMatch />} />
         </Routes>
-
-
-        {/* pages should be here */}
-        {/* <div id='content'>
-
-
-
-          {/* <Home/> */}
-          {/* Content Here */}
-
-
-        {/* </div> */}
 
 
 

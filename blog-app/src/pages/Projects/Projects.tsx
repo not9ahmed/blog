@@ -1,18 +1,20 @@
 import React from 'react'
 import './projects.css'
+import {Project} from '../../types/project'
 
 function Projects() {
 
 
     // fetch projects from api
 
-    type Project = {
-        id: number,
-        name: string,
-        description: string,
-        tools: string[],
-        link: string
-    }
+    // interface Project {
+    //     id: number,
+    //     name: string,
+    //     description: string,
+    //     tools: string[],
+    //     link: string
+    // }
+    // useEffect axios
 
     const projects: Array<Project> = [
         {
@@ -44,33 +46,19 @@ function Projects() {
             link: "https://github.com/not9ahmed/blog"
         },
         {
-            id: 4,
+            id: 5,
             name: "No More Yo3an",
             description: "Text",
             tools: ["Django", "FastAPI", ""],
             link: "https://github.com/not9ahmed/blog"
         },
         {
-            id: 4,
+            id: 6,
             name: "No More Yo3an",
             description: "Text",
             tools: ["Django", "FastAPI", ""],
             link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 4,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["Django", "FastAPI", ""],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 4,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["Django", "FastAPI", ""],
-            link: "https://github.com/not9ahmed/blog"
-        },
+        }
 
     ]
 

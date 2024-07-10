@@ -5,6 +5,8 @@ import githubImg from '../../assets/github.png'
 import emailImg from '../../assets/email.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Button from '../../components/Button/Button'
+import { ButtonInterface } from '../../types/button'
 
 // TODO: Create Home Page 
 function Home() {
@@ -19,6 +21,18 @@ function Home() {
   .catch(err => console.log(err))
   .finally(() => console.log("request done"))
 
+
+  const buttonProps1: ButtonInterface = {
+    id: 123,
+    value: "something",
+    colors: "primary"
+}
+
+  const buttonProps2: ButtonInterface = {
+    id: 123,
+    value: "something",
+    colors: "secondary"
+}
 
 
   let home = {
@@ -68,6 +82,11 @@ function Home() {
         </div>
       </div>
 
+
+
+        {/* conditional rendering of button */}
+        <Button {...buttonProps1} />
+        <Button {...buttonProps2} />
         
     </div>
     

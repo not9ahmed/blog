@@ -1,23 +1,11 @@
 import React from 'react'
+import { Experience } from '../../types/experience'
 
 function Experience() {
 
 
         // fetch projects from api
-        // tools can be seperate entity
-        // tasks is tightly coupled with experience
-        // org image is tightly coupled with experience
-        type Experience = {
-            id: number,
-            position: string,
-            organization: string,
-            startDate: Date,
-            endDate: Date,
-            tasks: string[],
-            projects: string[],
-            tools: string[],
-            orgImgs: string[]
-        }
+
     
         const experiences: Array<Experience> = [
             {
