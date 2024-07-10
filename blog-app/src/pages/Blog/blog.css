@@ -32,17 +32,25 @@
 }
 
 /* Blog Image */
-.post-image {
+.post-image-container {
     width: 334px;
     height: 228.47px;
     
-    background: url(../../assets/sample-tf-code.png);
+    /* background: url(../../assets/sample-tf-code.png); */
     border-radius: 20px;
     
     /* Inside auto layout */
     flex: none;
     order: 0;
     flex-grow: 0;
+    /* object-fit: contain */
+}
+
+.post-image {
+    width: 334px;
+    height: 228.47px;
+    border-radius: 20px;
+    object-fit: cover
 }
 
 
@@ -137,7 +145,7 @@
 
 
 /* Blog Content */
-.post-content {
+.post-description {
 
 
     /* Auto layout */

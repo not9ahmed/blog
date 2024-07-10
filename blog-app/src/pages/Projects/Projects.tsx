@@ -19,21 +19,21 @@ function Projects() {
             id: 1,
             name: "AI Shopping System",
             description: "Text",
-            tools: ["Django", "FastAPI", ""],
+            tools: ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
             link: "https://github.com/not9ahmed/blog"
         },
         {
             id: 2,
             name: "No More Yo3an",
             description: "Text",
-            tools: ["Django", "FastAPI", ""],
+            tools: ["React", "FastAPI", "MongoDB", "Bootstrap"],
             link: "https://github.com/not9ahmed/blog"
         },
         {
             id: 3,
-            name: "No More Yo3an",
+            name: "Connect 4",
             description: "Text",
-            tools: ["Django", "FastAPI", ""],
+            tools: ["HTML", "CSS", "JavaScript"],
             link: "https://github.com/not9ahmed/blog"
         },
         {

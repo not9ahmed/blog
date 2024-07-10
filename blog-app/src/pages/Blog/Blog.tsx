@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './blog.css'
 
 // the following page will be the main blog page
@@ -19,11 +20,37 @@ function Blog() {
     // Anime etc
     // Manga/Books
 
-    type Category = {
+    interface Category {
         id: number,
         name: string,
         isEntertainment: boolean
     }
+
+
+    // will be subset of Post
+    /*
+    interface Post  {
+        id: number,
+        title: string,
+        description: string,
+        content: string,
+        images: string[] | string,
+        createdDate: Date,
+
+        // can add userid here then join data
+        createdBy: number
+    };
+
+    */
+
+    interface PostDto {
+        id: number,
+        name: string,
+        description: string,
+        createdDate: Date,
+        images: string[] | string,
+    }
+
 
     const categories: Array<Category> = [
         {
@@ -66,7 +93,7 @@ function Blog() {
 
 
 
-
+    // this will be done on the actual posts
     const filterCategories = () => {
 
         const updatedCategories = filteredCategories.filter(el => el.isEntertainment === true)
@@ -74,6 +101,46 @@ function Blog() {
 
         console.log(filteredCategories)
     }
+
+
+    const resetFilter = () => {
+
+        setFilteredCategories(categories)
+
+        console.log(filteredCategories)
+    }
+
+
+
+    
+    const posts: Array<PostDto> = [
+        {
+            id: 1,
+            name: "Tensorflow and Their Newest Update",
+            description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
+            createdDate: new Date(),
+            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+        },
+        {
+            id: 1,
+            name: "Tensorflow and Their Newest Update",
+            description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
+            createdDate: new Date(),
+            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+        }
+    ]
+
+
+
+
+    const navigate = useNavigate();
+    navigate('/dashboard');
+
+    const handlePostClick = (postId: number) => {
+        const navigate = useNavigate();
+        navigate(`/post/${postId}`);
+    }
+
 
   return (
     <div className='content'>
@@ -93,37 +160,44 @@ function Blog() {
 
             </select>
 
+            <button id='reset-btn' onClick={resetFilter}>Reset</button>
 
         </div>
 
         <div className='posts'>
 
             {/* loop over this */}
-            <div className='post-card'>
-                <div className='post-image'></div>
-                <div className='post-text'>
-                    <div className='post-title'>
-                        <div className='post-title-text'>Tensorflow and Their Newest Update</div>
-                        <div className='post-date'>12-12-2023</div>
-                    </div>
-                    <div className='post-content'>
-                        Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. 
-                    </div>
-                </div>
-            </div>
+            {posts.map(post => 
+                
+          
 
-            <div className='post-card'>
-                <div className='post-image'></div>
-                <div className='post-text'>
-                    <div className='post-title'>
-                        <div className='post-title-text'>Tensorflow and Their Newest Update</div>
-                        <div className='post-date'>12-12-2023</div>
+                    <div className='post-card' key={post.id} id={post.id.toString()} onClick={handlePostClick(postId: number)}>
+                        
+                        
+                        {/* <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> */}
+                        <div className='post-image-container'>
+
+                            <img className='post-image' src={post.images[0]} />
+                        </div>
+
+
+
+                        <div className='post-text'>
+                            <div className='post-title'>
+                                <div className='post-title-text'>{post.name}</div>
+                                {/* handle date later */}
+                                <div className='post-date'>{post.createdDate.toDateString()}</div>
+                            </div>
+                            <div className='post-description'>
+                                {post.description}
+                            </div>
+                        </div>
                     </div>
-                    <div className='post-content'>
-                        Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. 
-                    </div>
-                </div>
-            </div>
+
+     
+                
+                )}
+
         </div>
     </div>
   )
