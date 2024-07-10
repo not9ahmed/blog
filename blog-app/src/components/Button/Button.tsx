@@ -9,14 +9,14 @@ function Button(props: ButtonInterface) {
 
     let buttonBG: string;
 
+    // can also take className which is simpler
     switch(props.colors) {
         case 'primary':
-            buttonBG= '  --primary-color'
+            buttonBG= '--primary-color'
             break;
         case 'secondary':
-            buttonBG= '  --secondary-color'
+            buttonBG= '--secondary-color'
             break;
-
     }
 
 
@@ -28,7 +28,7 @@ function Button(props: ButtonInterface) {
 
   return (
     <button style={{backgroundColor: `var(${buttonBG})`}} onClick={handleClick}>
-        button
+        {props.value}
     </button>
   )
 }

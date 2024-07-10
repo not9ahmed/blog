@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './home.css'
 import linkedImg from '../../assets/linkedin.png'
 import githubImg from '../../assets/github.png'
@@ -12,25 +12,28 @@ import { ButtonInterface } from '../../types/button'
 function Home() {
   
 
-  // sample axios call
-  axios.get('https://api.sampleapis.com/baseball/hitsSingleSeason')
-  .then(response => {
 
-    console.log(response.data[0])
-  })
-  .catch(err => console.log(err))
-  .finally(() => console.log("request done"))
+  useEffect(() => {
+    // sample axios call
+    axios.get('https://api.sampleapis.com/baseball/hitsSingleSeason')
+    .then(response => {
+  
+      console.log(response.data[0])
+    })
+    .catch(err => console.log(err))
+    .finally(() => console.log("request done"))
+  }, [])
 
 
   const buttonProps1: ButtonInterface = {
     id: 123,
-    value: "something",
+    value: "Button One",
     colors: "primary"
 }
 
   const buttonProps2: ButtonInterface = {
     id: 123,
-    value: "something",
+    value: "Button Two",
     colors: "secondary"
 }
 
