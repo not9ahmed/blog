@@ -1,3 +1,27 @@
+.blog {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.search-area {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    /* gap: 20px; */
+    height: 40px;
+    width: 50%;
+    background: var(--primary-extra-light-color);
+    border-radius: 20px;
+
+    padding: 20px 40px;
+
+    
+}
+
 .posts {
     display: flex;
     flex-direction: column;
@@ -9,8 +33,11 @@
 }
 
 
+
+
 .post-card {
     text-align: left;
+    cursor: pointer;
 
     /* Auto layout */
     display: flex;
@@ -27,163 +54,161 @@
     height: 268.47px;
 
     background: var(--primary-extra-light-color);
-    outline: 1px solid var(--primary-color);
     border-radius: 20px;
+
+
+
+
+    /* Blog Image */
+    .post-image-container {
+        width: 334px;
+        height: 228.47px;
+        
+        /* background: url(../../assets/sample-tf-code.png); */
+        border-radius: 20px;
+        
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        /* object-fit: contain */
+    }
+
+    .post-image {
+        width: 334px;
+        height: 228.47px;
+        border-radius: 20px;
+        object-fit: cover
+    }
+
+
+    /* Blog Title */
+    .post-title {
+
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 5px;
+
+        width: 334px;
+        height: 78px;
+
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 1;
+
+    }
+
+
+
+
+
+
+    /* Tensorflow and Their Newest Update */
+    .post-title-text {
+
+
+        margin: 0 auto;
+        width: 334px;
+        height: 48px;
+
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+
+        color: #1E4886;
+
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+
+    }
+
+
+    /* 07-07-2024 */
+    .post-date {
+
+
+        margin: 0 auto;
+        width: 334px;
+        height: 17px;
+
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 200;
+        font-size: 14px;
+        line-height: 17px;
+        /* identical to box height */
+
+        color: #1E4886;
+
+
+        /* Inside auto layout */
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 0;
+
+
+    }
+
+
+    /* Blog Content */
+    .post-description {
+
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 10px;
+
+        width: 334px;
+        height: 228px;
+
+
+        /* Inside auto layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+
+    }
+
+
+    /* Blog Text */
+
+    .post-text  {
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 10px;
+        
+        width: 334px;
+        height: 228px;
+        
+        
+        /* Inside auto layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+    }
+
 }
 
-/* Blog Image */
-.post-image-container {
-    width: 334px;
-    height: 228.47px;
-    
-    /* background: url(../../assets/sample-tf-code.png); */
-    border-radius: 20px;
-    
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    /* object-fit: contain */
-}
-
-.post-image {
-    width: 334px;
-    height: 228.47px;
-    border-radius: 20px;
-    object-fit: cover
-}
-
-
-
-
-
-
-
-/* Blog Title */
-.post-title {
-
-
-    /* Auto layout */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 5px;
-
-    width: 334px;
-    height: 78px;
-
-
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 1;
-
-
-}
-
-
-
-
-
-
-/* Tensorflow and Their Newest Update */
-.post-title-text {
-
-
-    margin: 0 auto;
-    width: 334px;
-    height: 48px;
-
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-
-    color: #1E4886;
-
-
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-
-}
-
-
-/* 07-07-2024 */
-.post-date {
-
-
-    margin: 0 auto;
-    width: 334px;
-    height: 17px;
-
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 14px;
-    line-height: 17px;
-    /* identical to box height */
-
-    color: #1E4886;
-
-
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
-
-
-}
-
-
-/* Blog Content */
-.post-description {
-
-
-    /* Auto layout */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 10px;
-
-    width: 334px;
-    height: 228px;
-
-
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-
-}
-
-
-/* Blog Text */
-
-.post-text  {
-
-    /* Auto layout */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 10px;
-    
-    width: 334px;
-    height: 228px;
-    
-    
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-}

@@ -107,62 +107,67 @@ function Blog() {
 
 
   return (
-    <div className='content'>
-        <h1>Blog</h1>
+      <div className='content'>
+          <h1>Blog</h1>
 
-        <div className='search-area'>
+          <div className='blog'>
 
-            <input type='search' className='search-field' id='post-search'/>
-            <button id='post-search-btn' style={{ backgroundColor: 'var(--secondary-light-color)' }}>Search</button>
+              <div className='search-area'>
 
-            <select name='post-type' id='post-type' className='category-filter' onInput={filterCategories}>
+                  <input type='search' className='search-field' id='post-search' />
+                  <button id='post-search-btn' style={{ backgroundColor: 'var(--secondary-light-color)' }}>Search</button>
 
-                {filteredCategories.map(category => (
+                  <select name='post-type' id='post-type' className='category-filter' onInput={filterCategories}>
 
-                    <option key={category.id} value={category.id}>{category.name}</option>
-                ))}
+                      {filteredCategories.map(category => (
 
-            </select>
+                          <option key={category.id} value={category.id}>{category.name}</option>
+                      ))}
 
-            <button id='reset-btn' onClick={resetFilter}>Reset</button>
+                  </select>
 
-        </div>
+                  <button id='reset-btn' onClick={resetFilter}>Reset</button>
 
-        <div className='posts'>
+              </div>
 
-            {/* loop over this */}
-            {posts.map(post => 
-                
-          
+              <div className='posts'>
 
-                    <div className='post-card' key={post.id} id={post.id.toString()} onClick={(e) => handlePostClick(e, post.id) }>
-                        
-                        
-                        {/* <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> */}
-                        <div className='post-image-container'>
-
-                            <img className='post-image' src={post.images[0]} />
-                        </div>
+                  {/* loop over this */}
+                  {posts.map(post =>
 
 
 
-                        <div className='post-text'>
-                            <div className='post-title'>
-                                <div className='post-title-text'>{post.name}</div>
-                                {/* handle date later */}
-                                <div className='post-date'>{post.createdDate.toDateString()}</div>
-                            </div>
-                            <div className='post-description'>
-                                {post.description}
-                            </div>
-                        </div>
-                    </div>
+                      <div className='post-card' key={post.id} id={post.id.toString()} onClick={(e) => handlePostClick(e, post.id)}>
 
-     
-                
-                )}
 
-        </div>
+                          {/* <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> */}
+                          <div className='post-image-container'>
+
+                              <img className='post-image' src={post.images[0]} />
+                          </div>
+
+
+
+                          <div className='post-text'>
+                              <div className='post-title'>
+                                  <div className='post-title-text'>{post.name}</div>
+                                  {/* handle date later */}
+                                  <div className='post-date'>{post.createdDate.toDateString()}</div>
+                              </div>
+                              <div className='post-description'>
+                                  {post.description}
+                              </div>
+                          </div>
+                      </div>
+
+
+
+                  )}
+
+              </div>
+
+          </div>
+
     </div>
   )
 }

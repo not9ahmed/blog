@@ -1,3 +1,38 @@
 .post {
-    background-color: var(--secondary-color);
+    /* text-align: left; */
+    background-color: var(--primary-extra-light-color);
+
+
+    .post-title {
+        font-size: 52px;
+    }
+
+    .post-main-area {
+        width: 100%;
+    }
+
+    .post-main-image {
+        width: 90%;
+    }
+    
+    .post-timestamp {
+        color:  var(--light-grey);
+        font-size: small;
+    }
+    
+    .post-content {
+        /* text-align: left; */
+    }
+    
+    .post-detailed-description {
+        font-size: medium;
+    
+    }
+    
+    .post-detailed-content {
+        font-size: medium;
+        padding: 20px;
+        text-align: left;
+    }
 }
+
