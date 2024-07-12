@@ -19,17 +19,14 @@
         color:  var(--light-grey);
         font-size: small;
     }
-    
-    .post-content {
-        /* text-align: left; */
-    }
+
     
     .post-detailed-description {
         font-size: medium;
     
     }
     
-    .post-detailed-content {
+    .post-content {
         font-size: medium;
         padding: 20px;
         text-align: left;
