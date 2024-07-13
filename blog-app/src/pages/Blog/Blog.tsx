@@ -64,7 +64,7 @@ function Blog() {
         const updatedCategories = filteredCategories.filter(el => el.isEntertainment === true)
         setFilteredCategories(updatedCategories)
 
-        console.log(filteredCategories)
+        console.log("filteredCategories ", filteredCategories)
     }
 
 
@@ -132,6 +132,7 @@ function Blog() {
     const searchBlog = (e: React.ChangeEvent<HTMLInputElement>) => {
 
         const query = e.target.value
+
 
         console.log("query", query)
 
@@ -212,7 +213,7 @@ function Blog() {
             const updatedCategories = filteredCategories.filter(el => el.isEntertainment === true)
             setFilteredCategories(updatedCategories)
     
-            console.log(filteredCategories)
+            console.log("filteredCategories inside cat componenet", filteredCategories)
         },
     }
 

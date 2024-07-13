@@ -6,7 +6,7 @@ import { SelectMenuInterface } from './SelectMenuInterface'
 function SelectMenu(props: SelectMenuInterface) {
 
 
-    console.log(props)
+    // console.log(props)
 
 
 

@@ -14,6 +14,7 @@ Blog webapp using React, Vite and Typescript.
 ### About
 
 - System should allow the users to view the creator details and reach to the social contact details
+- The creator should be able to update his profile easily
 
 ### Experiences
 
@@ -35,6 +36,7 @@ Blog webapp using React, Vite and Typescript.
 - Creator should be able to delete blog post in the system
 - Creator should be able to upload images to blog posts to the system
 - Users should be able to view the blog posts and filter based on types
+- User should also be able to search through the blog based on title and description
 
 ## Tools to be Used
 
