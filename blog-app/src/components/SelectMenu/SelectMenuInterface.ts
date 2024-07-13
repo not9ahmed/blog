@@ -1,22 +1,23 @@
 export interface SelectMenuInterface {
-
     id: number,
     name: string,
+    labelName: string,
     classNameValue: string,
     value: string,
     color: 'primary' | 'secondary',
-    options: Array<ItemInterface>
+    options: OptionInterface[],
+    inputHandler: () => void
 }
 
 
-export interface ItemInterface {
-    key: string,
-    value: string,
-    name: string
+export interface OptionInterface {
+    id: number,
+    name: string,
+    value: string
 }
 
 
-export 
+
 
 /**
  

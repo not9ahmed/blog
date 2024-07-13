@@ -6,7 +6,7 @@ import emailImg from '../../assets/email.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Button from '../../components/Button/Button'
-import { ButtonInterface } from '../../types/button'
+import { ButtonInterface } from '../../components/Button/ButtonInterface'
 
 // TODO: Create Home Page 
 function Home() {
