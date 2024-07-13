@@ -69,14 +69,16 @@ function Post(props: { num: number }) {
               src={post.images[0]}
               alt="image not found"
             />
+            
+          <div className='post-content'>
+            <p>
+              {post.content}
+            </p>
           </div>
         </div>
-
-        <div className='post-content'>
-          <p>
-            {post.content}
-          </p>
+        
         </div>
+
 
 
     </div>

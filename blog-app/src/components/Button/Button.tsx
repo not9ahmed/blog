@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonInterface} from '../../types/button'
+import { ButtonInterface} from './ButtonInterface'
 
 
 function Button(props: ButtonInterface) {

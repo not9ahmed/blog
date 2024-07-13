@@ -28,7 +28,8 @@
     
     .post-content {
         font-size: medium;
-        padding: 20px;
+        /* padding: 20px; */
+        padding: 1em;
         text-align: left;
     }
 }
