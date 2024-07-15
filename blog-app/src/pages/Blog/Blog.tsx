@@ -5,6 +5,7 @@ import { PostDto } from '../../types/postDto';
 import './blog.css'
 import SelectMenu from '../../components/SelectMenu/SelectMenu';
 import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
+import Paginator from '../../components/Paginator/Paginator';
 
 // the following page will be the main blog page
 function Blog() {
@@ -287,6 +288,7 @@ function Blog() {
 
               </div>
 
+            <Paginator />
           </div>
 
     </div>

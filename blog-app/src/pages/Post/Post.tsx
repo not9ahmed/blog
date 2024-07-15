@@ -77,7 +77,7 @@ function Post(props: { num: number }) {
           </div>
         </div>
         
-        </div>
+      </div>
 
 
 
