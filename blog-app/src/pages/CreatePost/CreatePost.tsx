@@ -38,16 +38,23 @@ function CreatePost() {
     console.log(e.target.value)
 
 
-    let newPost: PostInterface = {
-      id: 0,
-      title: e.target.value,
-      description: '',
-      content: '',
-      images: '',
-      createdDate: new Date(),
-      createdBy: ''
-    };
+    let newPost = {...post}
 
+    newPost.id = 1;
+    newPost.createdDate = new Date();
+
+    switch(e.target.name) {
+
+      case 'title':
+        newPost.title = e.target.value;
+        break;
+      case 'content':
+        newPost.content = e.target.value;
+        break;
+
+    }
+
+    setPost(newPost);
 
 
     // newPost.title = e.target.value
@@ -84,17 +91,17 @@ function CreatePost() {
 
                 <div className='post-row'>
                   <label htmlFor='post-title'>Title</label>
-                  <input type='text' id='post-title' onChange={changeHandler}/>
+                  <input type='text' id='post-title' name='title' onChange={changeHandler}/>
                 </div>
 
                 <div className='post-row'>
                   <label htmlFor='post-description'>Description</label>
-                  <input type='text' id='post-description'/>
+                  <input type='text' id='post-description' name='description' onChange={changeHandler}/>
                 </div>
 
                 <div className='post-row'>
                   <label htmlFor='post-content'>content</label>
-                  <input type='' id='post-content'/>
+                  <input type='' id='post-content' name='content' onChange={changeHandler}/>
                 </div>
 
                 <div className='post-row'>
