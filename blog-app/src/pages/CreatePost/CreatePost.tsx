@@ -1,22 +1,20 @@
 import React, { ReactEventHandler, useState } from 'react'
-import { PostInterface } from '../../types/post'
+import { PostCreateInterface } from '../../types/post'
 import './createPost.css'
 
 function CreatePost() {
 
 
   // declaring a state with PostInterface
-  const [post, setPost] = useState<PostInterface>();
+  const [post, setPost] = useState<PostCreateInterface>();
 
 
 
-  let userPost: PostInterface = {
-    id: 0,
+  let userPost: PostCreateInterface = {
     title: '',
     description: '',
     content: '',
     images: [""],
-    createdDate: new Date(),
     createdBy: 'ahmed'
   };
 
@@ -40,16 +38,23 @@ function CreatePost() {
 
     let newPost = {...post}
 
-    newPost.id = 1;
-    newPost.createdDate = new Date();
 
+
+    // for images it will be different logic
+    // and also createdDate
     switch(e.target.name) {
 
       case 'title':
         newPost.title = e.target.value;
         break;
+      case 'description':
+        newPost.description = e.target.value;
+        break;
       case 'content':
         newPost.content = e.target.value;
+        break;
+      case 'createdBy':
+        newPost.createdBy = e.target.value;
         break;
 
     }
