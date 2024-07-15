@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
+import './blog.css'
 import { useNavigate } from 'react-router-dom';
 import { Category } from '../../types/category';
 import { PostDto } from '../../types/postDto';
-import './blog.css'
 import SelectMenu from '../../components/SelectMenu/SelectMenu';
 import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import Paginator from '../../components/Paginator/Paginator';

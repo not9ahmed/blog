@@ -4,11 +4,11 @@ import './paginator.css'
 function Paginator() {
   return (
     <div className='paginator'>
-        <div className='page-num'>Prev</div>
-        <div className='page-num'>1</div>
-        <div className='page-num'>2</div>
-        <div className='page-num'>3</div>
-        <div className='page-num'>Next</div>
+        <div className='pagin-item pagin-prev'>Prev</div>
+        <div className='pagin-item'>1</div>
+        <div className='pagin-item'>2</div>
+        <div className='pagin-item'>3</div>
+        <div className='pagin-item pagin-next'>Next</div>
     </div>
   )
 }

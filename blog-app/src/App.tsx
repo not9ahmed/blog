@@ -9,6 +9,7 @@ import {Routes, Route} from 'react-router-dom'
 import NoMatch from './pages/NoMatch/NoMatch'
 import Blog from './pages/Blog/Blog'
 import Post from './pages/Post/Post'
+import CreatePost from './pages/CreatePost/CreatePost'
 // import About from './pages/About/About'
 
 
@@ -31,8 +32,14 @@ function App() {
             {/* will be done later */}
             <Route path='/projects/:id' element={<Projects/>} />
             <Route path='/experience' element={<Experience/>} />
+
+            {/* paths for blog resources */}
             <Route path='/blog' element={<Blog/>} />
-            <Route path='/blog/:id' element={<Post num={5}/>} />
+            <Route path='/blog/create' element={<CreatePost/>} />
+            <Route path='/blog/:id' element={<Post id={5}/>} />
+            <Route path='/blog/update' element={<Blog/>} />
+
+            {/* Handling unknown paths */}
             <Route path="*" element={<NoMatch />} />
         </Routes>
 
