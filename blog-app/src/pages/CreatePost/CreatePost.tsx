@@ -6,17 +6,18 @@ function CreatePost() {
 
 
   // declaring a state with PostInterface
-  const [post, setPost] = useState<PostCreateInterface>();
-
-
-
-  let userPost: PostCreateInterface = {
+  // and declaring intial state
+  const [post, setPost] = useState<PostCreateInterface>({
     title: '',
     description: '',
     content: '',
-    images: [""],
+    images: [],
     createdBy: 'ahmed'
-  };
+  } as PostCreateInterface );
+
+
+  const [files, setFiles] = useState<File[]>([]);
+
 
   // form Data
   // let userPost: PostInterface = {
@@ -33,51 +34,78 @@ function CreatePost() {
 
   // will applied for every field
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(e.target.value)
+
+    console.log(e)
+
 
 
     let newPost = {...post}
 
 
+    let { name, value } = e.target
+    console.log("name", name)
+    console.log("value", value)
 
-    // for images it will be different logic
-    // and also createdDate
-    switch(e.target.name) {
+    
+    setPost({
+      ...post,
+      [name]: value
+    });
 
-      case 'title':
-        newPost.title = e.target.value;
-        break;
-      case 'description':
-        newPost.description = e.target.value;
-        break;
-      case 'content':
-        newPost.content = e.target.value;
-        break;
-      case 'createdBy':
-        newPost.createdBy = e.target.value;
-        break;
+  
 
-    }
-
-    setPost(newPost);
-
-
-    // newPost.title = e.target.value
-
-    console.log(newPost)
+    console.log(post)
 
   }
+
+
+
+  const fileChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+
+
+
+
+    // because it can be null
+    const newFiles = e.target.files || []
+
+
+    console.log("newFile ", newFiles)
+
+
+
+
+    const filesArr = Array.from(newFiles)
+
+
+    console.log("filesArr", filesArr)
+
+
+
+
+
+    console.log(files)
+
+    setFiles([...files, ...filesArr])
+
+    console.log(files)
+
+
+    console.log("end of FileChangeHandler")
+
+  }
+
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    console.log(e)
 
     console.log("form submitted");
 
-
-
   }
+
+
 
 
   // make api call to create the post
@@ -111,7 +139,7 @@ function CreatePost() {
 
                 <div className='post-row'>
                   <label htmlFor='post-images'>images</label>
-                  <input type='file' id='post-images'/>
+                  <input type='file' multiple accept='image/*,.pdf' id='post-images' name='images' onChange={fileChangeHandler}/>
                 </div>
 
 

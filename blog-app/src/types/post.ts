@@ -12,11 +12,11 @@ export interface PostInterface  {
 };
 
 export interface PostCreateInterface  {
-    title: string | undefined,
-    description: string | undefined,
-    content: string | undefined,
-    images: string[] | string | undefined,
+    title: string,
+    description: string,
+    content: string,
+    images:  File[] | [] ,
 
     // can add userid here then join data
-    createdBy: string | undefined,
+    createdBy: string,
 };
