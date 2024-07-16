@@ -63,34 +63,24 @@ function CreatePost() {
   const fileChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
 
 
-
-
     // because it can be null
-    const newFiles = e.target.files || []
-
+    const newFiles: FileList | [] = e.target.files || []
 
     console.log("newFile ", newFiles)
 
+    
+    if(e.target.files != null) {
 
+      const newFiles: File[] = []
 
+      for(let i = 0; i < e.target.files.length; i++){
+        newFiles.push(e.target.files[i])
+      }
 
-    const filesArr = Array.from(newFiles)
+      console.log("fileArrExample ", newFiles)
+      setFiles([...newFiles])
+    }
 
-
-    console.log("filesArr", filesArr)
-
-
-
-
-
-    console.log(files)
-
-    setFiles([...files, ...filesArr])
-
-    console.log(files)
-
-
-    console.log("end of FileChangeHandler")
 
   }
 
@@ -103,6 +93,8 @@ function CreatePost() {
 
     console.log("form submitted");
 
+
+    console.log("files from submit", files)
   }
 
 
