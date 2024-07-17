@@ -1,6 +1,7 @@
 import React, { ReactEventHandler, useState } from 'react'
 import { PostCreateInterface } from '../../types/post'
 import './createPost.css'
+import Post from '../Post/Post';
 
 function CreatePost() {
 
@@ -33,7 +34,7 @@ function CreatePost() {
 
 
   // will applied for every field
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>): void => {
 
     console.log(e)
 
@@ -64,6 +65,7 @@ function CreatePost() {
 
 
     // because it can be null
+    // not needed
     const newFiles: FileList | [] = e.target.files || []
 
     console.log("newFile ", newFiles)
@@ -79,7 +81,15 @@ function CreatePost() {
 
       console.log("fileArrExample ", newFiles)
       setFiles([...newFiles])
+
+
+      setPost({
+        ...post,
+        images: [...newFiles]
+      })
     }
+
+
 
 
   }
@@ -126,7 +136,7 @@ function CreatePost() {
 
                 <div className='post-row'>
                   <label htmlFor='post-content'>content</label>
-                  <input type='' id='post-content' name='content' onChange={changeHandler}/>
+                  <textarea id='post-content' name='content' rows={4} cols={40} onChange={changeHandler}/>
                 </div>
 
                 <div className='post-row'>
@@ -142,6 +152,17 @@ function CreatePost() {
 
                 <button type='submit'>Submit</button>
               </form>
+
+
+              <div className="post-preview">
+
+                <h2>Post Preview</h2>
+
+                <div>
+                  preview here
+                </div>
+              </div>
+
 
             </div>
         </div>
