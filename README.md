@@ -1,6 +1,12 @@
 # Blog
 Blog webapp using React, Vite and Typescript.
 
+## Set Up
+
+### To Run httpbin locally
+
+`docker run -p 40:80 kennethreitz/httpbin`
+
 
 ## User Stories
 

@@ -10,6 +10,7 @@ import NoMatch from './pages/NoMatch/NoMatch'
 import Blog from './pages/Blog/Blog'
 import Post from './pages/Post/Post'
 import CreatePost from './pages/CreatePost/CreatePost'
+import EditPost from './pages/EditPost/EditPost'
 // import About from './pages/About/About'
 
 
@@ -35,9 +36,9 @@ function App() {
 
             {/* paths for blog resources */}
             <Route path='/blog' element={<Blog/>} />
-            <Route path='/blog/create' element={<CreatePost/>} />
-            <Route path='/blog/:id' element={<Post id={5}/>} />
-            <Route path='/blog/update' element={<Blog/>} />
+            <Route path='/blogs/create' element={<CreatePost/>} />
+            <Route path='/blogs/edit' element={<EditPost/>} />
+            <Route path='/blogs/:id' element={<Post id={5}/>} />
 
             {/* Handling unknown paths */}
             <Route path="*" element={<NoMatch />} />

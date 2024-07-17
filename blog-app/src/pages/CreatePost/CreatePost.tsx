@@ -2,8 +2,13 @@ import React, { ReactEventHandler, useState } from 'react'
 import { PostCreateInterface } from '../../types/post'
 import './createPost.css'
 import Post from '../Post/Post';
+import axios from 'axios'
 
 function CreatePost() {
+
+  const configValue : string = import.meta.env.REACT_APP_BASE_URL 
+
+  console.log("url", configValue)
 
 
   // declaring a state with PostInterface
@@ -96,7 +101,7 @@ function CreatePost() {
 
 
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log(e)
@@ -104,7 +109,19 @@ function CreatePost() {
     console.log("form submitted");
 
 
-    console.log("files from submit", files)
+    // to make api post call
+    const {data} = await axios.post('http://localhost:40/post', 
+    post,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+
+
+  )
+
+
   }
 
 
