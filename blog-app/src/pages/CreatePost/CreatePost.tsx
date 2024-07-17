@@ -6,9 +6,9 @@ import axios from 'axios'
 
 function CreatePost() {
 
-  const configValue : string = import.meta.env.REACT_APP_BASE_URL 
+  const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
 
-  console.log("url", configValue)
+  console.log("url", API_BASE_URL)
 
 
   // declaring a state with PostInterface
@@ -88,10 +88,10 @@ function CreatePost() {
       setFiles([...newFiles])
 
 
-      setPost({
-        ...post,
-        images: [...newFiles]
-      })
+      // setPost({
+      //   ...post,
+      //   images: [...newFiles]
+      // })
     }
 
 
@@ -109,18 +109,39 @@ function CreatePost() {
     console.log("form submitted");
 
 
+    console.log("post state now", post)
+
+
+    // array for files
+    // shape of files should be like this objects of array
+    // files: {
+    //   // 
+    //   images: [
+    //     files[0],
+    //     files[1]
+    //   ]
+    // }
+
+
     // to make api post call
-    const {data} = await axios.post('http://localhost:40/post', 
-    post,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    }
+    const {data} = await axios.post(API_BASE_URL+'/post', 
+      {...post,
+        // 
+        files: {
+          images: [...files]
+        }
+      },
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      },
 
+    )
 
-  )
+    console.log("after request", data)
 
+    // console.log(data.files['images[]'].keys)
 
   }
 
