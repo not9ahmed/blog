@@ -11,7 +11,7 @@ export interface PostInterface  {
 
 };
 
-export interface PostCreateInterface  {
+export interface PostCreateInterface {
     title: string,
     description: string,
     content: string,
@@ -19,4 +19,12 @@ export interface PostCreateInterface  {
 
     // can add userid here then join data
     createdBy: string,
+};
+
+
+export interface PostEditInterface  {
+    title: string,
+    description: string,
+    content: string,
+    images:  File[] | [] ,
 };
