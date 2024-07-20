@@ -15,6 +15,7 @@ function Blog() {
 
 
     // fetch from api category of posts
+
     const categories: Array<Category> = [
         {
             id: 1,
@@ -143,11 +144,13 @@ function Blog() {
     }
 
 
+    // should fetch from api once again or take from cache
     const resetFilter = () => {
 
-        setFilteredCategories(categories)
+        console.log("reset filter")
+        setFilteredPosts([...posts])
 
-        console.log(filteredCategories)
+        console.log(filteredPosts)
     }
 
 
@@ -189,7 +192,7 @@ function Blog() {
 
 
 
-
+    // to navigate and redirect through pages
     const navigate = useNavigate();
 
 

@@ -106,10 +106,17 @@ function CreatePost() {
 
     console.log(e)
 
-    console.log("form submitted");
+    console.log("form submit");
 
 
     console.log("post state now", post)
+    console.log("files state now", files)
+    // TODO Validation
+    // i have to check the post before submitting to backend
+    // if empty then don't submit to backend
+    // to not overload backend
+
+
 
 
     // array for files
