@@ -16,3 +16,14 @@ export interface Category {
     name: string,
     isEntertainment: boolean
 }
+
+
+
+// will have self reference
+export interface CategoryInterface {
+    id: number,
+    name: string,
+    parentCategory: number,
+    createdDate: Date,
+    createdBy: string,
+}

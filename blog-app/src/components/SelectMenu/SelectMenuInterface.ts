@@ -6,7 +6,7 @@ export interface SelectMenuInterface {
     value: string,
     color: 'primary' | 'secondary',
     options: OptionInterface[],
-    inputHandler: () => void
+    inputHandler?: () => void 
 }
 
 

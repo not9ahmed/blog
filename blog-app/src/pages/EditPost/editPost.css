@@ -1,3 +1,9 @@
 .edit-post {
-    
+
+
+
+    .post-action {
+        display: flex;
+        flex-direction: row;
+    }
 }

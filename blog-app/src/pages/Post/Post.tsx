@@ -8,10 +8,10 @@ import './post.css'
  * React component that renders a single post page
  * @returns 
  */
-function Post(props: { id: number }) {
+function Post() {
 
   // props will be a oject with the shape {num: number}
-  console.log(props)
+
 
   // get post id
   // make api call for complete blog data

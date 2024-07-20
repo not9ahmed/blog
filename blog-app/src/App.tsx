@@ -37,8 +37,8 @@ function App() {
             {/* paths for blog resources */}
             <Route path='/blog' element={<Blog/>} />
             <Route path='/blogs/create' element={<CreatePost/>} />
-            <Route path='/blogs/edit' element={<EditPost/>} />
-            <Route path='/blogs/:id' element={<Post id={5}/>} />
+            <Route path='/blogs/:id/edit' element={<EditPost />} />
+            <Route path='/blogs/:id' element={<Post />} />
 
             {/* Handling unknown paths */}
             <Route path="*" element={<NoMatch />} />

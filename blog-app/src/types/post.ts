@@ -1,15 +1,21 @@
+import { CategoryInterface } from "./category";
+
+// must add post category
 export interface PostInterface  {
     id: number,
     title: string,
     description: string,
     content: string,
     images: string[] | string,
+    category?: number | CategoryInterface | undefined,
     createdDate: Date,
-
-    // can add userid here then join data
     createdBy: string,
 
 };
+
+
+// create another interface when it's joined with post
+
 
 export interface PostCreateInterface {
     title: string,

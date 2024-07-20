@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './blog.css'
 import { useNavigate } from 'react-router-dom';
 import { Category } from '../../types/category';
-import { PostDto } from '../../types/postDto';
+import { PostInterface } from '../../types/post';
 import SelectMenu from '../../components/SelectMenu/SelectMenu';
 import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import Paginator from '../../components/Paginator/Paginator';
@@ -51,21 +51,95 @@ function Blog() {
 
     ];
 
+ 
+    const posts: Array<PostInterface> = [
+        {
+            id: 1,
+            title: "Tensorflow and Their Newest Update",
+            description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
+            content: "Very long title",
+            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+            category: 2,
+            createdDate: new Date(),
+            createdBy: 'notahmed'
+        },
+        {
+            id: 2,
+            title: "Tensorflow and Their Newest Update",
+            description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
+            content: "Very long title",
+            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+            category: 2,
+            createdDate: new Date(),
+            createdBy: 'notahmed'
+        },
+        {
+            id: 3,
+            title: "React is so cool, but the SSR is needed",
+            description: "React rant",
+            content: "Very long title",
+            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+            category: 1,
+            createdDate: new Date(),
+            createdBy: 'notahmed'
+        },
+        {
+            id: 4,
+            title: "Cloud Computing",
+            description: "AWS or Azure which one to use",
+            content: "Very long title",
+            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+            category: 1,
+            createdDate: new Date(),
+            createdBy: 'notahmed'
+        },
+        {
+            id: 5,
+            title: "Jazz is nice",
+            description: "have been listening to a lot of jazz lately",
+            content: "Very long title",
+            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+            category: 4,
+            createdDate: new Date(),
+            createdBy: 'notahmed'
+        }
+    ]
+
+
+
+
+    // in the first time it's exact copy of categories
     const [filteredCategories, setFilteredCategories] = useState([...categories])
 
 
 
+    const [filteredPosts, setFilteredPosts] = useState([...posts])
 
 
 
 
-    // this will be done on the actual posts
-    const filterCategories = () => {
 
-        const updatedCategories = filteredCategories.filter(el => el.isEntertainment === true)
-        setFilteredCategories(updatedCategories)
 
-        console.log("filteredCategories ", filteredCategories)
+    // this will be done on the actual posts from api
+    const filterCategories = (e: React.ChangeEvent<HTMLSelectElement>) => {
+
+
+        console.log("filterCategories")
+        console.log(e.target.value)
+
+        const selectCategory: number = parseInt(e.target.value)
+
+
+        // should call api maybe
+        const selectPostsCategory = posts.filter(post => post.category === selectCategory)
+
+        setFilteredPosts([...selectPostsCategory])
+
+        // console.log("filteredCategories ", filteredCategories)
+
+
+
+
     }
 
 
@@ -81,47 +155,7 @@ function Blog() {
 
 
 
-    
-    const posts: Array<PostDto> = [
-        {
-            id: 1,
-            name: "Tensorflow and Their Newest Update",
-            description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
-            createdDate: new Date(),
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        },
-        {
-            id: 2,
-            name: "Tensorflow and Their Newest Update",
-            description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
-            createdDate: new Date(),
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        },
-        {
-            id: 3,
-            name: "React is so cool, but the SSR is needed",
-            description: "React rant",
-            createdDate: new Date(),
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        },
-        {
-            id: 4,
-            name: "Cloud Computing",
-            description: "AWS or Azure which one to use",
-            createdDate: new Date(),
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        },
-        {
-            id: 5,
-            name: "Jazz is nice",
-            description: "have been listening to a lot of jazz lately",
-            createdDate: new Date(),
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        }
-    ]
-
-
-    const [filteredPosts, setFilteredPosts] = useState([...posts])
+   
 
 
 
@@ -140,7 +174,7 @@ function Blog() {
         
 
         const filteredPostsResult = posts.filter(post =>
-                post.name.toLowerCase().match(query) || post.description.toLowerCase().match(query)
+                post.title.toLowerCase().match(query) || post.description.toLowerCase().match(query)
             )
 
 
@@ -149,6 +183,9 @@ function Blog() {
         setFilteredPosts(filteredPostsResult)
 
     }
+
+
+
 
 
 
@@ -236,17 +273,17 @@ function Blog() {
 
                   <button id='post-search-btn' style={{ backgroundColor: 'var(--secondary-light-color)' }}>Search</button>
 
-                  {/* <select name='post-type' id='post-type' className='category-filter' onInput={filterCategories}>
+                  <select name='post-type' id='post-type' className='category-filter' onInput={filterCategories}> 
 
                       {filteredCategories.map(category => (
 
                           <option key={category.id} value={category.id}>{category.name}</option>
                       ))}
 
-                  </select> */}
+                  </select>
 
                 {/* How can i get the selected option from here */}
-                  <SelectMenu {...selectMenuProps}/>
+                  {/* <SelectMenu {...selectMenuProps}/> */}
 
                   <button id='reset-btn' onClick={resetFilter}>Reset</button>
 
@@ -272,7 +309,7 @@ function Blog() {
 
                           <div className='post-text'>
                               <div className='post-title'>
-                                  <div className='post-title-text'>{post.name}</div>
+                                  <div className='post-title-text'>{post.title}</div>
                                   {/* handle date later */}
                                   <div className='post-date'>{post.createdDate.toDateString()}</div>
                               </div>
