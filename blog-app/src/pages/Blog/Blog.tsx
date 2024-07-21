@@ -1,132 +1,86 @@
 import React, { useEffect, useState } from 'react'
 import './blog.css'
 import { useNavigate } from 'react-router-dom';
-import { Category } from '../../types/category';
+import { Category, CategoryInterface } from '../../types/category';
 import { PostInterface } from '../../types/post';
 import SelectMenu from '../../components/SelectMenu/SelectMenu';
 import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import Paginator from '../../components/Paginator/Paginator';
 import { findAllPosts } from '../../services/postService';
+import { findAllCategories } from '../../services/categoryService';
 
 // the following page will be the main blog page
 function Blog() {
 
 
     // variable and states here
+
+    // in the first time it's exact copy of categories
     const [posts, setPosts] = useState<PostInterface[]>([])
+    const [filteredPosts, setFilteredPosts] = useState<PostInterface[]>([...posts])
+
+    // change interface
+    const [categories, setCategories] = useState<Category[]>([])
+
+    // Check what is this used for
+    const [filteredCategories, setFilteredCategories] = useState<Category[]>([...categories])
 
 
     // useEffect and services call here
 
     useEffect(() => {
         const posts = findAllPosts();
+        const categoriesDb = findAllCategories()
 
 
         setFilteredPosts([...posts])
+        setCategories([...categoriesDb])
+        setFilteredCategories([...categoriesDb])
     },[posts])
 
 
     // fetch from api category of posts
 
-    const categories: Array<Category> = [
-        {
-            id: 1,
-            name: 'Software Engineering',
-            isEntertainment: false
-        },
-        {
-            id: 2,
-            name: 'Data Science',
-            isEntertainment: false
-
-        },
-        {
-            id: 3,
-            name: 'Computer Science',
-            isEntertainment: false
-
-        },
-        {
-            id: 4,
-            name: 'Music',
-            isEntertainment: true
-        },
-        {
-            id: 5,
-            name: 'Books/Manga',
-            isEntertainment: true
-        },
-        {
-            id: 6,
-            name: 'Shows/Movies',
-            isEntertainment: true
-        },
-
-    ];
-
- 
-    // const posts: Array<PostInterface> = [
+    // const categories: Array<Category> = [
     //     {
     //         id: 1,
-    //         title: "Tensorflow and Their Newest Update",
-    //         description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
-    //         content: "Very long title",
-    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-    //         category: 2,
-    //         createdDate: new Date(),
-    //         createdBy: 'notahmed'
+    //         name: 'Software Engineering',
+    //         isEntertainment: false
     //     },
     //     {
     //         id: 2,
-    //         title: "Tensorflow and Their Newest Update",
-    //         description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
-    //         content: "Very long title",
-    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-    //         category: 2,
-    //         createdDate: new Date(),
-    //         createdBy: 'notahmed'
+    //         name: 'Data Science',
+    //         isEntertainment: false
+
     //     },
     //     {
     //         id: 3,
-    //         title: "React is so cool, but the SSR is needed",
-    //         description: "React rant",
-    //         content: "Very long title",
-    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-    //         category: 1,
-    //         createdDate: new Date(),
-    //         createdBy: 'notahmed'
+    //         name: 'Computer Science',
+    //         isEntertainment: false
+
     //     },
     //     {
     //         id: 4,
-    //         title: "Cloud Computing",
-    //         description: "AWS or Azure which one to use",
-    //         content: "Very long title",
-    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-    //         category: 1,
-    //         createdDate: new Date(),
-    //         createdBy: 'notahmed'
+    //         name: 'Music',
+    //         isEntertainment: true
     //     },
     //     {
     //         id: 5,
-    //         title: "Jazz is nice",
-    //         description: "have been listening to a lot of jazz lately",
-    //         content: "Very long title",
-    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-    //         category: 4,
-    //         createdDate: new Date(),
-    //         createdBy: 'notahmed'
-    //     }
-    // ]
+    //         name: 'Books/Manga',
+    //         isEntertainment: true
+    //     },
+    //     {
+    //         id: 6,
+    //         name: 'Shows/Movies',
+    //         isEntertainment: true
+    //     },
+
+    // ];
 
 
 
 
-    // in the first time it's exact copy of categories
-    const [filteredCategories, setFilteredCategories] = useState([...categories])
 
-
-
-    const [filteredPosts, setFilteredPosts] = useState([...posts])
 
 
 
