@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './blog.css'
 import { useNavigate } from 'react-router-dom';
 import { Category } from '../../types/category';
@@ -6,12 +6,24 @@ import { PostInterface } from '../../types/post';
 import SelectMenu from '../../components/SelectMenu/SelectMenu';
 import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import Paginator from '../../components/Paginator/Paginator';
+import { findAllPosts } from '../../services/postService';
 
 // the following page will be the main blog page
 function Blog() {
 
 
+    // variable and states here
+    const [posts, setPosts] = useState<PostInterface[]>([])
 
+
+    // useEffect and services call here
+
+    useEffect(() => {
+        const posts = findAllPosts();
+
+
+        setFilteredPosts([...posts])
+    },[posts])
 
 
     // fetch from api category of posts
@@ -53,58 +65,58 @@ function Blog() {
     ];
 
  
-    const posts: Array<PostInterface> = [
-        {
-            id: 1,
-            title: "Tensorflow and Their Newest Update",
-            description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
-            content: "Very long title",
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-            category: 2,
-            createdDate: new Date(),
-            createdBy: 'notahmed'
-        },
-        {
-            id: 2,
-            title: "Tensorflow and Their Newest Update",
-            description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
-            content: "Very long title",
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-            category: 2,
-            createdDate: new Date(),
-            createdBy: 'notahmed'
-        },
-        {
-            id: 3,
-            title: "React is so cool, but the SSR is needed",
-            description: "React rant",
-            content: "Very long title",
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-            category: 1,
-            createdDate: new Date(),
-            createdBy: 'notahmed'
-        },
-        {
-            id: 4,
-            title: "Cloud Computing",
-            description: "AWS or Azure which one to use",
-            content: "Very long title",
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-            category: 1,
-            createdDate: new Date(),
-            createdBy: 'notahmed'
-        },
-        {
-            id: 5,
-            title: "Jazz is nice",
-            description: "have been listening to a lot of jazz lately",
-            content: "Very long title",
-            images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-            category: 4,
-            createdDate: new Date(),
-            createdBy: 'notahmed'
-        }
-    ]
+    // const posts: Array<PostInterface> = [
+    //     {
+    //         id: 1,
+    //         title: "Tensorflow and Their Newest Update",
+    //         description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
+    //         content: "Very long title",
+    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+    //         category: 2,
+    //         createdDate: new Date(),
+    //         createdBy: 'notahmed'
+    //     },
+    //     {
+    //         id: 2,
+    //         title: "Tensorflow and Their Newest Update",
+    //         description: "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
+    //         content: "Very long title",
+    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+    //         category: 2,
+    //         createdDate: new Date(),
+    //         createdBy: 'notahmed'
+    //     },
+    //     {
+    //         id: 3,
+    //         title: "React is so cool, but the SSR is needed",
+    //         description: "React rant",
+    //         content: "Very long title",
+    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+    //         category: 1,
+    //         createdDate: new Date(),
+    //         createdBy: 'notahmed'
+    //     },
+    //     {
+    //         id: 4,
+    //         title: "Cloud Computing",
+    //         description: "AWS or Azure which one to use",
+    //         content: "Very long title",
+    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+    //         category: 1,
+    //         createdDate: new Date(),
+    //         createdBy: 'notahmed'
+    //     },
+    //     {
+    //         id: 5,
+    //         title: "Jazz is nice",
+    //         description: "have been listening to a lot of jazz lately",
+    //         content: "Very long title",
+    //         images: ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
+    //         category: 4,
+    //         createdDate: new Date(),
+    //         createdBy: 'notahmed'
+    //     }
+    // ]
 
 
 
