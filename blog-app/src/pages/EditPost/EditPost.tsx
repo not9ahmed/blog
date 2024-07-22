@@ -3,7 +3,7 @@ import './editPost.css'
 import { PostEditInterface, PostInterface } from '../../types/post'
 import Post from '../Post/Post';
 import { Params, useParams } from 'react-router-dom';
-import { findPostById, updatePostById } from '../../services/postService';
+import { findPostById, updatePostById, deletePostById } from '../../services/postService';
 
 function EditPost() {
 
@@ -38,6 +38,7 @@ function EditPost() {
             console.log("id: "+id)
             findPostById(id);
 
+            // to be made after user submit
             updatePostById(id, updatedPost)
         }
         
@@ -60,6 +61,26 @@ function EditPost() {
 
 
 
+      // call edit post api
+      const handleEdit = (e: React.MouseEvent<HTMLButtonElement>):void => {
+          console.log(e.target);
+
+
+
+          
+        }
+        
+        
+        // call delete post api
+      const handleDelete = (e: React.MouseEvent<HTMLButtonElement>):void => {
+        console.log(e.target);
+
+        if (id!=undefined) {
+            
+            deletePostById(id);
+        }
+      }
+
 
 
   return (
@@ -73,8 +94,8 @@ function EditPost() {
                   Container
 
                   <div className='post-action'>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <button className='edit-btn' type="button" onClick={(e) => handleEdit(e)}>Edit</button>
+                    <button className='delete-btn'  type="button" onClick={(e) => handleDelete(e)}>Delete</button>
                   </div>
 
                       <div className="post">

@@ -5,5 +5,13 @@
     .post-action {
         display: flex;
         flex-direction: row;
+
+        .edit-btn {
+            background-color: var(--primary-light-color);
+        }
+
+        .delete-btn {
+            background-color: var(--primary-light-color);
+        }
     }
 }

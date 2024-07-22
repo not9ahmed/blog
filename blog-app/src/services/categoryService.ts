@@ -57,7 +57,20 @@ export const findAllCategories = (): Category[] => {
 
 
 
-const findCategoryById = (id: string): Category| undefined => {
+export const findCategoryById = (id: string): Category| undefined => {
+
+
+    return undefined;
+}
+
+
+export const updateCategoryById = (id: string): Category| undefined => {
+
+
+    return undefined;
+}
+
+export const deleteCategoryById = (id: string): Category| undefined => {
 
 
     return undefined;
