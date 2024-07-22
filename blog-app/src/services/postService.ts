@@ -88,7 +88,7 @@ export const findAllPosts = (): PostInterface[] => {
 
 
 
-export const findPostById = async (id: string) => {
+export const findPostById = async (id: string): Promise<PostInterface> => {
 
 
 
@@ -109,20 +109,23 @@ export const findPostById = async (id: string) => {
 
 
         console.log("original", data);
+
+        return post
     } catch (error) {
         console.log(error);
+        return post
     }
 
 
 }
 
 
-export const updatePostById = async (id: string, post: PostEditInterface) => {
+export const updatePostById = async (id: string, toBeUpdatedpost: PostEditInterface):  Promise<PostInterface | undefined> => {
 
     try {
         const  { data }  = await axios.put(API_BASE_URL + `/anything/${id}`,
             {
-                ...post,
+                ...toBeUpdatedpost,
 
             },
             {
@@ -132,6 +135,13 @@ export const updatePostById = async (id: string, post: PostEditInterface) => {
             });
 
         console.log("updated post", data);
+
+
+        // let updatedPost = data
+
+
+
+        return post
 
 
     } catch (error) {
@@ -158,6 +168,8 @@ export const deletePostById = async (id: string) => {
         
         console.log("delete post", parsed);
 
+        // make it json message
+        return "success"
 
     } catch (error) {
         console.log(error);
@@ -166,6 +178,33 @@ export const deletePostById = async (id: string) => {
 }
 
 
+// to search post by keywords
+export const searchPostByKeyword = async (id: string): Promise<PostInterface | void> => {
+
+
+
+    try {
+
+
+        const data = await axios.get(API_BASE_URL + `/anything/${id}`,
+            {
+                data: {
+
+                    ...post
+                }
+            }
+        )
+
+
+        console.log(data)
+
+        return post;
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
 
 
 
