@@ -149,7 +149,7 @@ export const updatePostById = async (id: number, toBeUpdatedpost: PostEditInterf
 }
 
 
-export const deletePostById = async (id: number) => {
+export const deletePostById = async (id: number): Promise<string> => {
 
     try {
         const  { data }  = await axios.delete(API_BASE_URL + `/anything/${id}`,

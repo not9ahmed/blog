@@ -142,6 +142,7 @@ function EditPost() {
         if (id) {
             
             deletePostById(id);
+            navigate(`/blog`);
         }
 
 

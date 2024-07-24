@@ -171,11 +171,13 @@ function Blog() {
 
 
 
-    const handlePostClick = (e: any, postId: number) => {
+    const handlePostClick = (e: React.MouseEvent<HTMLButtonElement>, postId: number) => {
 
+        console.log(e);
+        
 
         console.log('post id', postId)
-        navigate(`/blog/${postId}`);
+        navigate(`/posts/${postId}`);
     }
 
     const selectMenuProps: SelectMenuInterface =  {

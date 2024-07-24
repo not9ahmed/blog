@@ -35,10 +35,10 @@ function App() {
             <Route path='/experience' element={<Experience/>} />
 
             {/* paths for blog resources */}
-            <Route path='/blogs' element={<Blog/>} />
-            <Route path='/blog/posts/create' element={<CreatePost/>} />
-            <Route path='/blog/posts/:id/edit' element={<EditPost />} />
-            <Route path='/blog/posts/:id' element={<Post />} />
+            <Route path='/blog' element={<Blog/>} />
+            <Route path='/posts/create' element={<CreatePost/>} />
+            <Route path='/posts/:id/edit' element={<EditPost />} />
+            <Route path='/posts/:id' element={<Post />} />
 
             {/* Handling unknown paths */}
             <Route path="*" element={<NoMatch />} />
