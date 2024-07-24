@@ -6,7 +6,7 @@ import { PostInterface } from '../../types/post';
 import SelectMenu from '../../components/SelectMenu/SelectMenu';
 import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import Paginator from '../../components/Paginator/Paginator';
-import { findAllPosts } from '../../services/postService';
+import { findAllPosts, searchPostByKeyword } from '../../services/postService';
 import { findAllCategories } from '../../services/categoryService';
 
 // the following page will be the main blog page
@@ -131,9 +131,8 @@ function Blog() {
     const [query, setQuery] = useState();
 
     // will call api to search for blog
-    // useEffect
     // set time limit before calling backend to avoid api crash
-    const searchBlog = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchBlog = async (e: React.ChangeEvent<HTMLInputElement>) => {
 
         const query = e.target.value
 
@@ -141,15 +140,23 @@ function Blog() {
         console.log("query", query)
 
         
+        
 
-        const filteredPostsResult = posts.filter(post =>
-                post.title.toLowerCase().match(query) || post.description.toLowerCase().match(query)
-            )
+        // const filteredPostsResult = posts.filter(post =>
+        //         post.title.toLowerCase().match(query) || post.description.toLowerCase().match(query)
+        //     )
 
 
-        console.log("filteredPostsResult", filteredPostsResult)
+        // console.log("filteredPostsResult", filteredPostsResult)
 
-        setFilteredPosts(filteredPostsResult)
+        // setFilteredPosts(filteredPostsResult)
+
+        const filteredPostsResult: PostInterface[] | undefined = await searchPostByKeyword(query);
+
+
+        setFilteredPosts(filteredPostsResult || []);
+
+        console.log(filteredPostsResult);
 
     }
 

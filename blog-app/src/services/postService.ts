@@ -16,9 +16,6 @@ const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
     };
 
 
-
-export const findAllPosts = (): PostInterface[] => {
-
     const posts: Array<PostInterface> = [
         {
             id: 1,
@@ -73,6 +70,9 @@ export const findAllPosts = (): PostInterface[] => {
     ]
 
 
+export const findAllPosts = (): PostInterface[] => {
+
+
 
     // axios call should be here for getting all posts
     // try {
@@ -88,9 +88,7 @@ export const findAllPosts = (): PostInterface[] => {
 
 
 
-export const findPostById = async (id: string): Promise<PostInterface> => {
-
-
+export const findPostById = async (id: number): Promise<PostInterface> => {
 
 
     try {
@@ -120,7 +118,7 @@ export const findPostById = async (id: string): Promise<PostInterface> => {
 }
 
 
-export const updatePostById = async (id: string, toBeUpdatedpost: PostEditInterface):  Promise<PostInterface | undefined> => {
+export const updatePostById = async (id: number, toBeUpdatedpost: PostEditInterface):  Promise<PostInterface | undefined> => {
 
     try {
         const  { data }  = await axios.put(API_BASE_URL + `/anything/${id}`,
@@ -151,7 +149,7 @@ export const updatePostById = async (id: string, toBeUpdatedpost: PostEditInterf
 }
 
 
-export const deletePostById = async (id: string) => {
+export const deletePostById = async (id: number) => {
 
     try {
         const  { data }  = await axios.delete(API_BASE_URL + `/anything/${id}`,
@@ -173,32 +171,41 @@ export const deletePostById = async (id: string) => {
 
     } catch (error) {
         console.log(error);
+        return error;
     }
 
 }
 
 
 // to search post by keywords
-export const searchPostByKeyword = async (id: string): Promise<PostInterface | void> => {
+export const searchPostByKeyword = async (q: string): Promise<PostInterface[] | undefined> => {
 
 
 
     try {
 
 
-        const data = await axios.get(API_BASE_URL + `/anything/${id}`,
-            {
-                data: {
+        // api logic
+        // const data = await axios.get(API_BASE_URL + `/anything`,
+        // {
+        //         params: {
 
-                    ...post
-                }
-            }
+        //         },
+        //         data: {
+
+        //             ...post
+        //         }
+        //     }
+        // )
+        
+        const filteredPostsResult = posts.filter(post =>
+            post.title.toLowerCase().match(q) || post.description.toLowerCase().match(q)
         )
 
 
-        console.log(data)
+        console.log(filteredPostsResult)
 
-        return post;
+        return filteredPostsResult;
 
     } catch (error) {
         console.log(error)

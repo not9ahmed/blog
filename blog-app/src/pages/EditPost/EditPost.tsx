@@ -23,7 +23,10 @@ function EditPost() {
     const params: Readonly<Params<string>> = useParams();
 
 
-    const id: string | undefined = params.id;
+    const idStr: string = params.id || 'nan';
+
+    const id: number|undefined = parseInt(idStr) ? parseInt(idStr) : undefined;
+
 
     console.log("id ", id);
 
@@ -56,28 +59,55 @@ function EditPost() {
     useEffect(() => {
         console.log("Use effect called");
 
+        // handling missing id
+        if(!id) {
+            navigate("/nomatch")
+        }
+
+
+        // will check if avilable then fetch it to this page
         if (id) {
             console.log("id: "+id)
-            const fetchedPost = findPostById(id);
+            findPostById(id)
+            .then(fetchedPost => {
 
+                // console.log("fetchedPost", fetchedPost)
+    
+    
+                setUpdatedPost({
+                    title: fetchedPost.title,
+                    description: fetchedPost.description,
+                    content: fetchedPost.content,
+                    images: [...fetchedPost.images]
+                })
 
-            console.log("fetchedPost", fetchedPost)
-
-            // setPost(async () => await fetchedPost)
-
-
+                // console.log("updatedPost ", updatedPost)
+            });
 
         }
         
-    })
+    }, [])
 
 
 
 
 
 
-    const editChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const editChangeHandler = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
 
+        let { name, value } = e.target
+        console.log("name", name)
+        console.log("value", value)
+    
+        
+        setUpdatedPost({
+          ...updatedPost,
+          [name]: value
+        });
+    
+      
+    
+        console.log(updatedPost)
     }
 
 
@@ -125,6 +155,22 @@ function EditPost() {
       }
 
 
+      // submitting edit post request to api
+      const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+        e.preventDefault();
+        console.log(updatedPost)
+
+
+        // make api call to edit
+        // add the files also
+        if(id){
+
+            updatePostById(id, updatedPost)
+        }
+
+      }
+
 
   return (
       <div className='content'>
@@ -146,10 +192,51 @@ function EditPost() {
 
 
 
-                    <div className='form-edit'>
-                        
+            <div className='edit-post-container'>
+                <h1>Current Blog Data</h1>
+              <form id='edit-post-form' onSubmit={handleSubmit}>
 
-                    </div>
+                <div className='post-row'>
+                  <label htmlFor='post-title'>Title</label>
+                  <input type='text' id='post-title' name='title' onChange={editChangeHandler} value={updatedPost.title}/>
+                </div>
+
+                <div className='post-row'>
+                  <label htmlFor='post-description'>Description</label>
+                  <input type='text' id='post-description' name='description' onChange={editChangeHandler} value={updatedPost.description}/>
+                </div>
+
+                <div className='post-row'>
+                  <label htmlFor='post-content'>content</label>
+                  <textarea id='post-content' name='content' rows={4} cols={40} onChange={editChangeHandler} value={updatedPost.content}/>
+                </div>
+
+                <div className='post-row'>
+                  <label htmlFor='post-images'>images</label>
+                  <input type='file' multiple accept='image/*,.pdf' id='post-images' name='images' onChange={editChangeHandler} />
+                </div>
+
+
+
+
+
+
+
+                <button type='submit'>Submit</button>
+              </form>
+
+
+              <div className="post-preview">
+
+                <h2>Post Preview</h2>
+
+                <div>
+                  preview here
+                </div>
+              </div>
+
+
+            </div>
 
 
 

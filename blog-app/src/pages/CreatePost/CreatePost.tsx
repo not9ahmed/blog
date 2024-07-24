@@ -41,13 +41,6 @@ function CreatePost() {
   // will applied for every field
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>): void => {
 
-    console.log(e)
-
-
-
-    let newPost = {...post}
-
-
     let { name, value } = e.target
     console.log("name", name)
     console.log("value", value)
