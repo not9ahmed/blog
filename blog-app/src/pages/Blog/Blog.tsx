@@ -171,7 +171,7 @@ function Blog() {
 
 
 
-    const handlePostClick = (e: React.MouseEvent<HTMLButtonElement>, postId: number) => {
+    const handlePostClick = (e: React.MouseEvent<HTMLDivElement>, postId: number) => {
 
         console.log(e);
         

@@ -171,7 +171,7 @@ export const deletePostById = async (id: number): Promise<string> => {
 
     } catch (error) {
         console.log(error);
-        return error;
+        return "error";
     }
 
 }
