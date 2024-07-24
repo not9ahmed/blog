@@ -51,5 +51,5 @@ export interface PostEditInterface  {
     title: string,
     description: string,
     content: string,
-    images:  File[] | [] ,
+    images:  File[] | File | null ,
 };

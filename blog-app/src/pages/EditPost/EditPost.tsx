@@ -38,15 +38,16 @@ function EditPost() {
         createdBy: 'ahmed'
         };
 
-    // const [post, setPost]= useState<PostInterface>({
-    //     id: 1,
-    //     title: '',
-    //     description: '',
-    //     content: '',
-    //     images: [''],
-    //     createdDate: new Date(),
-    //     createdBy: 'ahmed'
-    //   } as PostInterface );
+
+
+    // state for the updated post
+    const [updatedPost, setUpdatedPost] = useState<PostEditInterface>({
+        title: '',
+        description: '',
+        content: '',
+        images: [],
+      } as PostEditInterface );
+
         
 
 
@@ -65,8 +66,7 @@ function EditPost() {
             // setPost(async () => await fetchedPost)
 
 
-            // to be made after user submit
-            updatePostById(id, updatedPost)
+
         }
         
     })
@@ -76,14 +76,9 @@ function EditPost() {
 
 
 
+    const editChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 
-    // state for the updated post
-    const [updatedPost, setUpdatedPost] = useState<PostEditInterface>({
-        title: '',
-        description: '',
-        content: '',
-        images: [],
-      } as PostEditInterface );
+    }
 
 
 
@@ -92,17 +87,19 @@ function EditPost() {
       const handleEdit = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
           console.log(e.target);
 
+          // handle in case id not available
 
-          if (id) {
+          if (!id){
+            throw new Error("Id not provided");
             
-              let postAfterUpdate: PostInterface|undefined = await updatePostById(id, updatedPost)
-
-              console.log("postAfterUpdate", postAfterUpdate)
-
-
-            //   setPost()
-              
           }
+
+
+ 
+        let postAfterUpdate: PostInterface|undefined = await updatePostById(id, updatedPost)
+
+        console.log("postAfterUpdate", postAfterUpdate)
+
 
           
         }
@@ -134,7 +131,7 @@ function EditPost() {
 
           <div className="edit-post">
               <div className='header'>
-                  <h1>Update Blog Post</h1>
+                  <h1>Edit Blog Post</h1>
               </div>
               <div className="edit-post-container">
                   Container
@@ -144,27 +141,40 @@ function EditPost() {
                     <button className='delete-btn'  type="button" onClick={(e) => handleDelete(e)}>Delete</button>
                   </div>
 
-                      <div className="post">
+                  
 
-                      <div className='post-heading'>
-                          <h1 className='post-title'>{post.title}</h1>
-                          <h2 className='post-detailed-description'>{post.description}</h2>
-                          <h3 className='post-timestamp'>@{post.createdBy} | {post.createdDate.toDateString()}</h3>
-                      </div>
 
-                      <div className='post-main-area'>
-                          <img
-                              className='post-main-image'
-                              src={post.images[0]}
-                              alt="image not found"
-                          />
 
-                          <div className='post-content'>
-                              <p>
-                                  {post.content}
-                              </p>
-                          </div>
-                      </div>
+
+                    <div className='form-edit'>
+                        
+
+                    </div>
+
+
+
+                    <div className="post">
+
+                    <div className='post-heading'>
+                        <h1>Preview</h1>
+                        <h1 className='post-title'>{post.title}</h1>
+                        <h2 className='post-detailed-description'>{post.description}</h2>
+                        <h3 className='post-timestamp'>@{post.createdBy} | {post.createdDate.toDateString()}</h3>
+                    </div>
+
+                    <div className='post-main-area'>
+                        <img
+                            className='post-main-image'
+                            src={post.images[0]}
+                            alt="image not found"
+                        />
+
+                        <div className='post-content'>
+                            <p>
+                                {post.content}
+                            </p>
+                        </div>
+                    </div>
 
                   </div>
 
