@@ -2,7 +2,7 @@
 export interface ButtonInterface {
     id: number,
     value: string,
-    colors: "primary"| "secondary"
+    colors: "primary"| "secondary" | "error" | "disabled" 
 }
 
 /*
