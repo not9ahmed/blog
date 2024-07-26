@@ -15,8 +15,7 @@ export interface PostInterface  {
 
 
 // create another interface when it's joined with post
-
-
+// the images when upload are raw images therfore of file type
 export interface PostCreateInterface {
     title: string,
     description: string,

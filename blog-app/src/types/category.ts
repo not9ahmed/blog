@@ -20,7 +20,26 @@ export interface Category {
 
 
 // will have self reference
+// will use this as the main
 export interface CategoryInterface {
+    id: number,
+    name: string,
+    parentCategory: number,
+    createdDate: Date,
+    createdBy: string,
+}
+
+
+export interface CategoryCreateInterface {
+    id: number,
+    name: string,
+    parentCategory: number,
+    createdDate: Date,
+    createdBy: string,
+}
+
+
+export interface CategoryEditInterface {
     id: number,
     name: string,
     parentCategory: number,

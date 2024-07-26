@@ -41,6 +41,8 @@ Blog webapp using React, Vite and Typescript.
 - Creator should be able to update blog post in the system
 - Creator should be able to delete blog post in the system
 - Creator should be able to upload images to blog posts to the system
+- System will take raw images and upload them to storage service
+- System should store images as url links to take less memory
 - Users should be able to view the blog posts and filter based on types
 - User should also be able to search through the blog based on title and description
 

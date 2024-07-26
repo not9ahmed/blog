@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "name": "Software Engineering",
+        "parentCategory": null,
+        "createdDate": "2024-07-26T20:26:36.479Z",
+        "createdBy": "notahmed/or my id"
+    },
+    {
+        "id": 2,
+        "name": "Data Science",
+        "parentCategory": null,
+        "createdDate": "2024-07-26T20:26:36.479Z",
+        "createdBy": "notahmed/or my id"
+    },
+    {
+        "id": 3,
+        "name": "Computer Science",
+        "parentCategory": null,
+        "createdDate": "2024-07-26T20:26:36.479Z",
+        "createdBy": "notahmed/or my id"
+    },
+    {
+        "id": 4,
+        "name": "Music",
+        "parentCategory": null,
+        "createdDate": "2024-07-26T20:26:36.479Z",
+        "createdBy": "notahmed/or my id"
+    },
+    {
+        "id": 5,
+        "name": "Books",
+        "parentCategory": "",
+        "createdDate": "2024-07-26T20:26:36.479Z",
+        "createdBy": "notahmed/or my id"
+    },
+    {
+        "id": 6,
+        "name": "Manga",
+        "parentCategory": 5,
+        "createdDate": "2024-07-26T20:26:36.479Z",
+        "createdBy": "notahmed/or my id"
+    },
+    {
+        "id": 7,
+        "name": "Movies",
+        "parentCategory": "",
+        "createdDate": "2024-07-26T20:26:36.479Z",
+        "createdBy": "notahmed/or my id"
+    },
+    {
+        "id": 8,
+        "name": "Shows",
+        "parentCategory": "",
+        "createdDate": "2024-07-26T20:26:36.479Z",
+        "createdBy": "notahmed/or my id"
+    },
+    {
+        "id": 9,
+        "name": "Anime",
+        "parentCategory": 8,
+        "createdDate": "2024-07-26T20:26:36.479Z",
+        "createdBy": "notahmed/or my id"
+    }
+]
