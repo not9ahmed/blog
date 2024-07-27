@@ -87,13 +87,18 @@ export const findAllPosts = (): PostInterface[] => {
 }
 
 
-export const createPost = async (): Promise<PostInterface | undefined> => {
+export const createPost = async (post: PostCreateInterface): Promise<PostInterface | undefined> => {
     
 
     try {
-        
+        const res = await axios.post(`${API_BASE_URL}/posts/`,post);
+
+        console.log("res", res)
+        console.log("res", JSON.parse(res.config.data))
 
 
+   
+        return undefined
 
     } catch (error) {
         
@@ -111,7 +116,7 @@ export const findPostById = async (id: number): Promise<PostInterface> => {
     try {
 
         // will be get request
-        const { data } = await axios.get(API_BASE_URL + `/posts/${id}`);
+        const { data } = await axios.get(`${API_BASE_URL}/posts/${id}`);
 
 
         console.log("original", data);

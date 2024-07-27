@@ -3,6 +3,7 @@ import { PostCreateInterface } from '../../types/post'
 import './createPost.css'
 import Post from '../Post/Post';
 import axios from 'axios'
+import { createPost } from '../../services/postService';
 
 function CreatePost() {
 
@@ -124,24 +125,33 @@ function CreatePost() {
 
 
     // to make api post call
-    const {data} = await axios.post(API_BASE_URL+'/post', 
-      {...post,
+    const {data} = await axios.post(API_BASE_URL+'/posts', 
+      {
+        data: {
+          ...post 
+        },
         // 
         files: {
           images: [...files]
         }
       },
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      },
+      // {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data'
+      //   }
+      // },
 
     )
 
     console.log("after request", data)
 
     // console.log(data.files['images[]'].keys)
+
+
+    // calling service here
+    const serviceData =  await createPost(post)
+
+    console.log("serviceData", serviceData);
 
   }
 

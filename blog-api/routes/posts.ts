@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
 
     console.log(req.body)
 
-    res.send("posts endpoint called")
+    res.send(req.body)
 })
 
 
