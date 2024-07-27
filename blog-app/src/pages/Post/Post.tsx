@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Params, useParams } from 'react-router-dom'
 import { PostInterface } from '../../types/post';
 import postImageCreator from './postUtil'
+import { findPostById } from '../../services/postService'
 import './post.css'
 
 /**
@@ -22,6 +23,12 @@ function Post() {
   // will get id from the url
   const id: string | undefined = params.id;
 
+
+  useEffect(() => {
+    console.log("Fetch api called");
+    findPostById(id);
+
+  })
   
 
   console.log("id: ", id)

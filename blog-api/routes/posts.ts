@@ -20,12 +20,23 @@ router.get('/', (req, res) => {
  */
 router.get('/:id', (req, res) => {
 
+    const id = parseInt(req.params.id);
+
     console.log('id', req.params.id);
 
-    console.log("Hello from posts")
+    console.log("Hello from posts id endpoint")
 
-    res.send(posts[0]);
+    res.send(posts[id - 1]);
 
+})
+
+
+// endpoint to create a new post
+router.post('/', (req, res) => {
+
+    console.log(req.body)
+
+    res.send("posts endpoint called")
 })
 
 

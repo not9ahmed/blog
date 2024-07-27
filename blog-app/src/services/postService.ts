@@ -1,5 +1,5 @@
 import axios from "axios"
-import { PostEditInterface, PostInterface } from "../types/post";
+import { PostCreateInterface, PostEditInterface, PostInterface } from "../types/post";
 
 const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
 
@@ -87,6 +87,23 @@ export const findAllPosts = (): PostInterface[] => {
 }
 
 
+export const createPost = async (): Promise<PostInterface | undefined> => {
+    
+
+    try {
+        
+
+
+
+    } catch (error) {
+        
+        console.log(error) 
+        return
+    }
+
+}
+
+
 
 export const findPostById = async (id: number): Promise<PostInterface> => {
 
@@ -94,16 +111,7 @@ export const findPostById = async (id: number): Promise<PostInterface> => {
     try {
 
         // will be get request
-        const { data } = await axios.post(API_BASE_URL + `/anything/${id}`,
-            {
-                ...post,
-
-            },
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+        const { data } = await axios.get(API_BASE_URL + `/posts/${id}`);
 
 
         console.log("original", data);
