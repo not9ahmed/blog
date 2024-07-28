@@ -40,4 +40,32 @@ router.post('/', (req, res) => {
 })
 
 
+// endpoint to update post
+router.put('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+
+    console.log('id', req.params.id);
+
+
+    res.send({
+        message: 'update route called'
+    })
+})
+
+
+// endpoint to delete post
+router.delete('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+
+    console.log('id', req.params.id);
+
+
+    res.send({
+        message: 'delete route called'
+    })
+})
+
+
+
+
 module.exports = router

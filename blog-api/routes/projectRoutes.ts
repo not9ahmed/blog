@@ -59,7 +59,9 @@ router.put('/:id', (req, res) => {
 // 204
 router.delete('/:id', (req, res) => {
 
-    res.send("project deleted")
+    res.send({
+        message: "project deleted"
+    })
 })
 
 
