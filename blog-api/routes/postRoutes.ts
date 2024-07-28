@@ -34,9 +34,13 @@ router.get('/:id', (req, res) => {
 // endpoint to create a new post
 router.post('/', (req, res) => {
 
-    console.log(req.body)
 
-    res.send(req.body)
+    const data = req.body;
+
+    res.send({
+        message: `post create route called`,
+        data: data
+    })
 })
 
 

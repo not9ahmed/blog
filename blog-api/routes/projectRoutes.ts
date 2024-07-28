@@ -20,12 +20,10 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
 
-    const idStr: string = req.params.id || "";
+    const id: number = parseInt(req.params.id ?? -1);
 
 
-    const id: number = parseInt(idStr) || -1;
-
-
+    // null or number
     if(!id){
         res.send({
             message: "No id passed"
@@ -43,14 +41,21 @@ router.post('/', (req, res) => {
 
 
 
-    res.send("posts created");
+    res.send({
+        message: "posts created"
+    });
 })
 
 
 // route to update projects
 router.put('/:id', (req, res) => {
 
-    res.send("projects update")
+    const id: number = parseInt(req.params.id ?? -1);
+
+
+    res.send({
+        message: `projects update ${id}`
+    })
 })
 
 
@@ -59,24 +64,16 @@ router.put('/:id', (req, res) => {
 // 204
 router.delete('/:id', (req, res) => {
 
+    const id: number = parseInt(req.params.id ?? -1);
+
+
     res.send({
-        message: "project deleted"
+        message: `project deleted ${id}`
     })
 })
 
 
-// route to search projects
-// 202
-// 204
-// router.get('/', (req, res) => {
 
-//     const q = req.query;
-
-//     console.log("q", q);
-
-
-//     res.send("project search")
-// })
 
 
 
