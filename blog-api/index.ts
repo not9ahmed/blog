@@ -1,7 +1,7 @@
 import express from 'express'
 const cors = require('cors')
-const postsRoutes =  require('./routes/posts')
-const categoriesRoutes =  require('./routes/categories')
+const postsRoutes =  require('./routes/postRoutes')
+const categoriesRoutes =  require('./routes/categoryRoutes')
 
 const app = express();
 const PORT = 4000;
@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
     };
     res.send(msg)
 })
+
+
 
 
 

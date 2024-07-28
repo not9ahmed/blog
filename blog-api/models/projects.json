@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "name": "AI Shopping System",
+        "description": "Text",
+        "tools": ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
+        "link": "https://github.com/not9ahmed/blog"
+    },
+    {
+        "id": 2,
+        "name": "AI Shopping System",
+        "description": "Text",
+        "tools": ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
+        "link": "https://github.com/not9ahmed/blog"
+    },
+    {
+        "id": 3,
+        "name": "AI Shopping System",
+        "description": "Text",
+        "tools": ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
+        "link": "https://github.com/not9ahmed/blog"
+    }
+    
+]

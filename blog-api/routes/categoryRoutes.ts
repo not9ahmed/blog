@@ -1,5 +1,5 @@
 import Router from 'express'
-const categoriesController = require('../controllers/categories')
+const categoriesController = require('../controllers/categoryController')
 
 const router = Router()
 

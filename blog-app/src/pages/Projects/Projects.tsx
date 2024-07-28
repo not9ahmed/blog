@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './projects.css'
-import {Project} from '../../types/project'
+import { ProjectInterface } from '../../types/project'
+import { findAllProjects } from '../../services/projectService'
 
 function Projects() {
 
@@ -16,54 +17,61 @@ function Projects() {
     // }
     // useEffect axios
 
-    const projects: Array<Project> = [
-        {
-            id: 1,
-            name: "AI Shopping System",
-            description: "Text",
-            tools: ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 2,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["React", "FastAPI", "MongoDB", "Bootstrap"],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 3,
-            name: "Connect 4",
-            description: "Text",
-            tools: ["HTML", "CSS", "JavaScript"],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 4,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["Django", "FastAPI", ""],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 5,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["Django", "FastAPI", ""],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 6,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["Django", "FastAPI", ""],
-            link: "https://github.com/not9ahmed/blog"
-        }
+    // const projects: Array<ProjectInterface> = [
+    //     {
+    //         id: 1,
+    //         name: "AI Shopping System",
+    //         description: "Text",
+    //         tools: ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
+    //         link: "https://github.com/not9ahmed/blog"
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "No More Yo3an",
+    //         description: "Text",
+    //         tools: ["React", "FastAPI", "MongoDB", "Bootstrap"],
+    //         link: "https://github.com/not9ahmed/blog"
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "Connect 4",
+    //         description: "Text",
+    //         tools: ["HTML", "CSS", "JavaScript"],
+    //         link: "https://github.com/not9ahmed/blog"
+    //     },
+    //     {
+    //         id: 4,
+    //         name: "No More Yo3an",
+    //         description: "Text",
+    //         tools: ["Django", "FastAPI", ""],
+    //         link: "https://github.com/not9ahmed/blog"
+    //     },
+    //     {
+    //         id: 5,
+    //         name: "No More Yo3an",
+    //         description: "Text",
+    //         tools: ["Django", "FastAPI", ""],
+    //         link: "https://github.com/not9ahmed/blog"
+    //     },
+    //     {
+    //         id: 6,
+    //         name: "No More Yo3an",
+    //         description: "Text",
+    //         tools: ["Django", "FastAPI", ""],
+    //         link: "https://github.com/not9ahmed/blog"
+    //     }
 
-    ]
+    // ]
 
 
+    const [projects, setProjects] = useState<ProjectInterface[] | undefined>([]);
 
+
+    useEffect(() => {
+        const projectFetched = findAllProjects();
+
+        setProjects(projectFetched);
+    })
 
   return (
     <div className='content'>

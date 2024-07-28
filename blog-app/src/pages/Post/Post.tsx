@@ -21,14 +21,18 @@ function Post() {
   const params: Readonly<Params<string>> = useParams();
 
   // will get id from the url
-  const id: string | undefined = params.id;
+  const id: number | undefined = Number(params.id);
 
 
   useEffect(() => {
     console.log("Fetch api called");
-    findPostById(id);
+    if (id) {
 
-  })
+      // not assigning to anything
+      findPostById(id);
+    }
+
+  }, [id])
   
 
   console.log("id: ", id)
