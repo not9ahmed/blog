@@ -1,11 +1,11 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { ProjectCreateInterface, ProjectEditInterface, ProjectInterface } from "../types/project";
-import { ErrorResponse } from 'react-router-dom';
+// import { ErrorResponse } from 'react-router-dom';
 
 const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
 
 
-export const findAllProjects = async (): Promise<ProjectInterface[] | undefined> => {
+export const findAllProjects = async (): Promise<ProjectInterface[] | []> => {
 
 
 
@@ -20,14 +20,18 @@ export const findAllProjects = async (): Promise<ProjectInterface[] | undefined>
 
        const response = await axios.get(`${API_BASE_URL}/projects/`)
 
-       console.log(response)
+    //    console.log(response)
 
-       return response.data
+       return response.data as ProjectInterface[]
 
     } catch(error) {
 
+        // const errors = error as Error | AxiosError;
+
+
         console.log(error)
-        return undefined
+        // throw new Error()
+        return []
     }
 
 

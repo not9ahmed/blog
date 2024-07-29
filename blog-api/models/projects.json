@@ -8,16 +8,16 @@
     },
     {
         "id": 2,
-        "name": "AI Shopping System",
+        "name": "No More Yo3an",
         "description": "Text",
-        "tools": ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
+        "tools": ["React", "Express JS", "MongoDB"],
         "link": "https://github.com/not9ahmed/blog"
     },
     {
         "id": 3,
-        "name": "AI Shopping System",
+        "name": "Connect Four",
         "description": "Text",
-        "tools": ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
+        "tools": ["HTML", "CSS", "JavaScript"],
         "link": "https://github.com/not9ahmed/blog"
     }
     

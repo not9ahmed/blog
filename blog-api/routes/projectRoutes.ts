@@ -1,11 +1,12 @@
 import Router from 'express'
+import { Request, Response} from 'express'
 const projectController = require('../controllers/projectController');
 const projects = require('../models/projects.json');
 
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', (req: Request, res: Response) => {
 
     const q = req.query;
 
@@ -18,7 +19,7 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req: Request, res: Response) => {
 
     const id: number = parseInt(req.params.id ?? -1);
 
@@ -37,7 +38,7 @@ router.get('/:id', (req, res) => {
 
 
 // route to create project
-router.post('/', (req, res) => {
+router.post('/', (req: Request, res: Response) => {
 
 
 
@@ -48,7 +49,7 @@ router.post('/', (req, res) => {
 
 
 // route to update projects
-router.put('/:id', (req, res) => {
+router.put('/:id', (req: Request, res: Response) => {
 
     const id: number = parseInt(req.params.id ?? -1);
 
@@ -62,7 +63,7 @@ router.put('/:id', (req, res) => {
 // route to delete projects
 // 202
 // 204
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req: Request, res: Response) => {
 
     const id: number = parseInt(req.params.id ?? -1);
 

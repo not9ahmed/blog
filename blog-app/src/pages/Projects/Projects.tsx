@@ -17,82 +17,78 @@ function Projects() {
     // }
     // useEffect axios
 
-    const projects: Array<ProjectInterface> = [
-        {
-            id: 1,
-            name: "AI Shopping System",
-            description: "Text",
-            tools: ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 2,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["React", "FastAPI", "MongoDB", "Bootstrap"],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 3,
-            name: "Connect 4",
-            description: "Text",
-            tools: ["HTML", "CSS", "JavaScript"],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 4,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["Django", "FastAPI", ""],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 5,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["Django", "FastAPI", ""],
-            link: "https://github.com/not9ahmed/blog"
-        },
-        {
-            id: 6,
-            name: "No More Yo3an",
-            description: "Text",
-            tools: ["Django", "FastAPI", ""],
-            link: "https://github.com/not9ahmed/blog"
-        }
 
-    ]
-
-
-    // const [projects, setProjects] = useState<ProjectInterface[] | undefined>([]);
+    // handling loading of data
+    const [error, setError] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+    const [projects, setProjects] = useState<ProjectInterface[]>([]);
 
 
     useEffect(() => {
 
 
-        findAllProjects();
-   
+        // callback function which call the projectsService
+        const fetchProjects = async () => {
+
+            // before fetching data set is loading to true
+            setIsLoading(true);
+
+            try {
+
+                const projects = await findAllProjects();
+                console.log(projects);
+    
+                setProjects(projects);
+    
+            } catch(e: any) {
+
+                setError(e);
+
+            } finally {
+                // after fetching data set is loading to false
+                setIsLoading(false);
+
+            }
+
+        }
+
+
+        fetchProjects();
     }, []);
 
-  return (
-    <div className='content'>
-        <h1>Projects</h1>
-        
+    if (isLoading) {
+        return
+        <div>
+            Is Loading...
+        </div>
+    }
 
-        <div className='projects'>
+    if (error) {
+        return
+        <div>
+            Something went wrong
+        </div>
+    }
 
-        {projects.map(el => 
-            <div className="project" key={el.id}>
-                <img className='project-image' src='https://production-media.paperswithcode.com/datasets/Django-0000001059-57707917_hCcTMpx.jpg'/>
-                <h4>{el.name}</h4>
-                <h4>{el.description}</h4>
+    return (
+        <div className='content'>
+            <h1>Projects</h1>
+
+
+            <div className='projects'>
+
+                {projects.map(el =>
+                    <div className="project" key={el.id}>
+                        <img className='project-image' src='https://production-media.paperswithcode.com/datasets/Django-0000001059-57707917_hCcTMpx.jpg' />
+                        <h4>{el.name}</h4>
+                        <h4>{el.description}</h4>
+
+                    </div>
+                )}
 
             </div>
-        )}
-
         </div>
-    </div>
-  )
+    )
 }
 
 export default Projects
