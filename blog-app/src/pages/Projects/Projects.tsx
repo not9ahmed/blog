@@ -80,8 +80,11 @@ function Projects() {
                 {projects.map(el =>
                     <div className="project" key={el.id}>
                         <img className='project-image' src='https://production-media.paperswithcode.com/datasets/Django-0000001059-57707917_hCcTMpx.jpg' />
-                        <h4>{el.name}</h4>
-                        <h4>{el.description}</h4>
+                        
+                        <div className='project-contnet'>
+                            <h3>{el.name}</h3>
+                            <p>{el.description}</p>
+                        </div>
 
                     </div>
                 )}

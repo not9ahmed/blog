@@ -16,8 +16,8 @@ function Blog() {
     // variable and states here
 
     // in the first time it's exact copy of categories
-    const [posts, setPosts] = useState<PostInterface[]>([])
-    const [filteredPosts, setFilteredPosts] = useState<PostInterface[]>([...posts])
+    const [posts, setPosts] = useState<PostInterface[] | []>([])
+    const [filteredPosts, setFilteredPosts] = useState<PostInterface[] | []>([...posts])
 
     // change interface
     const [categories, setCategories] = useState<Category[]>([])
@@ -29,14 +29,23 @@ function Blog() {
     // useEffect and services call here
 
     useEffect(() => {
-        const posts = findAllPosts();
-        const categoriesDb = findAllCategories()
 
 
-        setFilteredPosts([...posts])
-        setCategories([...categoriesDb])
-        setFilteredCategories([...categoriesDb])
-    },[posts])
+        const fetchData = async () => {
+
+            const posts = await findAllPosts();
+            const categoriesDb = findAllCategories()
+    
+    
+            setFilteredPosts([...posts])
+            setCategories([...categoriesDb])
+            setFilteredCategories([...categoriesDb])
+
+        }
+
+        fetchData();
+
+    },[])
 
 
     // fetch from api category of posts
@@ -289,7 +298,7 @@ function Blog() {
                               <div className='post-title'>
                                   <div className='post-title-text'>{post.title}</div>
                                   {/* handle date later */}
-                                  <div className='post-date'>{post.createdDate.toDateString()}</div>
+                                  <div className='post-date'>{post.createdDate}</div>
                               </div>
                               <div className='post-description'>
                                   {post.description}

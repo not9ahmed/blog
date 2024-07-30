@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 import { PostCreateInterface, PostEditInterface, PostInterface } from "../types/post";
 
 const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
@@ -70,19 +70,29 @@ const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
     ]
 
 
-export const findAllPosts = (): PostInterface[] => {
+export const findAllPosts = async (): Promise<PostInterface[] | null> => {
 
 
 
     // axios call should be here for getting all posts
-    // try {
+    try {
         
-    // } catch (error) {
-        
-    // }
+        // TODO: Define type for axios response
+        const response = await axios.get(`${API_BASE_URL}/posts`);
 
-    return posts
+        console.log(response)
 
+        const posts = response.data
+
+
+        return posts;
+
+    } catch (error) {
+        console.log(error);
+        return null
+    }
+
+    
 
 }
 
