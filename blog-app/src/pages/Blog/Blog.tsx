@@ -160,8 +160,10 @@ function Blog() {
 
         // setFilteredPosts(filteredPostsResult)
 
-        const filteredPostsResult: PostInterface[] | undefined = await searchPostByKeyword(query);
+        const filteredPostsResult: PostInterface[] | null = await searchPostByKeyword(query);
 
+
+        // const posts: await searchPostByKeyword(query);
 
         setFilteredPosts(filteredPostsResult || []);
 

@@ -1,7 +1,8 @@
 import Router from 'express'
 import { Request, Response } from 'express'
 const router = Router();
-const posts = require('../models/posts.json');
+import { PostDtoInterface, PostInterface } from '../types/postTypes';
+const posts: PostInterface[] = require('../models/posts.json');
 
 
 /**
@@ -10,9 +11,63 @@ const posts = require('../models/posts.json');
 router.get('/', (req: Request, res: Response) => {
 
 
+
     console.log("Hello from posts")
 
-    res.status(200).send(posts);
+    // handle search
+    const query = req.query.q as string;
+
+
+
+
+    let postsDb: PostDtoInterface[];
+
+
+    let postsCopy: PostInterface[] = JSON.parse(JSON.stringify(posts));
+
+
+    if(query){
+
+        const q = query.toLowerCase();
+        // console.log(query)
+
+        // let q = query.toLowerCase();
+    
+        postsCopy = postsCopy
+            .filter(post =>
+                        post.title.toLowerCase().match(q)
+                    );
+
+
+            console.log("postsCopy", postsCopy)
+    }
+
+        postsDb = postsCopy.map(post =>
+            {
+                const newPost: PostDtoInterface = {
+                    id: post.id,
+                    title: post.title,
+                    description: post.description,
+                    images: post.images,
+                    category: post.category,
+                    createdDate: post.createdDate,
+                    createdBy: post.createdBy,
+                }
+                return newPost;
+            }
+        );
+
+
+
+
+
+
+    
+
+    console.log(postsDb);
+
+
+    res.status(200).send(postsDb);
 
 })
 

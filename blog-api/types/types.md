@@ -1,0 +1,1 @@
+# Types should be shared between frontend and backend

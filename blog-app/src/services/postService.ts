@@ -201,37 +201,26 @@ export const deletePostById = async (id: number): Promise<string> => {
 
 
 // to search post by keywords
-export const searchPostByKeyword = async (q: string): Promise<PostInterface[] | undefined> => {
+export const searchPostByKeyword = async (q: string): Promise<PostInterface[] |  null> => {
 
 
 
+    // axios call should be here for getting all posts
     try {
-
-
-        // api logic
-        // const data = await axios.get(API_BASE_URL + `/anything`,
-        // {
-        //         params: {
-
-        //         },
-        //         data: {
-
-        //             ...post
-        //         }
-        //     }
-        // )
         
-        const filteredPostsResult = posts.filter(post =>
-            post.title.toLowerCase().match(q) || post.description.toLowerCase().match(q)
-        )
+        // TODO: Define type for axios response
+        const response = await axios.get(`${API_BASE_URL}/posts?q=${q}`);
+
+        console.log(response)
+
+        const posts = response.data
 
 
-        console.log(filteredPostsResult)
-
-        return filteredPostsResult;
+        return posts;
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        return null
     }
 
 }
