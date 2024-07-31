@@ -15,7 +15,7 @@ router.get('/', (req: Request, res: Response) => {
     console.log("Hello from posts")
 
     // handle search
-    const query = req.query.q as string;
+    // const query = req.query.q as string;
 
 
 
@@ -26,13 +26,15 @@ router.get('/', (req: Request, res: Response) => {
     let postsCopy: PostInterface[] = JSON.parse(JSON.stringify(posts));
 
 
-    if(query === "q"){
+    if(req.query.q){
 
-        const q = query.toLowerCase();
-        // console.log(query)
+        let q = req.query.q as string
 
-        // let q = query.toLowerCase();
-    
+        q = q.toLowerCase();
+
+        
+        console.log("q", q);
+
         postsCopy = postsCopy
             .filter(post =>
                         post.title.toLowerCase().match(q)
@@ -44,9 +46,12 @@ router.get('/', (req: Request, res: Response) => {
 
     if(req.query.category){
 
-        const category = req.query.category as string;
+        let category = req.query.category as string;
 
-        const categoryId = parseInt(category)
+        let categoryId = parseInt(category)
+
+        console.log("categoryId", categoryId);
+
 
         // console.log(query)
 

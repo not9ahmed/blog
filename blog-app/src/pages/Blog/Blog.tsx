@@ -30,6 +30,10 @@ function Blog() {
     const [filteredCategories, setFilteredCategories] = useState<Category[]>([...categories])
 
 
+    // Search Posts
+    const [query, setQuery] = useState<string>("");
+
+
     // useEffect and services call here
 
     useEffect(() => {
@@ -41,6 +45,8 @@ function Blog() {
             const categoriesDb = await findAllCategories()
     
     
+
+            setPosts([...posts])
             setFilteredPosts([...posts])
             setCategories([...categoriesDb])
             setFilteredCategories([...categoriesDb])
@@ -73,7 +79,7 @@ function Blog() {
 
             const selectPostsCategory = await findPostByCategory(selectCategory);
             setFilteredPosts([...selectPostsCategory])
-            
+
         } catch(error) {
             console.log(error)
         }
@@ -93,9 +99,18 @@ function Blog() {
     const resetFilter = () => {
 
         console.log("reset filter")
+
+        const query = "";
+
+        setQuery(query);
+
+
         setFilteredPosts([...posts])
 
-        console.log(filteredPosts)
+        console.log("posts ", posts)
+
+
+        console.log("filteredPosts ", filteredPosts)
     }
 
 
@@ -107,7 +122,6 @@ function Blog() {
 
 
 
-    const [query, setQuery] = useState();
 
     // will call api to search for blog
     // set time limit before calling backend to avoid api crash
@@ -120,6 +134,7 @@ function Blog() {
 
         
         
+        setQuery(query);
 
         // const filteredPostsResult = posts.filter(post =>
         //         post.title.toLowerCase().match(query) || post.description.toLowerCase().match(query)
@@ -160,58 +175,58 @@ function Blog() {
         navigate(`/posts/${postId}`);
     }
 
-    const selectMenuProps: SelectMenuInterface =  {
-        id: 1,
-        name: 'Categories',
-        labelName: 'Post Categories',
-        classNameValue: 'something',
-        value: 'categories',
-        color: 'primary',
-        options: [
-            {
-                id: 1,
-                name: 'Software Engineering',
-                value: 'Software Engineering',
-            },
-            {
-                id: 2,
-                name: 'Data Science',
-                value: 'Data Science',
+    // const selectMenuProps: SelectMenuInterface =  {
+    //     id: 1,
+    //     name: 'Categories',
+    //     labelName: 'Post Categories',
+    //     classNameValue: 'something',
+    //     value: 'categories',
+    //     color: 'primary',
+    //     options: [
+    //         {
+    //             id: 1,
+    //             name: 'Software Engineering',
+    //             value: 'Software Engineering',
+    //         },
+    //         {
+    //             id: 2,
+    //             name: 'Data Science',
+    //             value: 'Data Science',
     
-            },
-            {
-                id: 3,
-                name: 'Computer Science',
-                value: 'Computer Science',
+    //         },
+    //         {
+    //             id: 3,
+    //             name: 'Computer Science',
+    //             value: 'Computer Science',
     
-            },
-            {
-                id: 4,
-                name: 'Music',
-                value: 'Music',
-            },
-            {
-                id: 5,
-                name: 'Books/Manga',
-                value: 'Books/Manga',
-            },
-            {
-                id: 6,
-                name: 'Shows/Movies',
-                value: 'Shows/Movies',
-            },
+    //         },
+    //         {
+    //             id: 4,
+    //             name: 'Music',
+    //             value: 'Music',
+    //         },
+    //         {
+    //             id: 5,
+    //             name: 'Books/Manga',
+    //             value: 'Books/Manga',
+    //         },
+    //         {
+    //             id: 6,
+    //             name: 'Shows/Movies',
+    //             value: 'Shows/Movies',
+    //         },
 
-        ],
+    //     ],
 
-        // will throw the logic for update categories
-        // it should update the categories in this page dropdown
-        inputHandler() {
-            const updatedCategories = filteredCategories.filter(el => el.isEntertainment === true)
-            setFilteredCategories(updatedCategories)
+    //     // will throw the logic for update categories
+    //     // it should update the categories in this page dropdown
+    //     inputHandler() {
+    //         const updatedCategories = filteredCategories.filter(el => el.isEntertainment === true)
+    //         setFilteredCategories(updatedCategories)
     
-            console.log("filteredCategories inside cat componenet", filteredCategories)
-        },
-    }
+    //         console.log("filteredCategories inside cat componenet", filteredCategories)
+    //     },
+    // }
 
 
   return (
@@ -269,7 +284,7 @@ function Blog() {
                               <div className='post-title'>
                                   <div className='post-title-text'>{post.title}</div>
                                   {/* handle date later */}
-                                  <div className='post-date'>{post.createdDate}</div>
+                                  <div className='post-date'>{post.createdDate? post.createdDate.toString() : ""}</div>
                               </div>
                               <div className='post-description'>
                                   {post.description}
