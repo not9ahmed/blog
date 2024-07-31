@@ -6,11 +6,15 @@ import { PostInterface } from '../../types/post';
 import SelectMenu from '../../components/SelectMenu/SelectMenu';
 import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import Paginator from '../../components/Paginator/Paginator';
-import { findAllPosts, searchPostByKeyword } from '../../services/postService';
+import { findAllPosts, findPostByCategory, searchPostByKeyword } from '../../services/postService';
 import { findAllCategories } from '../../services/categoryService';
 
 // the following page will be the main blog page
 function Blog() {
+
+
+    // to navigate and redirect through pages
+    const navigate = useNavigate();
 
 
     // variable and states here
@@ -34,7 +38,7 @@ function Blog() {
         const fetchData = async () => {
 
             const posts = await findAllPosts();
-            const categoriesDb = findAllCategories()
+            const categoriesDb = await findAllCategories()
     
     
             setFilteredPosts([...posts])
@@ -48,56 +52,11 @@ function Blog() {
     },[])
 
 
-    // fetch from api category of posts
-
-    // const categories: Array<Category> = [
-    //     {
-    //         id: 1,
-    //         name: 'Software Engineering',
-    //         isEntertainment: false
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Data Science',
-    //         isEntertainment: false
-
-    //     },
-    //     {
-    //         id: 3,
-    //         name: 'Computer Science',
-    //         isEntertainment: false
-
-    //     },
-    //     {
-    //         id: 4,
-    //         name: 'Music',
-    //         isEntertainment: true
-    //     },
-    //     {
-    //         id: 5,
-    //         name: 'Books/Manga',
-    //         isEntertainment: true
-    //     },
-    //     {
-    //         id: 6,
-    //         name: 'Shows/Movies',
-    //         isEntertainment: true
-    //     },
-
-    // ];
-
-
-
-
-
-
-
-
 
 
 
     // this will be done on the actual posts from api
-    const filterCategories = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const filterCategories = async (e: React.ChangeEvent<HTMLSelectElement>) => {
 
 
         console.log("filterCategories")
@@ -107,9 +66,20 @@ function Blog() {
 
 
         // should call api maybe
-        const selectPostsCategory = posts.filter(post => post.category === selectCategory)
+        // const selectPostsCategory = posts.filter(post => post.category === selectCategory)
 
-        setFilteredPosts([...selectPostsCategory])
+
+        try {
+
+            const selectPostsCategory = await findPostByCategory(selectCategory);
+            setFilteredPosts([...selectPostsCategory])
+            
+        } catch(error) {
+            console.log(error)
+        }
+
+
+
 
         // console.log("filteredCategories ", filteredCategories)
 
@@ -176,8 +146,7 @@ function Blog() {
 
 
 
-    // to navigate and redirect through pages
-    const navigate = useNavigate();
+
 
 
 

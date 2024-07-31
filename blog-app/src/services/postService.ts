@@ -139,8 +139,32 @@ export const findPostById = async (id: number): Promise<PostInterface> => {
         return post;
     }
 
+}
+
+
+
+export const findPostByCategory = async (id: number): Promise<PostInterface> => {
+
+
+    console.log("findPostByCategory");
+    try {
+
+        // will be get request
+        const { data } = await axios.get(`${API_BASE_URL}/posts?category=${id}`);
+
+
+        console.log("original", data);
+
+        
+
+        return data;
+    } catch (error) {
+        console.log(error);
+        return post;
+    }
 
 }
+
 
 
 export const updatePostById = async (id: number, toBeUpdatedpost: PostEditInterface):  Promise<PostInterface | undefined> => {

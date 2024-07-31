@@ -26,7 +26,7 @@ router.get('/', (req: Request, res: Response) => {
     let postsCopy: PostInterface[] = JSON.parse(JSON.stringify(posts));
 
 
-    if(query){
+    if(query === "q"){
 
         const q = query.toLowerCase();
         // console.log(query)
@@ -42,20 +42,41 @@ router.get('/', (req: Request, res: Response) => {
             console.log("postsCopy", postsCopy)
     }
 
-        postsDb = postsCopy.map(post =>
-            {
-                const newPost: PostDtoInterface = {
-                    id: post.id,
-                    title: post.title,
-                    description: post.description,
-                    images: post.images,
-                    category: post.category,
-                    createdDate: post.createdDate,
-                    createdBy: post.createdBy,
-                }
-                return newPost;
+    if(req.query.category){
+
+        const category = req.query.category as string;
+
+        const categoryId = parseInt(category)
+
+        // console.log(query)
+
+        // let q = query.toLowerCase();
+    
+        postsCopy = postsCopy
+            .filter(post =>
+                        post.category === categoryId
+                    );
+
+
+            console.log("postsCopy", postsCopy)
+    }
+
+
+
+    postsDb = postsCopy.map(post =>
+        {
+            const newPost: PostDtoInterface = {
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                images: post.images,
+                category: post.category,
+                createdDate: post.createdDate,
+                createdBy: post.createdBy,
             }
-        );
+            return newPost;
+        }
+    );
 
 
 
