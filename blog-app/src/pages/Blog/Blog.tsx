@@ -3,8 +3,8 @@ import './blog.css'
 import { useNavigate } from 'react-router-dom';
 import { Category, CategoryInterface } from '../../types/category';
 import { PostInterface } from '../../types/post';
-import SelectMenu from '../../components/SelectMenu/SelectMenu';
-import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
+// import SelectMenu from '../../components/SelectMenu/SelectMenu';
+// import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import Paginator from '../../components/Paginator/Paginator';
 import { findAllPosts, findPostByCategory, searchPostByKeyword } from '../../services/postService';
 import { findAllCategories } from '../../services/categoryService';
@@ -26,10 +26,6 @@ function Blog() {
     // change interface
     const [categories, setCategories] = useState<Category[]>([])
 
-    // Check what is this used for
-    const [filteredCategories, setFilteredCategories] = useState<Category[]>([...categories])
-
-
     // Search Posts
     const [query, setQuery] = useState<string>("");
 
@@ -49,7 +45,6 @@ function Blog() {
             setPosts([...posts])
             setFilteredPosts([...posts])
             setCategories([...categoriesDb])
-            setFilteredCategories([...categoriesDb])
 
         }
 
@@ -71,10 +66,13 @@ function Blog() {
         const selectCategory: number = parseInt(e.target.value)
 
 
-        // should call api maybe
-        // const selectPostsCategory = posts.filter(post => post.category === selectCategory)
 
+        if(selectCategory === -1) {
+            setFilteredPosts([...posts]);
+            return
+        }
 
+        
         try {
 
             const selectPostsCategory = await findPostByCategory(selectCategory);
@@ -83,12 +81,6 @@ function Blog() {
         } catch(error) {
             console.log(error)
         }
-
-
-
-
-        // console.log("filteredCategories ", filteredCategories)
-
 
 
 
@@ -231,7 +223,7 @@ function Blog() {
 
   return (
       <div className='content'>
-          <h1>Blog</h1>
+          <h1>My Cool Blog</h1>
 
           <div className='blog'>
 
@@ -248,7 +240,8 @@ function Blog() {
 
                   <select name='post-type' id='post-type' className='category-filter' onInput={filterCategories}> 
 
-                      {filteredCategories.map(category => (
+                  <option key={-1} value={-1}>{"All"}</option>
+                      {categories.map(category => (
 
                           <option key={category.id} value={category.id}>{category.name}</option>
                       ))}
