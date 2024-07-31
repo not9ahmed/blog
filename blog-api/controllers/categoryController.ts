@@ -23,7 +23,7 @@ const createCategory = (req: Request, res: Response) => {
 
     // add to the categories list
 
-    res.json({
+    res.status(200).json({
         message: "Hello from categories controllers"
     });
 }
@@ -34,7 +34,7 @@ const updateCategory = (req: Request, res: Response) => {
     const id = req.params.id;
 
 
-    res.json({
+    res.status(200).json({
         message: `update category by id ${id}`
     });
 }
@@ -47,7 +47,7 @@ const deleteCategory = (req: Request, res: Response): void => {
 
 
 
-    res.send({
+    res.status(200).send({
         message: `delete category by id ${id}`
     });
 }

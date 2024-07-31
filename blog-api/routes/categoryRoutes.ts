@@ -2,6 +2,7 @@ import Router from 'express'
 const categories = require('../models/categories.json')
 const categoriesController = require('../controllers/categoryController')
 
+// Declare router app with "/categories prefix"
 const router = Router()
 
 

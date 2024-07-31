@@ -11,28 +11,25 @@ const posts: PostInterface[] = require('../models/posts.json');
 router.get('/', (req: Request, res: Response) => {
 
 
-
     console.log("Hello from posts")
 
     // handle search
     // const query = req.query.q as string;
 
 
-
-
     let postsDb: PostDtoInterface[];
 
-
+    // make copy of post to modify
     let postsCopy: PostInterface[] = JSON.parse(JSON.stringify(posts));
 
 
+    // parameters checking
     if(req.query.q){
 
         let q = req.query.q as string
 
         q = q.toLowerCase();
 
-        
         console.log("q", q);
 
         postsCopy = postsCopy
@@ -40,9 +37,9 @@ router.get('/', (req: Request, res: Response) => {
                         post.title.toLowerCase().match(q)
                     );
 
-
-            console.log("postsCopy", postsCopy)
+        console.log("postsCopy", postsCopy)
     }
+
 
     if(req.query.category){
 
@@ -51,23 +48,18 @@ router.get('/', (req: Request, res: Response) => {
         let categoryId = parseInt(category)
 
         console.log("categoryId", categoryId);
-
-
-        // console.log(query)
-
-        // let q = query.toLowerCase();
     
         postsCopy = postsCopy
             .filter(post =>
                         post.category === categoryId
                     );
 
-
-            console.log("postsCopy", postsCopy)
+        console.log("postsCopy", postsCopy)
     }
 
 
 
+    // mapping posts to dto
     postsDb = postsCopy.map(post =>
         {
             const newPost: PostDtoInterface = {
@@ -83,15 +75,7 @@ router.get('/', (req: Request, res: Response) => {
         }
     );
 
-
-
-
-
-
-    
-
     console.log(postsDb);
-
 
     res.status(200).send(postsDb);
 
@@ -102,11 +86,11 @@ router.get('/', (req: Request, res: Response) => {
  */
 router.get('/:id', (req: Request, res: Response) => {
 
+    console.log("Hello from posts id endpoint");
+
     const id = parseInt(req.params.id);
 
     console.log('id', req.params.id);
-
-    console.log("Hello from posts id endpoint")
 
 
     const post = posts[id - 1];
@@ -136,7 +120,6 @@ router.put('/:id', (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
     console.log('id', req.params.id);
-
 
     res.send({
         message: 'update route called'
