@@ -82,7 +82,12 @@ router.get('/:id', (req: Request, res: Response) => {
 
     console.log("Hello from posts id endpoint")
 
-    res.send(posts[id - 1]);
+
+    const post = posts[id - 1];
+
+    console.log("post", post);
+
+    res.status(200).send(post);
 
 })
 

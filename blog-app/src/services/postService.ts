@@ -131,10 +131,12 @@ export const findPostById = async (id: number): Promise<PostInterface> => {
 
         console.log("original", data);
 
-        return post
+        
+
+        return data;
     } catch (error) {
         console.log(error);
-        return post
+        return post;
     }
 
 
