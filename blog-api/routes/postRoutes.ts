@@ -108,8 +108,7 @@ router.post('/', (req: Request, res: Response) => {
 
     const data = req.body;
 
-    res.send({
-        message: `post create route called`,
+    res.status(200).send({
         data: data
     })
 })
@@ -121,8 +120,14 @@ router.put('/:id', (req: Request, res: Response) => {
 
     console.log('id', req.params.id);
 
+
+    console.log('data', req.body.title);
+
     res.send({
-        message: 'update route called'
+        message: 'update route called',
+        post: {
+            title: req.body
+        }
     })
 })
 

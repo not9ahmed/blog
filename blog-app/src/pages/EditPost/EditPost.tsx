@@ -138,7 +138,20 @@ function EditPost() {
 
       console.log("contentEditableHandler")
 
+      console.log("innerText", e.currentTarget)
       console.log("innerText", e.currentTarget.innerText)
+
+
+      const elInner = e.currentTarget.innerText;
+
+      setUpdatedPost({
+        ...updatedPost,
+        title: elInner
+      })
+
+
+
+      // update state
   
   }
 
@@ -241,7 +254,7 @@ function EditPost() {
 
                 <div className='post-row'>
                   <label htmlFor='post-content'>content</label>
-                  <textarea id='post-content' name='content' rows={4} cols={40} onChange={editChangeHandler} value={updatedPost.content}/>
+                  <textarea id='post-content' name='content' rows={4} cols={40} onBlur={editChangeHandler} value={updatedPost.content}/>
                 </div>
 
                 <div className='post-row'>

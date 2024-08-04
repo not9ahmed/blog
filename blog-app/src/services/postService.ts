@@ -101,7 +101,7 @@ export const createPost = async (post: PostCreateInterface): Promise<PostInterfa
     
 
     try {
-        const response = await axios.post(`${API_BASE_URL}/posts/`,post);
+        const response = await axios.post(`${API_BASE_URL}/posts/`, post);
 
         console.log("response", response);
 
@@ -170,25 +170,43 @@ export const findPostByCategory = async (id: number): Promise<PostInterface[] | 
 export const updatePostById = async (id: number, toBeUpdatedpost: PostEditInterface):  Promise<PostInterface | undefined> => {
 
     try {
-        const  { data }  = await axios.put(API_BASE_URL + `/anything/${id}`,
-            {
-                ...toBeUpdatedpost,
+        const response  = await axios.put(API_BASE_URL + `/posts/${id}`,
+            JSON.stringify({
+                ...toBeUpdatedpost
 
-            },
+            }),
             {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-
-        console.log("updated post", data);
-
-
-        // let updatedPost = data
+        
 
 
 
-        return post
+
+        /*
+        
+                    {
+            ...toBeUpdatedpost,
+
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'multipart/form-data'
+            }
+        });
+        */
+
+        console.log("response", response);
+
+
+        let updatedPost = response.data
+
+
+
+        return updatedPost;
 
 
     } catch (error) {
