@@ -24,7 +24,7 @@ function Blog() {
     const [filteredPosts, setFilteredPosts] = useState<PostInterface[] | []>([...posts])
 
     // change interface
-    const [categories, setCategories] = useState<Category[]>([])
+    const [categories, setCategories] = useState<CategoryInterface[]>([])
 
     // Search Posts
     const [query, setQuery] = useState<string>("");
@@ -37,10 +37,11 @@ function Blog() {
 
         const fetchData = async () => {
 
-            const posts = await findAllPosts();
-            const categoriesDb = await findAllCategories()
+            const posts = await findAllPosts() || [];
+            const categoriesDb = await findAllCategories() || [];
     
     
+
 
             setPosts([...posts])
             setFilteredPosts([...posts])
@@ -75,7 +76,7 @@ function Blog() {
         
         try {
 
-            const selectPostsCategory = await findPostByCategory(selectCategory);
+            const selectPostsCategory = await findPostByCategory(selectCategory) || [];
             setFilteredPosts([...selectPostsCategory])
 
         } catch(error) {

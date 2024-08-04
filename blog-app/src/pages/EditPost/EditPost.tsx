@@ -13,13 +13,26 @@ function EditPost() {
 
     const idStr: string = params.id || 'nan';
 
-    const id: number|undefined = parseInt(idStr) ? parseInt(idStr) : undefined;
+    const id: number = parseInt(idStr);
 
 
 
     // declare states
     const [updatedFiles, setUpdatedFiles] = useState<File[]>([]);
 
+
+
+    // state for the post
+    const [post, setPost] = useState<PostInterface>();
+
+
+    // state for the updated post
+    const [updatedPost, setUpdatedPost] = useState<PostEditInterface>({
+      title: '',
+      description: '',
+      content: '',
+      images: [],
+    } as PostEditInterface );
 
     // declare hooks
 
@@ -33,28 +46,22 @@ function EditPost() {
 
 
     // first fetch the exisiting data
-    const post: PostInterface = {
-        id: 1,
-        title: 'Why should you use Next JS in 2024?',
-        description: 'The following blog post will discuss briefly why you should skip React and start using Next JS for your project',
-        content: 'Lorem ipsum ~image~ dolor sit amet, consectetur adipiscing elit. ~image~ Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.',
-        images: [
-            'https://res.cloudinary.com/practicaldev/image/fetch/s--usRTLj88--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jaln87lqpoyec77lnkbn.png',
-            'https://res.cloudinary.com/practicaldev/image/fetch/s--usRTLj88--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jaln87lqpoyec77lnkbn.png',
-            ],
-        createdDate: new Date(),
-        createdBy: 'ahmed'
-        };
+    // const post: PostInterface = {
+    //     id: 1,
+    //     title: 'Why should you use Next JS in 2024?',
+    //     description: 'The following blog post will discuss briefly why you should skip React and start using Next JS for your project',
+    //     content: 'Lorem ipsum ~image~ dolor sit amet, consectetur adipiscing elit. ~image~ Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.',
+    //     images: [
+    //         'https://res.cloudinary.com/practicaldev/image/fetch/s--usRTLj88--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jaln87lqpoyec77lnkbn.png',
+    //         'https://res.cloudinary.com/practicaldev/image/fetch/s--usRTLj88--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jaln87lqpoyec77lnkbn.png',
+    //         ],
+    //     createdDate: new Date(),
+    //     createdBy: 'ahmed'
+    //     };
 
 
 
-    // state for the updated post
-    const [updatedPost, setUpdatedPost] = useState<PostEditInterface>({
-        title: '',
-        description: '',
-        content: '',
-        images: [],
-      } as PostEditInterface );
+
 
         
 
@@ -64,32 +71,41 @@ function EditPost() {
     useEffect(() => {
         console.log("Use effect called");
 
+
+
+
+
+      const fetchData = async () => {
+
         // handling missing id
-        if(!id) {
-            navigate("/nomatch")
-        }
+        if (id === null || id === undefined) {
+          navigate("/nomatch")
+        } 
+        console.log("id: " + id)
+
+
+        const fetchedPost: PostInterface = await findPostById(id);
+
+
+
+        setPost(fetchedPost);
+
+        setUpdatedPost({
+          title: fetchedPost.title,
+          description: fetchedPost.description,
+          content: fetchedPost.content,
+          images: [...fetchedPost.images]
+        });
+
+        // console.log("updatedPost ", updatedPost)
+
+
+      };
 
 
         // will check if avilable then fetch it to this page
-        if (id) {
-            console.log("id: "+id)
-            findPostById(id)
-            .then(fetchedPost => {
 
-                // console.log("fetchedPost", fetchedPost)
-    
-    
-                setUpdatedPost({
-                    title: fetchedPost.title,
-                    description: fetchedPost.description,
-                    content: fetchedPost.content,
-                    images: [...fetchedPost.images]
-                })
-
-                // console.log("updatedPost ", updatedPost)
-            });
-
-        }
+        fetchData();
         
     }, [])
 
@@ -114,6 +130,17 @@ function EditPost() {
     
         console.log(updatedPost)
     }
+
+
+
+
+    const contentEditableHandler = (e: React.FormEvent<HTMLInputElement>) => {
+
+      console.log("contentEditableHandler")
+
+      console.log("innerText", e.currentTarget.innerText)
+  
+  }
 
 
 
@@ -246,30 +273,33 @@ function EditPost() {
 
 
 
-                    <div className="post">
+            <div className="post">
 
-                    <div className='post-heading'>
-                        <h1>Preview</h1>
-                        <h1 className='post-title'>{post.title}</h1>
-                        <h2 className='post-detailed-description'>{post.description}</h2>
-                        <h3 className='post-timestamp'>@{post.createdBy} | {post.createdDate.toDateString()}</h3>
-                    </div>
+            <div className='post-heading'>
+                <h1>Preview</h1>
+                <h1 className='post-title' contentEditable={true}suppressContentEditableWarning={true}
+                onInput={contentEditableHandler}>
+                  {post?.title}
+                </h1>
+                <h2 className='post-detailed-description'>{post?.description}</h2>
+                <h3 className='post-timestamp'>@{post?.createdBy} | {post?.createdDate? post?.createdDate.toString() : ""}</h3>
+            </div>
 
-                    <div className='post-main-area'>
-                        <img
-                            className='post-main-image'
-                            src={post.images[0]}
-                            alt="image not found"
-                        />
+            <div className='post-main-area'>
+                <img
+                    className='post-main-image'
+                    src={post?.images[0]}
+                    alt="image not found"
+                />
 
-                        <div className='post-content'>
-                            <p>
-                                {post.content}
-                            </p>
-                        </div>
-                    </div>
+                <div className='post-content'>
+                    <p>
+                        {post?.content}
+                    </p>
+                </div>
+            </div>
 
-                  </div>
+          </div>
 
 
 

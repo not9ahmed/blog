@@ -97,23 +97,23 @@ export const findAllPosts = async (): Promise<PostInterface[] | null> => {
 }
 
 
-export const createPost = async (post: PostCreateInterface): Promise<PostInterface | undefined> => {
+export const createPost = async (post: PostCreateInterface): Promise<PostInterface | null> => {
     
 
     try {
-        const res = await axios.post(`${API_BASE_URL}/posts/`,post);
+        const response = await axios.post(`${API_BASE_URL}/posts/`,post);
 
-        console.log("res", res)
-        console.log("res", JSON.parse(res.config.data))
+        console.log("response", response);
 
+        const postDb = response.data;
 
    
-        return undefined
+        return postDb;
 
     } catch (error) {
         
         console.log(error) 
-        return
+        return null;
     }
 
 }
@@ -143,7 +143,7 @@ export const findPostById = async (id: number): Promise<PostInterface> => {
 
 
 
-export const findPostByCategory = async (id: number): Promise<PostInterface> => {
+export const findPostByCategory = async (id: number): Promise<PostInterface[] | null> => {
 
 
     console.log("findPostByCategory");
@@ -160,7 +160,7 @@ export const findPostByCategory = async (id: number): Promise<PostInterface> => 
         return data;
     } catch (error) {
         console.log(error);
-        return post;
+        return null;
     }
 
 }
