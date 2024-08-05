@@ -111,7 +111,28 @@ router.post('/', (req: Request, res: Response) => {
     res.status(200).send({
         data: data
     })
-})
+});
+
+
+
+router.post('/:id/images', (req: Request, res: Response) => {
+
+
+    const id: number = parseInt(req.params.id)
+
+
+
+    
+    console.log(id)
+
+
+
+    res.status(200).send({
+        message: `Images upload endpoint for post ${id}`
+    })
+});
+
+
 
 
 // endpoint to update post
@@ -121,7 +142,7 @@ router.put('/:id', (req: Request, res: Response) => {
     console.log('id', req.params.id);
 
 
-    console.log('data', req.body.title);
+    console.log('data', req.body);
 
     res.send({
         message: 'update route called',

@@ -254,7 +254,7 @@ function EditPost() {
 
                 <div className='post-row'>
                   <label htmlFor='post-content'>content</label>
-                  <textarea id='post-content' name='content' rows={4} cols={40} onBlur={editChangeHandler} value={updatedPost.content}/>
+                  <textarea id='post-content' name='content' rows={4} cols={40} onChange={editChangeHandler} value={updatedPost.content}/>
                 </div>
 
                 <div className='post-row'>
@@ -290,7 +290,7 @@ function EditPost() {
 
             <div className='post-heading'>
                 <h1>Preview</h1>
-                <h1 className='post-title' contentEditable={true}suppressContentEditableWarning={true}
+                <h1 className='post-title' contentEditable={true} suppressContentEditableWarning={true}
                 onInput={contentEditableHandler}>
                   {post?.title}
                 </h1>
