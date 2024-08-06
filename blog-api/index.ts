@@ -1,48 +1,10 @@
 import express from 'express'
 const cors = require('cors')
 
-// file upload
-import 'multer'
-const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' })
-
-type DestinationCallback = (error: Error | null, destination: string) => void
-type FileNameCallback = (error: Error | null, filename: string) => void
-
-
-const storage = multer.diskStorage({
-
-    destination: (
-        request: Request,
-        file: Express.Multer.File,
-        callback: DestinationCallback
-    ): void => {
-        callback(null, 'uploads/')
-    },
-
-    filename: (
-        req: Request, 
-        file: Express.Multer.File, 
-        callback: FileNameCallback
-    ): void => {
-
-        console.log("file.originalname", file.originalname)
-        const uniqueSuffix = file.originalname
-        callback(null, uniqueSuffix)
-
-
-
-        // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + file.originalname
-        // callback(null, file.fieldname + '-' + uniqueSuffix)
-    }
-  })
-  
-const upload = multer({ storage: storage })
-
-
 
 // middleware
-const middleware =  require('./middleware/test')
+const middleware =  require('./middleware/test');
+import upload from './utls/filesUpload';
 
 // routes
 const postRoutes =  require('./routes/postRoutes')
