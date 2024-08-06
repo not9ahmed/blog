@@ -2,8 +2,44 @@ import express from 'express'
 const cors = require('cors')
 
 // file upload
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+import 'multer'
+const multer = require('multer');
+// const upload = multer({ dest: 'uploads/' })
+
+type DestinationCallback = (error: Error | null, destination: string) => void
+type FileNameCallback = (error: Error | null, filename: string) => void
+
+
+const storage = multer.diskStorage({
+
+    destination: (
+        request: Request,
+        file: Express.Multer.File,
+        callback: DestinationCallback
+    ): void => {
+        callback(null, 'uploads/')
+    },
+
+    filename: (
+        req: Request, 
+        file: Express.Multer.File, 
+        callback: FileNameCallback
+    ): void => {
+
+        console.log("file.originalname", file.originalname)
+        const uniqueSuffix = file.originalname
+        callback(null, uniqueSuffix)
+
+
+
+        // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + file.originalname
+        // callback(null, file.fieldname + '-' + uniqueSuffix)
+    }
+  })
+  
+const upload = multer({ storage: storage })
+
+
 
 // middleware
 const middleware =  require('./middleware/test')
@@ -45,15 +81,20 @@ app.get('/', (req, res) => {
 
 
 // file upload route
-app.post('/photos/upload', upload.single('file'), function (req , res, next) {
+app.post('/photos/upload', upload.array('photos', 12), function (req , res, next) {
     // req.files is array of `photos` files
     // req.body will contain the text fields, if there were any
 
 
-    // const fileUpload = req.file 
+    const fileUpload = req.files
+
+    console.log("fileUpload", fileUpload);
+
 
     console.log("req.body", req.body);
     // console.log("req.files", req.file );
+
+
 
     res.status(200).send({
         msg: `file upload route`
