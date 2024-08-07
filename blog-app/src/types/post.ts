@@ -52,3 +52,8 @@ export interface PostEditInterface  {
     content: string,
     images:  File[] | File | null | string[] ,
 };
+
+
+export interface PostImagesInterface  {
+    images:  File[]
+};

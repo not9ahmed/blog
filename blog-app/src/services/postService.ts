@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios"
-import { PostCreateInterface, PostEditInterface, PostInterface } from "../types/post";
+import { PostCreateInterface, PostEditInterface, PostImagesInterface, PostInterface } from "../types/post";
 
 const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
 
@@ -119,6 +119,44 @@ export const createPost = async (post: PostCreateInterface): Promise<PostInterfa
 }
 
 
+export const createPostImages = async (id: number, images: File[]): Promise<AxiosResponse | null> => {
+    
+
+    try {
+
+
+        let form = new FormData()
+
+        // adding sample msg to form
+        form.append("msg", "hello world");
+
+        // adding files to form data
+        images.forEach((el, idx) => {
+            form.append("images", images[idx], images[idx].name)
+        });
+
+
+        const { data }  = await axios.post(API_BASE_URL + `/posts/${id}/images`,
+            form,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+
+            console.log("response", data)
+   
+        return data;
+
+    } catch (error) {
+        
+        console.log(error) 
+        return null;
+    }
+
+}
+
 
 export const findPostById = async (id: number): Promise<PostInterface> => {
 
@@ -181,9 +219,6 @@ export const updatePostById = async (id: number, toBeUpdatedpost: PostEditInterf
                 }
             });
         
-
-
-
 
         /*
         

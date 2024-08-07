@@ -117,26 +117,48 @@ router.post('/', (req: Request, res: Response) => {
 
 
 
-router.post('/:id/images', upload.array('photos', 12), (req: Request, res: Response) => {
+router.post('/:id/images', upload.array('images', 12), (req: Request, res: Response) => {
 
 
+
+    // update posts
+    const id: number = parseInt(req.params.id)
+
+
+    // find post
+    const post = posts.find(el => el.id === id);
+
+    // if not found then end request
+    if(!post){
+        res.status(404).send({
+            msg: `post ${id} not found`
+        })
+    }
 
     // req.files is array of `photos` files
     // req.body will contain the text fields, if there were any
 
 
-    const reqFiles = req.files as Express.Multer.File[]
+    // get files from request
+    const files = req.files as Express.Multer.File[]
 
 
-    // console.log("reqFiles", reqFiles ? reqFiles['photos'] : "empty");
+    // print file names in console
+    files.forEach((file, idx) => console.log(`file[${idx}]`, file))
 
 
-    // console.log("reqFiles", reqFiles);
+    // get file name
+    const fileNames: string[]  = files.map(el => el.filename);
 
 
-    reqFiles.forEach((file, idx) => console.log(`file[${idx}]`, file))
+    console.log("fileNames", fileNames)
 
+    // add the file name to array
+    // later on it will be image url
+    if(post){
 
+        post.images = fileNames
+    }
 
 
     console.log("req.body", req.body);
@@ -144,8 +166,11 @@ router.post('/:id/images', upload.array('photos', 12), (req: Request, res: Respo
 
 
 
+
     res.status(200).send({
-        msg: `file upload route`
+        msg: `file upload route for post ${id} the ${files.length} are uploaded`,
+        post: post
+
     })
 
 });
