@@ -120,6 +120,14 @@ router.post('/', (req: Request, res: Response) => {
 router.post('/:id/images', upload.array('images', 12), (req: Request, res: Response) => {
 
 
+    // return in express end the route execution
+    // very useful for checking and validation
+    if(!req.files){
+        return res.status(404).send({
+            message: `No files were sent`
+        })
+    }
+
 
     // update posts
     const id: number = parseInt(req.params.id)
@@ -134,6 +142,8 @@ router.post('/:id/images', upload.array('images', 12), (req: Request, res: Respo
             msg: `post ${id} not found`
         })
     }
+
+
 
     // req.files is array of `photos` files
     // req.body will contain the text fields, if there were any
