@@ -1,7 +1,9 @@
 import Router from 'express'
-import { Request, Response } from 'express'
-const router = Router();
+import { Request, Response, NextFunction } from 'express'
 import { PostDtoInterface, PostInterface } from '../types/postTypes';
+import upload from '../utls/filesUpload';
+
+const router = Router();
 const posts: PostInterface[] = require('../models/posts.json');
 
 
@@ -115,21 +117,37 @@ router.post('/', (req: Request, res: Response) => {
 
 
 
-router.post('/:id/images', (req: Request, res: Response) => {
-
-
-    const id: number = parseInt(req.params.id)
+router.post('/:id/images', upload.array('photos', 12), (req: Request, res: Response) => {
 
 
 
-    
-    console.log(id)
+    // req.files is array of `photos` files
+    // req.body will contain the text fields, if there were any
+
+
+    const reqFiles = req.files as Express.Multer.File[]
+
+
+    // console.log("reqFiles", reqFiles ? reqFiles['photos'] : "empty");
+
+
+    // console.log("reqFiles", reqFiles);
+
+
+    reqFiles.forEach((file, idx) => console.log(`file[${idx}]`, file))
+
+
+
+
+    console.log("req.body", req.body);
+    // console.log("req.files", req.file );
 
 
 
     res.status(200).send({
-        message: `Images upload endpoint for post ${id}`
+        msg: `file upload route`
     })
+
 });
 
 

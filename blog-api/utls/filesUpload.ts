@@ -1,4 +1,5 @@
 import 'multer'
+import { Request, Response, NextFunction } from 'express'
 const multer = require('multer');
 
 // Types for File upload
@@ -6,14 +7,22 @@ type DestinationCallback = (error: Error | null, destination: string) => void
 type FileNameCallback = (error: Error | null, filename: string) => void
 
 
+
+const fileFilter = () => {
+    
+}
+
+
+
+
 // The original code issue was cause of the callback function
 // which made typescript throw type error
 const storage = multer.diskStorage({
 
     destination: (
-        request: Request,
-        file: Express.Multer.File,
-        callback: DestinationCallback
+        request: Request, // Request type 
+        file: Express.Multer.File, // file type
+        callback: DestinationCallback //call back function
     ): void => {
         callback(null, 'uploads/')
     },
