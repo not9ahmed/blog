@@ -116,7 +116,10 @@ router.post('/', (req: Request, res: Response) => {
 });
 
 
-
+/**
+ * Will accept Form Data and images and update post object
+ * Returns a message if the images upload is succeful
+ */
 router.post('/:id/images', upload.array('images', 12), (req: Request, res: Response) => {
 
 

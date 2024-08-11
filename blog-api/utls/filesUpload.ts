@@ -1,3 +1,4 @@
+// File Upload configs file
 import 'multer'
 import { Request, Response, NextFunction } from 'express'
 import { FileFilterCallback } from 'multer'
@@ -14,7 +15,13 @@ type FileNameCallback = (error: Error | null, filename: string) => void
 const fileFilter = (req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
 
     console.log("file name", file.originalname)
-    // only cursor allowed to download
+
+
+    // file.size
+    // can be used to check size
+
+
+    // only cursor.png allowed to download
     if(file.originalname !== 'cursor.png'){
         console.log("inside if");
         cb(null, false);

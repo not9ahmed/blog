@@ -1,16 +1,60 @@
 #home {
     border: 1px solid black;
-}
 
-#title {
-    /* font-size: xx-large; */
-    font-weight: 800;
-    font-size: 84px;
-}
 
-.social-links {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    .title {
+        padding: 20px;
+        #title-text {
+            font-weight: 800;
+            font-size: 84px;
+            margin: 0;
+        }
+    }
+
+    .about {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 1em;;
+
+
+        .section {
+            font-size: large;
+            background-color: var(--primary-light-color);
+            border: 1px solid var(--primary-color);
+        }
+    }
+
+
+    .social {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+
+        &.social-links {}
+    }
+
+
+    .tools {
+        display: flex;
+        flex-direction: column;
+        padding: 1em;
+        .tools-title {
+            
+        }
+        .tools-list {
+            background-color: var(--secondary-light-color);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1em;
+            padding: 1em;
+            .tool {
+                font-size: small;
+            }
+        }
+    }
+
 }

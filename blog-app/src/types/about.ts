@@ -1,4 +1,4 @@
-export interface About {
+export interface AboutInterface {
     name: string,
     about: string
   }
