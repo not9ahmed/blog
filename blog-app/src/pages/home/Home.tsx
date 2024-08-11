@@ -26,16 +26,34 @@ function Home() {
   //     colors: "secondary"
   // }
 
+  
+    // can be used instead of home.programmingLanguages
+    let progs = [
+      {id: 1, lanaguage:"Java", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"},
+      {id: 2, lanaguage:"Node Js", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"},
+      {id: 3, lanaguage:"Python", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"},
+      {id: 4, lanaguage:"TypeScript", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"},
+      {id: 5, lanaguage:"SQL", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"},
+      {id: 6, lanaguage:"PL/SQL", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"},
+      {id: 7, lanaguage:"HTML", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"},
+      {id: 8, lanaguage:"CSS", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"},
+      {id: 9, lanaguage:"JavaScript", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"},
+    ]
 
-  let home = {
+
+  const home = {
     name: "Ahmed",
     job1: "Software Engineer",
     job2: "Data Scientist",
     about1: "I enjoy a lot of areas in software engieering, but I focus on full stack development and software design. ",
     about2: "Software Engineer with competence to convert descriptive requirements into scalable full stack web applications. An avid learner that keeps track of the latest technology using a simplified problem-solving approach, work ethics, and teamwork.",
-    programmingLangauages: ["Java", "Node Js", "Python", "TypeScript", "HTML", "CSS", "JavaScript"]
+    programmingLanguages: ["Java", "Node Js", "Python", "TypeScript", "SQL", "PL/SQL",  "HTML", "CSS", "JavaScript"],
+    frameworks: ["Express Js", "Spring Boot", "React", "FastAPI", "Django", "TensorFlow"]
   
   }
+
+
+
 
 
   return (
@@ -91,12 +109,29 @@ function Home() {
         <div className="tools">
 
           <div className='tools-title'>
-            <h2>Check out the tools the I'm using and learning</h2>
+            <h2>Programmming languages I enjoy using</h2>
           </div>
 
           <div className='tools-list'>
-            {home.programmingLangauages.map(el => 
-              <div className='tool'>
+            {progs.map( (el, idx) => 
+              <div className='tool' key={el.id}>
+                <img width={40} src={el.icon}></img>
+                <p>{el.lanaguage}</p>
+              </div>
+            )}
+
+          </div>
+        </div>
+        
+        <div className="tools">
+
+          <div className='tools-title'>
+            <h2>and Frameworks</h2>
+          </div>
+
+          <div className='tools-list'>
+            {home.frameworks.map( (el, idx) => 
+              <div className='tool' key={idx}>
                 <img width={40} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"}></img>
                 <p>{el}</p>
               </div>
