@@ -26,7 +26,7 @@
             font-size: x-large;
             background-color: var(--primary-light-color);
             border: 5px solid var(--primary-color);
-            border-radius: 6px;
+            border-radius: 10px;
         }
     }
 
@@ -46,21 +46,29 @@
         flex-direction: column;
         align-items: center;
         padding: 1em;
-        width: 90%;
+        /* width: 100%; */
         .tools-title {
             
         }
         .tools-list {
-            background-color: var(--secondary-light-color);
+            background-color: var(--primary-light-color);
+            border: 5px solid var(--primary-color);
+            border-radius: 10px;
             display: flex;
+            /* width: 80%; */
             flex-direction: row;
+            align-items: center;
+            justify-content: center;
             flex-wrap: wrap;
             gap: 1em;
             padding: 1em;
             .tool {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 font-size: small;
                 background-color: var(--primary-extra-light-color);
-                padding: 1em;
+                padding: 0.5em;
             }
         }
     }
