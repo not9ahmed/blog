@@ -27,15 +27,57 @@ function Home() {
   // }
 
 
-  let home = {
-    name: "Ahmed",
-    job1: "Software Engineer",
-    job2: "Data Scientist",
-    about1: "I enjoy a lot of areas in software engieering, but I focus on full stack development and software design. ",
-    about2: "Software Engineer with competence to convert descriptive requirements into scalable full stack web applications. An avid learner that keeps track of the latest technology using a simplified problem-solving approach, work ethics, and teamwork.",
-    programmingLangauages: ["Java", "Node Js", "Python", "TypeScript", "HTML", "CSS", "JavaScript"]
-  
-  }
+    // can be used instead of home.programmingLanguages
+    // fetch from api
+    let progs = [
+      {id: 1, lanaguage:"Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original-wordmark.svg"},
+      {id: 2, lanaguage:"Node Js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"},
+      {id: 3, lanaguage:"Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"},
+      {id: 4, lanaguage:"TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"},
+      {id: 5, lanaguage:"SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"},
+      {id: 6, lanaguage:"Oracle PL/SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg"},
+      {id: 6, lanaguage:" PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"},
+      {id: 7, lanaguage:"HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"},
+      {id: 8, lanaguage:"CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"},
+      {id: 9, lanaguage:"JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"},
+    ]
+
+
+    // fetch from api
+    let frameworks = [
+      {id: 1, name:"Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"},
+      {id: 2, name:"React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"},
+      {id: 3, name:"Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg"},
+      {id: 4, name:"FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg"},
+      {id: 5, name:"Django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg"},
+      {id: 6, name:"Tensorflow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg"},
+    ]
+
+
+    // fetch from api
+    let tools = [
+      {id: 1, name:"Github", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"},
+      {id: 2, name:"Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"},
+      {id: 3, name:"AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"},
+    ]
+
+
+    const home = {
+      name: "Ahmed",
+      job1: "Software Engineer",
+      job2: "Data Scientist",
+      about: [
+        "I enjoy a lot of areas in software engieering, but I focus on full stack development and software design. ",
+        "Data science is also my interest ",
+        "Software Engineer with competence to convert descriptive requirements into scalable full stack web applications. An avid learner that keeps track of the latest technology using a simplified problem-solving approach, work ethics, and teamwork."
+      ],
+      programmingLanguages: ["Java", "Node Js", "Python", "TypeScript", "SQL", "PL/SQL",  "HTML", "CSS", "JavaScript"],
+      frameworks: ["Express Js", "React", "Spring Boot", "FastAPI", "Django", "TensorFlow"],
+      tools: ["Github", "Git", "AWS"]
+    }
+
+
+
 
 
   return (
@@ -55,35 +97,42 @@ function Home() {
         </div>
 
         <div className='about'>
-          <div className="section">
-            <p>
-              {home.about1}
-            </p>
-          </div>
 
-          <div className="section">
-            <p>
-              {home.about2}
-            </p>
-          </div>
+          {home.about.map(el => 
+
+            <div className="section">
+              <p>
+                {el}
+              </p>
+            </div>
+            
+            )}
+
         </div>
 
 
-        <div className='social'>
-          <div className='social-links'>
-            <Link to="https://github.com/not9ahmed/">
-              <img src={githubImg} width={40} />
-            </Link>
+        <div className='social-container'>
+          <div className='social-title'>
+            <h2>My Socials</h2>
           </div>
           <div className='social-links'>
-            <Link to="https://www.linkedin.com/in/ahmed-althawadi/">
-              <img src={linkedImg} width={40} />
-            </Link>
-          </div>
-          <div className='social-links'>
-            <Link to="sample">
-              <img src={emailImg} width={40} />
-            </Link>
+
+            <div className='social-link'>
+              <Link to="https://github.com/not9ahmed/">
+                <img src={githubImg} width={40} />
+              </Link>
+            </div>
+            <div className='social-link'>
+              <Link to="https://www.linkedin.com/in/ahmed-althawadi/">
+                <img src={linkedImg} width={40} />
+              </Link>
+            </div>
+            <div className='social-link'>
+              <Link to="sample">
+                <img src={emailImg} width={40} />
+              </Link>
+            </div>
+
           </div>
         </div>
 
@@ -91,14 +140,48 @@ function Home() {
         <div className="tools">
 
           <div className='tools-title'>
-            <h2>Check out the tools the I'm using and learning</h2>
+            <h2>Programmming languages I enjoy</h2>
           </div>
 
           <div className='tools-list'>
-            {home.programmingLangauages.map(el => 
-              <div className='tool'>
-                <img width={40} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png"}></img>
-                <p>{el}</p>
+            {progs.map( el => 
+              <div className='tool' key={el.id}>
+                <img width={60} src={el.icon}></img>
+                <p>{el.lanaguage}</p>
+              </div>
+            )}
+
+          </div>
+        </div>
+        
+        <div className="tools">
+
+          <div className='tools-title'>
+            <h2>& Frameworks</h2>
+          </div>
+
+          <div className='tools-list'>
+            {frameworks.map( (el, idx) => 
+              <div className='tool' key={idx}>
+                <img width={40} src={el.icon}></img>
+                <p>{el.name}</p>
+              </div>
+            )}
+
+          </div>
+        </div>
+        
+        <div className="tools">
+
+          <div className='tools-title'>
+            <h2>& Tools</h2>
+          </div>
+
+          <div className='tools-list'>
+            {tools.map( (el, idx) => 
+              <div className='tool' key={idx}>
+                <img width={40} src={el.icon}></img>
+                <p>{el.name}</p>
               </div>
             )}
 

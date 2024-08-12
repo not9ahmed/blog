@@ -3,9 +3,25 @@ Blog webapp using React, Vite and Typescript.
 
 ## Set Up
 
-### To Run httpbin locally
+The following system consists current
 
-`docker run -p 40:80 kennethreitz/httpbin`
+### Run Blog-App Frontend
+
+1. `cd blog-app`  
+2. `touch .env && echo "VITE_API_BASE_URL=http://localhost:4000/api/v0\nKEY_2=abc" > .env`   
+3. `npm i`  
+4. `npm run dev`
+
+### Run Blog-API Backend
+
+1. `cd blog-api`  
+2. `touch .env && echo "DB_USER_API=1233\nKEY_2=abc" > .env`  
+3. `npm i`  
+4. `nodemon index.ts`
+
+### Run Blog-DB Database
+
+`To be Done by docker postgresql`
 
 
 ## User Stories
