@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios'
 import { ProjectCreateInterface, ProjectEditInterface, ProjectInterface } from "../types/project";
 // import { ErrorResponse } from 'react-router-dom';
 
-const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL
 
 
 export const findAllProjects = async (): Promise<ProjectInterface[] | []> => {

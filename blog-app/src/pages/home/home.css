@@ -1,3 +1,14 @@
+@keyframes rotateAnimation {
+    from {
+        transform: rotateY(0);
+        transition: 5ms;
+      
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+  }
+
 #home {
     border: 1px solid black;
 
@@ -12,6 +23,10 @@
             font-size: 84px;
             margin: 0;
         }
+    }
+
+    .profession {
+        color: rgb(51, 53, 54);
     }
 
     .about {
@@ -29,6 +44,13 @@
             background-color: var(--primary-light-color);
             border: 5px solid var(--primary-color);
             border-radius: 10px;
+            padding: 0.5em;
+
+            /* testing animation */
+            /* animation-name: rotateAnimation;
+            animation-duration: 5ms; /* Firefox requires this to apply the animation */
+            /* animation-direction: alternate; */
+            /* animation-timeline: scroll(block nearest); */
         }
     }
 
@@ -71,12 +93,19 @@
                 flex-direction: column;
                 align-items: center;
                 border-radius: 10px;
+                /* gap: 2px; */
                 font-size: small;
                 background-color: var(--primary-extra-light-color);
                 padding: 0.5em;
+                width: 80px;
+                height: 100px;
 
-                .tool-img {
-                    width: 60px;
+                .tool-img-container {
+                    width: 50px;
+
+                    .tool-img {
+                        object-fit: fill;
+                    }
                 }
                 .tool-name {
                     text-wrap: wrap;

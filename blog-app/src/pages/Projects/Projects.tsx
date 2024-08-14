@@ -71,19 +71,32 @@ function Projects() {
     }
 
     return (
-        <div className='content'>
-            <h1>Projects</h1>
+        <div id='projects' className='content'>
 
 
-            <div className='projects'>
+            <div className='projects-title'>
+                <h1>Projects</h1>
+            </div>
 
+
+            <div className='projects-list'>
+
+                {/* on project click go to blog post */}
                 {projects.map(el =>
                     <div className="project" key={el.id}>
-                        <img className='project-image' src='https://production-media.paperswithcode.com/datasets/Django-0000001059-57707917_hCcTMpx.jpg' />
+
+                        <div className='project-img-container'>
+                            <img className='project-img' src='https://miro.medium.com/v2/resize:fit:1155/1*ShVN4gYaP74Nlgpi1adBRw.png' />
+                        </div>
                         
-                        <div className='project-contnet'>
+                        <div className='project-content'>
                             <h3>{el.name}</h3>
                             <p>{el.description}</p>
+
+                            <div className='project-date'>
+                                <p>start date: {new Date(el.startDate).toDateString()}</p>
+                                <p>start date: {new Date(el.completeDate).toDateString()}</p>
+                            </div>
                         </div>
 
                     </div>

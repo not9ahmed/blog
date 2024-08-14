@@ -3,6 +3,8 @@
 export interface ProjectInterface {
     id: number,
     name: string,
+    startDate: Date,
+    completeDate: Date,
     description: string,
     tools: string[],
     link: string
@@ -11,6 +13,8 @@ export interface ProjectInterface {
 export interface ProjectCreateInterface {
     id: number,
     name: string,
+    startDate: Date,
+    completeDate: Date,
     description: string,
     tools: string[],
     link: string
@@ -19,6 +23,8 @@ export interface ProjectCreateInterface {
 export interface ProjectEditInterface {
     id: number,
     name: string,
+    startDate: Date,
+    completeDate: Date,
     description: string,
     tools: string[],
     link: string
