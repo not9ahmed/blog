@@ -149,8 +149,8 @@ function Home() {
           <div className='tools-list'>
             {progs.map( el => 
               <div className='tool' key={el.id}>
-                <img width={60} src={el.icon}></img>
-                <p>{el.lanaguage}</p>
+                <img className='tool-img' src={el.icon}></img>
+                <p className='tool-name'>{el.lanaguage}</p>
               </div>
             )}
 
@@ -166,8 +166,8 @@ function Home() {
           <div className='tools-list'>
             {frameworks.map( (el, idx) => 
               <div className='tool' key={idx}>
-                <img width={40} src={el.icon}></img>
-                <p>{el.name}</p>
+                <img className='tool-img' src={el.icon}></img>
+                <p className='tool-name'>{el.name}</p>
               </div>
             )}
 
@@ -183,8 +183,8 @@ function Home() {
           <div className='tools-list'>
             {tools.map( (el, idx) => 
               <div className='tool' key={idx}>
-                <img width={40} src={el.icon}></img>
-                <p>{el.name}</p>
+                <img className='tool-img' src={el.icon}></img>
+                <p className='tool-name'>{el.name}</p>
               </div>
             )}
 

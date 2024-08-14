@@ -1,6 +1,8 @@
 #home {
     border: 1px solid black;
 
+    display: flex;
+    flex-direction: column;
 
     .title {
         padding: 20px;
@@ -36,6 +38,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        align-items: center;
 
         &.social-link {}
     }
@@ -62,13 +65,22 @@
             flex-wrap: wrap;
             gap: 1em;
             padding: 1em;
+
             .tool {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                border-radius: 10px;
                 font-size: small;
                 background-color: var(--primary-extra-light-color);
                 padding: 0.5em;
+
+                .tool-img {
+                    width: 60px;
+                }
+                .tool-name {
+                    text-wrap: wrap;
+                }
             }
         }
     }
