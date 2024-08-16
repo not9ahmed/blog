@@ -111,7 +111,11 @@ function Projects() {
 
                             <div className='project-date'>
                                 <p>start date: {new Date(el.startDate).toDateString()}</p>
-                                <p>start date: {new Date(el.completeDate).toDateString()}</p>
+                                {el.completeDate?
+                                    (<p>complete date: {new Date(el.completeDate).toDateString()}</p>)
+                                :(<p>Not Complete</p>)
+                                }
+                                <p>status: {el.status}</p>
                             </div>
                         </div>
 
