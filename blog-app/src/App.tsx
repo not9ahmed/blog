@@ -11,6 +11,7 @@ import Blog from './pages/Blog/Blog'
 import Post from './pages/Post/Post'
 import CreatePost from './pages/CreatePost/CreatePost'
 import EditPost from './pages/EditPost/EditPost'
+import Project from './pages/Project/Project'
 // import About from './pages/About/About'
 
 
@@ -28,10 +29,13 @@ function App() {
 
             <Route index element={<Home/>} />
             <Route path='/about' element={<About/>} />
-            <Route path='/projects' element={<Projects/>} />
+
 
             {/* will be done later */}
-            <Route path='/projects/:id' element={<Projects/>} />
+            <Route path='/projects' element={<Projects/>} />
+            <Route path='/projects/:id' element={<Project/>} />
+
+
             <Route path='/experience' element={<Experience/>} />
 
             {/* paths for blog resources */}

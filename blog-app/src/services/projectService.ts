@@ -36,3 +36,25 @@ export const findAllProjects = async (): Promise<ProjectInterface[] | []> => {
 
 
 }
+
+
+export const findProjectById = async (id: number): Promise<ProjectInterface | null>  => {
+
+
+
+
+    try {
+
+        const response = await axios.get(`${API_BASE_URL}/projects/${id}`)
+
+
+        const data = response.data as ProjectInterface;
+
+        return data
+
+
+    } catch(error: any) {
+        return null;
+    }
+
+}
