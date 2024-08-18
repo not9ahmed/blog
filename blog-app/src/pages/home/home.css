@@ -20,7 +20,8 @@
 
         #title-text {
             font-weight: 800;
-            font-size: 84px;
+            /* font-size: 84px; */
+            font-size: 80px;
             margin: 0;
         }
     }
@@ -98,10 +99,11 @@
                 background-color: var(--primary-extra-light-color);
                 padding: 0.5em;
                 width: 80px;
-                height: 100px;
+                height: 120px;
 
                 .tool-img-container {
                     width: 50px;
+                    padding: 4px;
 
                     .tool-img {
                         object-fit: fill;

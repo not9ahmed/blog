@@ -38,7 +38,7 @@ export const findAllProjects = async (): Promise<ProjectInterface[] | []> => {
 }
 
 
-export const findProjectById = async (id: number): Promise<ProjectInterface | null>  => {
+export const findProjectById = async (id: number): Promise<ProjectInterface | undefined>  => {
 
 
 
@@ -54,7 +54,7 @@ export const findProjectById = async (id: number): Promise<ProjectInterface | nu
 
 
     } catch(error: any) {
-        return null;
+        return undefined;
     }
 
 }

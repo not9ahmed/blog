@@ -1,0 +1,36 @@
+.project {
+    /* text-align: left; */
+    background-color: var(--primary-extra-light-color);
+
+
+    .project-title {
+        font-size: 52px;
+    }
+
+    .project-main-area {
+        width: 100%;
+    }
+
+    .project-main-image {
+        width: 90%;
+    }
+    
+    .project-timestamp {
+        color:  var(--light-grey);
+        font-size: small;
+    }
+
+    
+    .project-detailed-description {
+        font-size: medium;
+    
+    }
+    
+    .project-content {
+        font-size: medium;
+        /* padding: 20px; */
+        padding: 1em;
+        text-align: left;
+    }
+}
+

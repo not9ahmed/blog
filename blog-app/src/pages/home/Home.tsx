@@ -2,6 +2,7 @@
 import './home.css'
 import linkedImg from '../../assets/linkedin.png'
 import githubImg from '../../assets/github.png'
+import kaggleImg from '../../assets/kaggle.svg'
 import emailImg from '../../assets/email.png'
 // import axios from 'axios'
 import { Link } from 'react-router-dom'
@@ -123,6 +124,11 @@ function Home() {
             <div className='social-link'>
               <Link to="https://github.com/not9ahmed/">
                 <img src={githubImg} width={40} />
+              </Link>
+            </div>
+            <div className='social-link'>
+              <Link to="https://www.kaggle.com/notahmed">
+                <img src={kaggleImg} width={40} />
               </Link>
             </div>
             <div className='social-link'>
