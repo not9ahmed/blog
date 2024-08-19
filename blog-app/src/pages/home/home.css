@@ -43,9 +43,11 @@
             width: 80%;
             font-size: x-large;
             background-color: var(--primary-light-color);
-            border: 5px solid var(--primary-color);
+            border: 4px solid var(--primary-color);
             border-radius: 10px;
             padding: 0.5em;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
 
             /* testing animation */
             /* animation-name: rotateAnimation;
@@ -78,7 +80,7 @@
         }
         .tools-list {
             background-color: var(--primary-light-color);
-            border: 5px solid var(--primary-color);
+            border: 4px solid var(--primary-color);
             border-radius: 10px;
             display: flex;
             /* width: 80%; */
@@ -88,6 +90,8 @@
             flex-wrap: wrap;
             gap: 1em;
             padding: 1em;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
 
             .tool {
                 display: flex;

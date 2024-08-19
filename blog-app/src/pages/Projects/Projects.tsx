@@ -71,7 +71,6 @@ function Projects() {
 
     if (isLoading) {
         return(
-
             <div>
                 Is Loading...
             </div>    
@@ -92,6 +91,7 @@ function Projects() {
 
             <div className='projects-title'>
                 <h1>Projects</h1>
+                <p>Here are the projects done by me:</p>
             </div>
 
 
