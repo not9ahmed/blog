@@ -7,15 +7,19 @@
 }
 
 #app {
-  display: grid;
-  grid-template-rows: 1fr 13fr 1fr;
+  /* display: grid;
+  grid-template-rows: 1fr 13fr 1fr; */
+  display: flex;
+  flex-direction: column;
   width: 100vw;
-  height: 1200px;
+  /* height: 1200px; */
 }
 
 .content {
   background-color: var(--main-white);
   text-align: center;
+  min-width: 320px;
+  min-height: 100vh;
 } 
 
 

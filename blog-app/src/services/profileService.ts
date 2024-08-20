@@ -18,10 +18,10 @@ export const findAllProgrammingLanguages = (): Object[] | [] => {
             {id: 8, lanaguage:"HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"},
             {id: 9, lanaguage:"CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"},
             {id: 10, lanaguage:"JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"},
-          ]
+          ];
 
 
-       return progs
+       return progs;
 
 }
 
@@ -36,9 +36,9 @@ export const findAllFrameworks= (): Object[] | [] => {
         {id: 4, name:"FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg"},
         {id: 5, name:"Django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg"},
         {id: 6, name:"Tensorflow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg"},
-      ]
+      ];
 
-   return frameworks
+   return frameworks;
 
 }
 
@@ -49,8 +49,8 @@ export const findAllTools= (): Object[] | [] => {
         {id: 1, name:"Github", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"},
         {id: 2, name:"Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"},
         {id: 3, name:"AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"},
-      ]
+      ];
 
-   return tools
+   return tools;
 
 }

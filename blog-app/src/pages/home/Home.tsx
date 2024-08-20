@@ -61,135 +61,124 @@ function Home() {
 
 
   return (
-    <>
-      <div id='home' className='content'>
+    <div id='home' className='content'>
 
-        <div className='title'>
-
-          <h1 id='title-text'>
-            Hi! I'm {home.name}
-          </h1>
-
-        </div>
-
-        <div className='profession'>
-          <h2>{home.job1} | {home.job2}</h2>
-        </div>
-
-        <div className='about'>
-
-          {home.about.map((el, idx) => 
-
-            <div className="section" key={idx}>
-              <p>
-                {el}
-              </p>
-            </div>
-            
-            )}
-
-        </div>
-
-
-        <div className='social-container'>
-          <div className='social-title'>
-            <h2>My Socials</h2>
-          </div>
-          <div className='social-links'>
-
-            <div className='social-link'>
-              <Link to="https://github.com/not9ahmed/">
-                <img src={githubImg} width={40} />
-              </Link>
-            </div>
-            <div className='social-link'>
-              <Link to="https://www.kaggle.com/notahmed">
-                <img src={kaggleImg} width={40} />
-              </Link>
-            </div>
-            <div className='social-link'>
-              <Link to="https://www.linkedin.com/in/ahmed-althawadi/">
-                <img src={linkedImg} width={40} />
-              </Link>
-            </div>
-            <div className='social-link'>
-              <Link to="sample">
-                <img src={emailImg} width={40} />
-              </Link>
-            </div>
-
-          </div>
-        </div>
-
-
-        <div className="tools">
-
-          <div className='tools-title'>
-            <h2>Programmming languages I enjoy</h2>
-          </div>
-
-          <div className='tools-list'>
-            {progLangs.map( el => 
-              <div className='tool' key={el.id}>
-                <div className='tool-img-container'>
-                  <img className='tool-img' src={el.icon} />
-                </div>
-                <div>
-                  <p className='tool-name'>{el.lanaguage}</p>
-                </div>
-              </div>
-            )}
-
-          </div>
-        </div>
-        
-        <div className="tools">
-
-          <div className='tools-title'>
-            <h2>& Frameworks</h2>
-          </div>
-
-          <div className='tools-list'>
-            {frameworks.map( (el, idx) => 
-              <div className='tool' key={idx}>
-                <div className='tool-img-container'>
-                  <img className='tool-img' src={el.icon} />
-                </div>
-                <p className='tool-name'>{el.name}</p>
-              </div>
-            )}
-
-          </div>
-        </div>
-        
-        <div className="tools">
-
-          <div className='tools-title'>
-            <h2>& Tools</h2>
-          </div>
-
-          <div className='tools-list'>
-            {tools.map( (el, idx) => 
-              <div className='tool' key={idx}>
-                <div className='tool-img-container'>
-                  <img className='tool-img' src={el.icon}></img>
-                </div>
-                <p className='tool-name'>{el.name}</p>
-              </div>
-            )}
-
-          </div>
-        </div>
-
-
-
-        {/* conditional rendering of button
-        <Button {...buttonProps1} />
-        <Button {...buttonProps2} /> */}
-
+      <div className='title'>
+        <h1 id='title-text'>
+          Hi! I'm {home.name}
+        </h1>
       </div>
 
-    </>
+      <div className='profession'>
+        <h2>{home.job1} | {home.job2}</h2>
+      </div>
+
+      <div className='about'>
+        {home.about.map((el, idx) =>
+          <div className="section" key={idx}>
+            <p>
+              {el}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className='social-container'>
+        <div className='social-title'>
+          <h2>My Socials</h2>
+        </div>
+        <div className='social-links'>
+
+          <div className='social-link'>
+            <Link to="https://github.com/not9ahmed/">
+              <img src={githubImg} width={40} />
+            </Link>
+          </div>
+          <div className='social-link'>
+            <Link to="https://www.kaggle.com/notahmed">
+              <img src={kaggleImg} width={40} />
+            </Link>
+          </div>
+          <div className='social-link'>
+            <Link to="https://www.linkedin.com/in/ahmed-althawadi/">
+              <img src={linkedImg} width={40} />
+            </Link>
+          </div>
+          <div className='social-link'>
+            <Link to="sample">
+              <img src={emailImg} width={40} />
+            </Link>
+          </div>
+
+        </div>
+      </div>
+
+      <div className="tools">
+
+        <div className='tools-title'>
+          <h2>
+            I like to explore the latest programmming languages, frameworks and tools. I belive they're good in their own way!
+          </h2>
+        </div>
+
+        <div className='tools-list-title'>
+          <h3>Programmming languages I enjoy</h3>
+        </div>
+
+        <div className='tools-list'>
+          {progLangs.map(el =>
+            <div className='tool' key={el.id}>
+              <div className='tool-img-container'>
+                <img className='tool-img' src={el.icon} />
+              </div>
+              <div>
+                <p className='tool-name'>{el.lanaguage}</p>
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+
+      <div className="tools">
+
+        <div className='tools-list-title'>
+          <h3>& Frameworks</h3>
+        </div>
+
+        <div className='tools-list'>
+          {frameworks.map((el, idx) =>
+            <div className='tool' key={idx}>
+              <div className='tool-img-container'>
+                <img className='tool-img' src={el.icon} />
+              </div>
+              <p className='tool-name'>{el.name}</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="tools">
+
+        <div className='tools-list-title'>
+          <h3>& Tools</h3>
+        </div>
+
+        <div className='tools-list'>
+          {tools.map((el, idx) =>
+            <div className='tool' key={idx}>
+              <div className='tool-img-container'>
+                <img className='tool-img' src={el.icon}></img>
+              </div>
+              <p className='tool-name'>{el.name}</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+
+    </div>
+
   )
 }
 

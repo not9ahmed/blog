@@ -34,7 +34,11 @@ function Dummy() {
             <button>OK</button>
         </form>
         </dialog>
-        </div>
+              {/* conditional rendering of button
+        <Button {...buttonProps1} />
+        <Button {...buttonProps2} /> */}
+
+    </div>
   )
 }
 
