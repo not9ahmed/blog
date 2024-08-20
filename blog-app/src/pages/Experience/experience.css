@@ -1,18 +1,38 @@
 .experiences {
-    background-color: var(--secondary-light-color);
+    /* background-color: var(--secondary-light-color); */
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
     
-}
+    .experience {
+    
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: space-between;
+        justify-content: center;
+        /* padding: 20px;
+        gap: 32px;
+     */
 
-.experience {
-
-    background-color: var(--primary-light-color);
-
-    img {
-        width: 300px;
+        width: 800px;
+        /* position: relative; */
+        /* width: 740px;
+        height: 268.47px; */
+    
+        background: var(--primary-extra-light-color);
+        border-radius: 20px;
+    
+    
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    
+        img {
+            width: 300px;
+        }
     }
 }
+

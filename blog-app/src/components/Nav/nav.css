@@ -2,48 +2,67 @@
     background-color: var(--primary-color);
     color: var(--primary-light-color);
     text-align: center;
-}
+    /* height: 36px; */
+    /* padding: 1em 2em; */
 
-.nav-list {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: row;
-    list-style-type: none;
-    justify-content: space-evenly;
-    flex-flow: row;
-    padding: 0px;
-    
-    li {
-        /* height: 100%; */
-        width: 80%;
-        padding: 12px 16px;
-        &:hover{
-            background-color: var(--primary-light-color);
-            color: var(--primary-color);
-            cursor: pointer;
 
-            transition: ease-in-out 0.5s;
-            a {
-                text-decoration: none;
+
+    .nav-list {
+        all: unset;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: row;
+        list-style-type: none;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-flow: row;
+        height: 36px;
+
+        /* padding: 1em 2em; */
+        
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* flex-flow: row; */
+            height: 100%;
+            width: 100%;
+            padding: 1em 2em;
+
+
+            &:hover{
+                background-color: var(--primary-light-color);
                 color: var(--primary-color);
+                cursor: pointer;
+    
+                transition: ease-in-out 0.5s;
+                a {
+                    all: unset;
+                    text-decoration: none;
+                    color: var(--primary-color);
+        
+                    &:hover{
+                        color: var(--primary-color);
+                    }
+                }
+            }
+    
+            a {
+                all: unset;
+                text-decoration: none;
+                color: var(--primary-light-color);
     
                 &:hover{
                     color: var(--primary-color);
+    
                 }
             }
         }
-
-        a {
-            text-decoration: none;
-            color: var(--primary-light-color);
-
-            &:hover{
-                color: var(--primary-color);
-
-            }
-        }
+    
+    
     }
 
-
 }
+
+
 

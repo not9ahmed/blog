@@ -5,5 +5,9 @@
     height: 36px;
     background-color: var(--primary-color);
     color: var(--primary-light-color);
-    padding: 1em;
+    padding: 1em 2em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

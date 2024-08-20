@@ -1,4 +1,5 @@
 import React from 'react'
+import './experience.css'
 import { Experience } from '../../types/experience'
 
 function Experience() {
@@ -55,19 +56,25 @@ function Experience() {
 
 
   return (
-    <div className='content'>
+    <div id='experience-page' className='content'>
 
         <h1>Experiences Page</h1>
 
         <div className='experiences'>
 
         {experiences.map(el => 
-            <div className="experience" key={el.id}>
-                <img className='exp-image' src={el.orgImgs[0]} alt='no image'/>
-                <h4>{el.position}</h4>
-                <h4>{el.organization}</h4>
+            <>
+                <div className="experience" key={el.id}>
+                    <img className='exp-image' src={el.orgImgs[0]} alt='no image'/>
+                    <h4>{el.position}</h4>
+                    <h4>{el.organization}</h4>
+                </div>
 
-            </div>
+                <div>
+                    "Arrow Image Here"
+                </div>
+            
+            </>
         )}
 
         </div>
