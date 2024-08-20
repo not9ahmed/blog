@@ -6,78 +6,54 @@ import kaggleImg from '../../assets/kaggle.svg'
 import emailImg from '../../assets/email.png'
 // import axios from 'axios'
 import { Link } from 'react-router-dom'
-// import Button from '../../components/Button/Button'
-// import { ButtonInterface } from '../../components/Button/ButtonInterface'
+import { useEffect, useState } from 'react'
+import { findAllFrameworks, findAllProgrammingLanguages, findAllTools } from '../../services/profileService'
 
 // TODO: Create Home Page 
 function Home() {
 
 
+  // states
+  // decalre types later
+  const [ progLangs, setProgLangs] = useState<Object[] | []>([]);
+  const [ frameworks, setFrameworks] = useState<Object[] | []>([]);
+  const [ tools, setTools] = useState<Object[] | []>([]);
 
 
-  //   const buttonProps1: ButtonInterface = {
-  //     id: 123,
-  //     value: "Button One",
-  //     colors: "primary"
-  // }
 
-  //   const buttonProps2: ButtonInterface = {
-  //     id: 123,
-  //     value: "Button Two",
-  //     colors: "secondary"
-  // }
-
-
-    // can be used instead of home.programmingLanguages
-    // fetch from api
-    let progs = [
-      {id: 1, lanaguage:"Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original-wordmark.svg"},
-      {id: 2, lanaguage:"Node Js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"},
-      {id: 3, lanaguage:"Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"},
-      {id: 4, lanaguage:"TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"},
-      {id: 5, lanaguage:"SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"},
-      {id: 6, lanaguage:"Oracle PL/SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg"},
-      {id: 7, lanaguage:" PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"},
-      {id: 8, lanaguage:"HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"},
-      {id: 9, lanaguage:"CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"},
-      {id: 10, lanaguage:"JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"},
-    ]
+  // fetch from api
+  const home = {
+    name: "Ahmed",
+    job1: "Software Engineer",
+    job2: "Data Scientist",
+    about: [
+      "I enjoy a lot of areas in software engieering, but I focus on full stack development and software design. ",
+      "Data science is also my interest ",
+      "Software Engineer with competence to convert descriptive requirements into scalable full stack web applications. An avid learner that keeps track of the latest technology using a simplified problem-solving approach, work ethics, and teamwork."
+    ],
+    programmingLanguages: ["Java", "Node Js", "Python", "TypeScript", "SQL", "PL/SQL",  "HTML", "CSS", "JavaScript"],
+    frameworks: ["Express Js", "React", "Spring Boot", "FastAPI", "Django", "TensorFlow"],
+    tools: ["Github", "Git", "AWS"]
+  };
 
 
-    // fetch from api
-    let frameworks = [
-      {id: 1, name:"Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"},
-      {id: 2, name:"React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"},
-      {id: 3, name:"Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg"},
-      {id: 4, name:"FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg"},
-      {id: 5, name:"Django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg"},
-      {id: 6, name:"Tensorflow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg"},
-    ]
 
+    useEffect(() => {
 
-    // fetch from api
-    let tools = [
-      {id: 1, name:"Github", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"},
-      {id: 2, name:"Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"},
-      {id: 3, name:"AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"},
-    ]
+      // fetch data from api
 
+      const fetchData = () => {
+        const apiProgLangs = findAllProgrammingLanguages();
+        const apiFrameworks= findAllFrameworks();
+        const apiTools= findAllTools();
 
-    const home = {
-      name: "Ahmed",
-      job1: "Software Engineer",
-      job2: "Data Scientist",
-      about: [
-        "I enjoy a lot of areas in software engieering, but I focus on full stack development and software design. ",
-        "Data science is also my interest ",
-        "Software Engineer with competence to convert descriptive requirements into scalable full stack web applications. An avid learner that keeps track of the latest technology using a simplified problem-solving approach, work ethics, and teamwork."
-      ],
-      programmingLanguages: ["Java", "Node Js", "Python", "TypeScript", "SQL", "PL/SQL",  "HTML", "CSS", "JavaScript"],
-      frameworks: ["Express Js", "React", "Spring Boot", "FastAPI", "Django", "TensorFlow"],
-      tools: ["Github", "Git", "AWS"]
-    }
+        setProgLangs(apiProgLangs);
+        setFrameworks(apiFrameworks);
+        setTools(apiTools);
+      }
 
-
+      fetchData();
+    }, [])
 
 
 
@@ -153,7 +129,7 @@ function Home() {
           </div>
 
           <div className='tools-list'>
-            {progs.map( el => 
+            {progLangs.map( el => 
               <div className='tool' key={el.id}>
                 <div className='tool-img-container'>
                   <img className='tool-img' src={el.icon} />

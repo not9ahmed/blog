@@ -7,7 +7,9 @@
         "status": "Complete",
         "description": "Labore consequat cupidatat duis aliquip cillum. labore incididunt anim. Mollit consectetur voluptate minim consectetur eiusmod fugiat mollit enim et in. Ex minim magna et laboris aute dolor do veniam ex et aliqua mollit excepteur. Reprehenderit est deserunt voluptate enim elit. In mollit duis aute consectetur exercitation labore enim commodo velit ex deserunt adipisicing incididunt anim. Enim officia Lorem commodo non dolor fugiat est esse irure eu tempor ullamco.",
         "tools": ["Python", "Django", "FastAPI", "PostgreSQL", "TensorFlow", "Sci-Kit Learn", "Keras", "Pandas"],
-        "link": "https://github.com/not9ahmed/blog"
+        "images": ["https://miro.medium.com/v2/resize:fit:1155/1*ShVN4gYaP74Nlgpi1adBRw.png"], 
+        "link": "https://github.com/not9ahmed/blog",
+        "github": "https://github.com/not9ahmed/blog"
     },
     {
         "id": 2,
@@ -17,7 +19,9 @@
         "status": "Complete",
         "description": "Nisi dolore ad veniam do aute duis anim. Consectetur voluptate deserunt duis voluptate amet nostrud deserunt dolore labore magna labore. Velit quis dolore duis sunt excepteur deserunt fugiat ad ut ad. Deserunt pariatur do proident cupidatat nisi. Quis ullamco pariatur non ea irure ullamco mollit est amet sunt id aliquip. Aute adipisicing nulla qui enim.",
         "tools": ["React", "Express JS", "MongoDB"],
-        "link": "https://github.com/not9ahmed/blog"
+        "images": ["https://miro.medium.com/v2/resize:fit:1155/1*ShVN4gYaP74Nlgpi1adBRw.png"], 
+        "link": "https://github.com/not9ahmed/blog",
+        "github": "https://github.com/not9ahmed/blog"
     },
     {
         "id": 3,
@@ -26,8 +30,9 @@
         "completeDate": null,
         "status": "In Progress",
         "description": "Commodo cillum dolor et ipsum do occaecat deserunt enim eiusmod excepteur. Nulla voluptate ad ullamco quis. Culpa occaecat nulla culpa in tempor ex reprehenderit laboris proident. Fugiat ipsum ad exercitation aliqua Lorem non cupidatat sint adipisicing. Labore aliqua cupidatat eu consequat deserunt proident laborum duis do nulla. Culpa id cupidatat nisi nisi eu sit veniam minim et velit consequat sint.",
-        "tools": ["HTML", "CSS", "JavaScript"],
-        "link": "https://github.com/not9ahmed/blog"
+        "images": ["https://miro.medium.com/v2/resize:fit:1155/1*ShVN4gYaP74Nlgpi1adBRw.png"], 
+        "link": "https://github.com/not9ahmed/blog",
+        "github": "https://github.com/not9ahmed/blog"
     }
     
 ]

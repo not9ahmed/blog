@@ -8,7 +8,9 @@ export interface ProjectInterface {
     status: "Complete" | "In Progress" | "Just Started" | "In Plan"
     description: string,
     tools: string[],
-    link: string
+    images: string[], 
+    link: string,
+    github: string
 }
 
 export interface ProjectCreateInterface {
@@ -19,7 +21,9 @@ export interface ProjectCreateInterface {
     status: "Complete" | "In Progress" | "Just Started" | "In Plan"
     description: string,
     tools: string[],
-    link: string
+    images: File[], 
+    link: string,
+    github: string
 }
 
 export interface ProjectEditInterface {
@@ -30,5 +34,7 @@ export interface ProjectEditInterface {
     status: "Complete" | "In Progress" | "Just Started" | "In Plan"
     description: string,
     tools: string[],
-    link: string
+    images: File[], 
+    link: string,
+    github: string
 }

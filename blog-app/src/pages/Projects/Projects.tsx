@@ -102,7 +102,7 @@ function Projects() {
                     <div className="project-card" key={el.id} onClick={(e) => handleProjectClick(e, el.id)}>
 
                         <div className='project-img-container'>
-                            <img className='project-img' src='https://miro.medium.com/v2/resize:fit:1155/1*ShVN4gYaP74Nlgpi1adBRw.png' />
+                            <img className='project-img' src={el.images[0]} />
                         </div>
                         
                         <div className='project-content'>

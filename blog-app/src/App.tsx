@@ -12,6 +12,7 @@ import Post from './pages/Post/Post'
 import CreatePost from './pages/CreatePost/CreatePost'
 import EditPost from './pages/EditPost/EditPost'
 import Project from './pages/Project/Project'
+import Dummy from './pages/Dummy/Dummy'
 // import About from './pages/About/About'
 
 
@@ -45,6 +46,7 @@ function App() {
             <Route path='/posts/:id' element={<Post />} />
 
             {/* Handling unknown paths */}
+            <Route path="/dummy" element={<Dummy />} />
             <Route path="*" element={<NoMatch />} />
         </Routes>
 
