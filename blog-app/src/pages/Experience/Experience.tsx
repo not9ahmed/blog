@@ -1,6 +1,6 @@
 import React from 'react'
 import './experience.css'
-import { Experience } from '../../types/experience'
+import { ExperienceInterface } from '../../types/experience'
 
 function Experience() {
 
@@ -8,7 +8,7 @@ function Experience() {
         // fetch projects from api
 
     
-        const experiences: Array<Experience> = [
+        const experiences: Array<ExperienceInterface> = [
             {
                 id: 1,
                 position: "IT Trainee",

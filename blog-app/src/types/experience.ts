@@ -1,7 +1,7 @@
 // tools can be seperate entity
 // tasks is tightly coupled with experience
 // org image is tightly coupled with experience
-export interface Experience {
+export interface ExperienceInterface {
     id: number,
     position: string,
     organization: string,

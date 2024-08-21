@@ -38,6 +38,14 @@ function Dummy() {
         <Button {...buttonProps1} />
         <Button {...buttonProps2} /> */}
 
+
+          <details >
+            <summary style={{ backgroundColor: 'lightblue' }}>Summary: </summary>
+              <p>
+                details here here
+              </p>
+          </details>
+
     </div>
   )
 }
