@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Params, useParams } from 'react-router-dom'
-import { findProjectById } from '../../services/projectService';
+import { findProjectById } from '../../api/projectService';
 import { ProjectInterface } from '../../types/project';
 import './project.css'
 

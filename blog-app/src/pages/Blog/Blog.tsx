@@ -6,8 +6,8 @@ import { PostInterface } from '../../types/post';
 // import SelectMenu from '../../components/SelectMenu/SelectMenu';
 // import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import Paginator from '../../components/Paginator/Paginator';
-import { findAllPosts, findPostByCategory, searchPostByKeyword } from '../../services/postService';
-import { findAllCategories } from '../../services/categoryService';
+import { findAllPosts, findPostByCategory, searchPostByKeyword } from '../../api/postService';
+import { findAllCategories } from '../../api/categoryService';
 
 // the following page will be the main blog page
 function Blog() {

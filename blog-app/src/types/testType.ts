@@ -1,4 +1,4 @@
-import { Skill, ToolType } from "./skill"
+import { Skill, SkillType } from "./skill"
 
 
 const sampleToolType: SkillType = {

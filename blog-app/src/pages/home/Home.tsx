@@ -7,7 +7,7 @@ import emailImg from '../../assets/email.png'
 // import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { findAllFrameworks, findAllProgrammingLanguages, findAllTools } from '../../services/profileService'
+import { findAllFrameworks, findAllProgrammingLanguages, findAllTools } from '../../api/profileService'
 import { Skill } from '../../types/skill'
 
 // TODO: Create Home Page 
@@ -118,7 +118,7 @@ function Home() {
 
         <div className='tools-title'>
           <h2>
-            I like to explore the latest programmming languages, frameworks and tools. I belive they're good in their own way!
+            Software Development industry is continuously evolving, and I enjoy to explore the latest!
           </h2>
         </div>
 

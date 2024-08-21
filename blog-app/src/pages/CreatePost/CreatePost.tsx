@@ -3,7 +3,7 @@ import { PostCreateInterface } from '../../types/post'
 import './createPost.css'
 import Post from '../Post/Post';
 import axios from 'axios'
-import { createPost, createPostImages } from '../../services/postService';
+import { createPost, createPostImages } from '../../api/postService';
 
 function CreatePost() {
 
@@ -184,7 +184,7 @@ function CreatePost() {
     <div className='content'>
         <div className='create-post'>
             <div className='header'>
-              <h1>Create Blog Post Page</h1>
+              <h1>Create Blog Post Page /Might Use Lexical Here</h1>
             </div>
 
             <div className='create-post-container'>

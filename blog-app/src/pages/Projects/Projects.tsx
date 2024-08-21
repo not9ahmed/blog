@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './projects.css'
 import { ProjectInterface } from '../../types/project'
-import { findAllProjects } from '../../services/projectService'
+import { findAllProjects } from '../../api/projectService'
 import { useNavigate } from 'react-router-dom';
 
 function Projects() {

@@ -3,7 +3,7 @@ import './editPost.css'
 import { PostEditInterface, PostInterface } from '../../types/post'
 import Post from '../Post/Post';
 import { Params, useNavigate, useParams } from 'react-router-dom';
-import { findPostById, updatePostById, deletePostById } from '../../services/postService';
+import { findPostById, updatePostById, deletePostById } from '../../api/postService';
 
 function EditPost() {
 

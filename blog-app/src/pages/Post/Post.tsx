@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Params, useParams } from 'react-router-dom'
 import { PostInterface } from '../../types/post';
 import postImageCreator from './postUtil'
-import { findPostById } from '../../services/postService'
+import { findPostById } from '../../api/postService'
 import './post.css'
 
 /**

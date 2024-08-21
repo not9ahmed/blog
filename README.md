@@ -5,14 +5,14 @@ Blog webapp using React, Vite and Typescript.
 
 The following system consists current
 
-### Run Blog-App Frontend
+### Install Deps & Run Blog-App Frontend
 
 1. `cd blog-app`  
 2. `touch .env && echo "VITE_API_BASE_URL=http://localhost:4000/api/v0\nKEY_2=abc" > .env`   
 3. `npm i`  
 4. `npm run dev`
 
-### Run Blog-API Backend
+### Install Deps & Run Blog-API Backend
 
 1. `cd blog-api`  
 2. `touch .env && echo "DB_USER_API=1233\nKEY_2=abc" > .env`  
