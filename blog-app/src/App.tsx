@@ -1,11 +1,10 @@
 import './App.css'
 import Footer from './components/Footer/Footer'
 import Nav from './components/Nav/Nav'
-import About from './pages/About/About'
 import Home from './pages/Home/Home'
 import Projects from './pages/Projects/Projects'
 import Experience from './pages/Experience/Experience'
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import NoMatch from './pages/NoMatch/NoMatch'
 import Blog from './pages/Blog/Blog'
 import Post from './pages/Post/Post'
@@ -13,7 +12,6 @@ import CreatePost from './pages/CreatePost/CreatePost'
 import EditPost from './pages/EditPost/EditPost'
 import Project from './pages/Project/Project'
 import Dummy from './pages/Dummy/Dummy'
-// import About from './pages/About/About'
 
 
 function App() {
@@ -29,8 +27,6 @@ function App() {
 
 
             <Route index element={<Home/>} />
-            <Route path='/about' element={<About/>} />
-
 
             {/* will be done later */}
             <Route path='/projects' element={<Projects/>} />

@@ -8,6 +8,7 @@ import emailImg from '../../assets/email.png'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { findAllFrameworks, findAllProgrammingLanguages, findAllTools } from '../../services/profileService'
+import { Skill } from '../../types/skill'
 
 // TODO: Create Home Page 
 function Home() {
@@ -15,9 +16,9 @@ function Home() {
 
   // states
   // decalre types later
-  const [ progLangs, setProgLangs] = useState<Object[] | []>([]);
-  const [ frameworks, setFrameworks] = useState<Object[] | []>([]);
-  const [ tools, setTools] = useState<Object[] | []>([]);
+  const [ progLangs, setProgLangs] = useState<Skill[] | []>([]);
+  const [ frameworks, setFrameworks] = useState<Skill[] | []>([]);
+  const [ tools, setTools] = useState<Skill[] | []>([]);
 
 
 
@@ -132,7 +133,7 @@ function Home() {
                 <img className='tool-img' src={el.icon} />
               </div>
               <div>
-                <p className='tool-name'>{el.lanaguage}</p>
+                <p className='tool-name'>{el.name}</p>
               </div>
             </div>
           )}
