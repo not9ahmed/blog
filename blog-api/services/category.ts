@@ -1,0 +1,57 @@
+// prisma boilerplate
+import { Category, PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+
+export const createCategoryService = async (category: Category) => {
+
+
+    try {
+        const categoryDb = await prisma.category.create({
+            data: {...category}
+        });
+
+        console.log(categoryDb);
+
+        await prisma.$disconnect();
+        return categoryDb;
+    } catch(e){
+        console.error(e);
+        await prisma.$disconnect();
+        process.exit(1);
+    }
+
+    
+}
+
+
+// async function main() {
+  // ... you will write your Prisma Client queries here
+
+//   const category = await prisma.category.create({
+//     data: {
+    
+//         id: 1,
+//         name: "Software Engineering",
+//         parentCategory: 1,
+//         createdDate: "2024-07-26T20:26:36.479Z",
+//         createdBy: 1
+//     }
+//   })
+
+//     const categories = await prisma.category.findMany();
+
+//   console.log(categories)
+
+// }
+
+// main()
+//   .then(async () => {
+//     await prisma.$disconnect()
+//   })
+//   .catch(async (e) => {
+//     console.error(e)
+//     await prisma.$disconnect()
+//     process.exit(1)
+//   })

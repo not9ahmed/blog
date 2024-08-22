@@ -1,5 +1,6 @@
 import express from 'express';
 import { Request, Response } from 'express'
+import { createCategoryService } from '../services/category';
 const categories = require('../models/categories.json');
 
 
@@ -19,13 +20,24 @@ const findCategoryById = (req: Request, res: Response) => {
 }
 
 
-const createCategory = (req: Request, res: Response) => {
+const createCategory = async (req: Request, res: Response) => {
 
     // add to the categories list
 
-    res.status(200).json({
-        message: "Hello from categories controllers"
-    });
+    try {
+
+        const createdCategory = await createCategoryService(req.body);
+        res.status(200).json({
+            message: "Hello from categories controllers",
+            createdCategory: createdCategory
+        });
+    } catch(e) {
+        res.status(404).json({
+            message: e,
+        });
+    }
+    
+
 }
 
 

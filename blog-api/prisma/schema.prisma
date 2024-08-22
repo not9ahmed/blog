@@ -29,3 +29,12 @@ model Post {
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
 }
+
+
+model Category {
+  id Int  @id @default(autoincrement())
+  name String
+  parentCategory Int
+  createdDate DateTime @default(now())
+  createdBy Int
+}
