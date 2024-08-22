@@ -12,3 +12,36 @@ The following blog api will use Express JS a start, and might evolve.
 | `/profile`   | GET         | Responds with all profile data fields |
 | `/skills`    | GET         | Responds with all skills              |
 | `/skills/:id`| GET         | Responds with all skills              |
+
+
+## Prisma
+
+1. `npx prisma init`
+2. Define Models in Schema .prisma
+3. Run migrations `npx prisma migrate dev --name init`. For Schema Changes
+    - Creates SQL migration file in prisma/migration
+    - Executes SQL script
+    - prisma generate ran under the hood and installed prisma client
+    - add query inside the main function
+4. To run the db script in TypeScript `npx ts-node db_scripts/script.ts`
+
+
+
+### Comments
+
+npx prisma init
+
+✔ Your Prisma schema was created at prisma/schema.prisma
+  You can now open it in your favorite editor.
+
+warn You already have a .gitignore file. Don't forget to add `.env` in it to not commit any private information.
+
+Next steps:
+1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
+2. Set the provider of the datasource block in schema.prisma to match your database: postgresql, mysql, sqlite, sqlserver, mongodb or cockroachdb.
+3. Run prisma db pull to turn your database schema into a Prisma schema.
+4. Run prisma generate to generate the Prisma Client. You can then start querying your database.
+5. Tip: Explore how you can extend the ORM with scalable connection pooling, global caching, and real-time database events. Read: https://pris.ly/cli/beyond-orm
+
+More information in our documentation:
+https://pris.ly/d/getting-started
