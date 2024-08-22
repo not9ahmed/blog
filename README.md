@@ -19,9 +19,10 @@ The following system consists current
 3. `npm i`  
 4. `nodemon index.ts`
 
-### Run Blog-DB Database
+### Run Blog Database
 
-`To be Done by docker postgresql`
+1. Create docker
+2. Run docker `docker-compose --env-file .env up`
 
 
 ## User Stories
