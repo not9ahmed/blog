@@ -1,7 +1,7 @@
 import Router from 'express'
 import { Request, Response} from 'express'
 const projectController = require('../controllers/projectController');
-const projects = require('../models/projects.json');
+const projects = require('../db_scripts/projects.json');
 
 
 const router = Router();

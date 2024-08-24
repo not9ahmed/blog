@@ -13,7 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
@@ -30,11 +29,28 @@ model Post {
   authorId  Int
 }
 
-
 model Category {
-  id Int  @id @default(autoincrement())
-  name String
+  id             Int      @id @default(autoincrement())
+  name           String
   parentCategory Int
-  createdDate DateTime @default(now())
-  createdBy Int
+  createdDate    DateTime @default(now())
+  createdBy      Int
+}
+
+model Project {
+  id Int @id @default(autoincrement())
+  name String
+  startDate DateTime
+  completeDate DateTime
+  status String
+  description String
+  tools String[]
+  images String[] 
+  link String 
+  github String 
+}
+
+
+model Skill {
+  id Int @id @default(autoincrement())
 }

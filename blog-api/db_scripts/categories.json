@@ -2,64 +2,64 @@
     {
         "id": 1,
         "name": "Software Engineering",
-        "parentCategory": null,
+        "parentCategory": 1,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 2,
         "name": "Data Science",
-        "parentCategory": null,
+        "parentCategory": 1,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 4
     },
     {
         "id": 3,
         "name": "Computer Science",
-        "parentCategory": null,
+        "parentCategory": 2,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 3
     },
     {
         "id": 4,
         "name": "Music",
-        "parentCategory": null,
+        "parentCategory": 3,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 4
     },
     {
         "id": 5,
         "name": "Books",
-        "parentCategory": "",
+        "parentCategory": 5,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 2
     },
     {
         "id": 6,
         "name": "Manga",
         "parentCategory": 5,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 7,
         "name": "Movies",
-        "parentCategory": "",
+        "parentCategory": 2,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 8,
         "name": "Shows",
-        "parentCategory": "",
+        "parentCategory": 2,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 9,
         "name": "Anime",
         "parentCategory": 8,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     }
 ]

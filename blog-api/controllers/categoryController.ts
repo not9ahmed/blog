@@ -1,15 +1,15 @@
 import express from 'express';
 import { Request, Response } from 'express'
-import { createCategoryService, findAlCategoriesService, findCategoryByIdService } from '../services/category';
-const categories = require('../models/categories.json');
+const categoryService =  require('../services/category');
+const categories = require('../db_scripts/categories.json');
 
 
-const findAllCategories = async (req: Request, res: Response) => {
+export const findAllCategories = async (req: Request, res: Response) => {
 
 
     try {
 
-        const categories = await findAlCategoriesService();
+        const categories = await categoryService.findAlCategories();
 
         return res.status(200).json({
             message: "success",
@@ -36,7 +36,7 @@ const findCategoryById = async (req: Request, res: Response) => {
 
         const userCategory = req.body;
 
-        const category = await findCategoryByIdService(id);
+        const category = await categoryService.findCategoryByIdService(id);
 
         return res.status(200).json({
             message: "Hello from categories controllers",
@@ -57,7 +57,7 @@ const createCategory = async (req: Request, res: Response) => {
 
     try {
 
-        const createdCategory = await createCategoryService(req.body);
+        const createdCategory = await categoryService.createCategoryService(req.body);
         res.status(200).json({
             message: "Hello from categories controllers",
             createdCategory: createdCategory
@@ -74,11 +74,9 @@ const createCategory = async (req: Request, res: Response) => {
 
 const updateCategory = (req: Request, res: Response) => {
 
-    const id = req.params.id;
 
-
-    res.status(200).json({
-        message: `update category by id ${id}`
+    return res.status(200).json({
+        message: "ok"
     });
 }
 

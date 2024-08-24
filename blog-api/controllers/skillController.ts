@@ -1,6 +1,6 @@
 import express from 'express';
 import { Request, Response } from 'express'
-const categories = require('../models/categories.json');
+const categories = require('../db_scripts/categories.json');
 
 
 const findAllCategories = (req: Request, res: Response) => {

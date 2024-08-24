@@ -7,7 +7,7 @@ console.log("category service called");
 
 
 
-export const findAlCategoriesService = async () => {
+export const findAlCategories = async () => {
 
     try {
         const categories = await prisma.category.findMany();
@@ -23,7 +23,7 @@ export const findAlCategoriesService = async () => {
 
 
 
-export const findCategoryByIdService = async (id: number) => {
+export const findCategoryById= async (id: number) => {
 
     try {
 
@@ -45,7 +45,7 @@ export const findCategoryByIdService = async (id: number) => {
 
 
 
-export const createCategoryService = async (category: Category) => {
+export const createCategory = async (category: Category) => {
 
 
     try {
