@@ -3,6 +3,47 @@ import { Category, PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
+console.log("category service called");
+
+
+
+export const findAlCategoriesService = async () => {
+
+    try {
+        const categories = await prisma.category.findMany();
+
+        return categories;
+
+    } catch(err){
+        console.error(err);
+        await prisma.$disconnect();
+        process.exit(1);
+    }
+}
+
+
+
+export const findCategoryByIdService = async (id: number) => {
+
+    try {
+
+        const category = await prisma.category.findFirst({
+            where: {
+                id: id
+            }
+        });
+
+        return category;
+
+    } catch(err){
+        console.error(err);
+        await prisma.$disconnect();
+        process.exit(1);
+    }
+
+}
+
+
 
 export const createCategoryService = async (category: Category) => {
 
@@ -16,8 +57,8 @@ export const createCategoryService = async (category: Category) => {
 
         await prisma.$disconnect();
         return categoryDb;
-    } catch(e){
-        console.error(e);
+    } catch(err){
+        console.error(err);
         await prisma.$disconnect();
         process.exit(1);
     }
@@ -25,6 +66,13 @@ export const createCategoryService = async (category: Category) => {
     
 }
 
+
+
+
+
+
+
+// SAMPLE CODE BELOW //
 
 // async function main() {
   // ... you will write your Prisma Client queries here

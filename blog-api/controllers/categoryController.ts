@@ -1,22 +1,53 @@
 import express from 'express';
 import { Request, Response } from 'express'
-import { createCategoryService } from '../services/category';
+import { createCategoryService, findAlCategoriesService, findCategoryByIdService } from '../services/category';
 const categories = require('../models/categories.json');
 
 
-const findAllCategories = (req: Request, res: Response) => {
+const findAllCategories = async (req: Request, res: Response) => {
 
-    res.status(200).send(categories);
+
+    try {
+
+        const categories = await findAlCategoriesService();
+
+        return res.status(200).json({
+            message: "success",
+            categories: categories
+
+        });
+
+    } catch (err) {
+        console.log(err);
+        return res.status(404).json({
+            message: "failed request"
+        });
+    }
 }
 
-const findCategoryById = (req: Request, res: Response) => {
+
+
+
+const findCategoryById = async (req: Request, res: Response) => {
 
     const id = parseInt(req.params.id);
-    
 
-    const category = categories[id-1];
+    try {
 
-    res.status(200).send(category);
+        const userCategory = req.body;
+
+        const category = await findCategoryByIdService(id);
+
+        return res.status(200).json({
+            message: "Hello from categories controllers",
+            category: category
+        });
+        
+    } catch(e) {
+        res.status(404).json({
+            message: e,
+        });
+    }
 }
 
 

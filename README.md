@@ -23,6 +23,8 @@ The following system consists current
 
 1. Create docker
 2. Run docker `docker-compose --env-file .env up`
+3. Run `npx prisma init` to initalize prisma db
+4. Run `npx prisma migrate dev --name init` to move schema changes to db
 
 
 ## User Stories
