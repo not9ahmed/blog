@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Java",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original-wordmark.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 2,
+        "name": "Node Js",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 3,
+        "name": "Python",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 4,
+        "name": "TypeScript",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 5,
+        "name": "SQL",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 6,
+        "name": "Oracle PL/SQL",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 7,
+        "name": "PostgreSQL",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 8,
+        "name": "HTML",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 9,
+        "name": "CSS",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 10,
+        "name": "JavaScript",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+        "skillTypeId": 1,
+        "link": "https://react.dev/"
+    }
+]

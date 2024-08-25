@@ -5,16 +5,24 @@ import prisma from '../utils/dbClient';
 
 // interface BatchPayload { count: 3 }
 
+type BatchPayload = Prisma.BatchPayload;
+
 interface ISkillService {
     findAll(): Promise<Skill[]>;
     findById(id: number): Promise<Skill | null>;
     create(skill: Skill): Promise<Skill | null>;
-    createMany(skills: Skill[]): Promise<Prisma.BatchPayload>;
+    createMany(skills: Skill[]): Promise<BatchPayload>;
+    update(id: number, skill: Skill): Promise<Skill|null>;
+    delete(id: number): Promise<Skill>;
+    deleteAll(): Promise<BatchPayload>;
 }
 
-export class SkillService implements ISkillService {
+export default class SkillService implements ISkillService {
 
-
+    constructor() {
+        console.log("SkillService created");
+    }
+    
 
     findAll = async (): Promise<Skill[]> => {
 
@@ -61,8 +69,7 @@ export class SkillService implements ISkillService {
     }
 
 
-    createMany = async (skills: Skill[]): Promise<Prisma.BatchPayload> => {
-
+    createMany = async (skills: Skill[]): Promise<BatchPayload> => {
 
         try {
 
@@ -77,5 +84,53 @@ export class SkillService implements ISkillService {
         }
     }
 
+    update = async(id: number, skill: Skill): Promise<Skill | null> => {
+        
+        try {
+            
+
+            const skillUpdated = await prisma.skill.update({
+                where: {
+                    id: id
+                },
+                data: skill
+            })
+
+            return skillUpdated;
+
+        } catch (err) {
+            throw new Error(`Error Occurred ${err}`);
+        }
+    }
+
+    delete = async (id: number): Promise<Skill> => {
+        
+        try {
+            const skill = await prisma.skill.delete({
+                where: {
+                    id: id
+                }
+            });
+            return skill;
+
+        } catch(err) {
+            throw new Error(`Error Occurred ${err}`);
+        }
+    }
+
+
+    deleteAll = async (): Promise<BatchPayload> => {
+        
+        try {
+            const resultsCount = await prisma.skill.deleteMany();
+            return resultsCount;
+
+        } catch(err) {
+            throw new Error(`Error Occurred ${err}`);
+        }
+    }
+
+
+    
 
 }
