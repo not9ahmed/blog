@@ -1,61 +1,38 @@
 import express from 'express';
 import { Request, Response } from 'express'
-const categories = require('../db_scripts/categories.json');
+import SkillService from '../services/skillService';
+import {  Skill } from "@prisma/client";
+
+const skillsService = new SkillService();
 
 
-const findAllCategories = (req: Request, res: Response) => {
+interface SkillRequest extends Request {
+    body: Skill;
+  }
 
-    res.status(200).send(categories);
-}
 
-const findCategoryById = (req: Request, res: Response) => {
+const findAllSkills= async (req: SkillRequest, res: Response) => {
 
-    const id = parseInt(req.params.id);
+    try {
     
+        const skills = await skillsService.findAll();
 
-    const category = categories[id-1];
+        console.log(skills);
 
-    res.status(200).send(category);
-}
+        return res.status(200).send({
+            message: "hello from find all skills",
+            skills: skills
+        });
 
+    } catch (err) {
+        // throw new Error(`Error Occurred ${err}`);
+        return res.status(404).json({
+            message: "error occured"
+        })
 
-const createCategory = (req: Request, res: Response) => {
-
-    // add to the categories list
-
-    res.status(200).json({
-        message: "Hello from categories controllers"
-    });
-}
-
-
-const updateCategory = (req: Request, res: Response) => {
-
-    const id = req.params.id;
-
-
-    res.status(200).json({
-        message: `update category by id ${id}`
-    });
-}
-
-
-const deleteCategory = (req: Request, res: Response): void => {
-
-    const id = req.params.id;
-
-
-
-
-    res.status(200).send({
-        message: `delete category by id ${id}`
-    });
+    }
 }
 
 module.exports = {
-    findAllCategories,
-    findCategoryById,
-    createCategory,
-    updateCategory,
-    deleteCategory
+    findAllSkills,
 }

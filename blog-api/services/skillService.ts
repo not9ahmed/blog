@@ -1,11 +1,12 @@
-import { Skill } from "@prisma/client";
+import {  Skill } from "@prisma/client";
 import { Prisma } from "@prisma/client";
 import prisma from '../utils/dbClient';
+import { PrismaClient } from "@prisma/client";
 
 
-// interface BatchPayload { count: 3 }
+// type BatchPayload = Prisma.BatchPayload;
 
-type BatchPayload = Prisma.BatchPayload;
+interface BatchPayload extends Prisma.BatchPayload{}
 
 interface ISkillService {
     findAll(): Promise<Skill[]>;
@@ -22,6 +23,17 @@ export default class SkillService implements ISkillService {
     constructor() {
         console.log("SkillService created");
     }
+
+    // prismaClient = null;
+
+    // constructor(prismaClient: PrismaClient) {
+    //     console.log("SkillService created");
+
+    //     // add db client here
+
+    //     prismaClient = new PrismaClient();
+
+    // }
     
 
     findAll = async (): Promise<Skill[]> => {

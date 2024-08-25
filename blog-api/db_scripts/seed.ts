@@ -24,9 +24,9 @@ async function main() {
     // );
 
     // await should be added to method
-    // const skillsCreated = await skillService.findById(10);
+    const skillsCreated = await skillService.findById(1);
 
-    // console.log(skillsCreated);
+    console.log(skillsCreated);
 
 
     // const deleteSkill = await skillService.delete(10);

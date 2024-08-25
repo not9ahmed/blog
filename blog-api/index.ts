@@ -7,9 +7,10 @@ const middleware =  require('./middleware/test');
 import upload from './utils/filesUpload';
 
 // routes
-const postRoutes =  require('./routes/postRoutes')
-const categoryRoutes =  require('./routes/categoryRoutes')
-const projectRoutes =  require('./routes/projectRoutes')
+const postRoutes =  require('./routes/postRoutes');
+const categoryRoutes =  require('./routes/categoryRoutes');
+const projectRoutes =  require('./routes/projectRoutes');
+const skillRoutes =  require('./routes/skillRoutes');
 
 const app = express();
 const PORT = 4000;
@@ -30,6 +31,7 @@ app.use('/', middleware.test);
 app.use('/api/v0/posts', postRoutes);
 app.use('/api/v0/categories', categoryRoutes);
 app.use('/api/v0/projects', projectRoutes);
+app.use('/api/v0/skills', skillRoutes);
 
 
 // home route
