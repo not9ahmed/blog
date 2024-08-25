@@ -38,19 +38,35 @@ model Category {
 }
 
 model Project {
-  id Int @id @default(autoincrement())
-  name String
-  startDate DateTime
+  id           Int      @id @default(autoincrement())
+  name         String
+  startDate    DateTime
   completeDate DateTime
-  status String
-  description String
-  tools String[]
-  images String[] 
-  link String 
-  github String 
+  status       String
+  description  String
+  tools        String[]
+  images       String[]
+  link         String
+  github       String
 }
 
-
 model Skill {
-  id Int @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
+  name        String
+  icon        String?
+  
+  // fk to SkillType
+  // type        SkillType @relation(fields: [skillTypeId], references: [id])
+  // skill type id
+  skillTypeId Int
+
+  link        String
+}
+
+model SkillType {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  // fk to Skills
+  // skills Skill[]
 }

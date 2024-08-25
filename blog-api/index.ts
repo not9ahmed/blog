@@ -4,7 +4,7 @@ const cors = require('cors')
 
 // middleware
 const middleware =  require('./middleware/test');
-import upload from './utls/filesUpload';
+import upload from './utils/filesUpload';
 
 // routes
 const postRoutes =  require('./routes/postRoutes')

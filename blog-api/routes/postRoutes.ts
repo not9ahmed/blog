@@ -1,7 +1,7 @@
 import Router from 'express'
 import { Request, Response, NextFunction } from 'express'
 import { PostDtoInterface, PostInterface } from '../types/postTypes';
-import upload from '../utls/filesUpload';
+import upload from '../utils/filesUpload';
 
 const router = Router();
 const posts: PostInterface[] = require('../db_scripts/posts.json');

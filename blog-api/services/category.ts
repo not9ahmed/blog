@@ -1,11 +1,5 @@
-// prisma boilerplate
-import { Category, PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
-
-console.log("category service called");
-
-
+import { Category } from '@prisma/client'
+import prisma from '../utils/dbClient';
 
 export const findAlCategories = async () => {
 

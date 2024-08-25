@@ -6,17 +6,7 @@ const projects = require('../db_scripts/projects.json');
 
 const router = Router();
 
-router.get('/', (req: Request, res: Response) => {
-
-    const q = req.query;
-
-    console.log("q", q);
-
-
-    console.log("Hello from project route");
-
-    res.send(projects);
-})
+router.get('/', projectController.findAllProjects)
 
 
 router.get('/:id', (req: Request, res: Response) => {
