@@ -1,9 +1,10 @@
-export interface CreateSkill {
-    id: number,
-    name: string
+import { Skill } from "@prisma/client";
+
+export interface CreateSkill extends Skill {
+
 }
 
-export interface Skill {
-    id: number,
-    name: string
+// in case of certail fields need to be optional
+export interface EditSkill extends Partial<Skill> {
+
 }

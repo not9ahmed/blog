@@ -56,7 +56,8 @@ model Skill {
   icon        String?
   
   // fk to SkillType
-  // type        SkillType @relation(fields: [skillTypeId], references: [id])
+  type        SkillType @relation(fields: [skillTypeId], references: [id])
+  
   // skill type id
   skillTypeId Int
 
@@ -68,5 +69,5 @@ model SkillType {
   name String
 
   // fk to Skills
-  // skills Skill[]
+  skills Skill[]
 }

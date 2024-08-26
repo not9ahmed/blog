@@ -1,22 +1,3 @@
-export interface Skill {
-    id: number,
-    name: string,
-    icon: string,
-    type: ToolType,
-    link: string
-}
+import { Skill } from "@prisma/client";
 
-// or type
-// 'Programming Language'
-// 'Toolkit'
-// framework
-
-
-// can be
-// programming langauge
-// tools
-// framework
-export interface ToolType {
-    id: number,
-    name: string
-}
+export interface ISkill extends Skill {}
