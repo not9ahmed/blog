@@ -68,5 +68,68 @@
         "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
         "skillTypeId": 1,
         "link": "https://react.dev/"
+    },
+    {
+        "id": 11,
+        "name": "Express",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+        "skillTypeId": 2,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 12,
+        "name": "React",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+        "skillTypeId": 2,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 13,
+        "name": "Spring Boot",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg",
+        "skillTypeId": 2,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 14,
+        "name": "FastAPI",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+        "skillTypeId": 2,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 15,
+        "name": "Django",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg",
+        "skillTypeId": 2,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 16,
+        "name": "Tensorflow",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg",
+        "skillTypeId": 2,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 17,
+        "name": "Github",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+        "skillTypeId": 3,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 18,
+        "name": "Git",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+        "skillTypeId": 3,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 19,
+        "name": "AWS",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+        "skillTypeId": 3,
+        "link": "https://react.dev/"
     }
 ]
