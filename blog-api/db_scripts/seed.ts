@@ -2,10 +2,10 @@
 import { PrismaClient } from '@prisma/client'
 import SkillService from '../services/skillService';
 import { SkillTypeService } from '../services/skillTypeService';
-const categories = require('./categories.json');
-const projects = require('./projects.json');
-const skillTypes = require('./skillTypes.json');
-const skills = require('./skills.json');
+const categories = require('./data/categories');
+const projects = require('./data/projects.json');
+const skillTypes = require('./data/skillTypes.json');
+const skills = require('./data/skills.json');
 
 const prisma = new PrismaClient()
 

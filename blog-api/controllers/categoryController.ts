@@ -1,7 +1,7 @@
 import express from 'express';
 import { Request, Response } from 'express'
 const categoryService =  require('../services/category');
-const categories = require('../db_scripts/categories.json');
+const categories = require('../db_scripts/data/categories.json');
 
 
 export const findAllCategories = async (req: Request, res: Response) => {

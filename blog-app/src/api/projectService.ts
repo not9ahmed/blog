@@ -10,11 +10,6 @@ export const findAllProjects = async (): Promise<ProjectInterface[] | []> => {
 
 
     // axios call should be here for getting all posts
-    // try {
-        
-    // } catch (error) {
-        
-    // }
 
     try {
 
@@ -22,7 +17,7 @@ export const findAllProjects = async (): Promise<ProjectInterface[] | []> => {
 
     //    console.log(response)
 
-       return response.data as ProjectInterface[]
+       return response.data.projects as ProjectInterface[]
 
     } catch(error) {
 

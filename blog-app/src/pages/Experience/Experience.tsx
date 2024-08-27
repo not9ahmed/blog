@@ -63,7 +63,7 @@ function Experience() {
         <div className='experiences'>
 
         {experiences.map(el => 
-            <>
+            <div key={el.id}>
                 <div className="experience" key={el.id}>
                     <img className='exp-image' src={el.orgImgs[0]} alt='no image'/>
                     <h4>{el.position}</h4>
@@ -74,7 +74,7 @@ function Experience() {
                     "Arrow Image Here"
                 </div>
             
-            </>
+            </div>
         )}
 
         </div>

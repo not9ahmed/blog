@@ -4,7 +4,7 @@ import { PostDtoInterface, PostInterface } from '../types/postTypes';
 import upload from '../utils/filesUpload';
 
 const router = Router();
-const posts: PostInterface[] = require('../db_scripts/posts.json');
+const posts: PostInterface[] = require('../db_scripts/data/posts.json');
 
 
 /**
