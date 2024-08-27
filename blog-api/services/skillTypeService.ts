@@ -11,6 +11,8 @@ type SkillTypesJoined = {
 interface ISkillTypeService {
     findAll(): Promise<SkillType[]>;
     findById(id: number): Promise<SkillType | null>;
+
+    // should check if id already exists
     create(skillType: SkillType): Promise<SkillType | null>;
     createMany(skillTypes: SkillType[]): Promise<BatchPayload>;
 
@@ -24,7 +26,7 @@ interface ISkillTypeService {
     deleteAll(): Promise<BatchPayload>;
 };
 
-export class SkillTypeService implements ISkillTypeService {
+export default class SkillTypeService implements ISkillTypeService {
 
     findAll = async (): Promise<SkillType[]> => {
 
@@ -71,8 +73,18 @@ export class SkillTypeService implements ISkillTypeService {
 
             return skillTypeCreated;
 
-        } catch (err) {
-            throw new Error(`Error Occurred ${err}`);
+        } catch (e) {
+
+            console.log("skill type service err");
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                // The .code property can be accessed in a type-safe manner
+                if (e.code === 'P2002') {
+                  console.log(
+                    'There is a unique constraint violation, a new user cannot be created with this email'
+                  )
+                }
+              }
+            throw e;
         }
     }
 

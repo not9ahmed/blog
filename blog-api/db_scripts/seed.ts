@@ -1,7 +1,7 @@
 // prisma boilerplate
 import { PrismaClient } from '@prisma/client'
 import SkillService from '../services/skillService';
-import { SkillTypeService } from '../services/skillTypeService';
+import SkillTypeService  from '../services/skillTypeService';
 const categories = require('./data/categories');
 const projects = require('./data/projects.json');
 const skillTypes = require('./data/skillTypes.json');
@@ -19,26 +19,17 @@ async function main() {
     // const resultCount = await skillTypeService.createMany(skillTypes);
     // console.log(resultCount);
 
-    const skillTypes = await skillTypeService.findAll();
+    // const skillTypes = await skillTypeService.findAll();
+    // console.log(skillTypes);
+
+    // const skillTypes = await skillTypeService.findAll();
+    // console.log(skillTypes);
+
+    const skillType = await skillTypeService.create({
+      id: 5,
+      name: "example"
+    });
     console.log(skillTypes);
-
-
-
-    // const skillType = await skillTypeService.findById(1);
-    // console.log(skillType);
-
-    // const skillTypeCreated = await skillTypeService.create({
-    //   id: 4,
-    //   name: "Hobbies"
-    // });
-
-    // console.log(skillTypeCreated);
-
-
-    // const skillTypesJoined = await skillTypeService.findAllWithSkills();
-
-    // console.log(JSON.stringify(skillTypesJoined, null, 4));
-
 
 }
 

@@ -21,11 +21,16 @@ The following system consists current
 
 ### Run Blog Database
 
-1. Create docker
-2. Run docker `docker-compose --env-file .env up`
-3. Run `npx prisma init` to initalize prisma db
-4. Run `npx prisma migrate dev --name init` to move schema changes to db
-5. Run Seed File `npx ts-node blog-api/db_scripts/seed.ts`
+1. Create docker-compose.yml file
+2. Create Env file with DB credentials
+3. Check if docker image created `docker ps`
+4. Run docker `docker-compose --env-file .env up`
+
+### Prisma ORM
+
+1. Run `npx prisma init` to initalize prisma db
+2. Run `npx prisma migrate dev --name init` to move schema changes to db
+3. Run Seed File `npx ts-node blog-api/db_scripts/seed.ts`
 
 
 ## User Stories
