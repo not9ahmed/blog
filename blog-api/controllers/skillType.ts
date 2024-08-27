@@ -6,6 +6,8 @@ const skillTypeService = new SkillTypeService();
 
 
 // interfaces
+// Every Request may have diffrrent body
+
 interface SkillTypeRequest extends Request {
     body: SkillType;
 }
@@ -141,9 +143,42 @@ const updateSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) =>
 
 }
 
+
+const deleteSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
+
+    try {
+        
+        const id = parseInt(req.params.id); 
+
+        const skillTypeDeleted = await skillTypeService.delete(id);
+
+        const response = {
+            message: "hello from update skill type",
+            data: skillTypeDeleted
+        }
+
+        return res.status(201).json(response);
+
+    } catch (err) {
+
+
+        console.log("skill type controller");
+        console.error(err);
+        const response = {
+            message: `error occured`,
+            error: "User id does not exists"
+        }
+
+        return res.status(404).json(response)
+    }
+
+}
+
+
 module.exports = {
     findAllSkillTypes,
     findSkillTypeById,
     createSkillType,
-    updateSkillType
+    updateSkillType,
+    deleteSkillType
 }

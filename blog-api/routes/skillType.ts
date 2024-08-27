@@ -8,8 +8,8 @@ router.get('/:id', controller.findSkillTypeById);
 router.post('/', controller.createSkillType);
 router.put('/:id', controller.updateSkillType);
 
+router.delete('/:id', controller.deleteSkillType);
 
-// router.delete('/', controller.deleteSkill);
 // router.delete('/', controller.deleteManySkill);
 
 

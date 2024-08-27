@@ -131,5 +131,19 @@
         "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
         "skillTypeId": 3,
         "link": "https://react.dev/"
+    },
+    {
+        "id": 20,
+        "name": "Docker",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+        "skillTypeId": 3,
+        "link": "https://react.dev/"
+    },
+    {
+        "id": 21,
+        "name": "Postman",
+        "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg",
+        "skillTypeId": 3,
+        "link": "https://react.dev/"
     }
 ]
