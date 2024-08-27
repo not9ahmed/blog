@@ -19,9 +19,9 @@ interface ISkillTypeService {
     findAllWithSkills(): Promise<SkillTypesJoined[]>;
 
 
-    // update(id: number, skillType: SkillType): Promise<SkillType | null>;
-    // delete(id: number): Promise<SkillType>;
-    // deleteAll(): Promise<BatchPayload>;
+    update(id: number, skillType: SkillType): Promise<SkillType | null>;
+    delete(id: number): Promise<SkillType>;
+    deleteAll(): Promise<BatchPayload>;
 };
 
 export class SkillTypeService implements ISkillTypeService {
@@ -91,8 +91,6 @@ export class SkillTypeService implements ISkillTypeService {
     }
 
 
-
-
     findAllWithSkills = async(): Promise<SkillTypesJoined[]> => {
         
         try {
@@ -108,6 +106,58 @@ export class SkillTypeService implements ISkillTypeService {
             throw new Error(`Error Occurred ${err}`);
 
         }   
+    }
+
+
+    update = async (id: number, skillType: SkillType): Promise<SkillType | null>  => {
+    
+        try {
+            
+
+            const skillTypeUpdated = prisma.skillType.update({
+                where: {
+                    id: id
+                },
+                data: skillType
+            })
+
+            return skillTypeUpdated;
+
+        } catch (err) {
+            throw new Error(`Error Occurred ${err}`);
+        }
+    }
+    
+    delete = async (id: number): Promise<SkillType> => {
+
+        try {
+
+            const skillType = await prisma.skillType.delete({
+                where: {
+                    id: id
+                }
+            });
+
+            return skillType;
+
+        } catch (err) {
+            throw new Error(`Error Occurred ${err}`);
+            
+        }
+    }
+
+
+    deleteAll = async (): Promise<BatchPayload> => {
+
+        try {
+            
+            const resultsCount = prisma.skillType.deleteMany();
+
+            return resultsCount;
+
+        } catch (err) {
+            throw new Error(`Error Occurred ${err}`);
+        }
     }
 
 }

@@ -35,9 +35,9 @@ async function main() {
     // console.log(skillTypeCreated);
 
 
-    const skillTypesJoined = await skillTypeService.findAllWithSkills();
+    // const skillTypesJoined = await skillTypeService.findAllWithSkills();
 
-    console.log(JSON.stringify(skillTypesJoined, null, 4));
+    // console.log(JSON.stringify(skillTypesJoined, null, 4));
 
 
 }
