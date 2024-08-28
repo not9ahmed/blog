@@ -50,7 +50,9 @@ export default class SkillTypeService implements ISkillTypeService {
             return skillTypes;
 
         } catch (err) {
-            throw new Error(`Error Occurred ${err}`);
+            console.log(err)
+
+            throw err;
         }
     }
 

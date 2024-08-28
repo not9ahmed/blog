@@ -11,6 +11,10 @@ interface SkillRequest extends Request {
     body: Skill;
 }
 
+interface SkillBulkRequest extends Request {
+    body: Skill[];
+}
+
 interface SkillResponse extends Response {
     body: Skill;
 }
@@ -66,6 +70,31 @@ const findSkillById = async (req: SkillRequest, res: Response) => {
 
 const createSkill = async (req: SkillRequest, res: SkillResponse) => {
 
+    try {
+
+        const skill = req.body;
+
+        const createdSkill = await skillsService.create(skill);
+
+        const response = {
+            message: `Hello from create skill`,
+            skill: createdSkill
+        }
+
+        return res.status(201).json(response);
+
+    } catch (err) {
+
+        console.log(err);
+
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        return res.status(404).json(response)
+        
+    }
 
 }
 
@@ -75,14 +104,49 @@ const updateSkillById = async (req: SkillRequest, res: SkillResponse) => {
 
 }
 
+
+
+
 const deleteSkill = async (req: SkillRequest, res: SkillResponse) => {
 
 }
+
+
+const createBulkSkills = async (req: SkillBulkRequest, res: SkillResponse) => {
+
+    try {
+
+        const skills = req.body;
+
+        const resultsCount = await skillsService.createMany(skills);
+
+        const response = {
+            message: `Hello from create skill`,
+            count: resultsCount
+        }
+
+        return res.status(201).json(response);
+
+    } catch (err) {
+
+        console.log(err);
+
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        return res.status(404).json(response)
+        
+    }
+} 
+
 
 module.exports = {
     findAllSkills,
     findSkillById,
     createSkill,
     updateSkillById,
-    deleteSkill
+    deleteSkill,
+    createBulkSkills
 }

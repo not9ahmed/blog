@@ -5,9 +5,12 @@ const router = Router();
 
 router.get('/', skillController.findAllSkills);
 router.get('/', skillController.findSkillById);
-// router.post('/', skillController.createSkill);
-// router.post('/', skillController.createBulkSkill);
+router.post('/', skillController.createSkill);
 // router.post('/', skillController.deleteSkill);
+
+
+// Bulk Operations
+router.post('/bulk', skillController.createBulkSkills);
 // router.post('/', skillController.deleteManySkill);
 
 

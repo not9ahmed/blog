@@ -13,7 +13,7 @@ interface ISkillService {
     findById(id: number): Promise<Skill>;
     create(skill: Skill): Promise<Skill>;
     createMany(skills: Skill[]): Promise<BatchPayload>;
-    update(id: number, skill: Skill): Promise<Skill|null>;
+    update(id: number, skill: Skill): Promise<Skill>;
     delete(id: number): Promise<Skill>;
     deleteAll(): Promise<BatchPayload>;
 }
@@ -23,17 +23,6 @@ export default class SkillService implements ISkillService {
     constructor() {
         console.log("SkillService created");
     }
-
-    // prismaClient = null;
-
-    // constructor(prismaClient: PrismaClient) {
-    //     console.log("SkillService created");
-
-    //     // add db client here
-
-    //     prismaClient = new PrismaClient();
-
-    // }
     
 
     findAll = async (): Promise<Skill[]> => {
@@ -44,7 +33,9 @@ export default class SkillService implements ISkillService {
             return skills;
 
         } catch (err){
-            throw new Error(`Error Occurred ${err}`);
+            console.log(err)
+
+            throw err;
         }
     }
 
@@ -61,7 +52,9 @@ export default class SkillService implements ISkillService {
             return skill;
 
         } catch (err){
-            throw new Error(`Error Occurred ${err}`);
+            console.log(err)
+
+            throw err;
         }
     }
 
@@ -76,7 +69,9 @@ export default class SkillService implements ISkillService {
             return skillCreated;
 
         } catch (err){
-            throw new Error(`Error Occurred ${err}`);
+            console.log(err)
+
+            throw err;
         }
     }
 
@@ -92,11 +87,13 @@ export default class SkillService implements ISkillService {
             return resultsCount;
 
         } catch (err){
-            throw new Error(`Error Occurred ${err}`);
+            console.log(err)
+
+            throw err;
         }
     }
 
-    update = async(id: number, skill: Skill): Promise<Skill | null> => {
+    update = async(id: number, skill: Skill): Promise<Skill> => {
         
         try {
             
@@ -111,7 +108,9 @@ export default class SkillService implements ISkillService {
             return skillUpdated;
 
         } catch (err) {
-            throw new Error(`Error Occurred ${err}`);
+            console.log(err)
+
+            throw err;
         }
     }
 
@@ -126,7 +125,9 @@ export default class SkillService implements ISkillService {
             return skill;
 
         } catch(err) {
-            throw new Error(`Error Occurred ${err}`);
+            console.log(err)
+
+            throw err;
         }
     }
 
@@ -138,7 +139,9 @@ export default class SkillService implements ISkillService {
             return resultsCount;
 
         } catch(err) {
-            throw new Error(`Error Occurred ${err}`);
+            console.log(err)
+
+            throw err;
         }
     }
 
