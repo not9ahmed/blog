@@ -1,5 +1,5 @@
 import Router from 'express'
-const controller = require('../controllers/skillType');
+const controller = require('../controllers/skillTypeController');
 
 const router = Router();
 

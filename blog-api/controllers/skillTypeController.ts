@@ -16,8 +16,15 @@ interface SkillTypeRequest extends Request {
     body: SkillType;
 }
 
+interface SkillTypeBulkRequest extends Request {
+    body: SkillType[];
+}
+
+
+
 interface SkillTypeResponse extends Response {
-    body: SkillType;
+    message: string
+    body: SkillType | SkillType[];
 }
 
 
@@ -90,7 +97,7 @@ const createSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse, ne
         // for headers can be done fromm middleware ??
 
 
-        const skillType = req.body;
+        const skillType  = req.body;
 
 
         const skillTypeCreated = await skillTypeService.create(skillType);
@@ -179,7 +186,8 @@ const deleteSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) =>
 
 
 
-const createBulkSkillTypes = async (req: Request, res: SkillTypeResponse, next: NextFunction) => {
+
+const createBulkSkillTypes = async (req: SkillTypeBulkRequest, res: SkillTypeResponse, next: NextFunction) => {
 
     try {
 
@@ -187,10 +195,6 @@ const createBulkSkillTypes = async (req: Request, res: SkillTypeResponse, next: 
         // will be array of skill types
         // needs complete SkillTypeRequest
         const skillTypes = req.body;
-
-        console.log("createBulkSkillTypes");
-        console.log(req.body);
-
 
         const skillTypesCount = await skillTypeService.createMany(skillTypes);
 
