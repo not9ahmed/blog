@@ -142,11 +142,41 @@ const createBulkSkills = async (req: SkillBulkRequest, res: SkillResponse) => {
 } 
 
 
+
+const deleteBulkSkills = async (req: SkillRequest, res: SkillResponse) => {
+
+    try {
+
+
+        const resultsCount = await skillsService.deleteAll();
+
+
+        const response = {
+            message: `Hello from create skill`,
+            count: resultsCount
+        }
+
+        return res.status(201).json(response);
+
+    } catch (err) {
+        console.log(err);
+
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        return res.status(404).json(response)
+    }
+}
+
+
 module.exports = {
     findAllSkills,
     findSkillById,
     createSkill,
     updateSkillById,
     deleteSkill,
-    createBulkSkills
+    createBulkSkills,
+    deleteBulkSkills
 }

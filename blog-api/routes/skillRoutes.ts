@@ -11,7 +11,7 @@ router.post('/', skillController.createSkill);
 
 // Bulk Operations
 router.post('/bulk', skillController.createBulkSkills);
-// router.post('/', skillController.deleteManySkill);
+router.delete('/bulk', skillController.deleteBulkSkills);
 
 
 
