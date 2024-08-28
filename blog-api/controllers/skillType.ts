@@ -39,10 +39,11 @@ const findAllSkillTypes = async (req: SkillTypeRequest, res: SkillTypeResponse) 
 
         return res.status(200).json(response);
 
+     // based on error thrown which is from PRISMA I can find what caused it
     } catch (err) {
 
         const response = {
-            message: `error occured ${err}`,
+            message: `error occured`,
             error: err
         }
 
@@ -154,7 +155,6 @@ const deleteSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) =>
     try {
         
         const id = parseInt(req.params.id); 
-
         const skillTypeDeleted = await skillTypeService.delete(id);
 
         const response = {
@@ -166,12 +166,50 @@ const deleteSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) =>
 
     } catch (err) {
 
-
-        console.log("skill type controller");
-        console.error(err);
         const response = {
             message: `error occured`,
-            error: "User id does not exists"
+            error: err
+        }
+        return res.status(404).json(response)
+    }
+
+}
+
+
+
+
+
+const createBulkSkillTypes = async (req: Request, res: SkillTypeResponse, next: NextFunction) => {
+
+    try {
+
+
+        // will be array of skill types
+        // needs complete SkillTypeRequest
+        const skillTypes = req.body;
+
+        console.log("createBulkSkillTypes");
+        console.log(req.body);
+
+
+        const skillTypesCount = await skillTypeService.createMany(skillTypes);
+
+
+        const response = {
+            message: "hello from find all skills",
+            data: skillTypesCount
+        }
+
+        return res.status(201).json(response);
+
+    } catch (err) {
+
+
+        console.log(err);
+
+        const response = {
+            message: `error occured`,
+            error: err
         }
 
         return res.status(404).json(response)
@@ -180,10 +218,35 @@ const deleteSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) =>
 }
 
 
+const deleteBulkSkillTypes = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+        
+        const resultCount = await skillTypeService.deleteAll();
+
+        console.log(resultCount);
+
+        return res.status(201).json(resultCount);
+
+
+    } catch (err) {
+
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+        return res.status(404).json(response)
+    }
+}
+
+
+
 module.exports = {
     findAllSkillTypes,
     findSkillTypeById,
     createSkillType,
     updateSkillType,
-    deleteSkillType
+    deleteSkillType,
+    createBulkSkillTypes,
+    deleteBulkSkillTypes
 }

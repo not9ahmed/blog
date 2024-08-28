@@ -16,15 +16,20 @@ interface ISkillTypeService {
     create(skillType: SkillType): Promise<SkillType>;
     createMany(skillTypes: SkillType[]): Promise<BatchPayload>;
 
-
     // try join
     findAllWithSkills(): Promise<SkillTypesJoined[]>;
-
 
     update(id: number, skillType: SkillType): Promise<SkillType | null>;
     delete(id: number): Promise<SkillType>;
     deleteAll(): Promise<BatchPayload>;
 };
+
+
+
+// Error Handling should be considered
+// The below functions throw Prisma Errors
+// I need to abstract them away
+
 
 export default class SkillTypeService implements ISkillTypeService {
 
@@ -85,7 +90,8 @@ export default class SkillTypeService implements ISkillTypeService {
 
         } catch (err) {
 
-            console.log(err)
+            console.log(err);
+
             if(err instanceof Prisma.PrismaClientKnownRequestError){
 
                 console.log("Skill Type not Found");
@@ -105,7 +111,15 @@ export default class SkillTypeService implements ISkillTypeService {
 
             return skillTypesCount;
         } catch (err) {
-            throw new Error(`Error Occurred ${err}`);
+
+
+            console.log(err);
+
+            if(err instanceof Prisma.PrismaClientKnownRequestError){
+
+                console.log("Skill Type not Found");
+            }
+            throw err;
         }
     }
 
@@ -133,7 +147,7 @@ export default class SkillTypeService implements ISkillTypeService {
         try {
             
 
-            const skillTypeUpdated = prisma.skillType.update({
+            const skillTypeUpdated = await prisma.skillType.update({
                 where: {
                     id: id
                 },
@@ -160,7 +174,8 @@ export default class SkillTypeService implements ISkillTypeService {
             return skillType;
 
         } catch (err) {
-            throw new Error(`Error Occurred ${err}`);
+
+            throw err;
             
         }
     }
@@ -170,12 +185,14 @@ export default class SkillTypeService implements ISkillTypeService {
 
         try {
             
-            const resultsCount = prisma.skillType.deleteMany();
+            const resultsCount = await prisma.skillType.deleteMany();
+
+            console.log(resultsCount);
 
             return resultsCount;
 
         } catch (err) {
-            throw new Error(`Error Occurred ${err}`);
+            throw err;
         }
     }
 

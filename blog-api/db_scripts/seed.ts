@@ -16,8 +16,8 @@ async function main() {
     const skillService = new SkillService();
     const skillTypeService = new SkillTypeService();
 
-    // const resultCount = await skillTypeService.createMany(skillTypes);
-    // console.log(resultCount);
+    const resultCount = await skillTypeService.createMany(skillTypes);
+    console.log(resultCount);
 
     // const skillTypes = await skillTypeService.findAll();
     // console.log(skillTypes);
@@ -25,11 +25,11 @@ async function main() {
     // const skillTypes = await skillTypeService.findAll();
     // console.log(skillTypes);
 
-    const skillType = await skillTypeService.create({
-      id: 5,
-      name: "example"
-    });
-    console.log(skillType);
+    // const skillType = await skillTypeService.create({
+    //   id: 5,
+    //   name: "example"
+    // });
+    // console.log(skillType);
 
 }
 

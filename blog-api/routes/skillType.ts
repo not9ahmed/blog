@@ -10,7 +10,10 @@ router.put('/:id', controller.updateSkillType);
 
 router.delete('/:id', controller.deleteSkillType);
 
-// router.delete('/', controller.deleteManySkill);
+
+// Bulk Endpoints
+router.post('/bulk', controller.createBulkSkillTypes);
+router.delete('/bulk', controller.deleteBulkSkillTypes);
 
 
 
