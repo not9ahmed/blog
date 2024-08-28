@@ -1,6 +1,10 @@
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import SkillTypeService from '../services/skillTypeService';
-import {  SkillType } from "@prisma/client";
+import {  Prisma, SkillType } from "@prisma/client";
+import { ErrorHandler } from '../errors/controllerErrorHandlers';
+
+const errorHandler = new ErrorHandler();
+
 
 const skillTypeService = new SkillTypeService();
 
@@ -49,6 +53,7 @@ const findAllSkillTypes = async (req: SkillTypeRequest, res: SkillTypeResponse) 
 
 const findSkillTypeById = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
     
+    console.log(`findSkillTypeById called`);
     try {
 
         const id = parseInt(req.params.id); 
@@ -63,8 +68,10 @@ const findSkillTypeById = async (req: SkillTypeRequest, res: SkillTypeResponse) 
 
     } catch (err) {
 
+        console.log(err);
+
         const response = {
-            message: `error occured ${err}`,
+            message: "error occured",
             error: err
         }
 
@@ -73,11 +80,9 @@ const findSkillTypeById = async (req: SkillTypeRequest, res: SkillTypeResponse) 
 }
 
 
-const createSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
+const createSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse, next: NextFunction) => {
 
     try {
-
-
 
         // id not found ??
         // invalid data ??
@@ -99,11 +104,11 @@ const createSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) =>
     } catch (err) {
 
 
-        console.log("skill type controller");
-        console.error(err);
+        console.log(err);
+
         const response = {
             message: `error occured`,
-            error: "User id does not exists"
+            error: err
         }
 
         return res.status(404).json(response)

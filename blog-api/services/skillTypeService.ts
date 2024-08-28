@@ -4,16 +4,16 @@ import prisma from '../utils/dbClient';
 interface BatchPayload extends Prisma.BatchPayload{}
 
 type SkillTypesJoined = {
-    skills: Skill[]
+    skills: Skill[];
 } & SkillType;
 
 // can use DTO here
 interface ISkillTypeService {
     findAll(): Promise<SkillType[]>;
-    findById(id: number): Promise<SkillType | null>;
+    findById(id: number): Promise<SkillType>;
 
     // should check if id already exists
-    create(skillType: SkillType): Promise<SkillType | null>;
+    create(skillType: SkillType): Promise<SkillType>;
     createMany(skillTypes: SkillType[]): Promise<BatchPayload>;
 
 
@@ -28,6 +28,11 @@ interface ISkillTypeService {
 
 export default class SkillTypeService implements ISkillTypeService {
 
+
+    constructor(){
+        console.log("SkillTypeService Called");
+    }
+    
     findAll = async (): Promise<SkillType[]> => {
 
         try {
@@ -45,12 +50,12 @@ export default class SkillTypeService implements ISkillTypeService {
     }
 
 
-    findById = async (id: number): Promise<SkillType | null> => {
+    findById = async (id: number): Promise<SkillType> => {
         
         try {
             
 
-            const skillType = await prisma.skillType.findFirst({
+            const skillType = await prisma.skillType.findFirstOrThrow({
                 where: {
                     id: id
                 }
@@ -59,12 +64,17 @@ export default class SkillTypeService implements ISkillTypeService {
             return skillType;
 
         } catch (err) {
-            throw new Error(`Error Occurred ${err}`);
+            console.log(err)
+            if(err instanceof Prisma.PrismaClientKnownRequestError){
+
+                console.log("Skill Type not Found");
+            }
+            throw err;
         }
     }
 
 
-    create = async (skillType: SkillType): Promise<SkillType | null> => {
+    create = async (skillType: SkillType): Promise<SkillType> => {
         
         try {
             const skillTypeCreated = await prisma.skillType.create({
@@ -73,18 +83,15 @@ export default class SkillTypeService implements ISkillTypeService {
 
             return skillTypeCreated;
 
-        } catch (e) {
+        } catch (err) {
 
-            console.log("skill type service err");
-            if (e instanceof Prisma.PrismaClientKnownRequestError) {
-                // The .code property can be accessed in a type-safe manner
-                if (e.code === 'P2002') {
-                  console.log(
-                    'There is a unique constraint violation, a new user cannot be created with this email'
-                  )
-                }
-              }
-            throw e;
+            console.log(err)
+            if(err instanceof Prisma.PrismaClientKnownRequestError){
+
+                console.log("Skill Type not Found");
+            }
+            throw err;
+        
         }
     }
 

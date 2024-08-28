@@ -29,7 +29,7 @@ async function main() {
       id: 5,
       name: "example"
     });
-    console.log(skillTypes);
+    console.log(skillType);
 
 }
 
