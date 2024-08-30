@@ -11,6 +11,7 @@ interface BatchPayload extends Prisma.BatchPayload{}
 interface ISkillService {
     findAll(): Promise<Skill[]>;
     findById(id: number): Promise<Skill>;
+    findBySkillType(skillTypeId: number): Promise<Skill[]>;
     create(skill: Skill): Promise<Skill>;
     createMany(skills: Skill[]): Promise<BatchPayload>;
     update(id: number, skill: Skill): Promise<Skill>;
@@ -57,6 +58,27 @@ export default class SkillService implements ISkillService {
             throw err;
         }
     }
+
+    findBySkillType = async (skillTypeId: number): Promise<Skill[]> => {
+        
+        console.log("skillTypeId", skillTypeId)
+        try {
+            const skills = await prisma.skill.findMany({
+                where: {
+                    skillTypeId: skillTypeId
+                }
+            })
+
+            return skills;
+
+        } catch (err) {
+            console.log(err)
+
+            throw err;
+        }
+        
+    }
+
 
     create = async (skill: Skill): Promise<Skill> => {
         

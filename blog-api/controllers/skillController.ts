@@ -20,13 +20,37 @@ interface SkillResponse extends Response {
 }
 
 
-const findAllSkills = async (req: SkillRequest, res: Response) => {
+const findAll = async (req: SkillRequest, res: Response) => {
 
     try {
     
-        const skills = await skillsService.findAll();
+        let skills: Skill[];
 
-        console.log(skills);
+
+        // better to extract
+        const q = req.query;
+        console.log('q', q);
+        
+        const skillTypeId = parseInt(req.query.skillTypeId as string);
+
+
+        console.log("skillTypeId", skillTypeId);
+
+
+        // Condition for queries
+        // query not provided
+        if (!skillTypeId) {
+
+            skills = await skillsService.findAll();
+
+        } else {
+            skills = await skillsService.findBySkillType(skillTypeId);
+
+            // skills = await skillsService.findAll();
+        }
+        
+
+        // console.log(skills);
 
         return res.status(200).send({
             message: "hello from find all skills",
@@ -44,7 +68,7 @@ const findAllSkills = async (req: SkillRequest, res: Response) => {
 }
 
 
-const findSkillById = async (req: SkillRequest, res: Response) => {
+const findById = async (req: SkillRequest, res: Response) => {
 
     try {
     
@@ -68,7 +92,7 @@ const findSkillById = async (req: SkillRequest, res: Response) => {
     }
 }
 
-const createSkill = async (req: SkillRequest, res: SkillResponse) => {
+const create = async (req: SkillRequest, res: SkillResponse) => {
 
     try {
 
@@ -99,7 +123,7 @@ const createSkill = async (req: SkillRequest, res: SkillResponse) => {
 }
 
 
-const updateSkillById = async (req: SkillRequest, res: SkillResponse) => {
+const update = async (req: SkillRequest, res: SkillResponse) => {
 
     try {
 
@@ -110,7 +134,7 @@ const updateSkillById = async (req: SkillRequest, res: SkillResponse) => {
         const updatedSkill = await skillsService.update(id, skill);
 
         const response = {
-            message: `Hello from create skill`,
+            message: `Hello from update skill`,
             skill: updatedSkill
         };
 
@@ -125,7 +149,7 @@ const updateSkillById = async (req: SkillRequest, res: SkillResponse) => {
             error: err
         }
 
-        return res.status(404).json(response)
+        return res.status(404).json(response);
     }
 
 }
@@ -133,12 +157,28 @@ const updateSkillById = async (req: SkillRequest, res: SkillResponse) => {
 
 
 
-const deleteSkill = async (req: SkillRequest, res: SkillResponse) => {
+const _delete = async (req: SkillRequest, res: SkillResponse) => {
 
+    try {
+        
+        const id = parseInt(req.params.id);
+
+        await skillsService.delete(id);
+    } catch (err) {
+        
+        console.log(err);
+
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        return res.status(404).json(response)
+    }
 }
 
 
-const createBulkSkills = async (req: SkillBulkRequest, res: SkillResponse) => {
+const createBulk = async (req: SkillBulkRequest, res: SkillResponse) => {
 
     try {
 
@@ -162,14 +202,14 @@ const createBulkSkills = async (req: SkillBulkRequest, res: SkillResponse) => {
             error: err
         }
 
-        return res.status(404).json(response)
+        return res.status(404).json(response);
         
     }
 } 
 
 
 
-const deleteBulkSkills = async (req: SkillRequest, res: SkillResponse) => {
+const deleteBulk = async (req: SkillRequest, res: SkillResponse) => {
 
     try {
 
@@ -198,11 +238,11 @@ const deleteBulkSkills = async (req: SkillRequest, res: SkillResponse) => {
 
 
 module.exports = {
-    findAllSkills,
-    findSkillById,
-    createSkill,
-    updateSkillById,
-    deleteSkill,
-    createBulkSkills,
-    deleteBulkSkills
+    findAll,
+    findById,
+    create,
+    update,
+    _delete,
+    createBulk,
+    deleteBulk
 }

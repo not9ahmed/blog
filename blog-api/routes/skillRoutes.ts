@@ -3,15 +3,16 @@ const skillController = require('../controllers/skillController');
 
 const router = Router();
 
-router.get('/', skillController.findAllSkills);
-router.get('/:id', skillController.findSkillById);
-router.post('/', skillController.createSkill);
-// router.post('/', skillController.deleteSkill);
+router.get('/', skillController.findAll);
+router.get('/:id', skillController.findById);
+router.post('/', skillController.create);
+router.put('/:id', skillController.update);
+router.delete('/', skillController._delete);
 
 
 // Bulk Operations
-router.post('/bulk', skillController.createBulkSkills);
-router.delete('/bulk', skillController.deleteBulkSkills);
+router.post('/bulk', skillController.createBulk);
+router.delete('/bulk', skillController.deleteBulk);
 
 
 
