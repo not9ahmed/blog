@@ -3,17 +3,16 @@ const controller = require('../controllers/skillTypeController');
 
 const router = Router();
 
-router.get('/', controller.findAllSkillTypes);
-router.get('/:id', controller.findSkillTypeById);
-router.post('/', controller.createSkillType);
-router.put('/:id', controller.updateSkillType);
-
-router.delete('/:id', controller.deleteSkillType);
+router.get('/', controller.findAll);
+router.get('/:id', controller.findById);
+router.post('/', controller.create);
+router.put('/:id', controller.update);
+router.delete('/:id', controller._delete);
 
 
 // Bulk Endpoints
-router.post('/bulk', controller.createBulkSkillTypes);
-router.delete('/bulk', controller.deleteBulkSkillTypes);
+router.post('/bulk', controller.createBulk);
+router.delete('/bulk', controller.deleteBulk);
 
 
 

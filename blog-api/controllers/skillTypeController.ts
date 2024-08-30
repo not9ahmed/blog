@@ -37,7 +37,7 @@ interface SkillTypeBulkResponse extends Response {
 }
 
 
-const findAllSkillTypes = async (req: SkillTypeRequest, res: SkillTypeBulkResponse) => {
+const findAll= async (req: SkillTypeRequest, res: SkillTypeBulkResponse) => {
 
     try {
     
@@ -69,7 +69,7 @@ const findAllSkillTypes = async (req: SkillTypeRequest, res: SkillTypeBulkRespon
 }
 
 
-const findSkillTypeById = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
+const findById = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
     
     console.log(`findSkillTypeById called`);
     try {
@@ -98,7 +98,7 @@ const findSkillTypeById = async (req: SkillTypeRequest, res: SkillTypeResponse) 
 }
 
 
-const createSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse, next: NextFunction) => {
+const create = async (req: SkillTypeRequest, res: SkillTypeResponse, next: NextFunction) => {
 
     try {
 
@@ -134,7 +134,7 @@ const createSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse, ne
 }
 
 
-const updateSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
+const update = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
 
     try {
         
@@ -167,7 +167,7 @@ const updateSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) =>
 }
 
 
-const deleteSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
+const _delete = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
 
     try {
         
@@ -197,7 +197,7 @@ const deleteSkillType = async (req: SkillTypeRequest, res: SkillTypeResponse) =>
 
 
 
-const createBulkSkillTypes = async (req: SkillTypeBulkRequest, res: SkillTypeResponse, next: NextFunction) => {
+const createBulk = async (req: SkillTypeBulkRequest, res: SkillTypeResponse, next: NextFunction) => {
 
     try {
 
@@ -232,7 +232,7 @@ const createBulkSkillTypes = async (req: SkillTypeBulkRequest, res: SkillTypeRes
 }
 
 
-const deleteBulkSkillTypes = async (req: Request, res: Response, next: NextFunction) => {
+const deleteBulk = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
         
@@ -256,11 +256,11 @@ const deleteBulkSkillTypes = async (req: Request, res: Response, next: NextFunct
 
 
 module.exports = {
-    findAllSkillTypes,
-    findSkillTypeById,
-    createSkillType,
-    updateSkillType,
-    deleteSkillType,
-    createBulkSkillTypes,
-    deleteBulkSkillTypes
+    findAll,
+    findById,
+    create,
+    update,
+    _delete,
+    createBulk,
+    deleteBulk
 }
