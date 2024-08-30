@@ -101,6 +101,32 @@ const createSkill = async (req: SkillRequest, res: SkillResponse) => {
 
 const updateSkillById = async (req: SkillRequest, res: SkillResponse) => {
 
+    try {
+
+        const id = parseInt(req.params.id);
+
+        const skill = req.body;
+
+        const updatedSkill = await skillsService.update(id, skill);
+
+        const response = {
+            message: `Hello from create skill`,
+            skill: updatedSkill
+        };
+
+        return res.status(201).json(response);
+        
+    } catch (err) {
+
+        console.log(err);
+
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        return res.status(404).json(response)
+    }
 
 }
 
