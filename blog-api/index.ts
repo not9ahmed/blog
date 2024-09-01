@@ -6,11 +6,11 @@ const cors = require('cors')
 const middleware =  require('./middleware/test');
 import upload from './utils/filesUpload';
 
-// routes
-const postRoutes =  require('./routes/postRoutes');
-const categoryRoutes =  require('./routes/categoryRoutes');
-const projectRoutes =  require('./routes/projectRoutes');
-const skillRoutes =  require('./routes/skillRoutes');
+// Declaring routes
+const postRoutes =  require('./routes/post');
+const categoryRoutes =  require('./routes/category');
+const projectRoutes =  require('./routes/project');
+const skillRoutes =  require('./routes/skill');
 const skillTypeRoutes =  require('./routes/skillType');
 
 const app = express();
