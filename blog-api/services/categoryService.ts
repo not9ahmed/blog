@@ -10,10 +10,10 @@ interface ICategoryService {
     findAll(): Promise<Category[]>;
     findById(id: number): Promise<Category>;
     findByParentCategoryId(id: number): Promise<Category[]>;
-    // create(category: Category): Promise<Category>;
+    create(category: Category): Promise<Category>;
     createMany(categories: Category[]): Promise<BatchPayload>;
-    // update(id: number, category: Category): Promise<Category>;
-    // delete(id: number): Promise<Category>;
+    update(id: number, category: Category): Promise<Category>;
+    delete(id: number): Promise<Category>;
     deleteAll(): Promise<BatchPayload>;
 }
 
@@ -24,7 +24,6 @@ export default class CategoryService implements ICategoryService {
     constructor(){
         console.log("CategoryService called");
     }
-
 
     findAll = async(): Promise<Category[]> => {
         
@@ -50,7 +49,7 @@ export default class CategoryService implements ICategoryService {
                         id: id
                     }
                 }
-            )
+            );
 
             return category;
 
@@ -59,6 +58,60 @@ export default class CategoryService implements ICategoryService {
             throw err;
         }
     }
+
+    create = async (category: Category): Promise<Category> => {
+        
+        try {
+
+            const categoryCreated  = await prisma.category.create({
+                data: category
+            });
+
+            return categoryCreated;
+
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
+    update = async (id: number, category: Category): Promise<Category> => {
+        
+        try {
+
+            const updateCategory = await prisma.category.update({
+                where: {
+                    id: id
+                },
+                data: category
+            })
+
+            return updateCategory;
+            
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
+
+    delete = async (id: number): Promise<Category> => {
+        
+        try {
+            const categoryDeleted = await prisma.category.delete({
+                where: {
+                    id: id
+                }
+            });
+            return categoryDeleted;
+
+        } catch(err) {
+            console.log(err)
+
+            throw err;
+        }
+    }
+
 
     findByParentCategoryId = async (id: number): Promise<Category[]> => {
 
