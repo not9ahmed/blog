@@ -31,23 +31,25 @@ datasource db {
 //   authorId  Int
 // }
 
-
-
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
-  role String
+  role  String
   posts Post[]
 }
 
 model Category {
-  id             Int      @id @default(autoincrement())
-  name           String
-  parentCategory Int
-  createdDate    DateTime @default(now())
-  createdBy      Int
-  posts          Post[]
+  id               Int       @id @default(autoincrement())
+  name             String
+
+  // self join
+  parentCategoryId Int?      @unique
+  parentCategory   Category? @relation("ParentCategory", fields: [parentCategoryId], references: [id])
+  childCategory    Category? @relation("ParentCategory")
+  createdDate      DateTime  @default(now())
+  createdBy        Int
+  posts            Post[]
 }
 
 // My post
@@ -78,22 +80,20 @@ model Project {
   github       String
 }
 
-
 model SkillType {
-  id   Int    @id @default(autoincrement())
-  name String
+  id     Int     @id @default(autoincrement())
+  name   String
   skills Skill[]
 }
 
 model Skill {
-  id   Int     @id @default(autoincrement())
-  name String
-  icon String?
-  type SkillType @relation(fields: [skillTypeId], references: [id])
+  id          Int       @id @default(autoincrement())
+  name        String
+  icon        String?
+  type        SkillType @relation(fields: [skillTypeId], references: [id])
   skillTypeId Int
-  link String
+  link        String
 }
-
 
 // Will be used across models (Post, Projects)
 // and will have the actual image url uploaded to image storage

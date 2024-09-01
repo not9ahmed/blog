@@ -2,6 +2,7 @@
 import { PrismaClient } from '@prisma/client'
 import SkillService from '../services/skillService';
 import SkillTypeService  from '../services/skillTypeService';
+import CategoryService from '../services/categoryService';
 const categories = require('./data/categories');
 const projects = require('./data/projects.json');
 const skillTypes = require('./data/skillTypes.json');
@@ -15,6 +16,7 @@ async function main() {
 
     const skillService = new SkillService();
     const skillTypeService = new SkillTypeService();
+    const categoryService = new CategoryService();
 
     const resultCount = await skillTypeService.createMany(skillTypes);
     console.log(resultCount);
@@ -30,6 +32,10 @@ async function main() {
     //   name: "example"
     // });
     // console.log(skillType);
+
+
+    // await categoryService.findByParentCategoryId(1);
+
 
 }
 

@@ -64,7 +64,7 @@ const findAll= async (req: SkillTypeRequest, res: SkillTypeBulkResponse) => {
             error: err
         }
 
-        return res.status(404).json(response)
+        return res.status(404).json(response);
     }
 }
 
@@ -93,7 +93,7 @@ const findById = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
             error: err
         }
 
-        return res.status(404).json(response)
+        return res.status(404).json(response);
     }
 }
 
@@ -129,7 +129,7 @@ const create = async (req: SkillTypeRequest, res: SkillTypeResponse, next: NextF
             error: err
         }
 
-        return res.status(404).json(response)
+        return res.status(404).json(response);
     }
 }
 
@@ -161,7 +161,7 @@ const update = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
             error: "User id does not exists"
         }
 
-        return res.status(404).json(response)
+        return res.status(404).json(response);
     }
 
 }
@@ -187,7 +187,7 @@ const _delete = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
             message: `error occured`,
             error: err
         }
-        return res.status(404).json(response)
+        return res.status(404).json(response);
     }
 
 }

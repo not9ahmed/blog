@@ -11,14 +11,19 @@ router.get('/', categoriesController.findAllCategories);
 // route to get category by id
 router.get('/:id', categoriesController.findCategoryById);
 
-// route to create category
-router.post('/', categoriesController.createCategory);
+// // route to create category
+// router.post('/', categoriesController.createCategory);
 
-// route to update
-router.put('/:id', categoriesController.updateCategory)
+// // route to update
+// router.put('/:id', categoriesController.updateCategory)
 
-// route to delete
-router.delete('/:id', categoriesController.deleteCategory)
+// // route to delete
+// router.delete('/:id', categoriesController.deleteCategory)
+
+
+// Bulk Operations
+router.post('/bulk', categoriesController.createBulk);
+router.delete('/bulk', categoriesController.deleteBulk);
 
 
 

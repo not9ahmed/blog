@@ -1,10 +1,5 @@
-import {  Skill } from "@prisma/client";
-import { Prisma } from "@prisma/client";
+import { Skill, Prisma } from "@prisma/client";
 import prisma from '../utils/dbClient';
-import { PrismaClient } from "@prisma/client";
-
-
-// type BatchPayload = Prisma.BatchPayload;
 
 interface BatchPayload extends Prisma.BatchPayload{}
 
