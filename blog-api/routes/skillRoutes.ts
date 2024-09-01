@@ -7,7 +7,7 @@ router.get('/', skillController.findAll);
 router.get('/:id', skillController.findById);
 router.post('/', skillController.create);
 router.put('/:id', skillController.update);
-router.delete('/', skillController._delete);
+router.delete('/:id', skillController._delete);
 
 
 // Bulk Operations

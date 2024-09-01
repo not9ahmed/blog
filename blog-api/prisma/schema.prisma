@@ -13,20 +13,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// PRISMA Default //
+
+// model User {
+//   id    Int     @id @default(autoincrement())
+//   email String  @unique
+//   name  String?
+//   posts Post[]
+// }
+
+// model Post {
+//   id        Int     @id @default(autoincrement())
+//   title     String
+//   content   String?
+//   published Boolean @default(false)
+//   author    User    @relation(fields: [authorId], references: [id])
+//   authorId  Int
+// }
+
+
+
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
+  role String
   posts Post[]
-}
-
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
 }
 
 model Category {
@@ -35,6 +47,22 @@ model Category {
   parentCategory Int
   createdDate    DateTime @default(now())
   createdBy      Int
+  posts          Post[]
+}
+
+// My post
+model Post {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String
+  keywords      String[]
+  content       String
+  images        String[]
+  category      Category @relation(fields: [categoryId], references: [id])
+  categoryId    Int
+  createdDate   DateTime
+  createdByUser User     @relation(fields: [createdBy], references: [id])
+  createdBy     Int
 }
 
 model Project {
@@ -50,24 +78,26 @@ model Project {
   github       String
 }
 
-model Skill {
-  id          Int       @id @default(autoincrement())
-  name        String
-  icon        String?
-  
-  // fk to SkillType
-  type        SkillType @relation(fields: [skillTypeId], references: [id])
-  
-  // skill type id
-  skillTypeId Int
-
-  link        String
-}
 
 model SkillType {
   id   Int    @id @default(autoincrement())
   name String
-
-  // fk to Skills
   skills Skill[]
+}
+
+model Skill {
+  id   Int     @id @default(autoincrement())
+  name String
+  icon String?
+  type SkillType @relation(fields: [skillTypeId], references: [id])
+  skillTypeId Int
+  link String
+}
+
+
+// Will be used across models (Post, Projects)
+// and will have the actual image url uploaded to image storage
+model Image {
+  id  Int    @id @default(autoincrement())
+  src String
 }
