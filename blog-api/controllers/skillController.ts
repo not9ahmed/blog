@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import SkillService from '../services/skill';
 import {  Skill } from "@prisma/client";
 
-const skillsService = new SkillService();
+const skillService = new SkillService();
 
 
 // interfaces
@@ -41,10 +41,10 @@ const findAll = async (req: SkillRequest, res: Response) => {
         // query not provided
         if (!skillTypeId) {
 
-            skills = await skillsService.findAll();
+            skills = await skillService.findAll();
 
         } else {
-            skills = await skillsService.findBySkillType(skillTypeId);
+            skills = await skillService.findBySkillType(skillTypeId);
 
             // skills = await skillsService.findAll();
         }
@@ -74,7 +74,7 @@ const findById = async (req: SkillRequest, res: Response) => {
     
         const id = parseInt(req.params.id);
 
-        const skill = await skillsService.findById(id);
+        const skill = await skillService.findById(id);
 
         console.log(skill);
 
@@ -96,9 +96,9 @@ const create = async (req: SkillRequest, res: SkillResponse) => {
 
     try {
 
-        const skill = req.body;
+        const skill = req.body as Skill;
 
-        const createdSkill = await skillsService.create(skill);
+        const createdSkill = await skillService.create(skill);
 
         const response = {
             message: `Hello from create skill`,
@@ -129,9 +129,9 @@ const update = async (req: SkillRequest, res: SkillResponse) => {
 
         const id = parseInt(req.params.id);
 
-        const skill = req.body;
+        const skill = req.body as Skill;
 
-        const updatedSkill = await skillsService.update(id, skill);
+        const updatedSkill = await skillService.update(id, skill);
 
         const response = {
             message: `Hello from update skill`,
@@ -163,7 +163,15 @@ const _delete = async (req: SkillRequest, res: SkillResponse) => {
         
         const id = parseInt(req.params.id);
 
-        await skillsService.delete(id);
+        const deletedSkill = await skillService.delete(id);
+
+        const response = {
+            message: `Hello from update skill`,
+            skill: deletedSkill
+        };
+
+        return res.status(201).json(response);
+
     } catch (err) {
         
         console.log(err);
@@ -182,9 +190,9 @@ const createBulk = async (req: SkillBulkRequest, res: SkillResponse) => {
 
     try {
 
-        const skills = req.body;
+        const skills = req.body as Skill[];
 
-        const resultsCount = await skillsService.createMany(skills);
+        const resultsCount = await skillService.createMany(skills);
 
         const response = {
             message: `Hello from create skill`,
@@ -214,7 +222,7 @@ const deleteBulk = async (req: SkillRequest, res: SkillResponse) => {
     try {
 
 
-        const resultsCount = await skillsService.deleteAll();
+        const resultsCount = await skillService.deleteAll();
 
 
         const response = {

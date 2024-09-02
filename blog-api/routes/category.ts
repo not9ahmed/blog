@@ -8,13 +8,13 @@ router.get('/', categoriesController.findAllCategories);
 router.get('/:id', categoriesController.findCategoryById);
 router.post('/', categoriesController.createCategory);
 router.put('/:id', categoriesController.updateCategory)
-router.delete('/:id', categoriesController.deleteCategory)
 
 
 // Bulk Operations
 router.post('/bulk', categoriesController.createBulk);
 router.delete('/bulk', categoriesController.deleteBulk);
 
+router.delete('/:id', categoriesController.deleteCategory)
 
 
 module.exports = router

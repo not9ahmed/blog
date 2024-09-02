@@ -6,64 +6,18 @@ const projects = require('../db_scripts/data/projects.json');
 
 const router = Router();
 
-router.get('/', projectController.findAllProjects)
+router.get('/', projectController.findAllProjects);
+router.get('/:id', projectController.findProjectById);
+router.post('/', projectController.createProject);
+router.put('/:id', projectController.updateProject);
 
 
-router.get('/:id', (req: Request, res: Response) => {
-
-    const id: number = parseInt(req.params.id ?? -1);
-
-
-    // null or number
-    if(!id){
-        res.send({
-            message: "No id passed"
-        });
-    }
-
-    console.log("Hello from project route");
-
-    res.send(projects[id-1]);
-})
+// Bulk Operations
+router.post('/bulk', projectController.createBulkProjects);
+router.delete('/bulk', projectController.deleteBulkProjects);
 
 
-// route to create project
-router.post('/', (req: Request, res: Response) => {
-
-
-
-    res.send({
-        message: "posts created"
-    });
-})
-
-
-// route to update projects
-router.put('/:id', (req: Request, res: Response) => {
-
-    const id: number = parseInt(req.params.id ?? -1);
-
-
-    res.send({
-        message: `projects update ${id}`
-    })
-})
-
-
-// route to delete projects
-// 202
-// 204
-router.delete('/:id', (req: Request, res: Response) => {
-
-    const id: number = parseInt(req.params.id ?? -1);
-
-
-    res.send({
-        message: `project deleted ${id}`
-    })
-})
-
-
+router.delete('/:id', projectController.deleteProject);
 
 
 

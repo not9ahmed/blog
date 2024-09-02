@@ -139,13 +139,13 @@ export default class ProjectService implements IProjectService {
         try {
 
             const resultCount = await prisma.project.deleteMany();
+
             return resultCount;
-
+            
         } catch (err) {
-
             console.log(err);
             throw err;
-        };
+        }
     }
     
 }

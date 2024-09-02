@@ -21,7 +21,6 @@ interface SkillTypeBulkRequest extends Request {
 }
 
 
-
 interface SkillTypeResponse extends Response {
     body: {
         message: string;
@@ -44,15 +43,11 @@ const findAll= async (req: SkillTypeRequest, res: SkillTypeBulkResponse) => {
         const skillTypes: SkillType[] = await skillTypeService.findAll();
 
         console.log(skillTypes);
-
-        res.type('application/json');
-
-
+        
         const response = {
             message: "hello from find all skills",
             data: skillTypes
         }
-
 
         return res.status(200).json(response);
 
