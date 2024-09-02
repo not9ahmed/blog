@@ -22,8 +22,7 @@ export default class CategoryService implements ICategoryService {
 
 
     constructor(){
-        console.log("CategoryService called");
-    }
+        console.log("CategoryService Construct");    }
 
     findAll = async(): Promise<Category[]> => {
         
@@ -33,7 +32,7 @@ export default class CategoryService implements ICategoryService {
             return categories;
 
         } catch (err) {
-            console.log(err)
+            console.log(err);
             throw err;
         }
     }
@@ -54,7 +53,7 @@ export default class CategoryService implements ICategoryService {
             return category;
 
         } catch (err) {
-            console.log(err)
+            console.log(err);
             throw err;
         }
     }
@@ -107,7 +106,6 @@ export default class CategoryService implements ICategoryService {
 
         } catch(err) {
             console.log(err)
-
             throw err;
         }
     }
@@ -126,7 +124,7 @@ export default class CategoryService implements ICategoryService {
             return categories;
 
         } catch (err) {
-            console.log(err)
+            console.log(err);
             throw err;
         }
     }
@@ -143,7 +141,7 @@ export default class CategoryService implements ICategoryService {
             return resultCount;
             
         } catch (err) {
-            console.log(err)
+            console.log(err);
             throw err;
         }
 
@@ -157,7 +155,7 @@ export default class CategoryService implements ICategoryService {
             return resultCount;
             
         } catch (err) {
-            console.log(err)
+            console.log(err);
             throw err;
         }
     }

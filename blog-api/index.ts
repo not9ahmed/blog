@@ -1,5 +1,7 @@
 import express from 'express'
 const cors = require('cors')
+import { Request, Response, NextFunction } from 'express'
+// const methodOverride = require('method-override')
 
 
 // middleware
@@ -17,14 +19,19 @@ const app = express();
 const PORT = 4000;
 
 
+// MIDDLEWARE 
 app.use(cors());
 app.use(express.json());
-
 app.use(express.urlencoded({extended: true}))
 
+// app.use(methodOverride());
+// app.use(logErrors)
+// app.use(clientErrorHandler)
+// app.use(errorHandler)
 
-// middleware
+
 app.use('/', middleware.test);
+
 
 
 
@@ -70,7 +77,7 @@ app.post('/photos/upload', upload.array('photos', 12), function (req , res, next
 
 
 
-// Invalid routes Handlder
+// Invalid routees Handlder
 app.get('/*', (req, res) => {
     const msg = {
         message: "Invalid route" 
@@ -78,10 +85,29 @@ app.get('/*', (req, res) => {
     
     res.status(404).json(msg);
 
-
     // to redirect
     // res.status(404).json(msg).redirect('/');
 })
+
+
+// // error handling
+// function logErrors (err: any, req: Request, res: Response, next: NextFunction) {
+//     console.error('log errors: ' + err.stack)
+//     next(err)
+// }
+
+// function clientErrorHandler (err: any, req: Request, res: Response, next: NextFunction) {
+//     if (req.xhr) {
+//       res.status(500).send({ error: 'Something failed!' })
+//     } else {
+//       next(err)
+//     }
+// }
+
+// function errorHandler (err: any, req: Request, res: Response, next: NextFunction) {
+//     res.status(500)
+//     res.render('error', { error: err })
+// }
 
 
 

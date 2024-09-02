@@ -4,7 +4,7 @@ import { Request, Response } from 'express'
 const projects = require('../db_scripts/data/projects.json');
 
 
-export const findAllProjects = async (req: Request, res: Response) => {
+const findAllProjects = async (req: Request, res: Response) => {
 
 
     try {
@@ -26,3 +26,19 @@ export const findAllProjects = async (req: Request, res: Response) => {
     }
 }
 
+
+// const createProject = async (req: Request, res: Response, next: NextFunction) => {
+
+// }
+
+
+
+module.exports = {
+    findAllProjects,
+    // findById,
+    // createProject,
+    // update,
+    // delete,
+    // createBulk,
+    // deleteBulk
+}

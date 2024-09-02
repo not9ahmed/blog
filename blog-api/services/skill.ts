@@ -17,7 +17,7 @@ interface ISkillService {
 export default class SkillService implements ISkillService {
 
     constructor() {
-        console.log("SkillService created");
+        console.log("SkillService Construct");
     }
     
 
@@ -30,7 +30,6 @@ export default class SkillService implements ISkillService {
 
         } catch (err){
             console.log(err)
-
             throw err;
         }
     }

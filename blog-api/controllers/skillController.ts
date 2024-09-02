@@ -1,6 +1,6 @@
 import express from 'express';
 import { Request, Response } from 'express'
-import SkillService from '../services/skillService';
+import SkillService from '../services/skill';
 import {  Skill } from "@prisma/client";
 
 const skillsService = new SkillService();

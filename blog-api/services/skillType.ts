@@ -35,7 +35,7 @@ export default class SkillTypeService implements ISkillTypeService {
 
 
     constructor(){
-        console.log("SkillTypeService Called");
+        console.log("SkillTypeService Construct");
     }
     
     findAll = async (): Promise<SkillType[]> => {

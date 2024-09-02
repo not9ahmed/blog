@@ -1,14 +1,19 @@
 // prisma boilerplate
 import { PrismaClient } from '@prisma/client'
-import SkillService from '../services/skillService';
-import SkillTypeService  from '../services/skillTypeService';
-import CategoryService from '../services/categoryService';
+import SkillService from '../services/skill';
+import SkillTypeService  from '../services/skillType';
+import CategoryService from '../services/category';
+import ProjectService from '../services/project';
+
+// Dummy Data
 const categories = require('./data/categories');
 const projects = require('./data/projects.json');
 const skillTypes = require('./data/skillTypes.json');
 const skills = require('./data/skills.json');
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient({
+  log: ['info'],
+});
 
 // this file will load up data from json to postgresql db
 async function main() {
@@ -17,21 +22,15 @@ async function main() {
     const skillService = new SkillService();
     const skillTypeService = new SkillTypeService();
     const categoryService = new CategoryService();
+    const projectService = new ProjectService();
 
-    const resultCount = await skillTypeService.createMany(skillTypes);
-    console.log(resultCount);
-
-    // const skillTypes = await skillTypeService.findAll();
-    // console.log(skillTypes);
-
-    // const skillTypes = await skillTypeService.findAll();
-    // console.log(skillTypes);
-
-    // const skillType = await skillTypeService.create({
-    //   id: 5,
-    //   name: "example"
-    // });
-    // console.log(skillType);
+    // const projectsDb = await projectService.createMany(projects);
+    // const projectsDb = await projectService.createMany(projects);
+    // const projectsDb = await projectService.createMany(projects);
+    // const projectsDb = await projectService.createMany(projects);
+    
+    const projectsDb = await projectService.findById(1);
+    console.log(projectsDb);
 
 
     // await categoryService.findByParentCategoryId(1);
