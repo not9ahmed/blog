@@ -6,82 +6,98 @@ import upload from '../utils/filesUpload';
 const router = Router();
 const posts: PostInterface[] = require('../db_scripts/data/posts.json');
 
+const postController = require('../controllers/postController');
+
+
+router.get('/', postController.findAllPosts);
+
+
+
+
+
+
+
+
+// OLD DRAFT
 
 /**
  * Responds with list of posts
  */
-router.get('/', (req: Request, res: Response) => {
+// router.get('/', (req: Request, res: Response) => {
 
 
-    console.log("Hello from posts")
+//     console.log("Hello from posts")
 
-    // handle search
-    // const query = req.query.q as string;
-
-
-    let postsDb: PostDtoInterface[];
-
-    // make copy of post to modify
-    let postsCopy: PostInterface[] = JSON.parse(JSON.stringify(posts));
+//     // handle search
+//     // const query = req.query.q as string;
 
 
-    // parameters checking
-    if(req.query.q){
+//     let postsDb: PostDtoInterface[];
 
-        let q = req.query.q as string
-
-        q = q.toLowerCase();
-
-        console.log("q", q);
-
-        postsCopy = postsCopy
-            .filter(post =>
-                        post.title.toLowerCase().match(q)
-                    );
-
-        console.log("postsCopy", postsCopy)
-    }
+//     // make copy of post to modify
+//     let postsCopy: PostInterface[] = JSON.parse(JSON.stringify(posts));
 
 
-    if(req.query.category){
+//     // parameters checking
+//     if(req.query.q){
 
-        let category = req.query.category as string;
+//         let q = req.query.q as string
 
-        let categoryId = parseInt(category)
+//         q = q.toLowerCase();
 
-        console.log("categoryId", categoryId);
+//         console.log("q", q);
+
+//         postsCopy = postsCopy
+//             .filter(post =>
+//                         post.title.toLowerCase().match(q)
+//                     );
+
+//         console.log("postsCopy", postsCopy)
+//     }
+
+
+//     if(req.query.category){
+
+//         let category = req.query.category as string;
+
+//         let categoryId = parseInt(category)
+
+//         console.log("categoryId", categoryId);
     
-        postsCopy = postsCopy
-            .filter(post =>
-                        post.category === categoryId
-                    );
+//         postsCopy = postsCopy
+//             .filter(post =>
+//                         post.category === categoryId
+//                     );
 
-        console.log("postsCopy", postsCopy)
-    }
+//         console.log("postsCopy", postsCopy)
+//     }
 
 
 
-    // mapping posts to dto
-    postsDb = postsCopy.map(post =>
-        {
-            const newPost: PostDtoInterface = {
-                id: post.id,
-                title: post.title,
-                description: post.description,
-                images: post.images,
-                category: post.category,
-                createdDate: post.createdDate,
-                createdBy: post.createdBy,
-            }
-            return newPost;
-        }
-    );
+//     // mapping posts to dto
+//     postsDb = postsCopy.map(post =>
+//         {
+//             const newPost: PostDtoInterface = {
+//                 id: post.id,
+//                 title: post.title,
+//                 description: post.description,
+//                 images: post.images,
+//                 category: post.category,
+//                 createdDate: post.createdDate,
+//                 createdBy: post.createdBy,
+//             }
+//             return newPost;
+//         }
+//     );
 
-    console.log(postsDb);
+//     console.log(postsDb);
 
-    res.status(200).send(postsDb);
+//     res.status(200).send(postsDb);
 
-})
+// })
+
+
+
 
 /**
  * Fetch single posts
