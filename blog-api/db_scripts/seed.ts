@@ -1,36 +1,62 @@
 // prisma boilerplate
-import { PrismaClient } from '@prisma/client'
+import { Category, Post, PrismaClient } from '@prisma/client'
+
+// Importing Services
 import SkillService from '../services/skill';
 import SkillTypeService  from '../services/skillType';
 import CategoryService from '../services/category';
 import ProjectService from '../services/project';
+import PostService from '../services/post';
 
 // Dummy Data
-const categories = require('./data/categories');
+const categories = require('./data/categories') as Category[];
 const projects = require('./data/projects.json');
 const skillTypes = require('./data/skillTypes.json');
 const skills = require('./data/skills.json');
+const posts = require('./data/posts.json') as Post[];
+
 
 const prisma = new PrismaClient({
-  log: ['info'],
+  // log: ['info'],
 });
 
 // this file will load up data from json to postgresql db
 async function main() {
   // ... you will write your Prisma Client queries here
 
+
+  // create user
+    // const user = await prisma.user.create({
+    //   data: {
+    //     id: 1,
+    //     email: "dummy@gmail.com",
+    //     name: "ahmed",
+    //     role: "admin"
+    //   }
+    // });
+
+
+    // const user = await prisma.user.findFirst();
+
+    // console.log(user)
+
+
+
     const skillService = new SkillService();
     const skillTypeService = new SkillTypeService();
     const categoryService = new CategoryService();
     const projectService = new ProjectService();
+    const postService = new PostService();
 
     // const projectsDb = await projectService.createMany(projects);
     // const projectsDb = await projectService.createMany(projects);
     // const projectsDb = await projectService.createMany(projects);
     // const projectsDb = await projectService.createMany(projects);
     
-    const projectsDb = await projectService.findById(1);
-    console.log(projectsDb);
+
+
+    // const postsDb = await postService.createMany(posts);
+    // console.log(postsDb);
 
 
     // await categoryService.findByParentCategoryId(1);

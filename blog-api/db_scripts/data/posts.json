@@ -6,9 +6,9 @@
         "keywords": ["Manga", "Tatsuki Fujimoto", "Drama"],
         "content": "I've recently bought this manga from Jarir at a decent price. I always wanted to explore different kind of manga, because I've been obsessed with JJK so much lately",
         "images": ["https://static1.srcdn.com/wordpress/wp-content/uploads/2023/07/goodbye-eri-eri-art.jpg", "https://a.storyblok.com/f/178900/800x450/eaf9a04c4f/937774f65979608b508535b642515bed1655665833_main.png/m/filters:quality(95)format(webp)"],
-        "category":  6,
+        "categoryId":  6,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 2,
@@ -17,9 +17,9 @@
         "keywords": ["Anime", "Samurai", "Hip-Hop"],
         "content": "",
         "images": ["https://blautoothdmand.wordpress.com/wp-content/uploads/2016/03/27349_samurai_champloo.jpg"],
-        "category":  9,
+        "categoryId":  9,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 3,
@@ -27,9 +27,9 @@
         "description": "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
         "content": "Very long title",
         "images": ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        "category": 2,
+        "categoryId": 2,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 4,
@@ -37,9 +37,9 @@
         "description": "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
         "content": "Very long title",
         "images": ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        "category": 2,
+        "categoryId": 2,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 5,
@@ -47,9 +47,9 @@
         "description": "React rant",
         "content": "Very long title",
         "images": ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        "category": 1,
+        "categoryId": 1,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 6,
@@ -57,9 +57,9 @@
         "description": "AWS or Azure which one to use",
         "content": "Very long title",
         "images": ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        "category": 1,
+        "categoryId": 1,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     },
     {
         "id": 7,
@@ -67,8 +67,8 @@
         "description": "have been listening to a lot of jazz lately",
         "content": "Very long title",
         "images": ["https://www.tensorflow.org/static/cloud/images/tf_cloud_code_sample.png"],
-        "category": 4,
+        "categoryId": 4,
         "createdDate": "2024-07-26T20:26:36.479Z",
-        "createdBy": "notahmed/or my id"
+        "createdBy": 1
     }
 ]

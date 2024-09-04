@@ -6,6 +6,7 @@ import prisma from '../utils/dbClient';
 interface BatchPayload extends Prisma.BatchPayload{}
 
 
+// Can be extracted to factory service
 interface ICategoryService {
     findAll(): Promise<Category[]>;
     findById(id: number): Promise<Category>;
