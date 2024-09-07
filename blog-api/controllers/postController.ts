@@ -60,8 +60,6 @@ const findAll = async (req: PostBulkRequest, res: PostBulkResponse, next: NextFu
             error: err
         }
 
-        next();
-
         return res.status(404).json(response);
     }
 
@@ -90,9 +88,38 @@ const findById = async (req: PostRequest, res: PostResponse, next: NextFunction)
             error: err
         }
 
-        next();
+        return res.status(404).json(response);
+    }
+}
+
+
+const create = async (req: PostRequest, res: PostResponse, next: NextFunction) => {
+    
+    try {
+        
+        const post = req.body as Post;
+        
+        const createdPost = await postService.create(post);
+
+        const response = {
+            message: "Success",
+            data: createdPost
+        };
+
+        return res.status(200).json(response);
+
+
+    } catch (err) {
+
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        // next();
 
         return res.status(404).json(response);
+    
     }
 }
 
@@ -120,7 +147,86 @@ const update = async (req: PostRequest, res: PostResponse, next: NextFunction) =
             error: err
         }
 
-        next();
+
+        return res.status(404).json(response);
+    }
+}
+
+
+const _delete = async (req: PostRequest, res: PostResponse, next: NextFunction) => {
+    
+    try {
+
+        const id = parseInt(req.params.id);
+
+        const deletedPost = await postService.delete(id);
+
+        const response = {
+            message: "Success",
+            data: deletedPost
+        };
+
+        return res.status(200).json(response);
+
+
+    } catch (err) {
+
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        return res.status(404).json(response);
+    }
+}
+
+const createBulk = async (req: PostBulkRequest, res: PostBulkResponse, next: NextFunction) => {
+    
+    try {
+
+        const posts = req.body as Post[];
+
+        const resultCount = await postService.createMany(posts);
+
+        const response = {
+            message: "Success",
+            data: resultCount
+        };
+
+        return res.status(200).json(response);
+
+    } catch (err) {
+
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        return res.status(404).json(response);
+    }
+}
+
+
+const deleteBulk = async (req: PostBulkRequest, res: PostBulkResponse, next: NextFunction) => {
+    
+    try {
+        
+
+        const resultCount = await postService.deleteAll();
+
+        const response = {
+            message: "Success",
+            data: resultCount
+        };
+
+        return res.status(200).json(response);
+
+    } catch (err) {
+        
+        const response = {
+            message: `error occured`,
+            error: err
+        }
 
         return res.status(404).json(response);
     }
@@ -130,5 +236,9 @@ const update = async (req: PostRequest, res: PostResponse, next: NextFunction) =
 module.exports = {
     findAll,
     findById,
-    update
+    create,
+    update,
+    _delete,
+    createBulk,
+    deleteBulk
 }

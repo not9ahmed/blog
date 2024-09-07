@@ -11,7 +11,13 @@ const postController = require('../controllers/postController');
 
 router.get('/', postController.findAll);
 router.get('/:id', postController.findById);
+router.post('/', postController.create);
+router.post('/bulk', postController.createBulk);
+
 router.put('/:id', postController.update);
+
+router.delete('/bulk', postController.deleteBulk);
+router.delete('/:id', postController._delete);
 
 
 
@@ -101,16 +107,7 @@ router.put('/:id', postController.update);
 
 
 
-// endpoint to create a new post
-router.post('/', (req: Request, res: Response) => {
 
-
-    const data = req.body;
-
-    res.status(200).send({
-        data: data
-    })
-});
 
 
 /**
@@ -189,34 +186,34 @@ router.post('/:id/images', upload.array('images', 12), (req: Request, res: Respo
 
 
 // endpoint to update post
-router.put('/:id', (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+// router.put('/:id', (req: Request, res: Response) => {
+//     const id = parseInt(req.params.id);
 
-    console.log('id', req.params.id);
+//     console.log('id', req.params.id);
 
 
-    console.log('data', req.body);
+//     console.log('data', req.body);
 
-    res.send({
-        message: 'update route called',
-        post: {
-            title: req.body
-        }
-    })
-})
+//     res.send({
+//         message: 'update route called',
+//         post: {
+//             title: req.body
+//         }
+//     })
+// })
 
 
 // endpoint to delete post
-router.delete('/:id', (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+// router.delete('/:id', (req: Request, res: Response) => {
+//     const id = parseInt(req.params.id);
 
-    console.log('id', req.params.id);
+//     console.log('id', req.params.id);
 
 
-    res.send({
-        message: 'delete route called'
-    })
-})
+//     res.send({
+//         message: 'delete route called'
+//     })
+// })
 
 
 

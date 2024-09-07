@@ -10,10 +10,10 @@ interface Service <T>{
     findAll(): Promise<T[]>;
     findById(id: number): Promise<T>;
     create(item: T): Promise<T>;
-    // createMany(items: T[]): Promise<BatchPayload>;
-    // update(id: number, item: T): Promise<T>;
-    // delete(id: number): Promise<T>;
-    // deleteAll(): Promise<BatchPayload>;
+    createMany(items: T[]): Promise<BatchPayload>;
+    update(id: number, item: T): Promise<T>;
+    delete(id: number): Promise<T>;
+    deleteAll(): Promise<BatchPayload>;
     count(): number;
 
 }
@@ -33,7 +33,21 @@ export default class PostService<Post> implements Service<Post> {
     create(item: Post): Promise<Post> {
         throw new Error("Method not implemented.");
     }
-    count(): number {
-        return 1;
+    createMany(items: Post[]): Promise<BatchPayload> {
+        throw new Error("Method not implemented.");
     }
+    update(id: number, item: Post): Promise<Post> {
+        throw new Error("Method not implemented.");
+    }
+    delete(id: number): Promise<Post> {
+        throw new Error("Method not implemented.");
+    }
+    deleteAll(): Promise<BatchPayload> {
+        throw new Error("Method not implemented.");
+    }
+    count(): number {
+        throw new Error("Method not implemented.");
+    }
+
+    
 }
