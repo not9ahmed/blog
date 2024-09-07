@@ -9,9 +9,9 @@ const posts: PostInterface[] = require('../db_scripts/data/posts.json');
 const postController = require('../controllers/postController');
 
 
-router.get('/', postController.findAllPosts);
-
-
+router.get('/', postController.findAll);
+router.get('/:id', postController.findById);
+router.put('/:id', postController.update);
 
 
 
@@ -99,25 +99,6 @@ router.get('/', postController.findAllPosts);
 
 
 
-/**
- * Fetch single posts
- */
-router.get('/:id', (req: Request, res: Response) => {
-
-    console.log("Hello from posts id endpoint");
-
-    const id = parseInt(req.params.id);
-
-    console.log('id', req.params.id);
-
-
-    const post = posts[id - 1];
-
-    console.log("post", post);
-
-    res.status(200).send(post);
-
-})
 
 
 // endpoint to create a new post

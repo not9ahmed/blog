@@ -2,6 +2,7 @@ import PostService from "../services/post";
 import { Request, Response, NextFunction} from 'express'
 
 import { Post } from "@prisma/client";
+import prisma from "../utils/dbClient";
 
 
 
@@ -32,22 +33,17 @@ interface PostBulkResponse extends Response {
 }
 
 
-const findAllPosts = async (req: PostBulkRequest, res: PostBulkResponse, next: NextFunction) => {
+const findAll = async (req: PostBulkRequest, res: PostBulkResponse, next: NextFunction) => {
 
     try {
 
         // fetch params from where
-
         const query = req.query;
-
         console.log("query", query)
 
         const userCategoryId = parseInt(req.params.categoryId);
     
-        const posts: Post[] = await postService.findAll({
-            id:  userCategoryId
-            
-        });
+        const posts: Post[] = await postService.findAll({});
         
         const response = {
             message: "hello from all posts",
@@ -71,6 +67,68 @@ const findAllPosts = async (req: PostBulkRequest, res: PostBulkResponse, next: N
 
 }
 
+const findById = async (req: PostRequest, res: PostResponse, next: NextFunction) => {
+
+
+    try {
+        
+        const id = parseInt(req.params.id);
+
+        const post = await postService.findById(id);
+
+        const response = {
+            message: "Success",
+            data: post
+        };
+
+        return res.status(200).json(response);
+
+    } catch (err) {
+        
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        next();
+
+        return res.status(404).json(response);
+    }
+}
+
+
+
+const update = async (req: PostRequest, res: PostResponse, next: NextFunction) => {
+    
+    try {
+
+        const post = req.body as Post;
+        const id = parseInt(req.params.id);
+
+        const updatedPost = await postService.update(id, post);
+
+        const response = {
+            message: "Success",
+            data: updatedPost
+        };
+
+        return res.status(200).json(response);
+
+    } catch (err) {
+        const response = {
+            message: `error occured`,
+            error: err
+        }
+
+        next();
+
+        return res.status(404).json(response);
+    }
+}
+
+
 module.exports = {
-    findAllPosts
+    findAll,
+    findById,
+    update
 }
