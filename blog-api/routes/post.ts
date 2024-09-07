@@ -2,6 +2,7 @@ import Router from 'express'
 import { Request, Response, NextFunction } from 'express'
 import { PostDtoInterface, PostInterface } from '../types/postTypes';
 import upload from '../utils/filesUpload';
+import { isAuthenticated } from '../middleware/auth';
 
 const router = Router();
 const posts: PostInterface[] = require('../db_scripts/data/posts.json');
@@ -12,11 +13,13 @@ const postController = require('../controllers/postController');
 router.get('/', postController.findAll);
 router.get('/:id', postController.findById);
 router.post('/', postController.create);
-router.post('/bulk', postController.createBulk);
+
+// trying auth middleware
+router.post('/bulk', isAuthenticated, postController.createBulk);
 
 router.put('/:id', postController.update);
 
-router.delete('/bulk', postController.deleteBulk);
+router.delete('/bulk', isAuthenticated, postController.deleteBulk);
 router.delete('/:id', postController._delete);
 
 

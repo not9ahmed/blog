@@ -1,5 +1,6 @@
 import express from 'express'
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 import { Request, Response, NextFunction } from 'express'
 // const methodOverride = require('method-override')
 
@@ -23,6 +24,8 @@ const PORT = 4000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
+// load the cookie-parsing middleware
+app.use(cookieParser())
 
 // app.use(methodOverride());
 // app.use(logErrors)
@@ -30,6 +33,7 @@ app.use(express.urlencoded({extended: true}))
 // app.use(errorHandler)
 
 
+// middleware will be used on all
 app.use('/', middleware.test);
 
 
