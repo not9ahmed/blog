@@ -11,9 +11,7 @@ export const findAllCategories = async (req: Request, res: Response) => {
         const categories = await categoryService.findAll();
 
         return res.status(200).json({
-            message: "success",
-            categories: categories
-
+            data: categories
         });
 
     } catch (err) {
@@ -37,8 +35,7 @@ const findCategoryById = async (req: Request, res: Response) => {
         const category = await categoryService.findById(id);
 
         return res.status(200).json({
-            message: "Hello from categories controllers",
-            category: category
+            data: category
         });
         
     } catch (err) {
@@ -62,8 +59,7 @@ const createCategory = async (req: Request, res: Response) => {
 
         const createdCategory = await categoryService.create(category);
         return res.status(200).json({
-            message: "Hello from categories controllers",
-            createdCategory: createdCategory
+            data: createdCategory
         });
 
     } catch(err) {
@@ -91,8 +87,7 @@ const updateCategory = async (req: Request, res: Response) => {
         const updatedCategory = await categoryService.update(id, category);
 
         return res.status(200).json({
-            message: "Hello from categories controllers",
-            createdCategory: updatedCategory
+            data: updatedCategory
         });
         
     } catch (err) {
@@ -120,7 +115,6 @@ const deleteCategory = async (req: Request, res: Response) => {
         const deletedCategory = await categoryService.delete(id);
 
         return res.status(200).json({
-            message: "Hello from deleted categories controllers",
             data: deletedCategory
         });
 
@@ -148,7 +142,6 @@ const createBulk  = async (req: Request, res: Response) => {
 
 
         const response = {
-            message: "hello from find all skills",
             data: skillTypesCount
         }
 
@@ -175,13 +168,16 @@ const deleteBulk = async (req: Request, res: Response, next: NextFunction) => {
 
         console.log(resultCount);
 
-        return res.status(201).json(resultCount);
+        const response = {
+            data: resultCount
+        }
+
+        return res.status(201).json(response);
 
 
     } catch (err) {
 
         const response = {
-            message: `error occured`,
             error: err
         }
         return res.status(404).json(response)

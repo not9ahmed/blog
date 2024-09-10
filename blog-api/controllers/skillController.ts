@@ -54,7 +54,7 @@ const findAll = async (req: SkillRequest, res: Response) => {
 
         return res.status(200).send({
             message: "hello from find all skills",
-            skills: skills
+            data: skills
         });
 
     } catch (err) {
@@ -80,7 +80,7 @@ const findById = async (req: SkillRequest, res: Response) => {
 
         return res.status(200).send({
             message: "hello from find all skills",
-            skill: skill
+            data: skill
         });
 
     } catch (err) {
@@ -102,7 +102,7 @@ const create = async (req: SkillRequest, res: SkillResponse) => {
 
         const response = {
             message: `Hello from create skill`,
-            skill: createdSkill
+            data: createdSkill
         }
 
         return res.status(201).json(response);
@@ -135,7 +135,7 @@ const update = async (req: SkillRequest, res: SkillResponse) => {
 
         const response = {
             message: `Hello from update skill`,
-            skill: updatedSkill
+            data: updatedSkill
         };
 
         return res.status(201).json(response);
@@ -167,7 +167,7 @@ const _delete = async (req: SkillRequest, res: SkillResponse) => {
 
         const response = {
             message: `Hello from update skill`,
-            skill: deletedSkill
+            data: deletedSkill
         };
 
         return res.status(201).json(response);
@@ -196,7 +196,7 @@ const createBulk = async (req: SkillBulkRequest, res: SkillResponse) => {
 
         const response = {
             message: `Hello from create skill`,
-            count: resultsCount
+            data: resultsCount
         }
 
         return res.status(201).json(response);
@@ -227,7 +227,7 @@ const deleteBulk = async (req: SkillRequest, res: SkillResponse) => {
 
         const response = {
             message: `Hello from create skill`,
-            count: resultsCount
+            data: resultsCount
         }
 
         return res.status(201).json(response);

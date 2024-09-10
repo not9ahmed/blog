@@ -55,7 +55,7 @@ export const findAllCategories = async (): Promise<CategoryInterface[] | null> =
         const { data } = await axios.get(`${API_BASE_URL}/categories`);
  
 
-        console.log(data);
+        console.log('data', data);
 
         return data;
 

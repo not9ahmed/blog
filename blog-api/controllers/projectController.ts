@@ -95,7 +95,7 @@ const createProject = async (req: Request, res: Response, next: NextFunction) =>
 
         const response = {
             message: `Hello from create skill`,
-            skill: createdProject
+            data: createdProject
         }
 
         return res.status(201).json(response);
@@ -127,7 +127,7 @@ const updateProject = async (req: Request, res: Response, next: NextFunction) =>
 
         const response = {
             message: `Hello from update skill`,
-            skill: updatedProject
+            data: updatedProject
         };
 
         return res.status(201).json(response);
@@ -156,7 +156,7 @@ const deleteProject = async (req: Request, res: Response, next: NextFunction) =>
 
         const response = {
             message: `Hello from delete project`,
-            skill: deletedSkill
+            data: deletedSkill
         };
 
         return res.status(201).json(response);
@@ -185,7 +185,7 @@ const createBulkProjects = async (req: Request, res: Response, next: NextFunctio
 
         const response = {
             message: `Hello from create skill`,
-            count: resultsCount
+            data: resultsCount
         }
 
         return res.status(201).json(response);
@@ -214,7 +214,7 @@ const deleteBulkProjects = async (req: Request, res: Response, next: NextFunctio
 
         const response = {
             message: `Hello from bulk delete skill`,
-            count: resultsCount
+            data: resultsCount
         }
 
         return res.status(201).json(response);

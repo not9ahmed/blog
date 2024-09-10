@@ -26,93 +26,6 @@ router.delete('/:id', postController._delete);
 
 
 
-
-// OLD DRAFT
-
-/**
- * Responds with list of posts
- */
-// router.get('/', (req: Request, res: Response) => {
-
-
-//     console.log("Hello from posts")
-
-//     // handle search
-//     // const query = req.query.q as string;
-
-
-//     let postsDb: PostDtoInterface[];
-
-//     // make copy of post to modify
-//     let postsCopy: PostInterface[] = JSON.parse(JSON.stringify(posts));
-
-
-//     // parameters checking
-//     if(req.query.q){
-
-//         let q = req.query.q as string
-
-//         q = q.toLowerCase();
-
-//         console.log("q", q);
-
-//         postsCopy = postsCopy
-//             .filter(post =>
-//                         post.title.toLowerCase().match(q)
-//                     );
-
-//         console.log("postsCopy", postsCopy)
-//     }
-
-
-//     if(req.query.category){
-
-//         let category = req.query.category as string;
-
-//         let categoryId = parseInt(category)
-
-//         console.log("categoryId", categoryId);
-    
-//         postsCopy = postsCopy
-//             .filter(post =>
-//                         post.category === categoryId
-//                     );
-
-//         console.log("postsCopy", postsCopy)
-//     }
-
-
-
-//     // mapping posts to dto
-//     postsDb = postsCopy.map(post =>
-//         {
-//             const newPost: PostDtoInterface = {
-//                 id: post.id,
-//                 title: post.title,
-//                 description: post.description,
-//                 images: post.images,
-//                 category: post.category,
-//                 createdDate: post.createdDate,
-//                 createdBy: post.createdBy,
-//             }
-//             return newPost;
-//         }
-//     );
-
-//     console.log(postsDb);
-
-//     res.status(200).send(postsDb);
-
-// })
-
-
-
-
-
-
-
-
-
 /**
  * Will accept Form Data and images and update post object
  * Returns a message if the images upload is succeful
@@ -185,38 +98,6 @@ router.post('/:id/images', upload.array('images', 12), (req: Request, res: Respo
 
 });
 
-
-
-
-// endpoint to update post
-// router.put('/:id', (req: Request, res: Response) => {
-//     const id = parseInt(req.params.id);
-
-//     console.log('id', req.params.id);
-
-
-//     console.log('data', req.body);
-
-//     res.send({
-//         message: 'update route called',
-//         post: {
-//             title: req.body
-//         }
-//     })
-// })
-
-
-// endpoint to delete post
-// router.delete('/:id', (req: Request, res: Response) => {
-//     const id = parseInt(req.params.id);
-
-//     console.log('id', req.params.id);
-
-
-//     res.send({
-//         message: 'delete route called'
-//     })
-// })
 
 
 
