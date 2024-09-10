@@ -36,9 +36,6 @@ const createImages = async (req: ImageRequest, res: ImageResponse) => {
         // const fileNames: string[]  = files.map(el => el.filename);
     
     
-        // console.log("fileNames", fileNames)
-    
-    
     
         return res.status(200).send({
             message: `file upload route files upload the ${files.length} are uploaded`
@@ -46,6 +43,22 @@ const createImages = async (req: ImageRequest, res: ImageResponse) => {
 
 }
 
+
+const deleteImage = async (req: ImageRequest, res: ImageResponse) => {
+
+    try {
+
+        const id = parseInt(req.params.id);
+
+        
+
+    } catch (err) {
+        
+    }
+}
+
+
 module.exports = {
     createImages,
+    deleteImage
 }

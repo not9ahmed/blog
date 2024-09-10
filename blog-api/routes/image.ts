@@ -14,5 +14,7 @@ const router = Router();
  */
 router.post('/', upload.array('images', 12), imageController.createImages);
 
+router.delete('/:id', imageController.deleteImage)
+
 
 module.exports = router
