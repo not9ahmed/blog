@@ -52,10 +52,7 @@ const findAll = async (req: SkillRequest, res: Response) => {
 
         // console.log(skills);
 
-        return res.status(200).send({
-            message: "hello from find all skills",
-            data: skills
-        });
+        return res.status(200).send(skills);
 
     } catch (err) {
         // throw new Error(`Error Occurred ${err}`);
@@ -78,10 +75,7 @@ const findById = async (req: SkillRequest, res: Response) => {
 
         console.log(skill);
 
-        return res.status(200).send({
-            message: "hello from find all skills",
-            data: skill
-        });
+        return res.status(200).send(skill);
 
     } catch (err) {
         // throw new Error(`Error Occurred ${err}`);
@@ -100,12 +94,7 @@ const create = async (req: SkillRequest, res: SkillResponse) => {
 
         const createdSkill = await skillService.create(skill);
 
-        const response = {
-            message: `Hello from create skill`,
-            data: createdSkill
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(createdSkill);
 
     } catch (err) {
 
@@ -133,12 +122,7 @@ const update = async (req: SkillRequest, res: SkillResponse) => {
 
         const updatedSkill = await skillService.update(id, skill);
 
-        const response = {
-            message: `Hello from update skill`,
-            data: updatedSkill
-        };
-
-        return res.status(201).json(response);
+        return res.status(201).json(updatedSkill);
         
     } catch (err) {
 
@@ -165,12 +149,7 @@ const _delete = async (req: SkillRequest, res: SkillResponse) => {
 
         const deletedSkill = await skillService.delete(id);
 
-        const response = {
-            message: `Hello from update skill`,
-            data: deletedSkill
-        };
-
-        return res.status(201).json(response);
+        return res.status(201).json(deletedSkill);
 
     } catch (err) {
         
@@ -194,12 +173,7 @@ const createBulk = async (req: SkillBulkRequest, res: SkillResponse) => {
 
         const resultsCount = await skillService.createMany(skills);
 
-        const response = {
-            message: `Hello from create skill`,
-            data: resultsCount
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(resultsCount);
 
     } catch (err) {
 
@@ -224,13 +198,7 @@ const deleteBulk = async (req: SkillRequest, res: SkillResponse) => {
 
         const resultsCount = await skillService.deleteAll();
 
-
-        const response = {
-            message: `Hello from create skill`,
-            data: resultsCount
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(resultsCount);
 
     } catch (err) {
         console.log(err);

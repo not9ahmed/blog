@@ -15,17 +15,11 @@ interface ProjectBulkRequest extends Request {
 }
 
 interface ProjectResponse extends Response {
-    body: {
-        message: string;
-        data: Project;
-    }
+    body: Project;
 }
 
 interface ProjectBulkResponse extends Response {
-    body: {
-        message: string;
-        data: Project[];
-    }
+    body: Project[];
 }
 
 
@@ -35,13 +29,8 @@ const findAllProjects = async (req: ProjectBulkRequest, res: ProjectBulkResponse
     try {
     
         const projects: Project[] = await projectService.findAll();
-        
-        const response = {
-            message: "hello from all projects",
-            data: projects
-        };
 
-        return res.status(200).json(response);
+        return res.status(200).json(projects);
 
      // based on error thrown which is from PRISMA I can find what caused it
     } catch (err) {
@@ -64,13 +53,8 @@ const findProjectById = async (req: ProjectRequest, res: Response, next: NextFun
         const id = parseInt(req.params.id);
 
         const project: Project = await projectService.findById(id);
-        
-        const response = {
-            message: "hello from all projects",
-            data: project
-        };
 
-        return res.status(200).json(response);
+        return res.status(200).json(project);
 
      // based on error thrown which is from PRISMA I can find what caused it
     } catch (err) {
@@ -93,12 +77,7 @@ const createProject = async (req: Request, res: Response, next: NextFunction) =>
 
         const createdProject = await projectService.create(project);
 
-        const response = {
-            message: `Hello from create skill`,
-            data: createdProject
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(createdProject);
 
     } catch (err) {
 
@@ -125,12 +104,7 @@ const updateProject = async (req: Request, res: Response, next: NextFunction) =>
 
         const updatedProject = await projectService.update(id, project);
 
-        const response = {
-            message: `Hello from update skill`,
-            data: updatedProject
-        };
-
-        return res.status(201).json(response);
+        return res.status(201).json(updatedProject);
         
     } catch (err) {
 
@@ -154,12 +128,7 @@ const deleteProject = async (req: Request, res: Response, next: NextFunction) =>
 
         const deletedSkill = await projectService.delete(id);
 
-        const response = {
-            message: `Hello from delete project`,
-            data: deletedSkill
-        };
-
-        return res.status(201).json(response);
+        return res.status(201).json(deletedSkill);
 
     } catch (err) {
         
@@ -183,12 +152,7 @@ const createBulkProjects = async (req: Request, res: Response, next: NextFunctio
 
         const resultsCount = await projectService.createMany(projects);
 
-        const response = {
-            message: `Hello from create skill`,
-            data: resultsCount
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(resultsCount);
 
     } catch (err) {
 
@@ -211,13 +175,7 @@ const deleteBulkProjects = async (req: Request, res: Response, next: NextFunctio
 
         const resultsCount = await projectService.deleteAll();
 
-
-        const response = {
-            message: `Hello from bulk delete skill`,
-            data: resultsCount
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(resultsCount);
 
     } catch (err) {
         console.log(err);

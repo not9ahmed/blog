@@ -20,19 +20,12 @@ interface SkillTypeBulkRequest extends Request {
     body: SkillType[];
 }
 
-
 interface SkillTypeResponse extends Response {
-    body: {
-        message: string;
-        data: SkillType;
-    }
+    body: SkillType;
 }
 
 interface SkillTypeBulkResponse extends Response {
-    body: {
-        message: string;
-        data: SkillType[];
-    }
+    body: SkillType[];
 }
 
 
@@ -43,13 +36,8 @@ const findAll= async (req: SkillTypeRequest, res: SkillTypeBulkResponse) => {
         const skillTypes: SkillType[] = await skillTypeService.findAll();
 
         console.log(skillTypes);
-        
-        const response = {
-            message: "hello from find all skills",
-            data: skillTypes
-        }
 
-        return res.status(200).json(response);
+        return res.status(200).json(skillTypes);
 
      // based on error thrown which is from PRISMA I can find what caused it
     } catch (err) {
@@ -72,12 +60,7 @@ const findById = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
         const id = parseInt(req.params.id); 
         const skillType = await skillTypeService.findById(id);
 
-        const response = {
-            message: "hello from find all skills",
-            data: skillType
-        };
-
-        return res.status(200).json(response);
+        return res.status(200).json(skillType);
 
     } catch (err) {
 
@@ -104,15 +87,9 @@ const create = async (req: SkillTypeRequest, res: SkillTypeResponse, next: NextF
 
         const skillType  = req.body;
 
-
         const skillTypeCreated = await skillTypeService.create(skillType);
 
-        const response = {
-            message: "hello from find all skills",
-            data: skillTypeCreated
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(skillTypeCreated);
 
     } catch (err) {
 
@@ -139,12 +116,7 @@ const update = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
 
         const skillTypeUpdated = await skillTypeService.update(id, skillType);
 
-        const response = {
-            message: "hello from update skill type",
-            data: skillTypeUpdated
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(skillTypeUpdated);
 
     } catch (err) {
 
@@ -169,12 +141,7 @@ const _delete = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
         const id = parseInt(req.params.id); 
         const skillTypeDeleted = await skillTypeService.delete(id);
 
-        const response = {
-            message: "hello from update skill type",
-            data: skillTypeDeleted
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(skillTypeDeleted);
 
     } catch (err) {
 
@@ -188,10 +155,6 @@ const _delete = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
 }
 
 
-
-
-
-
 const createBulk = async (req: SkillTypeBulkRequest, res: SkillTypeResponse, next: NextFunction) => {
 
     try {
@@ -203,13 +166,7 @@ const createBulk = async (req: SkillTypeBulkRequest, res: SkillTypeResponse, nex
 
         const skillTypesCount = await skillTypeService.createMany(skillTypes);
 
-
-        const response = {
-            message: "hello from find all skills",
-            data: skillTypesCount
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(skillTypesCount);
 
     } catch (err) {
 

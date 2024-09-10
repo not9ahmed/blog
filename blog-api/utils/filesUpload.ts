@@ -22,13 +22,16 @@ const fileFilter = (req: Request, file: Express.Multer.File, cb: FileFilterCallb
 
 
     // only cursor.png allowed to download
-    if(file.originalname !== 'cursor.png'){
-        console.log("inside if");
-        cb(null, false);
-    } else {
-        cb(null, true);
+    // if(file.originalname !== 'cursor.png'){
+    //     console.log("inside if");
+        // cb(null, false); 
+    // } else {
+        // cb(null, true); 
+        
+        // }
 
-    }
+    // not error and accept
+    cb(null, true); 
 }
 
 

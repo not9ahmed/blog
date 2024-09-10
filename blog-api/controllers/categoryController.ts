@@ -10,9 +10,7 @@ export const findAllCategories = async (req: Request, res: Response) => {
 
         const categories = await categoryService.findAll();
 
-        return res.status(200).json({
-            data: categories
-        });
+        return res.status(200).json(categories);
 
     } catch (err) {
 
@@ -34,9 +32,7 @@ const findCategoryById = async (req: Request, res: Response) => {
 
         const category = await categoryService.findById(id);
 
-        return res.status(200).json({
-            data: category
-        });
+        return res.status(200).json(category);
         
     } catch (err) {
 
@@ -58,9 +54,8 @@ const createCategory = async (req: Request, res: Response) => {
         const category = req.body;
 
         const createdCategory = await categoryService.create(category);
-        return res.status(200).json({
-            data: createdCategory
-        });
+
+        return res.status(200).json(createdCategory);
 
     } catch(err) {
         const response = {
@@ -86,9 +81,7 @@ const updateCategory = async (req: Request, res: Response) => {
 
         const updatedCategory = await categoryService.update(id, category);
 
-        return res.status(200).json({
-            data: updatedCategory
-        });
+        return res.status(200).json(updatedCategory);
         
     } catch (err) {
         
@@ -114,9 +107,7 @@ const deleteCategory = async (req: Request, res: Response) => {
 
         const deletedCategory = await categoryService.delete(id);
 
-        return res.status(200).json({
-            data: deletedCategory
-        });
+        return res.status(200).json(deletedCategory);
 
     } catch (err) {
         
@@ -140,12 +131,7 @@ const createBulk  = async (req: Request, res: Response) => {
 
         const skillTypesCount = await categoryService.createMany(categories);
 
-
-        const response = {
-            data: skillTypesCount
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(skillTypesCount);
 
     } catch (err) {
 
@@ -168,11 +154,7 @@ const deleteBulk = async (req: Request, res: Response, next: NextFunction) => {
 
         console.log(resultCount);
 
-        const response = {
-            data: resultCount
-        }
-
-        return res.status(201).json(response);
+        return res.status(201).json(resultCount);
 
 
     } catch (err) {

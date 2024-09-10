@@ -19,17 +19,11 @@ interface PostBulkRequest extends Request {
 
 
 interface PostResponse extends Response {
-    body: {
-        message: string;
-        data: Post;
-    }
+    body: Post;
 }
 
 interface PostBulkResponse extends Response {
-    body: {
-        message: string;
-        data: Post[];
-    }
+    body: Post[];
 }
 
 
@@ -45,12 +39,10 @@ const findAll = async (req: PostBulkRequest, res: PostBulkResponse, next: NextFu
         const userCategoryId = parseInt(req.params.categoryId);
     
         const posts: Post[] = await postService.findAll({});
-        
-        const response = {
-            data: posts
-        };
 
-        return res.status(200).json(response);
+        // TODO: use dtos here
+
+        return res.status(200).json(posts);
 
      // based on error thrown which is from PRISMA I can find what caused it
     } catch (err) {
@@ -74,12 +66,7 @@ const findById = async (req: PostRequest, res: PostResponse, next: NextFunction)
 
         const post = await postService.findById(id);
 
-        const response = {
-            message: "Success",
-            data: post
-        };
-
-        return res.status(200).json(response);
+        return res.status(200).json(post);
 
     } catch (err) {
         
@@ -101,12 +88,7 @@ const create = async (req: PostRequest, res: PostResponse, next: NextFunction) =
         
         const createdPost = await postService.create(post);
 
-        const response = {
-            message: "Success",
-            data: createdPost
-        };
-
-        return res.status(200).json(response);
+        return res.status(200).json(createdPost);
 
 
     } catch (err) {
@@ -115,8 +97,6 @@ const create = async (req: PostRequest, res: PostResponse, next: NextFunction) =
             message: `error occured`,
             error: err
         }
-
-        // next();
 
         return res.status(404).json(response);
     
@@ -134,12 +114,7 @@ const update = async (req: PostRequest, res: PostResponse, next: NextFunction) =
 
         const updatedPost = await postService.update(id, post);
 
-        const response = {
-            message: "Success",
-            data: updatedPost
-        };
-
-        return res.status(200).json(response);
+        return res.status(200).json(updatedPost);
 
     } catch (err) {
         const response = {
@@ -161,12 +136,7 @@ const _delete = async (req: PostRequest, res: PostResponse, next: NextFunction) 
 
         const deletedPost = await postService.delete(id);
 
-        const response = {
-            message: "Success",
-            data: deletedPost
-        };
-
-        return res.status(200).json(response);
+        return res.status(200).json(deletedPost);
 
 
     } catch (err) {
@@ -188,12 +158,7 @@ const createBulk = async (req: PostBulkRequest, res: PostBulkResponse, next: Nex
 
         const resultCount = await postService.createMany(posts);
 
-        const response = {
-            message: "Success",
-            data: resultCount
-        };
-
-        return res.status(200).json(response);
+        return res.status(200).json(resultCount);
 
     } catch (err) {
 
@@ -214,12 +179,7 @@ const deleteBulk = async (req: PostBulkRequest, res: PostBulkResponse, next: Nex
 
         const resultCount = await postService.deleteAll();
 
-        const response = {
-            message: "Success",
-            data: resultCount
-        };
-
-        return res.status(200).json(response);
+        return res.status(200).json(resultCount);
 
     } catch (err) {
         
