@@ -5,6 +5,9 @@ import { userlog } from '../middleware/log'
 // Declare router app with "/categories prefix"
 const router = Router()
 
+
+// middleware here
+// auth can also be here
 router.use(userlog);
 
 router.get('/', categoriesController.findAllCategories);

@@ -15,6 +15,20 @@ export const isAuthenticated = (req: Request, res: Response, next: NextFunction)
     console.log(bearerToken);
 
     
+    // check if bearer token available
+    if(!bearerToken || bearerToken === '') {
+
+        const response = {
+            message: "unauthorized access"
+        }
+
+        return res.status(401).json(response)
+    }
+
+    // validate bearer token from db
+    if (bearerToken) {
+        next();
+    }
 
     next();
 };

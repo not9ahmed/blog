@@ -83,7 +83,7 @@ app.post('/photos/upload', upload.array('photos', 12), function (req , res, next
 
 
 
-// Invalid routees Handlder
+// Invalid routes Handlder
 app.get('/*', (req, res) => {
     const msg = {
         message: "Invalid route" 
