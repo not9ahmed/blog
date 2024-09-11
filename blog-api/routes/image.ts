@@ -1,11 +1,13 @@
 import Router from 'express'
 import upload from '../utils/filesUpload';
-import { isAuthenticated } from '../middleware/auth';
 const imageController = require('../controllers/imageController')
+import { fileLimitHandler } from '../utils/fileMiddleware';
 
 
 
 const router = Router();
+
+
 
 
 /**
@@ -14,7 +16,14 @@ const router = Router();
  */
 router.post('/', upload.array('images', 12), imageController.createImages);
 
+
+
+
 router.delete('/:id', imageController.deleteImage)
 
+
+// middleware for handling specifc router
+// can be applied for other router
+router.use(fileLimitHandler)
 
 module.exports = router

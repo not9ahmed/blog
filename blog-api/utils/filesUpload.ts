@@ -12,6 +12,7 @@ type FileNameCallback = (error: Error | null, filename: string) => void
 
 // doing file check in file filter
 // can be used to check file size and type before storage
+// also change file name to make it unique
 const fileFilter = (req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
 
     console.log("file name", file.originalname)
@@ -30,6 +31,9 @@ const fileFilter = (req: Request, file: Express.Multer.File, cb: FileFilterCallb
         
     // }
 
+
+    // if(file.size > 100000)
+
     // not error and accept
     cb(null, true); 
 }
@@ -37,10 +41,13 @@ const fileFilter = (req: Request, file: Express.Multer.File, cb: FileFilterCallb
 
 
 
+// to handle the storage of the files
 // The original code issue was caused of the callback function
 // which made typescript throw type error
 const storage = multer.diskStorage({
 
+    // send file to upload file
+    // can be s3 bucket or upload service
     destination: (
         request: Request, // Request type 
         file: Express.Multer.File, // file type
@@ -49,6 +56,7 @@ const storage = multer.diskStorage({
         callback(null, 'uploads/')
     },
 
+    // call back for file name changes
     filename: (
         req: Request, 
         file: Express.Multer.File, 
@@ -56,16 +64,23 @@ const storage = multer.diskStorage({
     ): void => {
 
         console.log("file.originalname", file.originalname)
-        const uniqueSuffix = file.originalname
-        callback(null, uniqueSuffix)
+        // const uniqueSuffix = file.originalname
+        // callback(null, uniqueSuffix)
 
-
-        // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + file.originalname
-        // callback(null, file.fieldname + '-' + uniqueSuffix)
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + file.originalname
+        callback(null, file.fieldname + '-' + uniqueSuffix)
     }
-  })
-  
-const upload = multer({ storage: storage, fileFilter: fileFilter})
+})
+
+const limits = {fileSize: 50000 }
+
+const upload = multer(
+    {
+        storage: storage,
+        fileFilter: fileFilter,
+        limits: limits
+    }
+)
 
 
 export default upload

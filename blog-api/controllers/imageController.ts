@@ -29,12 +29,13 @@ const createImages = async (req: ImageRequest, res: ImageResponse) => {
 
 
         // print file names in console
-        // files.forEach((file, idx) => console.log(`file[${idx}]`, file))
+        files.forEach((file, idx) => console.log(`file[${idx}]`, file))
     
     
         // get file name
-        // const fileNames: string[]  = files.map(el => el.filename);
+        const fileNames: string[]  = files.map(el => el.filename);
     
+        console.log(fileNames);
     
     
         return res.status(200).send({
@@ -50,7 +51,7 @@ const deleteImage = async (req: ImageRequest, res: ImageResponse) => {
 
         const id = parseInt(req.params.id);
 
-        
+
 
     } catch (err) {
         
