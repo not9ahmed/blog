@@ -9,6 +9,7 @@ const router = Router();
 
 
 router.get('/', imageController.findAllImages);
+router.get('/:id', imageController.findImageById);
 
 
 /**

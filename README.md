@@ -17,7 +17,7 @@ The following system consists current
 1. `cd blog-api`  
 2. `touch .env && echo "DB_USER_API=1233\nKEY_2=abc" > .env`  
 3. `npm i`  
-4. `nodemon index.ts`
+4. `npm run dev`
 
 ### Run Blog Database
 

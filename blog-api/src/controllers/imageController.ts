@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response } from 'express'
+import e, { NextFunction, Request, Response } from 'express'
 // import upload from '../utils/filesUpload';
 
 import ImageService from '../services/image';
-import { Image } from '@prisma/client';
+import { Image, Prisma } from '@prisma/client';
 import { ImageCreate } from '../services/types';
 const imageService = new ImageService();
 
@@ -19,10 +19,8 @@ interface ImageResponse extends Response {
 const findAllImages = async (req: ImageRequest, res: ImageResponse) => {
 
     try {
-
         
         const images = await imageService.findAll();
-
         const response = {
             message: "Success",
             data: images
@@ -40,6 +38,47 @@ const findAllImages = async (req: ImageRequest, res: ImageResponse) => {
     }
 }
 
+const findImageById = async (req: ImageRequest, res: ImageResponse) => {
+    
+    try {
+        
+        const id = parseInt(req.params.id);
+
+        const image = await imageService.findById(id);
+        const response = {
+            message: "Success",
+            data: image
+        };
+
+        return res.status(200).json(response);
+
+
+    } catch (err) {
+        
+        let response = {
+            errorMessage: err
+        };
+
+        // if not found will be thrown here
+
+
+        if (err instanceof Prisma.PrismaClientKnownRequestError) {
+            // The .code property can be accessed in a type-safe manner
+            if (err.code === 'P2025') {
+              
+                response = {
+                    errorMessage: "Entity not found"
+                }
+                
+            }
+          }
+
+
+        
+        return res.status(404).json(response);
+    }
+
+}
 
 
 // image will already get stored from the middleware
@@ -47,7 +86,8 @@ const findAllImages = async (req: ImageRequest, res: ImageResponse) => {
 const createImages = async (req: ImageRequest, res: ImageResponse) => {
 
 
-
+    // check if there are files
+    // can be moved to middleware
     if(!req.files){
         return res.status(404).send({
             message: "No files were sent"
@@ -119,6 +159,7 @@ const deleteImage = async (req: ImageRequest, res: ImageResponse) => {
 
 module.exports = {
     findAllImages,
+    findImageById,
     createImages,
     deleteImage
 }
