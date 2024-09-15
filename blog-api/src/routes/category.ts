@@ -8,7 +8,7 @@ const router = Router()
 
 // middleware here
 // auth can also be here
-router.use(userlog);
+// router.use(userlog);
 
 router.get('/', categoriesController.findAllCategories);
 router.get('/:id', categoriesController.findCategoryById);

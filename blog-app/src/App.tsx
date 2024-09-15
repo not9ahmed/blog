@@ -12,6 +12,7 @@ import CreatePost from './pages/CreatePost/CreatePost'
 import EditPost from './pages/EditPost/EditPost'
 import Project from './pages/Project/Project'
 import Dummy from './pages/Dummy/Dummy'
+import Admin from './pages/Admin/Admin'
 
 
 function App() {
@@ -28,10 +29,13 @@ function App() {
 
             <Route index element={<Home/>} />
 
-            {/* will be done later */}
+            {/* TODO: will be done later */}
+            <Route path='/admin' element={<Admin/>} />
             <Route path='/projects' element={<Projects/>} />
             <Route path='/projects/:id' element={<Project/>} />
 
+
+            
 
             <Route path='/experience' element={<Experience/>} />
 

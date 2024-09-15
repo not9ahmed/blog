@@ -42,7 +42,7 @@ const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
 
 
 // method to fetch categories from api
-export const findAllCategories = async (): Promise<CategoryInterface[] | null> => {
+export const findAllCategories = async (): Promise<CategoryInterface[]> => {
 
 
 
@@ -60,9 +60,9 @@ export const findAllCategories = async (): Promise<CategoryInterface[] | null> =
         return data;
 
 
-    } catch(error) {
-        console.log(error)
-        return null
+    } catch(err) {
+        console.log(err);
+        throw err;
     }
 
 

@@ -12,7 +12,7 @@ export const userlog = async (req: Request, res: Response, next: NextFunction) =
 
     const log = "url: " + url + " --- time: " + time + '\n';
 
-    appendFile('./logs/logs.txt', log, (err) => {
+    appendFile('./logsSample/logs.txt', log, (err) => {
         if (err) throw err;
         console.log('The "data to append" was appended to file!');
       }); 

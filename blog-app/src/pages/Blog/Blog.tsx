@@ -39,9 +39,6 @@ function Blog() {
 
             const posts = await findAllPosts() || [];
             const categoriesDb = await findAllCategories() || [];
-    
-    
-
 
             setPosts([...posts])
             setFilteredPosts([...posts])
@@ -105,14 +102,6 @@ function Blog() {
 
         console.log("filteredPosts ", filteredPosts)
     }
-
-
-
-
-
-
-   
-
 
 
 
