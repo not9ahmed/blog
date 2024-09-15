@@ -1,5 +1,5 @@
 // prisma boilerplate
-import { Category, Post, PrismaClient } from '@prisma/client'
+import { Category, Image, Post, PrismaClient } from '@prisma/client'
 
 // Importing Services
 import SkillService from '../services/skill';
@@ -7,6 +7,7 @@ import SkillTypeService  from '../services/skillType';
 import CategoryService from '../services/category';
 import ProjectService from '../services/project';
 import PostService from '../services/post';
+import ImageService from '../services/image';
 
 // Dummy Data
 const categories = require('./data/categories') as Category[];
@@ -47,19 +48,24 @@ async function main() {
     const categoryService = new CategoryService();
     const projectService = new ProjectService();
     const postService = new PostService();
+    const imageService = new ImageService();
+
 
     // const projectsDb = await projectService.createMany(projects);
-    // const projectsDb = await projectService.createMany(projects);
-    // const projectsDb = await projectService.createMany(projects);
-    // const projectsDb = await projectService.createMany(projects);
-    
 
 
-    // const postsDb = await postService.createMany(posts);
-    // console.log(postsDb);
 
 
-    // await categoryService.findByParentCategoryId(1);
+    // need way to handle id
+    const imageCreated = await prisma.image.create({
+      data: {
+        id: 123,
+        url: "123422",
+      }
+    })
+
+
+
 
 
 }

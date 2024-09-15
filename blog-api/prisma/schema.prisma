@@ -99,5 +99,5 @@ model Skill {
 // and will have the actual image url uploaded to image storage
 model Image {
   id  Int    @id @default(autoincrement())
-  src String
+  url String
 }

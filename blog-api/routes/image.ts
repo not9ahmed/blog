@@ -8,6 +8,7 @@ import { fileLimitHandler } from '../utils/fileMiddleware';
 const router = Router();
 
 
+router.get('/', imageController.findAllImages);
 
 
 /**

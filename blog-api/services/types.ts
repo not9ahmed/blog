@@ -1,9 +1,10 @@
 // Services type will be here
 
-import { Post, Prisma } from "@prisma/client";
+import { Image, Post, Prisma } from "@prisma/client";
 
-interface BatchPayload extends Prisma.BatchPayload{}
+export interface BatchPayload extends Prisma.BatchPayload{}
 
+export interface ImageCreate extends Omit<Image, "id"> { }
 
 // Defining Generic Class Interface for basic crud
 interface Service <T>{
