@@ -1,4 +1,4 @@
-import { CategoryInterface } from "./category";
+import { ICategory } from "./category";
 
 // must add post category
 export interface PostInterface  {
@@ -7,7 +7,7 @@ export interface PostInterface  {
     description: string,
     content: string,
     images: string[] | string,
-    category?: number | CategoryInterface | undefined,
+    category?: number | ICategory | undefined,
     createdDate: Date,
     createdBy: string,
 

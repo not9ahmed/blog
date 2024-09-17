@@ -22,7 +22,9 @@ export const isAuthenticated = (req: Request, res: Response, next: NextFunction)
             message: "unauthorized access"
         }
 
-        return res.status(401).json(response)
+        res.status(401).json(response)
+
+        next();
     }
 
     // validate bearer token from db

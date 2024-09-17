@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import CategoryService from '../services/category';
+import { Category } from '@prisma/client';
 
 const categoryService = new CategoryService();
 
@@ -127,7 +128,7 @@ const createBulk  = async (req: Request, res: Response) => {
 
     try {
 
-        const categories = req.body;
+        const categories = req.body as Category[];
 
         const skillTypesCount = await categoryService.createMany(categories);
 

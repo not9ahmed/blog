@@ -1,48 +1,25 @@
-     // blog can be of many type
-// the type will a seperate entity
-// to be fetched from api 
-
-// the blog can be filtered on these
-// Sofware Engineering
-// Computer Engineering
-// Data Science
-// Music
-// Movies
-// Shows
-// Anime etc
-// Manga/Books
-export interface Category {
+/**
+ * Base category interface
+ */ 
+export interface ICategory {
     id: number,
     name: string,
-    isEntertainment: boolean
-}
-
-
-
-// will have self reference
-// will use this as the main
-export interface CategoryInterface {
-    id: number,
-    name: string,
-    parentCategory: number,
+    parentCategoryId: number,
     createdDate: Date,
-    createdBy: string,
+    createdBy: number,
 }
 
+/**
+ * Interface for category creation
+ */
+export interface ICategoryCreate extends Omit<ICategory, 'id' | 'createdDate' > { }
 
-export interface CategoryCreateInterface {
-    id: number,
-    name: string,
-    parentCategory: number,
-    createdDate: Date,
-    createdBy: string,
-}
+/**
+ * Interface for category edit
+ */
+export interface ICategoryUpdate extends Omit<ICategory, 'id' | 'createdDate'> { }
 
-
-export interface CategoryEditInterface {
-    id: number,
-    name: string,
-    parentCategory: number,
-    createdDate: Date,
-    createdBy: string,
-}
+/**
+ * Interface for category deletion
+ */
+export interface ICategoryDelete extends Pick<ICategory, 'id'> { }

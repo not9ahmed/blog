@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './blog.css'
 import { useNavigate } from 'react-router-dom';
-import { Category, CategoryInterface } from '../../types/category';
+import { Category, ICategory } from '../../types/category';
 import { PostInterface } from '../../types/post';
 // import SelectMenu from '../../components/SelectMenu/SelectMenu';
 // import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
@@ -24,7 +24,7 @@ function Blog() {
     const [filteredPosts, setFilteredPosts] = useState<PostInterface[] | []>([...posts])
 
     // change interface
-    const [categories, setCategories] = useState<CategoryInterface[]>([])
+    const [categories, setCategories] = useState<ICategory[]>([])
 
     // Search Posts
     const [query, setQuery] = useState<string>("");

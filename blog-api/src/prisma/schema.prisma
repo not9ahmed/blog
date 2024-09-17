@@ -44,9 +44,9 @@ model Category {
   name             String
 
   // self join
-  parentCategoryId Int?      @unique
+  parentCategoryId Int?
   parentCategory   Category? @relation("ParentCategory", fields: [parentCategoryId], references: [id])
-  childCategory    Category? @relation("ParentCategory")
+  childCategory    Category[] @relation("ParentCategory")
   createdDate      DateTime  @default(now())
   createdBy        Int
   posts            Post[]

@@ -15,11 +15,11 @@ router.get('/:id', postController.findById);
 router.post('/', postController.create);
 
 // trying auth middleware
-router.post('/bulk', isAuthenticated, postController.createBulk);
+router.post('/bulk', postController.createBulk);
 
 router.put('/:id', postController.update);
 
-router.delete('/bulk', isAuthenticated, postController.deleteBulk);
+router.delete('/bulk', postController.deleteBulk);
 router.delete('/:id', postController._delete);
 
 
