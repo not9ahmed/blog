@@ -54,7 +54,7 @@ export const createCategory = async (category: ICategoryCreate): Promise<ICatego
 }
 
 
-export const updateCategoryById = async (id: string, category: ICategoryUpdate): Promise<ICategory> => {
+export const updateCategoryById = async (id: number, category: ICategoryUpdate): Promise<ICategory> => {
     try {
         const response = await axios.put(`${API_BASE_URL}/categories/${id}`,
             category

@@ -8,6 +8,8 @@ interface BatchPayload extends Prisma.BatchPayload{}
 
 // Can be extracted to factory service
 interface ICategoryService {
+
+    // allow passing parameters
     findAll(): Promise<Category[]>;
     findById(id: number): Promise<Category>;
     findByParentCategoryId(id: number): Promise<Category[]>;
@@ -29,7 +31,11 @@ export default class CategoryService implements ICategoryService {
         
         try {
 
-            const categories = await prisma.category.findMany();
+            const categories = await prisma.category.findMany({
+                orderBy: {
+                    id: 'asc'
+                }
+            });
             return categories;
 
         } catch (err) {
