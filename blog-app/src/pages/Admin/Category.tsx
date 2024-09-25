@@ -1,5 +1,5 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import './category.css'
+import { useEffect, useState } from 'react'
 import { createCategory, deleteCategoryById, findAllCategories, findCategoryById } from '../../api/categoryService';
 import { ICategory } from '../../types/category';
 
@@ -47,12 +47,26 @@ export default function Category() {
       <div>
         <h2>view catgeory</h2>
           
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr'}}>
-          {categories.map(el => 
-            <div key={el.id}>
-              {el.name}
-            </div>
-          )}
+          <div className='model-table'>
+            <table className='categories-table'>
+              <thead>
+                <tr>
+                  <th>Category ID</th>
+                  <th>Category Name</th>
+                  <th>Category Create Date</th>
+                </tr>
+              </thead>
+
+            <tbody>
+            {categories.map(el => 
+              <tr key={el.id}>
+                <td>{el.id}</td>
+                <td>{el.name}</td>
+                <td>{el.createdDate.toDateString()}</td>
+              </tr>
+            )}
+            </tbody>
+            </table>
           </div>
       </div>
 
