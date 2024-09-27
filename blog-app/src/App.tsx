@@ -13,6 +13,7 @@ import EditPost from './pages/EditPost/EditPost'
 import Project from './pages/Project/Project'
 import Dummy from './pages/Dummy/Dummy'
 import Admin from './pages/Admin/Admin'
+import '@radix-ui/themes/styles.css';
 
 
 function App() {

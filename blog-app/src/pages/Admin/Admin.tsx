@@ -15,6 +15,7 @@ export default function Admin() {
         <p>Page to manage all the admin related activiates and only done by Ahmed</p>
 
         {/* Add the main categories here and other related admin */}
+        {/* each will have a table to easily modify existing list */}
         <Category/>
         <Skills/>
         <Project/>

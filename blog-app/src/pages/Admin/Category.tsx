@@ -7,6 +7,7 @@ import { ICategory } from '../../types/category';
 export default function Category() {
   
   const [categories, setCategories] = useState<ICategory[]>([])
+  const [updatedCategories, setUpdatedCategories] = useState<ICategory[]>([])
 
   useEffect(() => {
 
@@ -20,6 +21,26 @@ export default function Category() {
     fetchData();
   },[])
 
+
+
+  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    
+    console.log("value", e.target.value);
+    console.log("id", e.target.id);
+
+    const id: number = parseInt(e.target.id);
+
+    // get the item from the list
+   const categoryToBeUpdated =  categories.find(el => el.id == id);
+    
+
+   const updatedCategories = categories.filter(el => el.id != id);
+
+   setCategories([...updatedCategories, categoryToBeUpdated]);
+
+
+
+  }
 
   const handleEdit = async (e: React.MouseEvent<HTMLButtonElement>, category: ICategory) => {
 
@@ -86,15 +107,23 @@ export default function Category() {
         {categories.map(el => 
           <tr key={el.id}>
             <td>{el.id}</td>
-            <td>{el.name}</td>
+            <td>
+              <input type='text'
+                className='cat-name'
+                id={el.id.toString()}
+                onChange={handleInputChange}
+                value={el.name}
+              />
+            </td>
             <td>{el.createdDate.toDateString()}</td>
-            <td><button id="edit-cat" onClick={(e) => handleEdit(e, el)}>Edit</button></td>
-            <td><button id="del-cat" onClick={(e) => handleDelete(e, el.id)}>Delete</button></td>
+            <td><button className="edit-cat" onClick={(e) => handleEdit(e, el)}>Edit</button></td>
+            <td><button className="del-cat" onClick={(e) => handleDelete(e, el.id)}>Delete</button></td>
           </tr>
         )}
         </tbody>
         </table>
       </div>
+
 
     </div>
   )
