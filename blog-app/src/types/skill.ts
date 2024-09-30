@@ -1,22 +1,7 @@
-export interface Skill {
+export interface ISkill {
     id: number,
     name: string,
     icon: string,
-    type: SkillType,
+    skillTypeId: number,
     link: string
-}
-
-// or type
-// 'Programming Language'
-// 'Toolkit'
-// framework
-
-
-// can be
-// programming langauge
-// tools
-// framework
-export interface SkillType {
-    id: number,
-    name: string
 }
