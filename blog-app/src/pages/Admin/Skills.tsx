@@ -4,6 +4,7 @@ import { findAllSkills, findSkillById } from '../../api/skillService';
 import { ISkill } from '../../types/skill';
 import { ISkillType } from '../../types/skillType';
 import { findAllSkillTypes } from '../../api/skillTypeService';
+import { FaceIcon, SunIcon } from '@radix-ui/react-icons';
 
 // will be a table
 export default function Skills() {
@@ -28,6 +29,9 @@ export default function Skills() {
   }, [])
 
 
+  const dropdownHandler = (value: String) => {
+    console.log(value);
+  }
 
 
   return (
@@ -61,7 +65,7 @@ export default function Skills() {
           <Table.Body>
             
             {skills.map(skill =>  (
-              <Table.Row>
+              <Table.Row key={skill.id}>
                 <Table.Cell justify={'start'}>
                   {skill.id}
                 </Table.Cell>
@@ -72,23 +76,27 @@ export default function Skills() {
                 
                 <Table.Cell>
                   <img src={skill.icon} width={60}/>
-                  
                 </Table.Cell>
                 
                 <Table.Cell>
 
-                  {skill.skillTypeId}
-                  <Select.Root size="1" defaultValue="apple">
-                  <Select.Trigger />
+                  <Select.Root size="1" defaultValue={skill.skillTypeId.toString()} onValueChange={dropdownHandler}>
+                  <Select.Trigger/>
                   <Select.Content>
-                    <Select.Item value="apple">Apple</Select.Item>
-                    <Select.Item value="orange">Orange</Select.Item>
+                    {skillTypes.map(el => 
+                        <Select.Item
+                          key={el.id}
+                          value={el.id.toString()}>{el.name}
+                        </Select.Item>
+                      )}
                   </Select.Content>
                 </Select.Root>
+
+                
                 </Table.Cell>
 
                 <Table.Cell>
-                  <Link href="#">Sign up</Link>
+                  <Link href="#">Test</Link>
                 </Table.Cell>
 
                 <Table.Cell>

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ISkillType } from "../types/skill";
+import { ISkillType } from "../types/skillType";
 
 const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
 
