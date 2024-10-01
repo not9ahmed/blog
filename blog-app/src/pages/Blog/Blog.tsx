@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './blog.css'
 import { useNavigate } from 'react-router-dom';
-import { Category, ICategory } from '../../types/category';
+import { ICategory } from '../../types/category';
 import { PostInterface } from '../../types/post';
 // import SelectMenu from '../../components/SelectMenu/SelectMenu';
 // import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
-import Paginator from '../../components/Paginator/Paginator';
 import { findAllPosts, findPostByCategory, searchPostByKeyword } from '../../api/postService';
 import { findAllCategories } from '../../api/categoryService';
 
@@ -281,7 +280,6 @@ function Blog() {
 
               </div>
 
-            <Paginator />
           </div>
 
     </div>

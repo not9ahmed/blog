@@ -36,10 +36,25 @@ export const findSkillTypeById = async (id: number): Promise<ISkillType> => {
     try {
         const response = await axios.get(`${API_BASE_URL}/skilltypes/${id}`);
         const data = response['data'] as ISkillType;
-
         console.log('data', data);
         return data;
     } catch(err) {
+        console.log(err);
+        throw err;
+    }
+}
+
+
+export const createSkillType = async (skilltype: ISkillType): Promise<ISkillType> => {
+
+    try {
+        const response = await axios.post(`${API_BASE_URL}/skilltypes/`, {
+            skilltype
+        });
+        const data = response['data'] as ISkillType;
+        console.log('data', data);
+        return data;
+    } catch (err) {
         console.log(err);
         throw err;
     }

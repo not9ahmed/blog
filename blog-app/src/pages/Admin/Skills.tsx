@@ -14,6 +14,8 @@ export default function Skills() {
   const [skills, setSkills] = useState<ISkill[]>([]);
   const [skillTypes, setSkillTypes] = useState<ISkillType[]>([]);
 
+  const [createdSkillType, setCreatedSkillType] = useState<ISkillType>();
+
 
   useEffect(() => {
 
@@ -34,6 +36,8 @@ export default function Skills() {
   }
 
 
+
+
   return (
     <Box
       id='skills-page'
@@ -43,9 +47,9 @@ export default function Skills() {
         borderRadius: 'var(--radius-3)'
       }}
     >
-      <Section size="1">
+      <h1>Skills Page</h1>
+      <Section size="2">
 
-        <h1>Skills Page</h1>
 
 
 

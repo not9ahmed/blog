@@ -2,11 +2,11 @@ import { Button, Table, TextField } from '@radix-ui/themes'
 import React from 'react'
 
 // will be a table
-export default function Project() {
+export default function Projects() {
   return (
     <div>
 
-      <h1>Project</h1>
+      <h1>Projects</h1>
 
       <Table.Root>
         <Table.Header>

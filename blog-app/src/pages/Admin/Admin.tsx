@@ -1,7 +1,9 @@
 import React from 'react'
 import Category from './Category'
 import Skills from './Skills'
-import Project from './Project'
+import Projects from './Projects'
+import SkillType from './SkillType'
+import { Box, Tabs } from '@radix-ui/themes'
 
 // Will manage all the admin related tasks like
 // view, create, edit, delete categories
@@ -16,9 +18,36 @@ export default function Admin() {
 
         {/* Add the main categories here and other related admin */}
         {/* each will have a table to easily modify existing list */}
-        <Category/>
+        {/* <SkillType/>
         <Skills/>
         <Project/>
+        <Category/> */}
+
+        <Tabs.Root defaultValue="skills">
+            <Tabs.List size={"2"}>
+                <Tabs.Trigger value="skills">Skills</Tabs.Trigger>
+                <Tabs.Trigger value="skilltype">Skill Type</Tabs.Trigger>
+                <Tabs.Trigger value="category">Category</Tabs.Trigger>
+                <Tabs.Trigger value="projects">Projects</Tabs.Trigger>
+            </Tabs.List>
+
+            <Box pt="3">
+                <Tabs.Content value="skills">
+                    <Skills/>
+                </Tabs.Content>
+                <Tabs.Content value="skilltype">
+                    <SkillType/>
+                </Tabs.Content>
+                <Tabs.Content value="category">
+                    <Category/>
+                </Tabs.Content>
+                <Tabs.Content value="projects">
+                    <Projects/>
+                </Tabs.Content>
+
+
+            </Box>
+        </Tabs.Root>
 
     </div>
   )
