@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react'
 import { findAllSkillTypes, findSkillTypeById, createSkillType } from '../../api/skillTypeService'
 import { Box, Button, Section, Table, TextField } from '@radix-ui/themes'
 import { ISkillType } from '../../types/skillType'
-import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import { Form } from 'react-router-dom';
+
 
 
 export default function SkillType() {
   
-  const [skillTypeCreated, setSkillTypeCreated] = useState<ISkillType>();
+  const [newSkillType, setNewSkillType] = useState<ISkillType>();
   const [skillTypes, setSkillTypes] = useState<ISkillType[]>([]);
 
 
@@ -27,16 +26,50 @@ export default function SkillType() {
 
 
 
+  
+
+
   const skillTypeCreateHandler = async () => {
     
     console.log("Button");
     await findSkillTypeById(1);
   }
 
-  const handleRowChange = (event: React.FormEvent<HTMLFormElement>): void => {
-   
-    console.log(event);
+
+  const addSkillTypeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e);
+
+    const key = e.target.name;
+    const value = e.target.value;
+
+    console.log(key);
+    console.log(value);
+
+
+
+
+    setNewSkillType({
+      id: 9999,
+      name: value
+    });
+
+    console.log(newSkillType);
+
+
   }
+
+  const addSkillType = async (e: MouseEventHandler<HTMLButtonElement>) => {
+    console.log('add skill type called');
+
+    if(newSkillType) {
+      const data = await createSkillType(newSkillType);
+
+      console.log(data);
+    }
+
+  }
+
+
 
   return (
   <Box
@@ -61,7 +94,7 @@ export default function SkillType() {
             <Table.Row>
               <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Add</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -70,6 +103,12 @@ export default function SkillType() {
                 <Table.Row key={el.id}>
                   <Table.Cell justify={'start'}>{el.id}</Table.Cell>
                   <Table.Cell>{el.name}</Table.Cell>
+                  <Table.Cell>
+                    <Box>
+                      <Button variant='surface'>Edit</Button>
+                      <Button variant='surface'>Edit</Button>
+                    </Box>
+                  </Table.Cell>
                 </Table.Row>
               ))
               }
@@ -87,14 +126,13 @@ export default function SkillType() {
                 </Table.Cell>
 
                 <Table.Cell>
-                  <TextField.Root id='skill' placeholder="Enter new skill type">
+                  <TextField.Root id='skilltype' name='skilltype_name' onChange={addSkillTypeHandler} placeholder="Enter new skill type">
                   </TextField.Root>
                 </Table.Cell>
 
                 <Table.Cell>
-                  <Button>Add</Button>
+                  <Button type='submit' onClick={addSkillType}>Add</Button>
                 </Table.Cell>
-
               </Table.Row>
           </Table.Body>
         </Table.Root>
