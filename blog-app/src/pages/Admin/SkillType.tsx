@@ -1,13 +1,17 @@
 import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react'
 import { findAllSkillTypes, findSkillTypeById, createSkillType } from '../../api/skillTypeService'
-import { Box, Button, Section, Table, TextField } from '@radix-ui/themes'
+import { Box, Button, Flex, Section, Table, TextField } from '@radix-ui/themes'
 import { ISkillType } from '../../types/skillType'
 
 
 
 export default function SkillType() {
   
-  const [newSkillType, setNewSkillType] = useState<ISkillType>();
+  const [newId, setNewId] = useState(0);
+  const [newSkillType, setNewSkillType] = useState<ISkillType>({
+    id: 0,
+    name: ''
+  });
   const [skillTypes, setSkillTypes] = useState<ISkillType[]>([]);
 
 
@@ -15,12 +19,26 @@ export default function SkillType() {
 
 
     const fetchData = async () => {
-      const skillsTypesAPI = await findAllSkillTypes();
-      setSkillTypes([...skillsTypesAPI]);
+      const skillTypesAPI = await findAllSkillTypes();
+      setSkillTypes([...skillTypesAPI]);
+
+      const newId = skillTypesAPI.reduce(
+        (prev, curr) =>
+          (prev.id > curr.id)? prev : curr
+        ,{id: -1, name: ""}).id + 1
+
+      
+
+      setNewId(newId);
+
 
     }
 
+
     fetchData();
+
+
+    console.log("newId", newId)
 
   },[]);
 
@@ -49,7 +67,7 @@ export default function SkillType() {
 
 
     setNewSkillType({
-      id: 9999,
+      id: newId,
       name: value
     });
 
@@ -65,10 +83,32 @@ export default function SkillType() {
       const data = await createSkillType(newSkillType);
 
       console.log(data);
-    }
+      const updatedSkillTypes = [...skillTypes, newSkillType]
+  
+      setSkillTypes([...updatedSkillTypes])
 
+
+
+      const newId = updatedSkillTypes.reduce(
+        (prev, curr) =>
+          (prev.id > curr.id)? prev : curr
+        ,{id: -1, name: ""}).id + 1
+
+      
+
+      setNewId(newId);
+    }
   }
 
+
+  const editHandler = async () => {
+    console.log("edit called");
+  }
+
+
+  const deleteHandler = async () => {
+    console.log("delete called");
+  }
 
 
   return (
@@ -104,10 +144,14 @@ export default function SkillType() {
                   <Table.Cell justify={'start'}>{el.id}</Table.Cell>
                   <Table.Cell>{el.name}</Table.Cell>
                   <Table.Cell>
-                    <Box>
-                      <Button variant='surface'>Edit</Button>
-                      <Button variant='surface'>Edit</Button>
-                    </Box>
+                    <Flex gap="1" >
+                      <Button variant='surface' onClick={editHandler}>
+                        Edit
+                      </Button>
+                      <Button color='red' variant='surface' onClick={deleteHandler}>
+                        Delete
+                      </Button>
+                    </Flex>
                   </Table.Cell>
                 </Table.Row>
               ))
