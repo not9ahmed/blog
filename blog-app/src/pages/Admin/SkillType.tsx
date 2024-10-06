@@ -1,7 +1,8 @@
 import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react'
 import { findAllSkillTypes, findSkillTypeById, createSkillType, deleteSkillType } from '../../api/skillTypeService'
-import { Box, Button, Flex, Section, Table, TextField } from '@radix-ui/themes'
+import { Box, Button, Flex, IconButton, Section, Table, TextField } from '@radix-ui/themes'
 import { ISkillType } from '../../types/skillType'
+import { Pencil1Icon } from '@radix-ui/react-icons';
 
 
 
@@ -160,10 +161,13 @@ export default function SkillType() {
                 <Table.Row key={el.id}>
                   <Table.Cell justify={'start'}>{el.id}</Table.Cell>
                   
-                  {isEditable ? 
-                  <Table.Cell key={el.id}>Editable</Table.Cell>
+                  {isEditable || el.id ? 
+                  <Table.Cell key={el.id}>
+                    <TextField.Root value={el.name}>
+                    </TextField.Root>
+                  </Table.Cell>
                   : <Table.Cell>{el.name}</Table.Cell>
-                }
+                  }
 
                   <Table.Cell>
                     <Flex gap="1" >
@@ -173,6 +177,9 @@ export default function SkillType() {
                       <Button color='red' variant='surface' onClick={() => deleteHandler(el.id)}>
                         Delete
                       </Button>
+                      {/* <IconButton>
+                        <Pencil1Icon width="18" height="18" />
+                      </IconButton> */}
                     </Flex>
                   </Table.Cell>
                 </Table.Row>
