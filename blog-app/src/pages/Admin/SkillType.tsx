@@ -1,5 +1,5 @@
 import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react'
-import { findAllSkillTypes, findSkillTypeById, createSkillType } from '../../api/skillTypeService'
+import { findAllSkillTypes, findSkillTypeById, createSkillType, deleteSkillType } from '../../api/skillTypeService'
 import { Box, Button, Flex, Section, Table, TextField } from '@radix-ui/themes'
 import { ISkillType } from '../../types/skillType'
 
@@ -106,8 +106,23 @@ export default function SkillType() {
   }
 
 
-  const deleteHandler = async () => {
+  const deleteHandler = async (id: number) => {
     console.log("delete called");
+    
+    const deletedSkillType = await deleteSkillType(id);
+
+    console.log("deletedSkillType", deletedSkillType);
+
+    // refresh skilltype
+    // const skillTypesAPI = await findAllSkillTypes();
+    // setSkillTypes([...skillTypesAPI]);
+
+
+    // or pop it
+    const skillTypesAPI =  skillTypes.filter(el => el.id !== id);
+    setSkillTypes([...skillTypesAPI]);
+
+
   }
 
 
@@ -148,7 +163,7 @@ export default function SkillType() {
                       <Button variant='surface' onClick={editHandler}>
                         Edit
                       </Button>
-                      <Button color='red' variant='surface' onClick={deleteHandler}>
+                      <Button color='red' variant='surface' onClick={() => deleteHandler(el.id)}>
                         Delete
                       </Button>
                     </Flex>
