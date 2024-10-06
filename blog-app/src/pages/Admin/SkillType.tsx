@@ -13,6 +13,7 @@ export default function SkillType() {
     name: ''
   });
   const [skillTypes, setSkillTypes] = useState<ISkillType[]>([]);
+  const [isEditable, setIsEditable] = useState<boolean>(false);
 
 
   useEffect(() => {
@@ -101,8 +102,9 @@ export default function SkillType() {
   }
 
 
-  const editHandler = async () => {
-    console.log("edit called");
+  const editHandler = async (id: number) => {
+    console.log("edit called and id is "+ id);
+    setIsEditable(true)
   }
 
 
@@ -157,10 +159,15 @@ export default function SkillType() {
             {skillTypes.map(el =>  (
                 <Table.Row key={el.id}>
                   <Table.Cell justify={'start'}>{el.id}</Table.Cell>
-                  <Table.Cell>{el.name}</Table.Cell>
+                  
+                  {isEditable ? 
+                  <Table.Cell key={el.id}>Editable</Table.Cell>
+                  : <Table.Cell>{el.name}</Table.Cell>
+                }
+
                   <Table.Cell>
                     <Flex gap="1" >
-                      <Button variant='surface' onClick={editHandler}>
+                      <Button variant='surface' onClick={() => editHandler(el.id)}>
                         Edit
                       </Button>
                       <Button color='red' variant='surface' onClick={() => deleteHandler(el.id)}>
