@@ -2,19 +2,25 @@ import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from 'reac
 import { findAllSkillTypes, findSkillTypeById, createSkillType, deleteSkillType } from '../../api/skillTypeService'
 import { Box, Button, Flex, IconButton, Section, Table, TextField } from '@radix-ui/themes'
 import { ISkillType } from '../../types/skillType'
-import { Pencil1Icon } from '@radix-ui/react-icons';
+import { CheckIcon, Pencil1Icon } from '@radix-ui/react-icons';
 
 
 
 export default function SkillType() {
   
+
+  type IEditableRow = {
+    id: number,
+    isEditable: boolean
+  };
+
   const [newId, setNewId] = useState(0);
   const [newSkillType, setNewSkillType] = useState<ISkillType>({
     id: 0,
     name: ''
   });
   const [skillTypes, setSkillTypes] = useState<ISkillType[]>([]);
-  const [isEditable, setIsEditable] = useState<boolean>(false);
+  const [editableSkillTypes, setEditableSkillTypes] = useState<IEditableRow[]>([]);
 
 
   useEffect(() => {
@@ -26,10 +32,16 @@ export default function SkillType() {
 
       const newId = skillTypesAPI.reduce(
         (prev, curr) =>
-          (prev.id > curr.id)? prev : curr
-        ,{id: -1, name: ""}).id + 1
+          (prev.id > curr.id) 
+        ? prev : curr ,{id: -1, name: ""}
+      ).id + 1;
 
+
+      const newEditableRows: IEditableRow[] = skillTypesAPI.map(el => ({id: el.id, isEditable: false}))
       
+      console.log("newEditableRows", newEditableRows);
+
+      setEditableSkillTypes(newEditableRows);
 
       setNewId(newId);
 
@@ -40,7 +52,8 @@ export default function SkillType() {
     fetchData();
 
 
-    console.log("newId", newId)
+    console.log("newId", newId);
+    console.log("editableSkillTypes", editableSkillTypes);
 
   },[]);
 
@@ -103,9 +116,21 @@ export default function SkillType() {
   }
 
 
-  const editHandler = async (id: number) => {
+  const editHandler = async (id: number, confirm: boolean) => {
     console.log("edit called and id is "+ id);
-    setIsEditable(true)
+    // setIsEditable(true)
+
+    // make that row editable
+    const newEditableRows = editableSkillTypes.map(el => {
+      if (el.id === id) {
+        el.isEditable = confirm;
+      }
+      return el
+    })
+
+    console.log("newEditableRows", newEditableRows)
+
+    setEditableSkillTypes(newEditableRows);
   }
 
 
@@ -157,11 +182,14 @@ export default function SkillType() {
           </Table.Header>
 
           <Table.Body>
+
+            
             {skillTypes.map(el =>  (
                 <Table.Row key={el.id}>
                   <Table.Cell justify={'start'}>{el.id}</Table.Cell>
                   
-                  {isEditable || el.id ? 
+                  {/* to make it editable only if it's true in editableSkillTypes */}
+                  {editableSkillTypes.find(editable => editable.id === el.id)?.isEditable ? 
                   <Table.Cell key={el.id}>
                     <TextField.Root value={el.name}>
                     </TextField.Root>
@@ -171,42 +199,46 @@ export default function SkillType() {
 
                   <Table.Cell>
                     <Flex gap="1" >
-                      <Button variant='surface' onClick={() => editHandler(el.id)}>
+                      <Button variant='surface' onClick={() => editHandler(el.id, true)}>
                         Edit
                       </Button>
                       <Button color='red' variant='surface' onClick={() => deleteHandler(el.id)}>
                         Delete
                       </Button>
-                      {/* <IconButton>
-                        <Pencil1Icon width="18" height="18" />
-                      </IconButton> */}
+
+                      {/* confirm edit */}
+                      <IconButton  onClick={() => editHandler(el.id, false)}>
+                        <CheckIcon width="18" height="18"/>
+                      </IconButton>
                     </Flex>
+
                   </Table.Cell>
                 </Table.Row>
               ))
-              }
+            }
 
-              {/* To insert new field */}
-              {/* form */}
-              <Table.Row key={-1}>
+            {/* To insert new field */}
+            {/* form */}
+            <Table.Row key={-1}>
 
-                <Table.Cell>
-                 {(skillTypes.reduce(
-                    (prev, curr) =>
-                      (prev.id > curr.id)? prev : curr
-                    
-                    , {id: -1, name: ""}).id + 1).toString()}
-                </Table.Cell>
+              <Table.Cell>
+                {(skillTypes.reduce(
+                  (prev, curr) =>
+                    (prev.id > curr.id)? prev : curr
+                  
+                  , {id: -1, name: ""}).id + 1).toString()}
+              </Table.Cell>
 
-                <Table.Cell>
-                  <TextField.Root id='skilltype' name='skilltype_name' onChange={addSkillTypeHandler} placeholder="Enter new skill type">
-                  </TextField.Root>
-                </Table.Cell>
+              <Table.Cell>
+                <TextField.Root id='skilltype' name='skilltype_name' onChange={addSkillTypeHandler} placeholder="Enter new skill type">
+                </TextField.Root>
+              </Table.Cell>
 
-                <Table.Cell>
-                  <Button type='submit' onClick={addSkillType}>Add</Button>
-                </Table.Cell>
-              </Table.Row>
+              <Table.Cell>
+                <Button type='submit' onClick={addSkillType}>Add</Button>
+              </Table.Cell>
+            </Table.Row>
+
           </Table.Body>
         </Table.Root>
     </Section>
