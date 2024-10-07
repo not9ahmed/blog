@@ -14,7 +14,7 @@ export interface ISkillTypeCreate extends Omit<ISkillType, 'id' > { }
 /**
  * Interface for skillType edit
  */
-export interface ISkillTypeUpdate extends Omit<ISkillType, 'id'> { }
+export interface ISkillTypeEdit extends Omit<ISkillType, 'id'> { }
 
 /**
  * Interface for skillType deletion

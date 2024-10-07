@@ -9,10 +9,23 @@ import { CheckIcon, Pencil1Icon } from '@radix-ui/react-icons';
 export default function SkillType() {
   
 
+  // should i add name
   type IEditableRow = {
     id: number,
     isEditable: boolean
   };
+
+  // this can be used
+  // on change modify the existing field
+  interface IEditableSkillType extends ISkillType {
+    isEditable: boolean
+  }
+
+  const test: IEditableSkillType = {
+    id: 0,
+    name: '',
+    isEditable: false
+  }
 
   const [newId, setNewId] = useState(0);
   const [newSkillType, setNewSkillType] = useState<ISkillType>({
@@ -20,7 +33,13 @@ export default function SkillType() {
     name: ''
   });
   const [skillTypes, setSkillTypes] = useState<ISkillType[]>([]);
-  const [editableSkillTypes, setEditableSkillTypes] = useState<IEditableRow[]>([]);
+
+  // must add new field also?
+  // will be bulk create?
+  // const [editableSkillTypes, setEditableSkillTypes] = useState<IEditableRow[]>([]);
+
+
+  const [editableSkillTypes, setEditableSkillTypes] = useState<IEditableSkillType[]>([]);
 
 
   useEffect(() => {
@@ -37,7 +56,9 @@ export default function SkillType() {
       ).id + 1;
 
 
-      const newEditableRows: IEditableRow[] = skillTypesAPI.map(el => ({id: el.id, isEditable: false}))
+      // const newEditableRows: IEditableRow[] = skillTypesAPI.map(el => ({id: el.id, isEditable: false}))
+
+      const newEditableRows: IEditableSkillType[] = skillTypesAPI.map(el => ({id: el.id, name: el.name ,isEditable: false}))
       
       console.log("newEditableRows", newEditableRows);
 
@@ -134,6 +155,15 @@ export default function SkillType() {
   }
 
 
+  const editFieldHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    console.log("editFieldHandler", editFieldHandler);
+
+    console.log("val", e.target.value);
+
+    
+  }
+
+
   const deleteHandler = async (id: number) => {
     console.log("delete called");
     
@@ -191,7 +221,7 @@ export default function SkillType() {
                   {/* to make it editable only if it's true in editableSkillTypes */}
                   {editableSkillTypes.find(editable => editable.id === el.id)?.isEditable ? 
                   <Table.Cell key={el.id}>
-                    <TextField.Root value={el.name}>
+                    <TextField.Root value={el.name} onChange={editFieldHandler}>
                     </TextField.Root>
                   </Table.Cell>
                   : <Table.Cell>{el.name}</Table.Cell>
