@@ -145,7 +145,7 @@ export default class SkillTypeService implements ISkillTypeService {
     }
 
 
-    update = async (id: number, skillType: ISkillTypeUpdate): Promise<SkillType | null>  => {
+    update = async (id: number, skillType: ISkillTypeUpdate): Promise<SkillType>  => {
     
         try {
             
@@ -160,7 +160,8 @@ export default class SkillTypeService implements ISkillTypeService {
             return skillTypeUpdated;
 
         } catch (err) {
-            throw new Error(`Error Occurred ${err}`);
+            // throw new Error(`Error Occurred ${err}`);
+            throw err;
         }
     }
     

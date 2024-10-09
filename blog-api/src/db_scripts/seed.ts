@@ -58,24 +58,6 @@ async function main() {
 
 
 
-    // need way to handle id
-    // TODO: Handle id dto
-    // const imageCreated = await prisma.image.create({
-    //   data: {
-    //     id: 123,
-    //     url: "123422",
-    //   }
-    // })
-
-    const skillTypeCreates = await prisma.skillType.create({
-      data: {
-        name: "test"
-      }
-    })
-
-
-
-
 
 }
 

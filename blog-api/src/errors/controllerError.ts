@@ -8,7 +8,7 @@ export const errorHandler = (err: unknown) => {
     let errorMsg = "";
 
     let response = { 
-        message: "error occured",
+        message: "Error Occured",
         error: ""
     };
 
@@ -18,7 +18,7 @@ export const errorHandler = (err: unknown) => {
         // access code type
         switch(err.code) {
             case 'P2025':
-                errorMsg = err.message;
+                errorMsg = "Not Found";
                 break;
 
             //TODO: Add other code
@@ -27,8 +27,7 @@ export const errorHandler = (err: unknown) => {
         }
     } else {
         errorMsg = 'Internal Server Error'
-        }
-
+    }
         response["error"] = errorMsg;
 
         return response;

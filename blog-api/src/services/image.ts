@@ -1,7 +1,7 @@
 // Service to handle image upload
 import { Image, Prisma } from "@prisma/client";
 import prisma from "../utils/dbClient";
-import { ImageCreate } from "./types";
+import { ImageCreate } from "./baseService";
 
 
 interface BatchPayload extends Prisma.BatchPayload{}

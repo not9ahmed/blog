@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ISkillType } from "../types/skillType";
+import { ISkillType, ISkillTypeCreate, ISkillTypeEdit } from "../types/skillType";
 
 const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL
 
@@ -47,7 +47,7 @@ export const findSkillTypeById = async (id: number): Promise<ISkillType> => {
 }
 
 
-export const createSkillType = async (skilltype: ISkillType): Promise<ISkillType> => {
+export const createSkillType = async (skilltype: ISkillTypeCreate): Promise<ISkillType> => {
 
     try {
         const response = await axios.post(`${SKILL_TYPES_URL}`,
@@ -64,7 +64,7 @@ export const createSkillType = async (skilltype: ISkillType): Promise<ISkillType
 
 
 
-export const updateSkillType = async (id: number, skillType: ISkillType): Promise<ISkillType> => {
+export const editSkillType = async (id: number, skillType: ISkillTypeEdit): Promise<ISkillType> => {
     
     try {
         const response = await axios.put(`${SKILL_TYPES_URL}/${id}`, skillType);

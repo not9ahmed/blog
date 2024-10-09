@@ -1,4 +1,5 @@
 // must add post category
+// TODO: To be Updated to use Omit and Pick
 export interface PostInterface  {
     id: number,
     title: string,

@@ -3,7 +3,7 @@ import e, { NextFunction, Request, Response } from 'express'
 
 import ImageService from '../services/image';
 import { Image, Prisma } from '@prisma/client';
-import { ImageCreate } from '../services/types';
+import { ImageCreate } from '../services/baseService';
 const imageService = new ImageService();
 
 interface ImageRequest extends Request {

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react'
-import { findAllSkillTypes, findSkillTypeById, createSkillType, deleteSkillType } from '../../api/skillTypeService'
+import { findAllSkillTypes, findSkillTypeById, createSkillType, deleteSkillType, updateSkillType, editSkillType } from '../../api/skillTypeService'
 import { Box, Button, Flex, IconButton, Section, Table, TextField } from '@radix-ui/themes'
-import { ISkillType } from '../../types/skillType'
+import { ISkillType, ISkillTypeCreate, ISkillTypeEdit } from '../../types/skillType'
 import { CheckIcon, Pencil1Icon } from '@radix-ui/react-icons';
 
 
@@ -28,8 +28,7 @@ export default function SkillType() {
   }
 
   const [newId, setNewId] = useState(0);
-  const [newSkillType, setNewSkillType] = useState<ISkillType>({
-    id: 0,
+  const [newSkillType, setNewSkillType] = useState<ISkillTypeCreate>({
     name: ''
   });
   const [skillTypes, setSkillTypes] = useState<ISkillType[]>([]);
@@ -40,6 +39,8 @@ export default function SkillType() {
 
 
   const [editableSkillTypes, setEditableSkillTypes] = useState<IEditableSkillType[]>([]);
+  const [currentEditId, setCurrentEditId] = useState<number>();
+  const [currentEdit, setCurrentEdit] = useState<ISkillTypeEdit>();
 
 
   useEffect(() => {
@@ -103,7 +104,6 @@ export default function SkillType() {
 
 
     setNewSkillType({
-      id: newId,
       name: value
     });
 
@@ -115,25 +115,29 @@ export default function SkillType() {
   const addSkillType = async (e: MouseEventHandler<HTMLButtonElement>) => {
     console.log('add skill type called');
 
+    // if there new skill type then crate 
     if(newSkillType) {
       const data = await createSkillType(newSkillType);
 
       console.log(data);
-      const updatedSkillTypes = [...skillTypes, newSkillType]
+      // const updatedSkillTypes = [...skillTypes, newSkillType]
   
+      // setSkillTypes([...updatedSkillTypes])
+
+      // const newId = updatedSkillTypes.reduce(
+      //   (prev, curr) =>
+      //     (prev.id > curr.id)? prev : curr
+      //   ,{id: -1, name: ""}).id + 1
+
+      // setNewId(newId);
+
+      const updatedSkillTypes = await findAllSkillTypes();
       setSkillTypes([...updatedSkillTypes])
 
 
-
-      const newId = updatedSkillTypes.reduce(
-        (prev, curr) =>
-          (prev.id > curr.id)? prev : curr
-        ,{id: -1, name: ""}).id + 1
-
-      
-
-      setNewId(newId);
     }
+
+    
   }
 
 
@@ -155,13 +159,54 @@ export default function SkillType() {
   }
 
 
-  const editFieldHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+  const editFieldHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     console.log("editFieldHandler", editFieldHandler);
 
     console.log("val", e.target.value);
 
+    const currentEditId = parseInt(e.target.id);
+    const currentEdit = e.target.value;
+
     
+    const newSkillTypes = editableSkillTypes.map(el => {
+      if (el.id === currentEditId){
+        el.name = currentEdit
+        return el;
+      }
+      return el;
+    })
+
+    setEditableSkillTypes([...newSkillTypes]);
+
+    console.log(editableSkillTypes)
+
   }
+
+
+  const confirmEdit = async (e: ChangeEvent<HTMLInputElement>) => {
+
+
+
+    // save to db the edit one
+    // first find it
+    const toBeEditedSkillType = editableSkillTypes.find(el => el.isEditable === true);
+
+
+    console.log("toBeEditedSkillType", toBeEditedSkillType);
+
+    if(toBeEditedSkillType) {
+
+      const data  = await editSkillType(toBeEditedSkillType.id, {
+        name: toBeEditedSkillType.name
+      });
+      console.log(data);
+    }
+
+    const updatedSkillTypes = await findAllSkillTypes();
+    // setEditableSkillTypes([...updatedSkillTypes])
+    setSkillTypes([...updatedSkillTypes])
+  }
+
 
 
   const deleteHandler = async (id: number) => {
@@ -214,14 +259,14 @@ export default function SkillType() {
           <Table.Body>
 
             
-            {skillTypes.map(el =>  (
+            {editableSkillTypes.map(el =>  (
                 <Table.Row key={el.id}>
                   <Table.Cell justify={'start'}>{el.id}</Table.Cell>
                   
                   {/* to make it editable only if it's true in editableSkillTypes */}
                   {editableSkillTypes.find(editable => editable.id === el.id)?.isEditable ? 
                   <Table.Cell key={el.id}>
-                    <TextField.Root value={el.name} onChange={editFieldHandler}>
+                    <TextField.Root value={el.name} id={el.id.toString()} onChange={editFieldHandler}>
                     </TextField.Root>
                   </Table.Cell>
                   : <Table.Cell>{el.name}</Table.Cell>
@@ -237,7 +282,7 @@ export default function SkillType() {
                       </Button>
 
                       {/* confirm edit */}
-                      <IconButton  onClick={() => editHandler(el.id, false)}>
+                      <IconButton  onClick={confirmEdit}>
                         <CheckIcon width="18" height="18"/>
                       </IconButton>
                     </Flex>
@@ -265,7 +310,7 @@ export default function SkillType() {
               </Table.Cell>
 
               <Table.Cell>
-                <Button type='submit' onClick={addSkillType}>Add</Button>
+                <Button type='submit' onClick={() => addSkillType}>Add</Button>
               </Table.Cell>
             </Table.Row>
 

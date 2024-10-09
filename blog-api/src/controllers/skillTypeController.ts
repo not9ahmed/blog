@@ -65,11 +65,8 @@ const findById = async (req: Request, res: Response) => {
 
     } catch (err) {
 
-
         console.log(err);
-
         const response = errorHandler(err);
-
         return res.status(404).json(response);
 
     }
@@ -91,12 +88,7 @@ const create = async (req: Request, res: Response, next: NextFunction) => {
 
 
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
+        const response = errorHandler(err);
         return res.status(404).json(response);
     }
 }
@@ -118,12 +110,7 @@ const update = async (req: Request, res: Response) => {
     } catch (err) {
 
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: "User id does not exists"
-        }
-
+        const response = errorHandler(err);
         return res.status(404).json(response);
     }
 
