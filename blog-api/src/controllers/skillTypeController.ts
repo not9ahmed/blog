@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from 'express'
 import SkillTypeService from '../services/skillType';
 import {  Prisma, SkillType } from "@prisma/client";
-import { ErrorHandler } from '../errors/controllerErrorHandlers';
+import { errorHandler } from '../errors/controllerError';
+import { ISkillType, ISkillTypeCreate, ISkillTypeUpdate } from '../types/skillType';
 
-const errorHandler = new ErrorHandler();
+// const errorHandler = new ErrorHandler();
 
 
 const skillTypeService = new SkillTypeService();
@@ -33,7 +34,7 @@ const findAll= async (req: SkillTypeRequest, res: SkillTypeBulkResponse) => {
 
     try {
     
-        const skillTypes: SkillType[] = await skillTypeService.findAll();
+        const skillTypes: ISkillType[] = await skillTypeService.findAll();
 
         console.log(skillTypes);
 
@@ -52,7 +53,7 @@ const findAll= async (req: SkillTypeRequest, res: SkillTypeBulkResponse) => {
 }
 
 
-const findById = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
+const findById = async (req: Request, res: Response) => {
     
     console.log(`findSkillTypeById called`);
     try {
@@ -64,30 +65,25 @@ const findById = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
 
     } catch (err) {
 
+
         console.log(err);
 
-        const response = {
-            message: "error occured",
-            error: err
-        }
+        const response = errorHandler(err);
 
         return res.status(404).json(response);
+
     }
 }
 
 
-const create = async (req: SkillTypeRequest, res: SkillTypeResponse, next: NextFunction) => {
+const create = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
 
-        // id not found ??
-        // invalid data ??
-        // for headers can be done fromm middleware ??
-
-
-        const skillType  = req.body;
+        const skillType  = req.body as ISkillTypeCreate;
 
         const skillTypeCreated = await skillTypeService.create(skillType);
+
 
         return res.status(201).json(skillTypeCreated);
 
@@ -106,13 +102,14 @@ const create = async (req: SkillTypeRequest, res: SkillTypeResponse, next: NextF
 }
 
 
-const update = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
+const update = async (req: Request, res: Response) => {
 
     try {
         
+        // get id from url
         const id = parseInt(req.params.id); 
         
-        const skillType = req.body;
+        const skillType = req.body as ISkillTypeUpdate;
 
         const skillTypeUpdated = await skillTypeService.update(id, skillType);
 
@@ -120,9 +117,8 @@ const update = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
 
     } catch (err) {
 
+        console.log(err);
 
-        console.log("skill type controller");
-        console.error(err);
         const response = {
             message: `error occured`,
             error: "User id does not exists"
@@ -134,7 +130,7 @@ const update = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
 }
 
 
-const _delete = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
+const _delete = async (req: Request, res: Response) => {
 
     try {
         
@@ -155,14 +151,14 @@ const _delete = async (req: SkillTypeRequest, res: SkillTypeResponse) => {
 }
 
 
-const createBulk = async (req: SkillTypeBulkRequest, res: SkillTypeResponse, next: NextFunction) => {
+const createBulk = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
 
 
         // will be array of skill types
         // needs complete SkillTypeRequest
-        const skillTypes = req.body;
+        const skillTypes = req.body as ISkillTypeCreate[];
 
         const skillTypesCount = await skillTypeService.createMany(skillTypes);
 
@@ -193,7 +189,6 @@ const deleteBulk = async (req: Request, res: Response, next: NextFunction) => {
         console.log(resultCount);
 
         return res.status(201).json(resultCount);
-
 
     } catch (err) {
 

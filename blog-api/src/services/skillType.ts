@@ -1,5 +1,6 @@
 import { Prisma, Skill, SkillType } from "@prisma/client";
 import prisma from '../utils/dbClient';
+import { ISkillType, ISkillTypeCreate, ISkillTypeUpdate } from "../types/skillType";
 
 interface BatchPayload extends Prisma.BatchPayload{}
 
@@ -9,17 +10,17 @@ type SkillTypesJoined = {
 
 // can use DTO here
 interface ISkillTypeService {
-    findAll(): Promise<SkillType[]>;
-    findById(id: number): Promise<SkillType>;
+    findAll(): Promise<ISkillType[]>;
+    findById(id: number): Promise<ISkillType>;
 
     // should check if id already exists
-    create(skillType: SkillType): Promise<SkillType>;
-    createMany(skillTypes: SkillType[]): Promise<BatchPayload>;
+    create(skillType: ISkillTypeCreate): Promise<SkillType>;
+    createMany(skillTypes: ISkillTypeCreate[]): Promise<BatchPayload>;
 
     // try join
     findAllWithSkills(): Promise<SkillTypesJoined[]>;
 
-    update(id: number, skillType: SkillType): Promise<SkillType | null>;
+    update(id: number, skillType: ISkillTypeUpdate): Promise<SkillType | null>;
     delete(id: number): Promise<SkillType>;
     deleteAll(): Promise<BatchPayload>;
 };
@@ -38,7 +39,7 @@ export default class SkillTypeService implements ISkillTypeService {
         console.log("SkillTypeService Construct");
     }
     
-    findAll = async (): Promise<SkillType[]> => {
+    findAll = async (): Promise<ISkillType[]> => {
 
         try {
 
@@ -57,7 +58,7 @@ export default class SkillTypeService implements ISkillTypeService {
     }
 
 
-    findById = async (id: number): Promise<SkillType> => {
+    findById = async (id: number): Promise<ISkillType> => {
         
         try {
             
@@ -81,7 +82,7 @@ export default class SkillTypeService implements ISkillTypeService {
     }
 
 
-    create = async (skillType: SkillType): Promise<SkillType> => {
+    create = async (skillType: ISkillTypeCreate): Promise<SkillType> => {
         
         try {
             const skillTypeCreated = await prisma.skillType.create({
@@ -104,7 +105,7 @@ export default class SkillTypeService implements ISkillTypeService {
     }
 
 
-    createMany = async (skillTypes: SkillType[]): Promise<BatchPayload> => {
+    createMany = async (skillTypes: ISkillTypeCreate[]): Promise<BatchPayload> => {
         
         try {
             const skillTypesCount = await prisma.skillType.createMany({
@@ -144,7 +145,7 @@ export default class SkillTypeService implements ISkillTypeService {
     }
 
 
-    update = async (id: number, skillType: SkillType): Promise<SkillType | null>  => {
+    update = async (id: number, skillType: ISkillTypeUpdate): Promise<SkillType | null>  => {
     
         try {
             

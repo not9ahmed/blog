@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "seed": "ts-node src/db_scripts/seed.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

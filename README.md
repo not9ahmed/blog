@@ -32,6 +32,9 @@ The following system consists current
 2. Run `npx prisma migrate dev --name init` to move schema changes to db
 3. Run Seed File `npx ts-node blog-api/db_scripts/seed.ts`
 
+#### To Fix Prisma ID Issue
+
+`SELECT setval(pg_get_serial_sequence('"MyTable"', 'id'), coalesce(max(id)+1, 1), false) FROM "MyTable";`
 
 ## User Stories
 

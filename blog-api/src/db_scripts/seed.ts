@@ -25,6 +25,7 @@ const prisma = new PrismaClient({
 async function main() {
   // ... you will write your Prisma Client queries here
 
+  console.log("hello from seed");
 
   // create user
     // const user = await prisma.user.create({
@@ -56,11 +57,19 @@ async function main() {
 
 
 
+
     // need way to handle id
-    const imageCreated = await prisma.image.create({
+    // TODO: Handle id dto
+    // const imageCreated = await prisma.image.create({
+    //   data: {
+    //     id: 123,
+    //     url: "123422",
+    //   }
+    // })
+
+    const skillTypeCreates = await prisma.skillType.create({
       data: {
-        id: 123,
-        url: "123422",
+        name: "test"
       }
     })
 
