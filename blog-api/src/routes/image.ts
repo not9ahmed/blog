@@ -9,7 +9,7 @@ const router = Router();
 
 
 router.get('/', imageController.findAllImages);
-router.get('/:id', imageController.findImageById);
+router.get('/:id([0-9]+)', imageController.findImageById);
 
 
 /**
@@ -21,7 +21,7 @@ router.post('/', upload.array('images', 12), imageController.createImages);
 
 
 
-router.delete('/:id', imageController.deleteImage)
+router.delete('/:id([0-9]+)', imageController.deleteImage)
 
 
 // middleware for handling specifc router
