@@ -1,16 +1,17 @@
-import { Project, Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import prisma from '../utils/dbClient';
+import { IProject, IProjectCreate, IProjectUpdate } from "../types/project";
 
 interface BatchPayload extends Prisma.BatchPayload{}
 
 
 interface IProjectService {
-    findAll(): Promise<Project[]>;
-    findById(id: number): Promise<Project>;
-    create(project: Project): Promise<Project>;
-    createMany(projects: Project[]): Promise<BatchPayload>;
-    update(id: number, project: Project): Promise<Project>;
-    delete(id: number): Promise<Project>;
+    findAll(): Promise<IProject[]>;
+    findById(id: number): Promise<IProject>;
+    create(project: IProject): Promise<IProject>;
+    createMany(projects: IProject[]): Promise<BatchPayload>;
+    update(id: number, project: IProjectUpdate): Promise<IProject>;
+    delete(id: number): Promise<IProject>;
     deleteAll(): Promise<BatchPayload>;
 }
 
@@ -21,7 +22,7 @@ export default class ProjectService implements IProjectService {
         console.log("ProjectService Construct");
     }
     
-    findAll = async(): Promise<Project[]> => {
+    findAll = async(): Promise<IProject[]> => {
         
         try {
 
@@ -37,7 +38,7 @@ export default class ProjectService implements IProjectService {
     }
 
 
-    findById = async(id: number): Promise<Project> => {
+    findById = async(id: number): Promise<IProject> => {
         
         try {
 
@@ -56,7 +57,7 @@ export default class ProjectService implements IProjectService {
         };
     }
 
-    create = async (project: Project): Promise<Project> => {
+    create = async (project: IProjectCreate): Promise<IProject> => {
         
         try {
 
@@ -74,7 +75,7 @@ export default class ProjectService implements IProjectService {
     }
 
 
-    createMany = async(projects: Project[]): Promise<BatchPayload> => {
+    createMany = async(projects: IProjectCreate[]): Promise<BatchPayload> => {
         
         
         try {
@@ -93,7 +94,7 @@ export default class ProjectService implements IProjectService {
     }
 
 
-    update =  async (id: number, project: Project): Promise<Project> => {
+    update =  async (id: number, project: IProjectUpdate): Promise<IProject> => {
         
         try {
 
@@ -114,7 +115,7 @@ export default class ProjectService implements IProjectService {
     }
 
 
-    delete = async (id: number): Promise<Project> => {
+    delete = async (id: number): Promise<IProject> => {
        
         try {
 

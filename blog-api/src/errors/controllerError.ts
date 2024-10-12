@@ -13,6 +13,7 @@ export const errorHandler = (err: unknown) => {
     };
 
     // Check prisma errors
+    //TODO: Add other code
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
         // The .code property can be accessed in a type-safe manner
         // access code type
@@ -23,8 +24,6 @@ export const errorHandler = (err: unknown) => {
             case 'P2020':
                 errorMsg = "Not Found";
                 break;
-
-            //TODO: Add other code
             default:
                 errorMsg = 'DB Client Error';
         }

@@ -1,8 +1,8 @@
-import express from 'express';
 import { Request, Response } from 'express'
 import SkillService from '../services/skill';
-import {  Skill } from "@prisma/client";
+import { Skill } from "@prisma/client";
 import { errorHandler } from '../errors/controllerError';
+import { ISkill, ISkillCreate, ISkillUpdate } from '../types/skill';
 
 const skillService = new SkillService();
 
@@ -25,7 +25,7 @@ const findAll = async (req: SkillRequest, res: Response) => {
 
     try {
     
-        let skills: Skill[];
+        let skills: ISkill[];
 
 
         // better to extract

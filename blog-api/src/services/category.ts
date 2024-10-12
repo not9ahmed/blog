@@ -24,12 +24,11 @@ interface ICategoryService {
 
 export default class CategoryService implements ICategoryService {
 
-
     constructor(){
         console.log("CategoryService Construct");    
     }
 
-    findAll = async(): Promise<Category[]> => {
+    findAll = async(): Promise<ICategory[]> => {
         
         try {
 
@@ -67,7 +66,7 @@ export default class CategoryService implements ICategoryService {
         }
     }
 
-    create = async (category: ICategoryCreate): Promise<Category> => {
+    create = async (category: ICategoryCreate): Promise<ICategory> => {
         
         try {
             const categoryCreated  = await prisma.category.create({
@@ -99,7 +98,7 @@ export default class CategoryService implements ICategoryService {
         }
     }
 
-    update = async (id: number, category: Category): Promise<Category> => {
+    update = async (id: number, category: ICategory): Promise<Category> => {
         
         try {
 

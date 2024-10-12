@@ -1,12 +1,13 @@
-import { Prisma, Skill, SkillType } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import prisma from '../utils/dbClient';
 import { ISkillType, ISkillTypeCreate, ISkillTypeUpdate } from "../types/skillType";
+import { ISkill } from "../types/skill";
 
 interface BatchPayload extends Prisma.BatchPayload{}
 
 type SkillTypesJoined = {
-    skills: Skill[];
-} & SkillType;
+    skills: ISkill[];
+} & ISkillType;
 
 // can use DTO here
 interface ISkillTypeService {
@@ -14,14 +15,14 @@ interface ISkillTypeService {
     findById(id: number): Promise<ISkillType>;
 
     // should check if id already exists
-    create(skillType: ISkillTypeCreate): Promise<SkillType>;
+    create(skillType: ISkillTypeCreate): Promise<ISkillType>;
     createMany(skillTypes: ISkillTypeCreate[]): Promise<BatchPayload>;
 
     // try join
     findAllWithSkills(): Promise<SkillTypesJoined[]>;
 
-    update(id: number, skillType: ISkillTypeUpdate): Promise<SkillType | null>;
-    delete(id: number): Promise<SkillType>;
+    update(id: number, skillType: ISkillTypeUpdate): Promise<ISkillType>;
+    delete(id: number): Promise<ISkillType>;
     deleteAll(): Promise<BatchPayload>;
 };
 
@@ -77,7 +78,7 @@ export default class SkillTypeService implements ISkillTypeService {
     }
 
 
-    create = async (skillType: ISkillTypeCreate): Promise<SkillType> => {
+    create = async (skillType: ISkillTypeCreate): Promise<ISkillType> => {
         
         try {
             const skillTypeCreated = await prisma.skillType.create({
@@ -129,7 +130,7 @@ export default class SkillTypeService implements ISkillTypeService {
     }
 
 
-    update = async (id: number, skillType: ISkillTypeUpdate): Promise<SkillType>  => {
+    update = async (id: number, skillType: ISkillTypeUpdate): Promise<ISkillType>  => {
     
         try {
             
@@ -149,7 +150,7 @@ export default class SkillTypeService implements ISkillTypeService {
         }
     }
     
-    delete = async (id: number): Promise<SkillType> => {
+    delete = async (id: number): Promise<ISkillType> => {
 
         try {
 

@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
 import CategoryService from '../services/category';
 import { Category } from '@prisma/client';
+import { errorHandler } from '../errors/controllerError';
+import { ICategory, ICategoryCreate } from '../types/category';
 
 const categoryService = new CategoryService();
 
@@ -15,12 +17,9 @@ export const findAllCategories = async (req: Request, res: Response) => {
 
     } catch (err) {
 
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
-        return res.status(404).json(response)
+        console.log(err);
+        const response = errorHandler(err);
+        return res.status(404).json(response);
     }
 }
 
@@ -37,10 +36,8 @@ const findCategoryById = async (req: Request, res: Response) => {
         
     } catch (err) {
 
-        const response = {
-            message: `error occured`,
-            error: err
-        }
+        console.log(err);
+        const response = errorHandler(err);
         return res.status(404).json(response);
     }
 }
@@ -52,17 +49,15 @@ const createCategory = async (req: Request, res: Response) => {
 
     try {
 
-        const category = req.body;
-
+        const category = req.body as ICategoryCreate;
+        
         const createdCategory = await categoryService.create(category);
-
         return res.status(200).json(createdCategory);
 
     } catch(err) {
-        const response = {
-            message: `error occured`,
-            error: err
-        }
+
+        console.log(err);
+        const response = errorHandler(err);
         return res.status(404).json(response);
     }
     
@@ -87,13 +82,8 @@ const updateCategory = async (req: Request, res: Response) => {
     } catch (err) {
         
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
-        return res.status(404).json(response)
+        const response = errorHandler(err);
+        return res.status(404).json(response);
     }
 
 }
@@ -113,13 +103,8 @@ const deleteCategory = async (req: Request, res: Response) => {
     } catch (err) {
         
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
-        return res.status(404).json(response)
+        const response = errorHandler(err);
+        return res.status(404).json(response);
     }
 }
 
@@ -128,7 +113,7 @@ const createBulk  = async (req: Request, res: Response) => {
 
     try {
 
-        const categories = req.body as Category[];
+        const categories = req.body as ICategory[];
 
         const skillTypesCount = await categoryService.createMany(categories);
 
@@ -137,13 +122,8 @@ const createBulk  = async (req: Request, res: Response) => {
     } catch (err) {
 
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
-        return res.status(404).json(response)
+        const response = errorHandler(err);
+        return res.status(404).json(response);
     }
 }
 
@@ -160,10 +140,9 @@ const deleteBulk = async (req: Request, res: Response, next: NextFunction) => {
 
     } catch (err) {
 
-        const response = {
-            error: err
-        }
-        return res.status(404).json(response)
+        console.log(err);
+        const response = errorHandler(err);
+        return res.status(404).json(response);
     }
 }
 
