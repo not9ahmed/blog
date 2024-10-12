@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
     const msg = {
         message: "Wellcome to my backend API" 
     };
-    res.status(200).json(msg)
+    res.status(200).json(msg);
 })
 
 

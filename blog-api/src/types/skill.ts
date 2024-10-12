@@ -2,21 +2,21 @@
 import { Skill } from "@prisma/client";
 
 /**
- * Base Skill Type
+ * Base Skill
  */
 export interface ISkill extends Skill { }
 
 /**
- * Interface for skillType creation
+ * Interface for skill creation
  */
 export interface ISkillCreate extends Omit<ISkill, 'id' > { }
 
 /**
- * Interface for skillType edit
+ * Interface for skill edit
  */
 export interface ISkillUpdate extends Omit<ISkill, 'id'> { }
 
 /**
- * Interface for skillType deletion
+ * Interface for skill deletion
  */
 export interface ISkillDelete extends Pick<ISkill, 'id'> { }

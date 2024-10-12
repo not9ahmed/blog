@@ -1,6 +1,5 @@
 [
     {
-        "id": 1,
         "title": "\"Goodbye, Eri\" Manga. why it's so good!",
         "description": "In this blog I will give my first impressions of \"Goodbye, Eri\" manga. Is Fujimoto a genius?",
         "keywords": ["Manga", "Tatsuki Fujimoto", "Drama"],
@@ -11,7 +10,6 @@
         "createdBy": 1
     },
     {
-        "id": 2,
         "title": "Samurai Champloo. A masterpiece",
         "description": "In this blog post, I will go through the briliance of cowboy bebop writer",
         "keywords": ["Anime", "Samurai", "Hip-Hop"],
@@ -22,7 +20,6 @@
         "createdBy": 1
     },
     {
-        "id": 3,
         "title": "Tensorflow and Their Newest Update",
         "description": "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
         "content": "Very long title",
@@ -32,7 +29,6 @@
         "createdBy": 1
     },
     {
-        "id": 4,
         "title": "Tensorflow and Their Newest Update",
         "description": "Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. Facilisi tortor natoque euismod scelerisque. Mauris et adipiscing in non. Lorem ipsum dolor sit amet consectetur. Lobortis leo eu sem eleifend netus etiam posuere magna. ",
         "content": "Very long title",
@@ -42,7 +38,6 @@
         "createdBy": 1
     },
     {
-        "id": 5,
         "title": "React is so cool, but the SSR is needed",
         "description": "React rant",
         "content": "Very long title",
@@ -52,7 +47,6 @@
         "createdBy": 1
     },
     {
-        "id": 6,
         "title": "Cloud Computing",
         "description": "AWS or Azure which one to use",
         "content": "Very long title",
@@ -62,7 +56,6 @@
         "createdBy": 1
     },
     {
-        "id": 7,
         "title": "Jazz is nice",
         "description": "have been listening to a lot of jazz lately",
         "content": "Very long title",

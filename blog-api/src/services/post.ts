@@ -1,5 +1,6 @@
 import { Post, Prisma } from "@prisma/client";
 import prisma from "../utils/dbClient";
+import { IPost, IPostCreate, IPostUpdate } from "../types/post";
 
 
 
@@ -10,12 +11,12 @@ type UserWhere  = Prisma.PostWhereInput
 
 
 interface IPostService {
-    findAll(userWhere: UserWhere | null): Promise<Post[]>;
-    findById(id: number): Promise<Post>;
-    create(post: Post): Promise<Post>;
-    createMany(posts: Post[]): Promise<BatchPayload>;
-    update(id: number, post: Post): Promise<Post>;
-    delete(id: number): Promise<Post>;
+    findAll(userWhere: UserWhere | null): Promise<IPost[]>;
+    findById(id: number): Promise<IPost>;
+    create(post: IPostCreate): Promise<IPost>;
+    createMany(posts: IPostCreate[]): Promise<BatchPayload>;
+    update(id: number, post: IPostUpdate): Promise<IPost>;
+    delete(id: number): Promise<IPost>;
     deleteAll(): Promise<BatchPayload>;
 }
 
@@ -46,7 +47,7 @@ export default class PostService implements IPostService {
         }
     }
     
-    findById = async(id: number): Promise<Post> => {
+    findById = async(id: number): Promise<IPost> => {
         
         try {
             const post = await prisma.post.findFirstOrThrow({
@@ -63,7 +64,7 @@ export default class PostService implements IPostService {
     }
     
     
-    create = async(post: Post): Promise<Post> => {
+    create = async(post: IPostCreate): Promise<IPost> => {
         
         try {
             
@@ -80,7 +81,7 @@ export default class PostService implements IPostService {
     }
     
     
-    createMany = async (posts: Post[]): Promise<BatchPayload> => {
+    createMany = async (posts: IPostCreate[]): Promise<BatchPayload> => {
         
         try {
             const resultCount = await prisma.post.createMany({
@@ -94,7 +95,7 @@ export default class PostService implements IPostService {
             throw err;
         }   
     }
-    update =  async(id: number, post: Post): Promise<Post> => {
+    update =  async(id: number, post: IPostUpdate): Promise<IPost> => {
         
         try {
             const updatedPost = await prisma.post.update({
@@ -111,7 +112,7 @@ export default class PostService implements IPostService {
         }
     }
     
-    delete = async(id: number): Promise<Post> => {
+    delete = async(id: number): Promise<IPost> => {
 
         try {
             const deletedPost = await prisma.post.delete({
@@ -132,7 +133,6 @@ export default class PostService implements IPostService {
         try {
             
             const resultCount = await prisma.post.deleteMany();
-
             return resultCount;
 
         } catch (err) {

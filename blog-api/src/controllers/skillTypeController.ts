@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
 import SkillTypeService from '../services/skillType';
-import {  Prisma, SkillType } from "@prisma/client";
 import { errorHandler } from '../errors/controllerError';
 import { ISkillType, ISkillTypeCreate, ISkillTypeUpdate } from '../types/skillType';
 

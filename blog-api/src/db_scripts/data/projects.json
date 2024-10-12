@@ -1,6 +1,5 @@
 [
     {
-        "id": 1,
         "name": "AI Shopping System",
         "startDate": "2024-07-26T20:26:36.479Z",
         "completeDate": "2024-07-26T20:26:36.479Z",
@@ -12,7 +11,6 @@
         "github": "https://github.com/not9ahmed/blog"
     },
     {
-        "id": 2,
         "name": "No More Yo3an",
         "startDate": "2024-07-26T20:26:36.479Z",
         "completeDate": "2024-07-26T20:26:36.479Z",
@@ -24,7 +22,6 @@
         "github": "https://github.com/not9ahmed/blog"
     },
     {
-        "id": 3,
         "name": "Connect Four",
         "startDate": "2024-07-26T20:26:36.479Z",
         "completeDate": null,

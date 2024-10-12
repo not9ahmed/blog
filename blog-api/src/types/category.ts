@@ -7,16 +7,16 @@ import { Category } from "@prisma/client";
 export interface ICategory extends Category { }
 
 /**
- * Interface for skillType creation
+ * Interface for category creation
  */
 export interface ICategoryCreate extends Omit<ICategory, 'id' > { }
 
 /**
- * Interface for skillType edit
+ * Interface for category edit
  */
 export interface ICategoryUpdate extends Omit<ICategory, 'id'> { }
 
 /**
- * Interface for skillType deletion
+ * Interface for category deletion
  */
 export interface ICategoryDelete extends Pick<ICategory, 'id'> { }

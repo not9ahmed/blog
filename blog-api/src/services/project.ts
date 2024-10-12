@@ -26,7 +26,13 @@ export default class ProjectService implements IProjectService {
         
         try {
 
-            const projects = await prisma.project.findMany();
+            const projects = await prisma.project.findMany(
+                {
+                    orderBy: {
+                        id: "asc"
+                    }
+                }
+            );
             return projects;
 
         } catch (err) {
@@ -140,7 +146,6 @@ export default class ProjectService implements IProjectService {
         try {
 
             const resultCount = await prisma.project.deleteMany();
-
             return resultCount;
             
         } catch (err) {

@@ -1,79 +1,55 @@
-import { Project } from '@prisma/client';
 import { Request, Response, NextFunction } from 'express'
 import ProjectService from '../services/project';
-const projects = require('../db_scripts/data/projects.json');
-
+import { IProject, IProjectCreate, IProjectUpdate } from '../types/project';
+import { errorHandler } from '../errors/controllerError';
 
 const projectService = new ProjectService();
 
-interface ProjectRequest extends Request {
-    body: Project;
-}
-
-interface ProjectBulkRequest extends Request {
-    body: Project[];
-}
-
-interface ProjectResponse extends Response {
-    body: Project;
-}
-
-interface ProjectBulkResponse extends Response {
-    body: Project[];
-}
-
-
-
-const findAllProjects = async (req: ProjectBulkRequest, res: ProjectBulkResponse) => {
+const findAll = async (req: Request, res: Response) => {
 
     try {
     
-        const projects: Project[] = await projectService.findAll();
+        const projects: IProject[] = await projectService.findAll();
 
         return res.status(200).json(projects);
 
-     // based on error thrown which is from PRISMA I can find what caused it
     } catch (err) {
 
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
+        console.log(err);
+        const response = errorHandler(err);
         return res.status(404).json(response);
+
     }
 
 }
 
 
-const findProjectById = async (req: ProjectRequest, res: Response, next: NextFunction) => {
+const findById = async (req: Request, res: Response, next: NextFunction) => {
     
     try {
     
         const id = parseInt(req.params.id);
 
-        const project: Project = await projectService.findById(id);
+        const project: IProject = await projectService.findById(id);
 
         return res.status(200).json(project);
 
      // based on error thrown which is from PRISMA I can find what caused it
     } catch (err) {
 
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
+        console.log(err);
+        const response = errorHandler(err);
         return res.status(404).json(response);
+
     }
 }
 
 
-const createProject = async (req: Request, res: Response, next: NextFunction) => {
+const create = async (req: Request, res: Response, next: NextFunction) => {
     
     try {
 
-        const project = req.body as Project;
+        const project = req.body as IProjectCreate;
 
         const createdProject = await projectService.create(project);
 
@@ -82,25 +58,20 @@ const createProject = async (req: Request, res: Response, next: NextFunction) =>
     } catch (err) {
 
         console.log(err);
+        const response = errorHandler(err);
+        return res.status(404).json(response);
 
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
-        return res.status(404).json(response)
-        
     }
 }
 
 
-const updateProject = async (req: Request, res: Response, next: NextFunction) => {
+const update = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
 
         const id = parseInt(req.params.id);
 
-        const project = req.body as Project;
+        const project = req.body as IProjectUpdate;
 
         const updatedProject = await projectService.update(id, project);
 
@@ -109,18 +80,14 @@ const updateProject = async (req: Request, res: Response, next: NextFunction) =>
     } catch (err) {
 
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
+        const response = errorHandler(err);
         return res.status(404).json(response);
+
     }
 }
 
 
-const deleteProject = async (req: Request, res: Response, next: NextFunction) => {
+const _delete = async (req: Request, res: Response, next: NextFunction) => {
     
     try {
         
@@ -133,43 +100,34 @@ const deleteProject = async (req: Request, res: Response, next: NextFunction) =>
     } catch (err) {
         
         console.log(err);
+        const response = errorHandler(err);
+        return res.status(404).json(response);
 
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
-        return res.status(404).json(response)
     }
 }
 
 
-const createBulkProjects = async (req: Request, res: Response, next: NextFunction) => {
+const createBulk = async (req: Request, res: Response, next: NextFunction) => {
     
     try {
 
-        const projects = req.body as Project[];
+        const projects = req.body as IProjectCreate[];
 
         const resultsCount = await projectService.createMany(projects);
 
         return res.status(201).json(resultsCount);
 
     } catch (err) {
-
+  
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
+        const response = errorHandler(err);
         return res.status(404).json(response);
         
     }
 }
 
 
-const deleteBulkProjects = async (req: Request, res: Response, next: NextFunction) => {
+const deleteBulk = async (req: Request, res: Response, next: NextFunction) => {
     
     try {
 
@@ -178,14 +136,10 @@ const deleteBulkProjects = async (req: Request, res: Response, next: NextFunctio
         return res.status(201).json(resultsCount);
 
     } catch (err) {
+        
         console.log(err);
-
-        const response = {
-            message: `error occured in bulk`,
-            error: err
-        }
-
-        return res.status(404).json(response)
+        const response = errorHandler(err);
+        return res.status(404).json(response);
     }
 }
 
@@ -194,11 +148,11 @@ const deleteBulkProjects = async (req: Request, res: Response, next: NextFunctio
 
 
 module.exports = {
-    findAllProjects,
-    findProjectById,
-    createProject,
-    updateProject,
-    deleteProject,
-    createBulkProjects,
-    deleteBulkProjects
+    findAll,
+    findById,
+    create,
+    update,
+    _delete,
+    createBulk,
+    deleteBulk
 }

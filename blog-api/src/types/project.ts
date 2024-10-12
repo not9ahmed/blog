@@ -2,21 +2,21 @@
 import { Project } from "@prisma/client";
 
 /**
- * Base Skill Type
+ * Base project Type
  */
 export interface IProject extends Project { }
 
 /**
- * Interface for skillType creation
+ * Interface for project creation
  */
 export interface IProjectCreate extends Omit<IProject, 'id' > { }
 
 /**
- * Interface for skillType edit
+ * Interface for project edit
  */
 export interface IProjectUpdate extends Omit<IProject, 'id'> { }
 
 /**
- * Interface for skillType deletion
+ * Interface for project deletion
  */
 export interface IProjectDelete extends Pick<IProject, 'id'> { }

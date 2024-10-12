@@ -1,27 +1,11 @@
 import { Request, Response } from 'express'
 import SkillService from '../services/skill';
-import { Skill } from "@prisma/client";
 import { errorHandler } from '../errors/controllerError';
 import { ISkill, ISkillCreate, ISkillUpdate } from '../types/skill';
 
 const skillService = new SkillService();
 
-
-// interfaces
-interface SkillRequest extends Request {
-    body: Skill;
-}
-
-interface SkillBulkRequest extends Request {
-    body: Skill[];
-}
-
-interface SkillResponse extends Response {
-    body: Skill;
-}
-
-
-const findAll = async (req: SkillRequest, res: Response) => {
+const findAll = async (req: Request, res: Response) => {
 
     try {
     
@@ -63,7 +47,7 @@ const findAll = async (req: SkillRequest, res: Response) => {
 }
 
 
-const findById = async (req: SkillRequest, res: Response) => {
+const findById = async (req: Request, res: Response) => {
 
     try {
     
@@ -83,11 +67,11 @@ const findById = async (req: SkillRequest, res: Response) => {
     }
 }
 
-const create = async (req: SkillRequest, res: SkillResponse) => {
+const create = async (req: Request, res: Response) => {
 
     try {
 
-        const skill = req.body as Skill;
+        const skill = req.body as ISkillCreate;
 
         const createdSkill = await skillService.create(skill);
 
@@ -104,13 +88,13 @@ const create = async (req: SkillRequest, res: SkillResponse) => {
 }
 
 
-const update = async (req: SkillRequest, res: SkillResponse) => {
+const update = async (req: Request, res: Response) => {
 
     try {
 
         const id = parseInt(req.params.id);
 
-        const skill = req.body as Skill;
+        const skill = req.body as ISkillUpdate;
 
         const updatedSkill = await skillService.update(id, skill);
 
@@ -128,7 +112,7 @@ const update = async (req: SkillRequest, res: SkillResponse) => {
 
 
 
-const _delete = async (req: SkillRequest, res: SkillResponse) => {
+const _delete = async (req: Request, res: Response) => {
 
     try {
         
@@ -147,11 +131,11 @@ const _delete = async (req: SkillRequest, res: SkillResponse) => {
 }
 
 
-const createBulk = async (req: SkillBulkRequest, res: SkillResponse) => {
+const createBulk = async (req: Request, res: Response) => {
 
     try {
 
-        const skills = req.body as Skill[];
+        const skills = req.body as ISkillCreate[];
 
         const resultsCount = await skillService.createMany(skills);
 
@@ -168,7 +152,7 @@ const createBulk = async (req: SkillBulkRequest, res: SkillResponse) => {
 
 
 
-const deleteBulk = async (req: SkillRequest, res: SkillResponse) => {
+const deleteBulk = async (req: Request, res: Response) => {
 
     try {
 

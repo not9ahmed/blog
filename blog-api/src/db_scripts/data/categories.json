@@ -1,62 +1,53 @@
 [
     {
-        "id": 1,
         "name": "Software Engineering",
         "parentCategoryId": null,
         "createdDate": "2024-07-26T20:26:36.479Z",
         "createdBy": 1
     },
     {
-        "id": 2,
         "name": "Data Science",
         "parentCategoryId": null,
         "createdDate": "2024-07-26T20:26:36.479Z",
         "createdBy": 4
     },
     {
-        "id": 3,
         "name": "Computer Science",
         "parentCategoryId": null,
         "createdDate": "2024-07-26T20:26:36.479Z",
         "createdBy": 3
     },
     {
-        "id": 4,
         "name": "Music",
         "parentCategoryId": null,
         "createdDate": "2024-07-26T20:26:36.479Z",
         "createdBy": 4
     },
     {
-        "id": 5,
         "name": "Books",
         "parentCategoryId": null,
         "createdDate": "2024-07-26T20:26:36.479Z",
         "createdBy": 2
     },
     {
-        "id": 6,
         "name": "Manga",
         "parentCategoryId": 5,
         "createdDate": "2024-07-26T20:26:36.479Z",
         "createdBy": 1
     },
     {
-        "id": 7,
         "name": "Movies",
         "parentCategoryId": null,
         "createdDate": "2024-07-26T20:26:36.479Z",
         "createdBy": 1
     },
     {
-        "id": 8,
         "name": "Shows",
         "parentCategoryId": null,
         "createdDate": "2024-07-26T20:26:36.479Z",
         "createdBy": 1
     },
     {
-        "id": 9,
         "name": "Anime",
         "parentCategoryId": null,
         "createdDate": "2024-07-26T20:26:36.479Z",
