@@ -2,6 +2,7 @@ import express from 'express';
 import { Request, Response } from 'express'
 import SkillService from '../services/skill';
 import {  Skill } from "@prisma/client";
+import { errorHandler } from '../errors/controllerError';
 
 const skillService = new SkillService();
 
@@ -48,18 +49,15 @@ const findAll = async (req: SkillRequest, res: Response) => {
 
             // skills = await skillsService.findAll();
         }
-        
 
-        // console.log(skills);
 
         return res.status(200).send(skills);
 
     } catch (err) {
-        // throw new Error(`Error Occurred ${err}`);
-        return res.status(404).json({
-            message: "error occured",
-            error: err
-        })
+
+        console.log(err);
+        const response = errorHandler(err);
+        return res.status(404).json(response);
 
     }
 }
@@ -70,7 +68,6 @@ const findById = async (req: SkillRequest, res: Response) => {
     try {
     
         const id = parseInt(req.params.id);
-
         const skill = await skillService.findById(id);
 
         console.log(skill);
@@ -78,10 +75,10 @@ const findById = async (req: SkillRequest, res: Response) => {
         return res.status(200).send(skill);
 
     } catch (err) {
-        // throw new Error(`Error Occurred ${err}`);
-        return res.status(404).json({
-            message: "error occured"
-        })
+
+        console.log(err);
+        const response = errorHandler(err);
+        return res.status(404).json(response);
 
     }
 }
@@ -99,13 +96,8 @@ const create = async (req: SkillRequest, res: SkillResponse) => {
     } catch (err) {
 
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
-        return res.status(404).json(response)
+        const response = errorHandler(err);
+        return res.status(404).json(response);
         
     }
 
@@ -127,12 +119,7 @@ const update = async (req: SkillRequest, res: SkillResponse) => {
     } catch (err) {
 
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
+        const response = errorHandler(err);
         return res.status(404).json(response);
     }
 
@@ -154,13 +141,8 @@ const _delete = async (req: SkillRequest, res: SkillResponse) => {
     } catch (err) {
         
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
-        return res.status(404).json(response)
+        const response = errorHandler(err);
+        return res.status(404).json(response);
     }
 }
 
@@ -178,12 +160,7 @@ const createBulk = async (req: SkillBulkRequest, res: SkillResponse) => {
     } catch (err) {
 
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
+        const response = errorHandler(err);
         return res.status(404).json(response);
         
     }
@@ -201,14 +178,10 @@ const deleteBulk = async (req: SkillRequest, res: SkillResponse) => {
         return res.status(201).json(resultsCount);
 
     } catch (err) {
+
         console.log(err);
-
-        const response = {
-            message: `error occured`,
-            error: err
-        }
-
-        return res.status(404).json(response)
+        const response = errorHandler(err);
+        return res.status(404).json(response);
     }
 }
 

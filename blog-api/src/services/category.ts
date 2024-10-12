@@ -1,5 +1,6 @@
 import { Category, Prisma  } from '@prisma/client'
 import prisma from '../utils/dbClient';
+import { ICategory, ICategoryCreate, ICategoryUpdate } from '../types/category';
 
 
 // THESE CAN BE Moved to outer file
@@ -9,15 +10,15 @@ interface BatchPayload extends Prisma.BatchPayload{}
 // Can be extracted to factory service
 interface ICategoryService {
 
-    // allow passing parameters
-    findAll(): Promise<Category[]>;
-    findById(id: number): Promise<Category>;
-    findByParentCategoryId(id: number): Promise<Category[]>;
-    create(category: Category): Promise<Category>;
-    createMany(categories: Category[]): Promise<BatchPayload>;
-    update(id: number, category: Category): Promise<Category>;
-    delete(id: number): Promise<Category>;
+    //TODO: allow passing parameters
+    findAll(): Promise<ICategory[]>;
+    findById(id: number): Promise<ICategory>;
+    create(category: ICategoryCreate): Promise<ICategory>;
+    createMany(categories: ICategoryCreate[]): Promise<BatchPayload>;
+    update(id: number, category: ICategoryUpdate): Promise<ICategory>;
+    delete(id: number): Promise<ICategory>;
     deleteAll(): Promise<BatchPayload>;
+    findByParentCategoryId(id: number): Promise<ICategory[]>;
 }
 
 
@@ -25,7 +26,8 @@ export default class CategoryService implements ICategoryService {
 
 
     constructor(){
-        console.log("CategoryService Construct");    }
+        console.log("CategoryService Construct");    
+    }
 
     findAll = async(): Promise<Category[]> => {
         
@@ -33,7 +35,7 @@ export default class CategoryService implements ICategoryService {
 
             const categories = await prisma.category.findMany({
                 orderBy: {
-                    id: 'asc'
+                    id: "asc"
                 }
             });
             return categories;
@@ -45,7 +47,7 @@ export default class CategoryService implements ICategoryService {
     }
 
 
-    findById = async (id: number): Promise<Category> => {
+    findById = async (id: number): Promise<ICategory> => {
         
         try {
 
@@ -65,16 +67,32 @@ export default class CategoryService implements ICategoryService {
         }
     }
 
-    create = async (category: Category): Promise<Category> => {
+    create = async (category: ICategoryCreate): Promise<Category> => {
         
         try {
-
             const categoryCreated  = await prisma.category.create({
                 data: category
             });
 
             return categoryCreated;
 
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
+
+    createMany = async (categories: ICategoryCreate[]): Promise<BatchPayload> => {
+        
+        try {
+
+            const resultCount = await prisma.category.createMany({
+                data: categories
+            });
+
+            return resultCount;
+            
         } catch (err) {
             console.log(err);
             throw err;
@@ -101,7 +119,7 @@ export default class CategoryService implements ICategoryService {
     }
 
 
-    delete = async (id: number): Promise<Category> => {
+    delete = async (id: number): Promise<ICategory> => {
         
         try {
             const categoryDeleted = await prisma.category.delete({
@@ -117,8 +135,21 @@ export default class CategoryService implements ICategoryService {
         }
     }
 
+    deleteAll = async(): Promise<BatchPayload> => {
 
-    findByParentCategoryId = async (id: number): Promise<Category[]> => {
+        try {
+
+            const resultCount = await prisma.category.deleteMany();
+
+            return resultCount;
+            
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
+    findByParentCategoryId = async (id: number): Promise<ICategory[]> => {
 
         try {
             
@@ -130,37 +161,6 @@ export default class CategoryService implements ICategoryService {
 
             return categories;
 
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
-    }
-
-
-    createMany = async (categories: Category[]): Promise<BatchPayload> => {
-        
-        try {
-
-            const resultCount = await prisma.category.createMany({
-                data: categories
-            });
-
-            return resultCount;
-            
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
-
-    }
-    deleteAll = async(): Promise<BatchPayload> => {
-
-        try {
-
-            const resultCount = await prisma.category.deleteMany();
-
-            return resultCount;
-            
         } catch (err) {
             console.log(err);
             throw err;

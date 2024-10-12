@@ -1,16 +1,17 @@
 import { Skill, Prisma } from "@prisma/client";
 import prisma from '../utils/dbClient';
+import { ISkill, ISkillCreate, ISkillUpdate } from "../types/skill";
 
 interface BatchPayload extends Prisma.BatchPayload{}
 
 interface ISkillService {
-    findAll(): Promise<Skill[]>;
-    findById(id: number): Promise<Skill>;
-    findBySkillType(skillTypeId: number): Promise<Skill[]>;
-    create(skill: Skill): Promise<Skill>;
-    createMany(skills: Skill[]): Promise<BatchPayload>;
-    update(id: number, skill: Skill): Promise<Skill>;
-    delete(id: number): Promise<Skill>;
+    findAll(): Promise<ISkill[]>;
+    findById(id: number): Promise<ISkill>;
+    findBySkillType(skillTypeId: number): Promise<ISkill[]>;
+    create(skill: ISkillCreate): Promise<Skill>;
+    createMany(skills: ISkillCreate[]): Promise<BatchPayload>;
+    update(id: number, skill: ISkillUpdate): Promise<Skill>;
+    delete(id: number): Promise<ISkill>;
     deleteAll(): Promise<BatchPayload>;
 }
 
@@ -21,11 +22,17 @@ export default class SkillService implements ISkillService {
     }
     
 
-    findAll = async (): Promise<Skill[]> => {
+    findAll = async (): Promise<ISkill[]> => {
 
         try {
 
-            const skills = await prisma.skill.findMany();
+            const skills = await prisma.skill.findMany(
+                {
+                    orderBy: {
+                        id: "asc"
+                    }
+                }
+            );
             return skills;
 
         } catch (err){
@@ -34,7 +41,7 @@ export default class SkillService implements ISkillService {
         }
     }
 
-    findById = async (id: number): Promise<Skill> => {
+    findById = async (id: number): Promise<ISkill> => {
 
         try {
 
@@ -47,13 +54,12 @@ export default class SkillService implements ISkillService {
             return skill;
 
         } catch (err){
-            console.log(err)
-
+            console.log(err);
             throw err;
         }
     }
 
-    findBySkillType = async (skillTypeId: number): Promise<Skill[]> => {
+    findBySkillType = async (skillTypeId: number): Promise<ISkill[]> => {
         
         console.log("skillTypeId", skillTypeId)
         try {
@@ -74,10 +80,9 @@ export default class SkillService implements ISkillService {
     }
 
 
-    create = async (skill: Skill): Promise<Skill> => {
+    create = async (skill: ISkillCreate): Promise<ISkill> => {
         
         try {
-
             const skillCreated = await prisma.skill.create({
                 data: skill
             });
@@ -92,7 +97,7 @@ export default class SkillService implements ISkillService {
     }
 
 
-    createMany = async (skills: Skill[]): Promise<BatchPayload> => {
+    createMany = async (skills: ISkillCreate[]): Promise<BatchPayload> => {
 
         try {
 
@@ -109,7 +114,7 @@ export default class SkillService implements ISkillService {
         }
     }
 
-    update = async(id: number, skill: Skill): Promise<Skill> => {
+    update = async(id: number, skill: ISkillUpdate): Promise<Skill> => {
         
         try {
             
@@ -130,7 +135,7 @@ export default class SkillService implements ISkillService {
         }
     }
 
-    delete = async (id: number): Promise<Skill> => {
+    delete = async (id: number): Promise<ISkill> => {
         
         try {
             const skill = await prisma.skill.delete({
@@ -160,8 +165,5 @@ export default class SkillService implements ISkillService {
             throw err;
         }
     }
-
-
-    
 
 }

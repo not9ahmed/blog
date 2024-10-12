@@ -62,7 +62,6 @@ export default class SkillTypeService implements ISkillTypeService {
         
         try {
             
-
             const skillType = await prisma.skillType.findFirstOrThrow({
                 where: {
                     id: id
@@ -73,10 +72,6 @@ export default class SkillTypeService implements ISkillTypeService {
 
         } catch (err) {
             console.log(err)
-            if(err instanceof Prisma.PrismaClientKnownRequestError){
-
-                console.log("Skill Type not Found");
-            }
             throw err;
         }
     }
@@ -93,14 +88,7 @@ export default class SkillTypeService implements ISkillTypeService {
 
         } catch (err) {
 
-            console.log(err);
-
-            if(err instanceof Prisma.PrismaClientKnownRequestError){
-
-                console.log("Skill Type not Found");
-            }
             throw err;
-        
         }
     }
 
@@ -115,13 +103,8 @@ export default class SkillTypeService implements ISkillTypeService {
             return skillTypesCount;
         } catch (err) {
 
+            console.log(err)
 
-            console.log(err);
-
-            if(err instanceof Prisma.PrismaClientKnownRequestError){
-
-                console.log("Skill Type not Found");
-            }
             throw err;
         }
     }
@@ -139,8 +122,9 @@ export default class SkillTypeService implements ISkillTypeService {
             return skillTypes;
 
         } catch (err) {
-            throw new Error(`Error Occurred ${err}`);
 
+            console.log(err)
+            throw err;
         }   
     }
 
@@ -149,7 +133,6 @@ export default class SkillTypeService implements ISkillTypeService {
     
         try {
             
-
             const skillTypeUpdated = await prisma.skillType.update({
                 where: {
                     id: id
@@ -160,7 +143,8 @@ export default class SkillTypeService implements ISkillTypeService {
             return skillTypeUpdated;
 
         } catch (err) {
-            // throw new Error(`Error Occurred ${err}`);
+
+            console.log(err)
             throw err;
         }
     }
@@ -179,8 +163,8 @@ export default class SkillTypeService implements ISkillTypeService {
 
         } catch (err) {
 
+            console.log(err)
             throw err;
-            
         }
     }
 
@@ -196,6 +180,8 @@ export default class SkillTypeService implements ISkillTypeService {
             return resultsCount;
 
         } catch (err) {
+
+            console.log(err)
             throw err;
         }
     }

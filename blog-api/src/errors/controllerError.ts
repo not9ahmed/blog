@@ -20,6 +20,9 @@ export const errorHandler = (err: unknown) => {
             case 'P2025':
                 errorMsg = "Not Found";
                 break;
+            case 'P2020':
+                errorMsg = "Not Found";
+                break;
 
             //TODO: Add other code
             default:
