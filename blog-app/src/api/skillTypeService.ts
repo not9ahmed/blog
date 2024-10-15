@@ -1,8 +1,7 @@
 import axios from "axios"
-import { ISkillType, ISkillTypeCreate, ISkillTypeEdit } from "../types/skillType";
+import { ISkillType, ISkillTypeBulk, ISkillTypeCreate, ISkillTypeEdit } from "../types/skillType";
 
 const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL
-
 const SKILL_TYPES_URL: string = `${API_BASE_URL}/skilltypes`
 
 
@@ -14,6 +13,8 @@ export const findAllSkillTypes = async (): Promise<ISkillType[]> => {
 
     try {
         const response = await axios.get(`${SKILL_TYPES_URL}`);
+        
+        // TODO: Require better approach to map results for dates
         const data = response['data'] as ISkillType[];
 
         // data.map(el => {
@@ -28,10 +29,10 @@ export const findAllSkillTypes = async (): Promise<ISkillType[]> => {
 
 }
 
-
 /**
- * fetch single category by id from api
- * @returns Array of category with ICategory interface
+ * Fetch single category by id from api
+ * @param id 
+ * @returns Array of skilltype of type ISkillType
  */
 export const findSkillTypeById = async (id: number): Promise<ISkillType> => {
 
@@ -63,7 +64,6 @@ export const createSkillType = async (skilltype: ISkillTypeCreate): Promise<ISki
 }
 
 
-
 export const editSkillType = async (id: number, skillType: ISkillTypeEdit): Promise<ISkillType> => {
     
     try {
@@ -72,6 +72,7 @@ export const editSkillType = async (id: number, skillType: ISkillTypeEdit): Prom
         return data;
 
     } catch (err) {
+        console.log(err);
         throw err;
     }
 }
@@ -85,6 +86,34 @@ export const deleteSkillType = async (id: number): Promise<ISkillType> => {
         return data;
 
     } catch (err) {
+        console.log(err);
+        throw err;
+    }
+}
+
+export const createBulkSkillType = async (skilltypes: ISkillTypeCreate[]): Promise<ISkillTypeBulk> => {
+    
+    try {
+        const response = await axios.post(`${SKILL_TYPES_URL}/bulk`, skilltypes)
+        const data = response ['data'] as ISkillTypeBulk;
+        return data;
+
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+}
+
+
+export const deleteBulkSkillTypes = async (): Promise<ISkillTypeBulk> => {
+    
+    try {
+        const response = await axios.delete(`${SKILL_TYPES_URL}/bulk`)
+        const data = response ['data'] as ISkillTypeBulk;
+        return data;
+
+    } catch (err) {
+        console.log(err);
         throw err;
     }
 }

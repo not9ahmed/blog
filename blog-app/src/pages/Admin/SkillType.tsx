@@ -21,13 +21,6 @@ export default function SkillType() {
     isEditable: boolean
   }
 
-  const test: IEditableSkillType = {
-    id: 0,
-    name: '',
-    isEditable: false
-  }
-
-  const [newId, setNewId] = useState(0);
   const [newSkillType, setNewSkillType] = useState<ISkillTypeCreate>({
     name: ''
   });
@@ -61,27 +54,18 @@ export default function SkillType() {
 
       const newEditableRows: IEditableSkillType[] = skillTypesAPI.map(el => ({id: el.id, name: el.name ,isEditable: false}))
       
-      console.log("newEditableRows", newEditableRows);
-
+      // console.log("newEditableRows", newEditableRows);
       setEditableSkillTypes(newEditableRows);
-
-      setNewId(newId);
-
-
     }
 
 
     fetchData();
-
-
-    console.log("newId", newId);
-    console.log("editableSkillTypes", editableSkillTypes);
+    // console.log("editableSkillTypes", editableSkillTypes);
 
   },[]);
 
 
 
-  
 
 
   const skillTypeCreateHandler = async () => {
@@ -115,7 +99,7 @@ export default function SkillType() {
   const addSkillType = async (e: MouseEventHandler<HTMLButtonElement>) => {
     console.log('add skill type called');
 
-    // if there new skill type then crate 
+    // if there new skill type then create 
     if(newSkillType) {
       const data = await createSkillType(newSkillType);
 
@@ -192,14 +176,14 @@ export default function SkillType() {
     const toBeEditedSkillType = editableSkillTypes.find(el => el.isEditable === true);
 
 
-    console.log("toBeEditedSkillType", toBeEditedSkillType);
+    // console.log("toBeEditedSkillType", toBeEditedSkillType);
 
     if(toBeEditedSkillType) {
 
       const data  = await editSkillType(toBeEditedSkillType.id, {
         name: toBeEditedSkillType.name
       });
-      console.log(data);
+      // console.log(data);
     }
 
     const updatedSkillTypes = await findAllSkillTypes();
@@ -282,7 +266,7 @@ export default function SkillType() {
                       </Button>
 
                       {/* confirm edit */}
-                      <IconButton  onClick={confirmEdit}>
+                      <IconButton  onClick={() => confirmEdit}>
                         <CheckIcon width="18" height="18"/>
                       </IconButton>
                     </Flex>
@@ -310,7 +294,7 @@ export default function SkillType() {
               </Table.Cell>
 
               <Table.Cell>
-                <Button type='submit' onClick={() => addSkillType}>Add</Button>
+                <Button type='submit' onClick={addSkillType}>Add</Button>
               </Table.Cell>
             </Table.Row>
 
