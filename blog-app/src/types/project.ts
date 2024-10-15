@@ -1,40 +1,30 @@
-// will contain the project interfaces
-
-export interface ProjectInterface {
-    id: number,
-    name: string,
-    startDate: Date,
-    completeDate: Date | null,
-    status: "Complete" | "In Progress" | "Just Started" | "In Plan"
-    description: string,
-    tools: string[],
-    images: string[], 
-    link: string,
-    github: string
+/**
+ * Base project Type
+ */
+export interface IProject {
+    id: number;
+    name: string;
+    startDate: Date;
+    completeDate: Date | null;
+    status: string;
+    description: string;
+    tools: string[];
+    images: string[];
+    link: string;
+    github: string;
 }
 
-export interface ProjectCreateInterface {
-    id: number,
-    name: string,
-    startDate: Date,
-    completeDate: Date | null,
-    status: "Complete" | "In Progress" | "Just Started" | "In Plan"
-    description: string,
-    tools: string[],
-    images: File[], 
-    link: string,
-    github: string
-}
+/**
+ * Interface for project creation
+ */
+export interface IProjectCreate extends Omit<IProject, 'id' > { }
 
-export interface ProjectEditInterface {
-    id: number,
-    name: string,
-    startDate: Date,
-    completeDate: Date | null,
-    status: "Complete" | "In Progress" | "Just Started" | "In Plan"
-    description: string,
-    tools: string[],
-    images: File[], 
-    link: string,
-    github: string
-}
+/**
+ * Interface for project edit
+ */
+export interface IProjectUpdate extends Omit<IProject, 'id'> { }
+
+/**
+ * Interface for project deletion
+ */
+export interface IProjectDelete extends Pick<IProject, 'id'> { }

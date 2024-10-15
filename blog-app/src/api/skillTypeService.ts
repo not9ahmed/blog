@@ -7,7 +7,7 @@ const SKILL_TYPES_URL: string = `${API_BASE_URL}/skilltypes`
 
 
 /**
- * fetch categories from api
+ * fetch skilltypes from api
  * @returns Array of category with ICategory interface
  */
 export const findAllSkillTypes = async (): Promise<ISkillType[]> => {

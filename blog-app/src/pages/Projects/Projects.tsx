@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './projects.css'
-import { ProjectInterface } from '../../types/project'
+import { IProject, ProjectInterface } from '../../types/project'
 import { findAllProjects } from '../../api/projectService'
 import { useNavigate } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ function Projects() {
     // handling loading of data
     const [error, setError] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    const [projects, setProjects] = useState<ProjectInterface[]>([]);
+    const [projects, setProjects] = useState<IProject[]>([]);
 
 
     useEffect(() => {

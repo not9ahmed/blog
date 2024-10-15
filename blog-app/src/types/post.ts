@@ -28,22 +28,7 @@ export interface PostCreateInterface {
 
 
 
-export interface PostCreateInterfaceAxios {
-    title: string,
-    description: string,
-    content: string,
 
-    // can add userid here then join data
-    createdBy: string,
-
-
-    // 
-    files: {
-        images: File[] | []
-    },
-
-    headers: any
-}
 
 
 export interface PostEditInterface  {
