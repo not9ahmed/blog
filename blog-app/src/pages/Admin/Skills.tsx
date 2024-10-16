@@ -84,8 +84,8 @@ export default function Skills() {
                 
                 <Table.Cell>
 
-                  <Select.Root size="1" defaultValue={skill.skillTypeId.toString()} onValueChange={dropdownHandler}>
-                  <Select.Trigger/>
+                  <Select.Root size="2" defaultValue={skill.skillTypeId.toString()} onValueChange={dropdownHandler}>
+                  <Select.Trigger variant={"soft"}/>
                   <Select.Content>
                     {skillTypes.map(el => 
                         <Select.Item

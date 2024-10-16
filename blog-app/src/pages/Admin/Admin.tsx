@@ -13,8 +13,8 @@ export default function Admin() {
   return (
     <div id='admin-page' className='content'>
 
-        <h1>Hello Ahmed</h1>
-        <p>Page to manage all the admin related activiates and only done by Ahmed</p>
+        <h1>Hello NotAhmed</h1>
+        <p>Main Page to manage all the main entities in the web app</p>
 
         {/* Add the main categories here and other related admin */}
         {/* each will have a table to easily modify existing list */}
