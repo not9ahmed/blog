@@ -1,8 +1,8 @@
 import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react'
-import { findAllSkillTypes, findSkillTypeById, createSkillType, deleteSkillType, updateSkillType, editSkillType } from '../../api/skillTypeService'
+import { findAllSkillTypes, findSkillTypeById, createSkillType, deleteSkillType, editSkillType } from '../../api/skillTypeService'
 import { Box, Button, Flex, IconButton, Section, Table, TextField } from '@radix-ui/themes'
 import { ISkillType, ISkillTypeCreate, ISkillTypeEdit } from '../../types/skillType'
-import { CheckIcon, Pencil1Icon } from '@radix-ui/react-icons';
+import { CheckIcon } from '@radix-ui/react-icons';
 
 
 
@@ -36,43 +36,42 @@ export default function SkillType() {
   const [currentEdit, setCurrentEdit] = useState<ISkillTypeEdit>();
 
 
+
+
+  const fetchSkillTypes = async (): Promise<void> => {
+    
+    const skillTypesAPI = await findAllSkillTypes();
+    setSkillTypes([...skillTypesAPI]);
+
+
+    // adding editable flag for each row
+    const editableRows: IEditableSkillType[] = skillTypesAPI.map(
+      el => ({
+        id: el.id,
+        name: el.name,
+        isEditable: false
+      }));
+    
+    // console.log("newEditableRows", newEditableRows);
+    setEditableSkillTypes(editableRows);
+  }
+  
+
   useEffect(() => {
 
-
     const fetchData = async () => {
-      const skillTypesAPI = await findAllSkillTypes();
-      setSkillTypes([...skillTypesAPI]);
-
-      const newId = skillTypesAPI.reduce(
-        (prev, curr) =>
-          (prev.id > curr.id) 
-        ? prev : curr ,{id: -1, name: ""}
-      ).id + 1;
-
-
-      // const newEditableRows: IEditableRow[] = skillTypesAPI.map(el => ({id: el.id, isEditable: false}))
-
-      const newEditableRows: IEditableSkillType[] = skillTypesAPI.map(el => ({id: el.id, name: el.name ,isEditable: false}))
-      
-      // console.log("newEditableRows", newEditableRows);
-      setEditableSkillTypes(newEditableRows);
+      fetchSkillTypes();
+    // console.log("editableSkillTypes", editableSkillTypes);
     }
 
-
     fetchData();
-    // console.log("editableSkillTypes", editableSkillTypes);
-
   },[]);
 
 
 
 
 
-  const skillTypeCreateHandler = async () => {
-    
-    console.log("Button");
-    await findSkillTypeById(1);
-  }
+
 
 
   const addSkillTypeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -99,29 +98,29 @@ export default function SkillType() {
   const addSkillType = async (e: MouseEventHandler<HTMLButtonElement>) => {
     console.log('add skill type called');
 
+
+    // if noting added then stop
+    if(newSkillType.name === '') {
+      console.log('cannot create');
+      return;
+    }
+
+
     // if there new skill type then create 
     if(newSkillType) {
       const data = await createSkillType(newSkillType);
 
       console.log(data);
-      // const updatedSkillTypes = [...skillTypes, newSkillType]
-  
-      // setSkillTypes([...updatedSkillTypes])
-
-      // const newId = updatedSkillTypes.reduce(
-      //   (prev, curr) =>
-      //     (prev.id > curr.id)? prev : curr
-      //   ,{id: -1, name: ""}).id + 1
-
-      // setNewId(newId);
-
-      const updatedSkillTypes = await findAllSkillTypes();
-      setSkillTypes([...updatedSkillTypes])
 
 
+      // reset the newSkillType
+      setNewSkillType({name: ''});
+
+      // refresh the page
+      await fetchSkillTypes();
     }
 
-    
+
   }
 
 
@@ -173,22 +172,28 @@ export default function SkillType() {
 
     // save to db the edit one
     // first find it
-    const toBeEditedSkillType = editableSkillTypes.find(el => el.isEditable === true);
+    const editedSkillType = editableSkillTypes.find(el => el.isEditable === true);
 
 
-    // console.log("toBeEditedSkillType", toBeEditedSkillType);
-
-    if(toBeEditedSkillType) {
-
-      const data  = await editSkillType(toBeEditedSkillType.id, {
-        name: toBeEditedSkillType.name
-      });
-      // console.log(data);
+    // check if not empty / validate
+    if(editedSkillType?.name === '') {
+      console.log('cannot be empty');
+      return;
     }
 
-    const updatedSkillTypes = await findAllSkillTypes();
-    // setEditableSkillTypes([...updatedSkillTypes])
-    setSkillTypes([...updatedSkillTypes])
+
+
+    if(editedSkillType) {
+
+      const data  = await editSkillType(editedSkillType.id, {
+        name: editedSkillType.name
+      });
+      console.log(data);
+    }
+
+
+    // refresh skill types
+    await fetchSkillTypes();
   }
 
 
@@ -196,26 +201,19 @@ export default function SkillType() {
   const deleteHandler = async (id: number) => {
     console.log("delete called");
     
+    // delete skill type from api
     const deletedSkillType = await deleteSkillType(id);
-
     console.log("deletedSkillType", deletedSkillType);
 
-    // refresh skilltype
-    // const skillTypesAPI = await findAllSkillTypes();
-    // setSkillTypes([...skillTypesAPI]);
 
-
-    // or pop it
-    const skillTypesAPI =  skillTypes.filter(el => el.id !== id);
-    setSkillTypes([...skillTypesAPI]);
-
-
+    // refresh skill types
+    await fetchSkillTypes();
   }
 
 
   return (
   <Box
-    id='skills-page'
+    id='skill-types-page'
     py="16"
     style={{
       backgroundColor: 'var(--gray-a2)',
@@ -225,10 +223,6 @@ export default function SkillType() {
     <h1>Skill Type Page</h1>
     
     <Section size="2">
-
-
-      {/* <Button onClick={skillTypeCreateHandler}>Create New</Button> */}
-
 
 
       <Table.Root variant="ghost">
@@ -258,17 +252,26 @@ export default function SkillType() {
 
                   <Table.Cell>
                     <Flex gap="1" >
-                      <Button variant='surface' onClick={() => editHandler(el.id, true)}>
+
+
+
+                      {/* Edit Logic */}
+                      {el.isEditable ?
+                      <IconButton  onClick={(e) => confirmEdit(e)}>
+                        <CheckIcon width="18" height="18"/>
+                      </IconButton>
+                      
+                      : <Button variant='surface' onClick={() => editHandler(el.id, true)}>
                         Edit
                       </Button>
+                      }
+
+                      {/* delete button */}
                       <Button color='red' variant='surface' onClick={() => deleteHandler(el.id)}>
                         Delete
                       </Button>
 
-                      {/* confirm edit */}
-                      <IconButton  onClick={() => confirmEdit}>
-                        <CheckIcon width="18" height="18"/>
-                      </IconButton>
+
                     </Flex>
 
                   </Table.Cell>
@@ -289,7 +292,7 @@ export default function SkillType() {
               </Table.Cell>
 
               <Table.Cell>
-                <TextField.Root id='skilltype' name='skilltype_name' onChange={addSkillTypeHandler} placeholder="Enter new skill type">
+                <TextField.Root id='skilltype' name='skilltype_name' value={newSkillType.name} onChange={addSkillTypeHandler} placeholder="Enter new skill type">
                 </TextField.Root>
               </Table.Cell>
 
