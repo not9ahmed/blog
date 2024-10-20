@@ -20,7 +20,7 @@ export const findAllSkillTypes = async (): Promise<ISkillType[]> => {
         // data.map(el => {
         //     el.createdDate =  new Date(el.createdDate)
         // })
-        console.log('data', data);
+        // console.log('data', data);
         return data;
     } catch(err) {
         console.log(err);
@@ -39,7 +39,7 @@ export const findSkillTypeById = async (id: number): Promise<ISkillType> => {
     try {
         const response = await axios.get(`${SKILL_TYPES_URL}/${id}`);
         const data = response['data'] as ISkillType;
-        console.log('data', data);
+        // console.log('data', data);
         return data;
     } catch(err) {
         console.log(err);

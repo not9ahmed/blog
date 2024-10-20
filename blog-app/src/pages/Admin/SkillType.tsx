@@ -192,13 +192,12 @@ export default function SkillType() {
     minHeight={"580px"}
   >
     <Box py={"4"}>
-      <h1>Skill</h1>
+      <h1>Skill Type</h1>
     </Box>
     
-    <Container size="3">
+    <Container size="2">
 
-
-      <Table.Root variant="ghost">
+      <Table.Root variant="surface">
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>

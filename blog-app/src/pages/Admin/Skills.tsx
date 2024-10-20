@@ -53,7 +53,7 @@ export default function Skills() {
 
 
 
-        <Table.Root variant="ghost">
+        <Table.Root variant="surface">
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>

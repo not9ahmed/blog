@@ -2,7 +2,7 @@ import './category.css'
 import { useEffect, useState } from 'react'
 import { findAllCategories, createCategory, deleteCategory, findCategoryById, updateCategory } from '../../api/categoryService';
 import { ICategory, ICategoryCreate, ICategoryUpdate } from '../../types/category';
-import { Box, Button, Container, Flex, IconButton, Section, Table, TextField } from '@radix-ui/themes';
+import { Box, Button, Container, Flex, IconButton, Section, Select, Table, TextField } from '@radix-ui/themes';
 import { CheckIcon } from '@radix-ui/react-icons';
 
 // will be a table
@@ -23,7 +23,7 @@ export default function Category() {
   });
 
 
-
+  // can be extracted to custom hook
   const fetchCategories = async (): Promise<void> => {
 
     const categoriesAPI = await findAllCategories();
@@ -47,17 +47,10 @@ export default function Category() {
 
 
   useEffect(() => {
-
     const fetchData = async () => {
       fetchCategories();
     }
-
     fetchData();
-
-    console.log("categories", categories);
-    console.log("editableCategories", editableCategories);
-
-
   }, [])
 
 
@@ -81,12 +74,12 @@ export default function Category() {
     >
 
 
-      <Box py={"4"}>
+      <Box py="4">
         <h1>Category</h1>
       </Box>
 
-      <Container size={"3"}>
-        <Table.Root variant="ghost">
+      <Container size="2">
+        <Table.Root variant="surface">
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
@@ -143,6 +136,10 @@ export default function Category() {
                 placeholder="Enter new skill type"
                 onChange={(e) => setNewCategory({...newCategory, name: e.target.value})}>
                 </TextField.Root>
+              </Table.Cell>
+
+              <Table.Cell>
+                ???
               </Table.Cell>
 
               <Table.Cell>
