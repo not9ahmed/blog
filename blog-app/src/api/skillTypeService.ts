@@ -26,8 +26,8 @@ export const findAllSkillTypes = async (): Promise<ISkillType[]> => {
         console.log(err);
         throw err;
     }
-
 }
+
 
 /**
  * Fetch single category by id from api
@@ -64,7 +64,7 @@ export const createSkillType = async (skilltype: ISkillTypeCreate): Promise<ISki
 }
 
 
-export const editSkillType = async (id: number, skillType: ISkillTypeEdit): Promise<ISkillType> => {
+export const updateSkillType = async (id: number, skillType: ISkillTypeEdit): Promise<ISkillType> => {
     
     try {
         const response = await axios.put(`${SKILL_TYPES_URL}/${id}`, skillType);

@@ -1,130 +1,167 @@
 import './category.css'
 import { useEffect, useState } from 'react'
-import { createCategory, deleteCategoryById, findAllCategories, findCategoryById, updateCategoryById } from '../../api/categoryService';
-import { ICategory } from '../../types/category';
+import { findAllCategories, createCategory, deleteCategory, findCategoryById, updateCategory } from '../../api/categoryService';
+import { ICategory, ICategoryCreate, ICategoryUpdate } from '../../types/category';
+import { Box, Button, Container, Flex, IconButton, Section, Table, TextField } from '@radix-ui/themes';
+import { CheckIcon } from '@radix-ui/react-icons';
 
 // will be a table
 export default function Category() {
-  
-  const [categories, setCategories] = useState<ICategory[]>([])
-  const [updatedCategories, setUpdatedCategories] = useState<ICategory[]>([])
+
+
+  interface IEditableCategories extends ICategory {
+    isEditable: boolean
+  }
+
+
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [editableCategories, setEditableCategories] = useState<IEditableCategories[]>([]);
+  const [newCategory, setNewCategory] = useState<ICategoryCreate>({
+    name: 'test',
+    parentCategoryId: null,
+    createdBy: 1
+  });
+
+
+
+  const fetchCategories = async (): Promise<void> => {
+
+    const categoriesAPI = await findAllCategories();
+    setCategories(categoriesAPI);
+
+    // add editable flag
+    const editableRows: IEditableCategories[] = categoriesAPI.map(
+      el => ({
+        id: el.id,
+        name: el.name,
+        parentCategoryId: el.parentCategoryId,
+        createdDate: new Date(),
+        createdBy: el.createdBy,
+        isEditable: false
+      })
+    )
+
+    setEditableCategories(editableRows);
+  }
+
+
 
   useEffect(() => {
 
     const fetchData = async () => {
-
-        const categoriesDb = await findAllCategories();
-        setCategories([...categoriesDb])
-
+      fetchCategories();
     }
 
     fetchData();
-  },[])
+
+    console.log("categories", categories);
+    console.log("editableCategories", editableCategories);
 
 
-
-  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    
-    console.log("value", e.target.value);
-    console.log("id", e.target.id);
-
-    const id: number = parseInt(e.target.id);
-
-    // get the item from the list
-   const categoryToBeUpdated =  categories.find(el => el.id == id);
-    
-
-   const updatedCategories = categories.filter(el => el.id != id);
-
-   setCategories([...updatedCategories, categoryToBeUpdated]);
-
-
-
-  }
-
-  const handleEdit = async (e: React.MouseEvent<HTMLButtonElement>, category: ICategory) => {
-
-    console.log(e.target);
-    console.log(category);
-    console.log(category.createdDate.toJSON());
-
-    category.name = category.name + " updated";
-    category.createdDate = new Date(category.createdDate.toJSON());
-
-
-    const updatedCategory = await updateCategoryById(category.id, category);
-
-    console.log(updatedCategory);
-    // display updated list
-    const categories = await findAllCategories();
-
-    setCategories(categories);
-    
-  }
-
-  const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
-
-    console.log(e.target)
-    console.log(id)
-
-
-    const deletedCategory = await deleteCategoryById(id);
-
-
-    console.log(deletedCategory);
-
-
-    // display updated list
-    const categories = await findAllCategories();
-
-    setCategories(categories);
-
-  }
+  }, [])
 
 
 
 
-  
+
+
+
+
+
+
   return (
-    <div id='category-page'>
-
-      <h1>Category Page</h1>
-
-      
-      <div className='model-table'>
-        <table className='categories-table'>
-          <thead>
-            <tr>
-              <th>Category ID</th>
-              <th>Category Name</th>
-              <th>Category Create Date</th>
-              <th>Edit Category</th>
-              <th>Delete Category</th>
-            </tr>
-          </thead>
-
-        <tbody>
-        {categories.map(el => 
-          <tr key={el.id}>
-            <td>{el.id}</td>
-            <td>
-              <input type='text'
-                className='cat-name'
-                id={el.id.toString()}
-                onChange={handleInputChange}
-                value={el.name}
-              />
-            </td>
-            <td>{el.createdDate.toDateString()}</td>
-            <td><button className="edit-cat" onClick={(e) => handleEdit(e, el)}>Edit</button></td>
-            <td><button className="del-cat" onClick={(e) => handleDelete(e, el.id)}>Delete</button></td>
-          </tr>
-        )}
-        </tbody>
-        </table>
-      </div>
+    <Section
+      id='category-page'
+      py={"16"}
+      style={{
+        backgroundColor: 'var(--gray-a2)',
+        borderRadius: 'var(--radius-3)'
+      }}
+      minHeight={"500px"}
+    >
 
 
-    </div>
+      <Box py={"4"}>
+        <h1>Category</h1>
+      </Box>
+
+      <Container size={"3"}>
+        <Table.Root variant="ghost">
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Parent Category ID</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+          {editableCategories.map(el => (
+            <Table.Row key={el.id}>
+              <Table.RowHeaderCell>{el.id}</Table.RowHeaderCell>
+              <Table.Cell>{el.name}</Table.Cell>
+              <Table.Cell>{el.parentCategoryId}</Table.Cell>
+              
+              {/* Actions */}
+              <Table.Cell>
+                <Flex gap="2">
+
+                  {/* Edit Button */}
+                  {el.isEditable ? 
+                    <IconButton>
+                      <CheckIcon width={18} height={16} onClick={() => console.log("confirm edit clicked")}/>
+                    </IconButton>
+
+                    : <Button variant='surface' onClick={() => console.log("edit clicked")}>
+                      Edit
+                    </Button>
+                  }
+
+
+                  {/* Delete */}
+                  <Button color='red' variant='surface'  onClick={() => console.log("delete clicked")}>
+                    Delete
+                  </Button>
+
+                </Flex>
+              </Table.Cell>
+
+            </Table.Row>
+          ))}
+
+            {/* New Category */}
+            <Table.Row>
+              <Table.RowHeaderCell>
+                9999
+              </Table.RowHeaderCell>
+
+              <Table.Cell>
+                <TextField.Root id='category'
+                name='category_name'
+                value={newCategory.name}
+                placeholder="Enter new skill type"
+                onChange={(e) => setNewCategory({...newCategory, name: e.target.value})}>
+                </TextField.Root>
+              </Table.Cell>
+
+              <Table.Cell>
+              <Button type='submit' onClick={(e: any) => console.log("add clicked")}>
+                Add
+              </Button>
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+
+        </Table.Root>
+
+
+      </Container>
+
+
+
+
+
+    </Section>
   )
 }

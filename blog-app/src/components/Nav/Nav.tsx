@@ -2,7 +2,7 @@ import React from 'react'
 import './nav.css'
 import { Link } from 'react-router-dom'
 
-function Nav() {
+export default function Nav() {
   return (
     <div id="nav">
       <ul className='nav-list'>
@@ -26,5 +26,3 @@ function Nav() {
     </div>
   )
 }
-
-export default Nav

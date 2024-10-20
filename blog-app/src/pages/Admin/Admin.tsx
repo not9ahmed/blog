@@ -44,8 +44,6 @@ export default function Admin() {
                 <Tabs.Content value="projects">
                     <Projects/>
                 </Tabs.Content>
-
-
             </Box>
         </Tabs.Root>
 

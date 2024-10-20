@@ -1,14 +1,15 @@
 import axios from "axios"
 import { ICategory, ICategoryCreate, ICategoryUpdate} from "../types/category";
 
-const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL;
+const CATEGORIES_URL: string = `${API_BASE_URL}/categories`
 
 
 // method to fetch categories from api
 export const findAllCategories = async (): Promise<ICategory[]> => {
 
     try {
-        const response = await axios.get(`${API_BASE_URL}/categories`);
+        const response = await axios.get(`${CATEGORIES_URL}`);
         const data = response['data'] as ICategory[];
 
         data.map(el => {
@@ -25,7 +26,7 @@ export const findAllCategories = async (): Promise<ICategory[]> => {
 
 export const findCategoryById = async (id: number): Promise<ICategory> => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/categories/${id}`);
+        const response = await axios.get(`${CATEGORIES_URL}/${id}`);
         const data = response['data'] as ICategory;
         console.log('data', data);
         return data;
@@ -41,7 +42,7 @@ export const findCategoryById = async (id: number): Promise<ICategory> => {
 
 export const createCategory = async (category: ICategoryCreate): Promise<ICategory> => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/categories/`,
+        const response = await axios.post(`${CATEGORIES_URL}/`,
             category
         );
         const data = response['data'] as ICategory;
@@ -54,9 +55,9 @@ export const createCategory = async (category: ICategoryCreate): Promise<ICatego
 }
 
 
-export const updateCategoryById = async (id: number, category: ICategoryUpdate): Promise<ICategory> => {
+export const updateCategory = async (id: number, category: ICategoryUpdate): Promise<ICategory> => {
     try {
-        const response = await axios.put(`${API_BASE_URL}/categories/${id}`,
+        const response = await axios.put(`${CATEGORIES_URL}/${id}`,
             category
         );
         const data = response['data'] as ICategory;
@@ -68,9 +69,10 @@ export const updateCategoryById = async (id: number, category: ICategoryUpdate):
     }
 }
 
-export const deleteCategoryById = async (id: number): Promise<ICategory> => {
+
+export const deleteCategory = async (id: number): Promise<ICategory> => {
     try {
-        const response = await axios.delete(`${API_BASE_URL}/categories/${id}`);
+        const response = await axios.delete(`${CATEGORIES_URL}/${id}`);
         const data = response['data'] as ICategory;
         console.log('data', data);
         return data;

@@ -4,7 +4,7 @@
 export interface ICategory {
     id: number,
     name: string,
-    parentCategoryId: number,
+    parentCategoryId: number | null,
     createdDate: Date,
     createdBy: number,
 }

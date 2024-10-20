@@ -1,5 +1,5 @@
 import React, { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react'
-import { findAllSkillTypes, findSkillTypeById, createSkillType, deleteSkillType, editSkillType } from '../../api/skillTypeService'
+import { findAllSkillTypes, findSkillTypeById, createSkillType, deleteSkillType, updateSkillType } from '../../api/skillTypeService'
 import { Box, Button, Container, Flex, IconButton, Section, Table, TextField } from '@radix-ui/themes'
 import { ISkillType, ISkillTypeCreate, ISkillTypeEdit } from '../../types/skillType'
 import { CheckIcon } from '@radix-ui/react-icons';
@@ -80,7 +80,7 @@ export default function SkillType() {
 
 
     // if noting added then stop
-    if(newSkillType.name === '') {
+    if(newSkillType.name.trim() === '') {
       console.log('cannot create');
       return;
     }
@@ -157,7 +157,7 @@ export default function SkillType() {
 
     if(editedSkillType) {
 
-      const data  = await editSkillType(editedSkillType.id,
+      const data  = await updateSkillType(editedSkillType.id,
         {
           name: editedSkillType.name
         });
@@ -192,7 +192,7 @@ export default function SkillType() {
     minHeight={"580px"}
   >
     <Box py={"4"}>
-      <h1>Skill Type</h1>
+      <h1>Skill</h1>
     </Box>
     
     <Container size="3">
@@ -266,7 +266,9 @@ export default function SkillType() {
               </Table.Cell>
 
               <Table.Cell>
-                <Button type='submit' onClick={(e: any) => addSkillType(e)}>Add</Button>
+                <Button type='submit' onClick={(e: any) => addSkillType(e)}>
+                  Add
+                  </Button>
               </Table.Cell>
             </Table.Row>
 
