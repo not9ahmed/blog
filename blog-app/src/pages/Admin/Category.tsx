@@ -17,7 +17,7 @@ export default function Category() {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [editableCategories, setEditableCategories] = useState<IEditableCategories[]>([]);
   const [newCategory, setNewCategory] = useState<ICategoryCreate>({
-    name: 'test',
+    name: '',
     parentCategoryId: null,
     createdBy: 1
   });
@@ -55,8 +55,37 @@ export default function Category() {
 
 
 
+  const deleteHandler = async (id: number) => {
+    // delete category
+    const deletedCategory = await deleteCategory(id);
+    console.log("deletedCategory", deletedCategory);
+
+    // refresh deleted category
+    await fetchCategories();
+
+  }
 
 
+
+  const addHandler = async (category: ICategoryCreate) => {
+    // add category
+
+    console.log("new category", newCategory)
+
+    const addedCategory = await createCategory(category);
+    console.log("addedCategory", addedCategory);
+
+    // reset category
+    // should be extracted to reset function
+    setNewCategory({
+        name: '',
+        parentCategoryId: null,
+        createdBy: 1
+    });
+
+    // refresh deleted category
+    await fetchCategories();
+  }
 
 
 
@@ -78,7 +107,7 @@ export default function Category() {
         <h1>Category</h1>
       </Box>
 
-      <Container size="2">
+      <Container size="3">
         <Table.Root variant="surface">
           <Table.Header>
             <Table.Row>
@@ -113,7 +142,7 @@ export default function Category() {
 
 
                   {/* Delete */}
-                  <Button color='red' variant='surface'  onClick={() => console.log("delete clicked")}>
+                  <Button color='red' variant='surface'  onClick={(e: any, ) => deleteHandler(el.id)}>
                     Delete
                   </Button>
 
@@ -139,11 +168,27 @@ export default function Category() {
               </Table.Cell>
 
               <Table.Cell>
-                ???
+                <Select.Root
+                    size="3"
+                    defaultValue={"-"}
+                    onValueChange={(value: string) => setNewCategory({...newCategory, parentCategoryId: (value === '-' ? null : parseInt(value))})}
+                >
+                  <Select.Trigger variant="soft"/>
+                  <Select.Content variant='soft'>
+                    <Select.Item value="-">None</Select.Item>
+                    {categories.map(el => 
+                      <Select.Item
+                        key={el.id}
+                        value={el.id.toString()}>
+                        {el.name}
+                      </Select.Item>
+                    )}
+                  </Select.Content>
+                </Select.Root>
               </Table.Cell>
 
               <Table.Cell>
-              <Button type='submit' onClick={(e: any) => console.log("add clicked")}>
+              <Button type='submit' onClick={() => addHandler(newCategory)}>
                 Add
               </Button>
               </Table.Cell>

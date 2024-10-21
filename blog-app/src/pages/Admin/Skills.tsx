@@ -31,7 +31,7 @@ export default function Skills() {
   }, [])
 
 
-  const dropdownHandler = (value: String) => {
+  const dropdownHandler = (value: string) => {
     console.log(value);
   }
 
@@ -85,17 +85,17 @@ export default function Skills() {
                 <Table.Cell>
 
                   <Select.Root size="2" defaultValue={skill.skillTypeId.toString()} onValueChange={dropdownHandler}>
-                  <Select.Trigger variant={"soft"}/>
-                  <Select.Content>
-                    {skillTypes.map(el => 
-                        <Select.Item
-                          key={el.id}
-                          value={el.id.toString()}>{el.name}
-                        </Select.Item>
-                      )}
-                  </Select.Content>
-                </Select.Root>
-
+                    <Select.Trigger variant="soft"/>
+                    <Select.Content>
+                      {skillTypes.map(el => 
+                          <Select.Item
+                            key={el.id}
+                            value={el.id.toString()}>
+                              {el.name}
+                          </Select.Item>
+                        )}
+                    </Select.Content>
+                  </Select.Root>
                 
                 </Table.Cell>
 

@@ -78,13 +78,11 @@ export default function SkillType() {
   const addSkillType = async (e: React.MouseEvent<HTMLInputElement>): Promise<void> => {
     console.log('add skill type called');
 
-
     // if noting added then stop
     if(newSkillType.name.trim() === '') {
       console.log('cannot create');
       return;
     }
-
 
     // if there new skill type then create 
     if(newSkillType) {
@@ -92,15 +90,12 @@ export default function SkillType() {
 
       console.log(data);
 
-
       // reset the newSkillType
       setNewSkillType({name: ''});
 
       // refresh the page
       await fetchSkillTypes();
     }
-
-
   }
 
 
@@ -196,7 +191,6 @@ export default function SkillType() {
     </Box>
     
     <Container size="2">
-
       <Table.Root variant="surface">
           <Table.Header>
             <Table.Row>
