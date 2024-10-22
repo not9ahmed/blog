@@ -208,11 +208,14 @@ export default function SkillType() {
                   
                   {/* to make it editable only if it's true in editableSkillTypes */}
                   {editableSkillTypes.find(editable => editable.id === el.id)?.isEditable ? 
-                  <Table.Cell key={el.id} >
-                    <TextField.Root value={el.name} id={el.id.toString()} onChange={editFieldHandler}>
-                    </TextField.Root>
-                  </Table.Cell>
-                  : <Table.Cell>{el.name}</Table.Cell>
+                    <Table.Cell key={el.id} >
+                      <TextField.Root
+                        value={el.name}
+                        id={el.id.toString()}
+                        onChange={editFieldHandler}
+                      />
+                    </Table.Cell>
+                    : <Table.Cell>{el.name}</Table.Cell>
                   }
 
                   {/* Cell for actions */}
@@ -254,8 +257,13 @@ export default function SkillType() {
               </Table.RowHeaderCell>
 
               <Table.Cell>
-                <TextField.Root id='skilltype' name='skilltype_name' value={newSkillType.name} onChange={addSkillTypeHandler} placeholder="Enter new skill type">
-                </TextField.Root>
+                <TextField.Root
+                  id='skilltype'
+                  name='skilltype_name'
+                  value={newSkillType.name}
+                  onChange={addSkillTypeHandler}
+                  placeholder="Enter new skill type"
+                />
               </Table.Cell>
 
               <Table.Cell>

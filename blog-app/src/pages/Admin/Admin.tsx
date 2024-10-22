@@ -1,4 +1,3 @@
-import React from 'react'
 import Category from './Category'
 import Skills from './Skills'
 import Projects from './Projects'

@@ -76,8 +76,11 @@ The following system consists current
 
 ## Tools to be Used
 
-- Figma for Wireframing
+- TypeScript
 - Radix UI
-- GSAP for CSS Animation [Link](https://gsap.com/docs/v3/GSAP/CorePlugins/CSS/)
-- TypeScript Exploration
 - Express JS
+- Primsa as ORM
+- PostgreSQL Database
+- Zod for Type Validation
+- Figma for Wireframing
+- GSAP for CSS Animation [Link](https://gsap.com/docs/v3/GSAP/CorePlugins/CSS/)

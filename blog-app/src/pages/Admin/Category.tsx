@@ -66,11 +66,39 @@ export default function Category() {
   }
 
 
+  const editHandler = async (id: number, confirm: boolean) => {
+    console.log("editHandler called", editHandler);
 
-  const addHandler = async (category: ICategoryCreate) => {
-    // add category
+
+    // make that row editable
+    const newEditableRows = editableCategories.map(el => {
+      if (el.id === id) {
+        el.isEditable = confirm;
+      }
+      return el;
+    })
+
+    console.log("newEditableRows", newEditableRows)
+
+    setEditableCategories(newEditableRows);
+  }
+
+
+
+
+
+  const addHandler = async (category: ICategoryCreate): Promise<void> => {
 
     console.log("new category", newCategory)
+
+    // check if category is correct
+    // TODO: Validate State
+    // TODO: Show Toaster
+    if(!category || category.name.trim() === '') {
+      console.log('not valid category')
+      return;
+    }
+
 
     const addedCategory = await createCategory(category);
     console.log("addedCategory", addedCategory);
@@ -122,7 +150,21 @@ export default function Category() {
           {editableCategories.map(el => (
             <Table.Row key={el.id}>
               <Table.RowHeaderCell>{el.id}</Table.RowHeaderCell>
-              <Table.Cell>{el.name}</Table.Cell>
+              
+              
+              {/* handle input edit */}
+              {el.isEditable ?
+
+                <Table.Cell>
+                  <TextField.Root
+                  value={el.name}
+                  id={el.id.toString()}
+                  />
+                </Table.Cell>
+
+                : <Table.Cell>{el.name}</Table.Cell>
+              }
+
               <Table.Cell>{el.parentCategoryId}</Table.Cell>
               
               {/* Actions */}
@@ -132,17 +174,16 @@ export default function Category() {
                   {/* Edit Button */}
                   {el.isEditable ? 
                     <IconButton>
-                      <CheckIcon width={18} height={16} onClick={() => console.log("confirm edit clicked")}/>
+                      <CheckIcon width={18} height={16} onClick={() => editHandler(el.id, false)}/>
                     </IconButton>
-
-                    : <Button variant='surface' onClick={() => console.log("edit clicked")}>
+                    : <Button variant='surface' onClick={() => editHandler(el.id, true)}>
                       Edit
                     </Button>
                   }
 
 
                   {/* Delete */}
-                  <Button color='red' variant='surface'  onClick={(e: any, ) => deleteHandler(el.id)}>
+                  <Button color='red' variant='surface'  onClick={() => deleteHandler(el.id)}>
                     Delete
                   </Button>
 

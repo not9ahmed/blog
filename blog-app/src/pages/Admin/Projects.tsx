@@ -31,23 +31,6 @@ export default function Projects() {
             </Table.Cell>
           </Table.Row>
 
-          <Table.Row>
-            <Table.RowHeaderCell>Zahra Ambessa</Table.RowHeaderCell>
-            <Table.Cell>zahra@example.com</Table.Cell>
-            <Table.Cell>Admin</Table.Cell>
-            <Table.Cell>
-              <Button>Let's go</Button>
-            </Table.Cell>
-          </Table.Row>
-
-          <Table.Row>
-            <Table.RowHeaderCell>Jasper Eriksson</Table.RowHeaderCell>
-            <Table.Cell>jasper@example.com</Table.Cell>
-            <Table.Cell>Developer</Table.Cell>
-            <Table.Cell>
-              <Button>Let's go</Button>
-            </Table.Cell>
-          </Table.Row>
 
 
         </Table.Body>
