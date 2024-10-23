@@ -116,27 +116,29 @@ export default function Category() {
   const confirmEdit = async (e: React.MouseEvent<HTMLInputElement>) => {
 
     // first find the edited skilltype
-    const editedSkillType = editableCategories.find(el => el.isEditable === true);
+    const editedCategory = editableCategories.find(el => el.isEditable === true);
 
     // check if not empty / validate
     // TODO: add toaster
-    if(editedSkillType?.name === '') {
+    if(editedCategory?.name === '') {
       console.log('cannot be empty');
       return;
     }
 
-    if(editedSkillType) {
+    if(editedCategory) {
 
-      const data  = await updateSkillType(editedSkillType.id,
+      const data  = await updateCategory(editedCategory.id,
         {
-          name: editedSkillType.name
+          name: editedCategory.name,
+          parentCategoryId: null,
+          createdBy: 1
         });
       console.log(data);
     }
 
 
     // refresh skill types
-    await fetchSkillTypes();
+    await fetchCategories();
   }
 
 
@@ -229,7 +231,7 @@ export default function Category() {
                     {/* Edit Button */}
                     {el.isEditable ?
                       <IconButton>
-                        <CheckIcon width={18} height={16} onClick={() => editHandler(el.id, false)} />
+                        <CheckIcon width={18} height={16} onClick={(e: any) => confirmEdit(e)} />
                       </IconButton>
                       : <Button variant='surface' onClick={() => editHandler(el.id, true)}>
                         Edit
