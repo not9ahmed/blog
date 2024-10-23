@@ -2,7 +2,7 @@ import './category.css'
 import { useEffect, useState } from 'react'
 import { findAllCategories, createCategory, deleteCategory, findCategoryById, updateCategory } from '../../api/categoryService';
 import { ICategory, ICategoryCreate, ICategoryUpdate } from '../../types/category';
-import { Box, Button, Container, Flex, IconButton, Section, Select, Table, TextField } from '@radix-ui/themes';
+import { AlertDialog, Box, Button, Container, Flex, IconButton, Section, Select, Table, TextField } from '@radix-ui/themes';
 import { CheckIcon } from '@radix-ui/react-icons';
 
 // will be a table
@@ -56,6 +56,7 @@ export default function Category() {
 
 
   const deleteHandler = async (id: number) => {
+
     // delete category
     const deletedCategory = await deleteCategory(id);
     console.log("deletedCategory", deletedCategory);
@@ -66,8 +67,32 @@ export default function Category() {
   }
 
 
+  const editFieldHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const id = parseInt(e.target.id);
+    const value = e.target.value;
+
+    const newCategories = editableCategories.map(el => {
+      if (el.id === id) {
+        el.name = value;
+        return el;
+      }
+      return el;
+    })
+
+    setEditableCategories(newCategories);
+  }
+
+
+
+
+
+
   const editHandler = async (id: number, confirm: boolean) => {
-    console.log("editHandler called", editHandler);
+    console.log("editHandler called");
+
+    // org category
+    const orgCategory = categories.find(el => el.id === id);
 
 
     // make that row editable
@@ -78,12 +103,41 @@ export default function Category() {
       return el;
     })
 
-    console.log("newEditableRows", newEditableRows)
 
+
+
+    // updated editable
+    console.log("newEditableRows", newEditableRows)
     setEditableCategories(newEditableRows);
   }
 
 
+
+  const confirmEdit = async (e: React.MouseEvent<HTMLInputElement>) => {
+
+    // first find the edited skilltype
+    const editedSkillType = editableCategories.find(el => el.isEditable === true);
+
+    // check if not empty / validate
+    // TODO: add toaster
+    if(editedSkillType?.name === '') {
+      console.log('cannot be empty');
+      return;
+    }
+
+    if(editedSkillType) {
+
+      const data  = await updateSkillType(editedSkillType.id,
+        {
+          name: editedSkillType.name
+        });
+      console.log(data);
+    }
+
+
+    // refresh skill types
+    await fetchSkillTypes();
+  }
 
 
 
@@ -94,7 +148,7 @@ export default function Category() {
     // check if category is correct
     // TODO: Validate State
     // TODO: Show Toaster
-    if(!category || category.name.trim() === '') {
+    if (!category || category.name.trim() === '') {
       console.log('not valid category')
       return;
     }
@@ -106,9 +160,9 @@ export default function Category() {
     // reset category
     // should be extracted to reset function
     setNewCategory({
-        name: '',
-        parentCategoryId: null,
-        createdBy: 1
+      name: '',
+      parentCategoryId: null,
+      createdBy: 1
     });
 
     // refresh deleted category
@@ -147,51 +201,77 @@ export default function Category() {
           </Table.Header>
 
           <Table.Body>
-          {editableCategories.map(el => (
-            <Table.Row key={el.id}>
-              <Table.RowHeaderCell>{el.id}</Table.RowHeaderCell>
-              
-              
-              {/* handle input edit */}
-              {el.isEditable ?
+            {editableCategories.map(el => (
+              <Table.Row key={el.id}>
+                <Table.RowHeaderCell>{el.id}</Table.RowHeaderCell>
 
+
+                {/* handle input edit */}
+                {el.isEditable ?
+
+                  <Table.Cell>
+                    <TextField.Root
+                      value={el.name}
+                      id={el.id.toString()}
+                      onChange={(e: any) => editFieldHandler(e)}
+                    />
+                  </Table.Cell>
+
+                  : <Table.Cell>{el.name}</Table.Cell>
+                }
+
+                <Table.Cell>{el.parentCategoryId}</Table.Cell>
+
+                {/* Actions */}
                 <Table.Cell>
-                  <TextField.Root
-                  value={el.name}
-                  id={el.id.toString()}
-                  />
+                  <Flex gap="2">
+
+                    {/* Edit Button */}
+                    {el.isEditable ?
+                      <IconButton>
+                        <CheckIcon width={18} height={16} onClick={() => editHandler(el.id, false)} />
+                      </IconButton>
+                      : <Button variant='surface' onClick={() => editHandler(el.id, true)}>
+                        Edit
+                      </Button>
+                    }
+
+
+                    {/* Delete */}
+                    <AlertDialog.Root>
+                      <AlertDialog.Trigger>
+                        <Button color='red' variant='surface'>
+                          Delete
+                        </Button>
+                      </AlertDialog.Trigger>
+                      <AlertDialog.Content maxWidth="450px">
+
+
+                        <AlertDialog.Title>Delete Category</AlertDialog.Title>
+                        <AlertDialog.Description size="2">
+                          Are you sure? This category will be completely deleted from the application
+                        </AlertDialog.Description>
+
+                        <Flex gap="3" mt="4" justify="end">
+                          <AlertDialog.Cancel>
+                            <Button variant="soft" color="gray">
+                              Cancel
+                            </Button>
+                          </AlertDialog.Cancel>
+                          <AlertDialog.Action>
+                            <Button variant="solid" color="red"  onClick={() => deleteHandler(el.id)}>
+                              Delete
+                            </Button>
+                          </AlertDialog.Action>
+                        </Flex>
+                      </AlertDialog.Content>
+                    </AlertDialog.Root>
+
+                  </Flex>
                 </Table.Cell>
 
-                : <Table.Cell>{el.name}</Table.Cell>
-              }
-
-              <Table.Cell>{el.parentCategoryId}</Table.Cell>
-              
-              {/* Actions */}
-              <Table.Cell>
-                <Flex gap="2">
-
-                  {/* Edit Button */}
-                  {el.isEditable ? 
-                    <IconButton>
-                      <CheckIcon width={18} height={16} onClick={() => editHandler(el.id, false)}/>
-                    </IconButton>
-                    : <Button variant='surface' onClick={() => editHandler(el.id, true)}>
-                      Edit
-                    </Button>
-                  }
-
-
-                  {/* Delete */}
-                  <Button color='red' variant='surface'  onClick={() => deleteHandler(el.id)}>
-                    Delete
-                  </Button>
-
-                </Flex>
-              </Table.Cell>
-
-            </Table.Row>
-          ))}
+              </Table.Row>
+            ))}
 
             {/* New Category */}
             <Table.Row>
@@ -201,23 +281,23 @@ export default function Category() {
 
               <Table.Cell>
                 <TextField.Root id='category'
-                name='category_name'
-                value={newCategory.name}
-                placeholder="Enter new skill type"
-                onChange={(e) => setNewCategory({...newCategory, name: e.target.value})}>
+                  name='category_name'
+                  value={newCategory.name}
+                  placeholder="Enter new skill type"
+                  onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}>
                 </TextField.Root>
               </Table.Cell>
 
               <Table.Cell>
                 <Select.Root
-                    size="3"
-                    defaultValue={"-"}
-                    onValueChange={(value: string) => setNewCategory({...newCategory, parentCategoryId: (value === '-' ? null : parseInt(value))})}
+                  size="2"
+                  defaultValue={"-"}
+                  onValueChange={(value: string) => setNewCategory({ ...newCategory, parentCategoryId: (value === '-' ? null : parseInt(value)) })}
                 >
-                  <Select.Trigger variant="soft"/>
+                  <Select.Trigger variant="soft" />
                   <Select.Content variant='soft'>
                     <Select.Item value="-">None</Select.Item>
-                    {categories.map(el => 
+                    {categories.map(el =>
                       <Select.Item
                         key={el.id}
                         value={el.id.toString()}>
@@ -229,9 +309,9 @@ export default function Category() {
               </Table.Cell>
 
               <Table.Cell>
-              <Button type='submit' onClick={() => addHandler(newCategory)}>
-                Add
-              </Button>
+                <Button type='submit' onClick={() => addHandler(newCategory)}>
+                  Add
+                </Button>
               </Table.Cell>
             </Table.Row>
           </Table.Body>

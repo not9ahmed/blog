@@ -27,7 +27,6 @@ export default function Admin() {
                 <Tabs.Trigger value="skills">Skills</Tabs.Trigger>
                 <Tabs.Trigger value="skilltype">Skill Type</Tabs.Trigger>
                 <Tabs.Trigger value="category">Category</Tabs.Trigger>
-                <Tabs.Trigger value="projects">Projects</Tabs.Trigger>
             </Tabs.List>
 
             <Box pt="3">
@@ -39,9 +38,6 @@ export default function Admin() {
                 </Tabs.Content>
                 <Tabs.Content value="category">
                     <Category/>
-                </Tabs.Content>
-                <Tabs.Content value="projects">
-                    <Projects/>
                 </Tabs.Content>
             </Box>
         </Tabs.Root>
