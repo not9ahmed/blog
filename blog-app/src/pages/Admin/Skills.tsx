@@ -1,4 +1,4 @@
-import { Button, Table, TextField, Box, Section, IconButton, Link, Select } from '@radix-ui/themes';
+import { Button, Table, TextField, Box, Section, IconButton, Link, Select, Flex, Container } from '@radix-ui/themes';
 import React, { useEffect, useState } from 'react'
 import { findAllSkills, findSkillById } from '../../api/skillService';
 import { ISkill } from '../../types/skill';
@@ -41,87 +41,112 @@ export default function Skills() {
   return (
     <Box
       id='skills-page'
-      py="8"
+      py="16"
       style={{
         backgroundColor: 'var(--gray-a2)',
         borderRadius: 'var(--radius-3)'
       }}
+      minHeight="580px"
     >
-      <h1>Skills Page</h1>
+      <Box py="4">
+        <h1>Skills Page</h1>
+      </Box>
       <Section size="2">
 
+          
+        <Container size="3">
+
+          <Table.Root variant="surface">
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Icon</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Skill Type</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Action</Table.ColumnHeaderCell>
+              </Table.Row>
+            </Table.Header>
+
+            <Table.Body>
+              
+              {skills.map(el =>  (
+                <Table.Row key={el.id}>
+                  <Table.Cell justify={'start'}>
+                    {el.id}
+                  </Table.Cell>
+                  
+                  <Table.Cell>
+                    {el.name}
+                  </Table.Cell>
+                  
+                  <Table.Cell>
+                    {el.icon?
+                    <img src={el.icon} alt='image-notfound' width={60}/>
+                    : <img alt='not-found'></img>
+                    }
+                  </Table.Cell>
+                  
+                  <Table.Cell>
+                    {el.skillTypeId}                  
+                  </Table.Cell>
 
 
+                  {/* action cell */}
+                  <Table.Cell>
+                    <Flex gap="2">
+                    
+                      {/* Edit button */}
+                      <Button variant='surface' onClick={() => console.log("edit clicked")}>
+                        Edit
+                      </Button>
 
-        <Table.Root variant="surface">
-          <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Icon</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Skill Type</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Link</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Edit</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Delete</Table.ColumnHeaderCell>
-            </Table.Row>
-          </Table.Header>
 
-          <Table.Body>
-            
-            {skills.map(skill =>  (
-              <Table.Row key={skill.id}>
-                <Table.Cell justify={'start'}>
-                  {skill.id}
-                </Table.Cell>
+                      {/* Delete Button */}
+                      <Button color='red' variant='surface' onClick={() => console.log("delete clicked")}>
+                        Delete
+                      </Button>
+
+                    </Flex>
+                  </Table.Cell>
+
+                </Table.Row>
+              ))
+              }
+
+
+              {/* Add new skill */}
+              <Table.Row>
+
+                <Table.RowHeaderCell>
+                  999999
+                </Table.RowHeaderCell>
                 
                 <Table.Cell>
-                  {skill.name}
-                </Table.Cell>
-                
-                <Table.Cell>
-                  <img src={skill.icon} width={60}/>
-                </Table.Cell>
-                
-                <Table.Cell>
-
-                  <Select.Root size="2" defaultValue={skill.skillTypeId.toString()} onValueChange={dropdownHandler}>
-                    <Select.Trigger variant="soft"/>
-                    <Select.Content>
-                      {skillTypes.map(el => 
-                          <Select.Item
-                            key={el.id}
-                            value={el.id.toString()}>
-                              {el.name}
-                          </Select.Item>
-                        )}
-                    </Select.Content>
-                  </Select.Root>
-                
+                  New Skill
                 </Table.Cell>
 
                 <Table.Cell>
-                  <Link href="#">Test</Link>
+                  Image
                 </Table.Cell>
 
                 <Table.Cell>
-                  <Button>Edit</Button>
+                  None
                 </Table.Cell>
 
                 <Table.Cell>
-                  <Button>Delete</Button>
+                  <Button type='submit' onClick={(e: any) => console.log("add new skill clicked")}>
+                    Add
+                  </Button>
                 </Table.Cell>
 
               </Table.Row>
-            ))
-            }
 
 
 
+            </Table.Body>
+          </Table.Root>
 
-          </Table.Body>
-        </Table.Root>
-
-
+        </Container>
 
       </Section>
     </Box>

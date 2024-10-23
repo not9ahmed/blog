@@ -133,42 +133,7 @@ function CreatePost() {
 
     console.log("serviceData", serviceData);
 
-
     console.log("postImagesUploaded", postImagesUploaded)
-
-
-
-
-
-    // array for files
-    // shape of files should be like this objects of array
-    // files: {
-    //   // 
-    //   images: [
-    //     files[0],
-    //     files[1]
-    //   ]
-    // }
-
-
-
-    // const {data} = await axios.post(API_BASE_URL+'/posts', 
-    //   {
-    //     data: {
-    //       ...post 
-    //     },
-    //     // 
-    //     files: {
-    //       images: [...files]
-    //     }
-    //   },
-    //   // {
-    //   //   headers: {
-    //   //     'Content-Type': 'multipart/form-data'
-    //   //   }
-    //   // },
-
-    // )
 
 
   }

@@ -184,9 +184,9 @@ export default function SkillType() {
       backgroundColor: 'var(--gray-a2)',
       borderRadius: 'var(--radius-3)'
     }}
-    minHeight={"580px"}
+    minHeight="580px"
   >
-    <Box py={"4"}>
+    <Box py="4">
       <h1>Skill Type</h1>
     </Box>
     
@@ -269,7 +269,7 @@ export default function SkillType() {
               <Table.Cell>
                 <Button type='submit' onClick={(e: any) => addSkillType(e)}>
                   Add
-                  </Button>
+                </Button>
               </Table.Cell>
             </Table.Row>
 
