@@ -4,7 +4,6 @@ import { findAllSkills, findSkillById } from '../../api/skillService';
 import { ISkill } from '../../types/skill';
 import { ISkillType } from '../../types/skillType';
 import { findAllSkillTypes } from '../../api/skillTypeService';
-import { FaceIcon, SunIcon } from '@radix-ui/react-icons';
 
 // will be a table
 export default function Skills() {
@@ -39,7 +38,7 @@ export default function Skills() {
 
 
   return (
-    <Box
+    <Section
       id='skills-page'
       py="16"
       style={{
@@ -49,12 +48,10 @@ export default function Skills() {
       minHeight="580px"
     >
       <Box py="4">
-        <h1>Skills Page</h1>
+        <h1>Skills</h1>
       </Box>
-      <Section size="2">
-
           
-        <Container size="3">
+        <Container size="2">
 
           <Table.Root variant="surface">
             <Table.Header>
@@ -149,6 +146,5 @@ export default function Skills() {
         </Container>
 
       </Section>
-    </Box>
   )
 }

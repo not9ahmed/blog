@@ -1,15 +1,12 @@
-import React, { ReactEventHandler, useState } from 'react'
+import React, { useState } from 'react'
 import { PostCreateInterface } from '../../types/post'
 import './createPost.css'
-import Post from '../Post/Post';
-import axios from 'axios'
 import { createPost, createPostImages } from '../../api/postService';
+import * as Label from "@radix-ui/react-label";
+import { Box, Container, Flex, Grid, Section, Text, TextArea, TextField } from '@radix-ui/themes';
+import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 
 function CreatePost() {
-
-  const API_BASE_URL : string = import.meta.env.VITE_API_BASE_URL
-
-  console.log("url", API_BASE_URL)
 
 
   // declaring a state with PostInterface
@@ -25,17 +22,6 @@ function CreatePost() {
 
   const [files, setFiles] = useState<File[]>([]);
 
-
-  // form Data
-  // let userPost: PostInterface = {
-  //   id: 0,
-  //   title: '',
-  //   description: '',
-  //   content: '',
-  //   images: [""],
-  //   createdDate: new Date(),
-  //   createdBy: 'ahmed'
-  // };
 
 
 
@@ -146,57 +132,57 @@ function CreatePost() {
 
 
   return (
-    <div className='content'>
-        <div className='create-post'>
-            <div className='header'>
-              <h1>Create Blog Post Page /Might Use Lexical Here</h1>
-            </div>
+    <div id='create-post-page'  className='content'>
 
-            <div className='create-post-container'>
-              <form id='create-post-form' onSubmit={handleSubmit}>
+            <Box className='header'>
+              <h1>Create Blog Post Page</h1>
+              <p>Might Use Lexical Here</p>
+            </Box>
 
-                <div className='post-row'>
-                  <label htmlFor='post-title'>Title</label>
-                  <input type='text' id='post-title' name='title' onChange={changeHandler}/>
-                </div>
+            <Section
+              id='create-post-page'
+              py="16"
+              style={{
+                backgroundColor: 'var(--gray-a2)',
+                borderRadius: 'var(--radius-3)'
+              }}
+              minHeight="580px"
+            >
 
-                <div className='post-row'>
-                  <label htmlFor='post-description'>Description</label>
-                  <input type='text' id='post-description' name='description' onChange={changeHandler}/>
-                </div>
+              <Grid columns="2" gap="3" rows="repeat(2, 64px)" width="auto">
+ 
+                <Label.Root className="LabelRoot" htmlFor="first-field">
+                  First name
+                </Label.Root>
+                <TextArea placeholder='post content' id='first-field'></TextArea>
 
-                <div className='post-row'>
-                  <label htmlFor='post-content'>content</label>
-                  <textarea id='post-content' name='content' rows={4} cols={40} onChange={changeHandler}/>
-                </div>
+                <Label.Root className="LabelRoot" htmlFor="second-field">
+                  First name
+                </Label.Root>
+                <TextField.Root placeholder="Search the docs…" id='second-field'>
+                  <TextField.Slot>
+                    <MagnifyingGlassIcon height="16" width="16" />
+                  </TextField.Slot>
+                </TextField.Root>
+              
 
-                <div className='post-row'>
-                  <label htmlFor='post-images'>images</label>
-                  <input type='file' multiple accept='image/*,.pdf' id='post-images' name='images' onChange={fileChangeHandler}/>
-                </div>
-
-
-
-
-
-
-
-                <button type='submit'>Submit</button>
-              </form>
-
-
-              <div className="post-preview">
-
-                <h2>Post Preview</h2>
-
-                <div>
-                  preview here
-                </div>
-              </div>
+                <Label.Root className="LabelRoot" htmlFor="firstName">
+                  First name
+                </Label.Root>
+                <input
+                  className="Input"
+                  type="text"
+                  id="firstName"
+                  defaultValue="Pedro Duarte"
+                />
 
 
-            </div>
-        </div>
+
+              </Grid>
+
+            </Section>
+
+
     </div>
   )
 }
