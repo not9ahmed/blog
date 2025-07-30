@@ -4,6 +4,7 @@ import { PostInterface } from '../../types/post';
 import postImageCreator from './postUtil'
 import { findPostById } from '../../api/postService'
 import './post.css'
+import MarkdownComponent from '../Markdown/Markdown';
 
 /**
  * React component that renders a single post page
@@ -102,6 +103,9 @@ function Post() {
         </div>
         
       </div>
+
+
+      <MarkdownComponent markdown={post?.content || ""}/>
 
 
 

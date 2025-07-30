@@ -52,8 +52,9 @@ async function main() {
     const imageService = new ImageService();
 
 
-    // const projectsDb = await projectService.createMany(projects);
+    const projectsDb = await projectService.findAll();
 
+    console.log(projectsDb)
 
 
 

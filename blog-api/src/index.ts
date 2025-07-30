@@ -16,6 +16,7 @@ const projectRoutes =  require('./routes/project');
 const skillRoutes =  require('./routes/skill');
 const skillTypeRoutes =  require('./routes/skillType');
 const imageRoutes =  require('./routes/image');
+const testRoutes =  require('./routes/test');
 
 const app = express();
 const PORT = 4000;
@@ -47,6 +48,7 @@ app.use('/api/v0/projects', projectRoutes);
 app.use('/api/v0/skills', skillRoutes);
 app.use('/api/v0/skillTypes', skillTypeRoutes);
 app.use('/api/v0/images', imageRoutes);
+app.use('/api/v0/tests', testRoutes);
 
 
 // home route

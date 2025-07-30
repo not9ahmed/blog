@@ -135,7 +135,7 @@ function CreatePost() {
     <div id='create-post-page'  className='content'>
 
             <Box className='header'>
-              <h1>Create Blog Post Page</h1>
+              <h1>Create Blog Post</h1>
               <p>Might Use Lexical Here</p>
             </Box>
 
@@ -149,7 +149,7 @@ function CreatePost() {
               minHeight="580px"
             >
 
-              <Grid columns="2" gap="3" rows="repeat(2, 64px)" width="auto">
+              <Grid columns="2" gap="1" rows="repeat(2, 64px)" width="auto">
  
                 <Label.Root className="LabelRoot" htmlFor="first-field">
                   First name
