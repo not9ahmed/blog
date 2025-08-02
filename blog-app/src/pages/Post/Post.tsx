@@ -5,6 +5,7 @@ import postImageCreator from './postUtil'
 import { findPostById } from '../../api/postService'
 import './post.css'
 import MarkdownComponent from '../Markdown/Markdown';
+import { Box } from '@radix-ui/themes';
 
 /**
  * React component that renders a single post page
@@ -104,9 +105,15 @@ function Post() {
         
       </div>
 
+      <div>---------------</div>
 
-      <MarkdownComponent markdown={post?.content || ""}/>
+      <Box m={"0"} width={{md: '100vw'}} >
+      
+        <MarkdownComponent markdown={post?.content || ""}/>
 
+      </Box>
+
+    
 
 
     </div>
