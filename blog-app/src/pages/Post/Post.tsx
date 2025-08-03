@@ -83,6 +83,7 @@ function Post() {
 
       <div className="post">
 
+        {/*  */}
         <div className='post-heading'>
           <h1 className='post-title'>{post?.title}</h1>
           <h2 className='post-detailed-description'>{post?.description}</h2>
@@ -107,11 +108,19 @@ function Post() {
 
       <div>---------------</div>
 
-      <Box m={"0"} width={{md: '100vw'}} >
-      
-        <MarkdownComponent markdown={post?.content || ""}/>
 
-      </Box>
+      <div className="content">
+        <div className="post">        
+          <MarkdownComponent 
+            post={post}
+            markdown={post?.content? post?.content : ''}
+            >
+
+          </MarkdownComponent>
+
+        </div>
+      </div>
+
 
     
 
