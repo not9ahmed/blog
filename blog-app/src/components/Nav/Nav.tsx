@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Nav() {
   return (
-    <div id="nav">
+    <nav id="nav">
       <ul className='nav-list'>
         <li>
           <Link to="/">Home</Link>
@@ -23,6 +23,6 @@ export default function Nav() {
           <Link to="/admin">Admin</Link>
         </li>
       </ul>
-    </div>
+    </nav>
   )
 }

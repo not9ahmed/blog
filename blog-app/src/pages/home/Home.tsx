@@ -123,7 +123,7 @@ function Home() {
         </div>
 
         <div className='tools-list-title'>
-          <h3>Programmming languages I enjoy</h3>
+          <h3>Programming languages I enjoy</h3>
         </div>
 
         <div className='tools-list'>
