@@ -9,9 +9,9 @@ import { Theme, ThemePanel } from '@radix-ui/themes';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Theme accentColor="blue" grayColor="gray">
+      <Theme accentColor="blue" grayColor="slate" appearance='dark'>
         <App />
-        {/* <ThemePanel /> */}
+        <ThemePanel />
       </Theme>
     </BrowserRouter>
   </React.StrictMode>,

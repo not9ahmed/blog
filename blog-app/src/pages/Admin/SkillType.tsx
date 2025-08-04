@@ -63,9 +63,6 @@ export default function SkillType() {
     console.log(key);
     console.log(value);
 
-
-
-
     setNewSkillType({
       name: value
     });

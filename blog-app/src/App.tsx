@@ -1,18 +1,27 @@
-import './App.css'
-import Footer from './components/Footer/Footer'
-import Nav from './components/Nav/Nav'
-import Home from './pages/Home/Home'
-import Projects from './pages/Projects/Projects'
-import Experience from './pages/Experience/Experience'
 import { Routes, Route } from 'react-router-dom'
-import NoMatch from './pages/NoMatch/NoMatch'
-import Blog from './pages/Blog/Blog'
-import Post from './pages/Post/Post'
-import CreatePost from './pages/CreatePost/CreatePost'
-import EditPost from './pages/EditPost/EditPost'
-import Project from './pages/Project/Project'
-import Admin from './pages/Admin/Admin'
+import { lazy, Suspense } from 'react'
+
 import '@radix-ui/themes/styles.css';
+import './App.css'
+
+import Footer from './components/Footer/Footer';
+import Nav from './components/Nav/Nav';
+import { Loading } from './pages/Loading/Loading';
+
+
+const Home = lazy(() => import('./pages/Home/Home'));
+const Projects = lazy(() => import('./pages/Projects/Projects'));
+const Experience = lazy(() => import('./pages/Experience/Experience'));
+const NoMatch = lazy(() => import('./pages/NoMatch/NoMatch'));
+const Blog = lazy(() => import('./pages/Blog/Blog'));
+const Post = lazy(() => import('./pages/Post/Post'));
+const CreatePost = lazy(() => import('./pages/CreatePost/CreatePost'));
+const EditPost = lazy(() => import('./pages/EditPost/EditPost'));
+const Project = lazy(() => import('./pages/Project/Project'));
+const Admin = lazy(() => import('./pages/Admin/Admin'));
+
+
+
 
 
 function App() {
@@ -22,36 +31,39 @@ function App() {
       <div id="app">
 
 
-        <Nav/>
-        <Routes>
-          {/* will go to the nav element */}
+        <Nav />
+        <Suspense fallback={
+          <Loading />
+        }>
+          <Routes>
+            {/* will go to the nav element */}
 
 
-            <Route index element={<Home/>} />
+            <Route index element={<Home />} />
 
             {/* TODO: will be done later */}
-            <Route path='/admin' element={<Admin/>} />
-            <Route path='/projects' element={<Projects/>} />
-            <Route path='/projects/:id' element={<Project/>} />
+            <Route path='/admin' element={<Admin />} />
+            <Route path='/projects' element={<Projects />} />
+            <Route path='/projects/:id' element={<Project />} />
 
 
-            
 
-            <Route path='/experience' element={<Experience/>} />
+
+            <Route path='/experience' element={<Experience />} />
 
             {/* paths for blog resources */}
-            <Route path='/blog' element={<Blog/>} />
-            <Route path='/posts/create' element={<CreatePost/>} />
+            <Route path='/blog' element={<Blog />} />
+            <Route path='/posts/create' element={<CreatePost />} />
             <Route path='/posts/:id/edit' element={<EditPost />} />
             <Route path='/posts/:id' element={<Post />} />
 
             {/* Handling unknown paths */}
             <Route path="*" element={<NoMatch />} />
-        </Routes>
+          </Routes>
+        </Suspense>
 
 
 
-        
         <Footer />
       </div>
     </>

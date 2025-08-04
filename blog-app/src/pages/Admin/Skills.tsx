@@ -115,12 +115,18 @@ export default function Skills() {
               <Table.Row>
 
                 <Table.RowHeaderCell>
-                  999999
+                  99999999999
                 </Table.RowHeaderCell>
-                
+   
                 <Table.Cell>
-                  New Skill
-                </Table.Cell>
+                    <TextField.Root
+                      id='skill-name'
+                      name='skill_name'
+                      // value={newSkill.name}
+                      // onChange={addSkillHandler}
+                      placeholder="Enter new skill"
+                    />
+                  </Table.Cell>
 
                 <Table.Cell>
                   Image
