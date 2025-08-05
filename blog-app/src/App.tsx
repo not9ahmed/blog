@@ -4,11 +4,12 @@ import { lazy, Suspense } from 'react'
 import '@radix-ui/themes/styles.css';
 import './App.css'
 
-import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
 import { Loading } from './pages/Loading/Loading';
 
 
+// Pages
 const Home = lazy(() => import('./pages/Home/Home'));
 const Projects = lazy(() => import('./pages/Projects/Projects'));
 const Experience = lazy(() => import('./pages/Experience/Experience'));
@@ -22,9 +23,9 @@ const Admin = lazy(() => import('./pages/Admin/Admin'));
 
 
 
-
-
 function App() {
+
+
 
   return (
     <>
@@ -61,7 +62,6 @@ function App() {
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </Suspense>
-
 
 
         <Footer />

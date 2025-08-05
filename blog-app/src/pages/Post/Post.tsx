@@ -84,13 +84,13 @@ function Post() {
       <div className="post">
 
         {/*  */}
-        <div className='post-heading'>
+        {/* <div className='post-heading'>
           <h1 className='post-title'>{post?.title}</h1>
           <h2 className='post-detailed-description'>{post?.description}</h2>
           <h3 className='post-timestamp'>@{post?.createdBy} | {post?.createdDate? post?.createdDate.toString() : ""}</h3>
-        </div>
+        </div> */}
 
-        <div className='post-main-area'>
+        {/* <div className='post-main-area'>
             <img
             className='post-main-image'
               src={post?.images[0]}
@@ -102,7 +102,7 @@ function Post() {
               {post?.content}
             </p>
           </div>
-        </div>
+        </div> */}
         
       </div>
 
