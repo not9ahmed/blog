@@ -35,6 +35,7 @@ export default class PostService implements IPostService {
                 return posts;              
             }
             
+            console.log(userWhere);
             const posts = await prisma.post.findMany({
                 where: userWhere
             });

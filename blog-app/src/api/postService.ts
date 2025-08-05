@@ -287,8 +287,13 @@ export const searchPostByKeyword = async (q: string): Promise<PostInterface[] | 
     // axios call should be here for getting all posts
     try {
         
+        console.log("q", q);
         // TODO: Define type for axios response
-        const response = await axios.get(`${API_BASE_URL}/posts?q=${q}`);
+        const response = await axios.get(`${API_BASE_URL}/posts`, {
+            params: {
+                title: q
+            }
+        });
 
         console.log(response)
 

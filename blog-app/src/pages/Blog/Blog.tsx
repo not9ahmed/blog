@@ -7,6 +7,8 @@ import { PostInterface } from '../../types/post';
 // import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import { findAllPosts, findPostByCategory, searchPostByKeyword } from '../../api/postService';
 import { findAllCategories } from '../../api/categoryService';
+import { Button, TextField } from '@radix-ui/themes';
+import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 
 // the following page will be the main blog page
 function Blog() {
@@ -209,81 +211,90 @@ function Blog() {
     //     },
     // }
 
+// TODO: Replace with radix components
+    return (
+        <div className='content'>
+            <h1>My Cool Blog</h1>
 
-  return (
-      <div className='content'>
-          <h1>My Cool Blog</h1>
+            <div className='blog'>
 
-          <div className='blog'>
+                <div className='search-area' >
 
-              <div className='search-area' >
-
-                  <input
+                    {/* <input
                         type='search'
                         className='search-field'
                         id='post-search'
                         onInput={searchBlog}
-                        value={query}/>
+                        value={query} /> */}
 
-                  <button id='post-search-btn' style={{ backgroundColor: 'var(--secondary-light-color)' }}>Search</button>
+                    <TextField.Root type="search" placeholder='search posts' value={query} onInput={searchBlog}>
+                        <TextField.Slot>
+                            <MagnifyingGlassIcon height="16" width="16" />
+                        </TextField.Slot>
+                    </TextField.Root>
+                    {/* <button id='post-search-btn' style={{ backgroundColor: 'var(--secondary-light-color)' }}>Search</button> */}
 
-                  <select name='post-type' id='post-type' className='category-filter' onInput={filterCategories}> 
+                    <Button id='' type='button'>
+                        Search
+                    </Button>
 
-                  <option key={-1} value={-1}>{"All"}</option>
-                      {categories.map(category => (
+                    <select name='post-type' id='post-type' className='category-filter' onInput={filterCategories}>
 
-                          <option key={category.id} value={category.id}>{category.name}</option>
-                      ))}
+                        <option key={-1} value={-1}>{"All"}</option>
+                        {categories.map(category => (
 
-                  </select>
+                            <option key={category.id} value={category.id}>{category.name}</option>
+                        ))}
 
-                {/* How can i get the selected option from here */}
-                  {/* <SelectMenu {...selectMenuProps}/> */}
+                    </select>
 
-                  <button id='reset-btn' onClick={resetFilter}>Reset</button>
+                    {/* How can i get the selected option from here */}
+                    {/* <SelectMenu {...selectMenuProps}/> */}
 
-              </div>
+                    <button id='reset-btn' onClick={resetFilter}>Reset</button>
 
-              <div className='posts'>
+                </div>
 
-                  {/* loop over this */}
-                  {filteredPosts.map(post =>
+                <div className='posts'>
 
-
-
-                      <div className='post-card' key={post.id} id={post.id.toString()} onClick={(e) => handlePostClick(e, post.id)}>
-
-
-                          {/* <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> */}
-                          <div className='post-image-container'>
-
-                              <img className='post-image' src={post.images[0]} />
-                          </div>
+                    {/* loop over this */}
+                    {filteredPosts.map(post =>
 
 
 
-                          <div className='post-text'>
-                              <div className='post-title'>
-                                  <div className='post-title-text'>{post.title}</div>
-                                  {/* handle date later */}
-                                  <div className='post-date'>{post.createdDate? post.createdDate.toString() : ""}</div>
-                              </div>
-                              <div className='post-description'>
-                                  {post.description}
-                              </div>
-                          </div>
-                      </div>
+                        <div className='post-card' key={post.id} id={post.id.toString()} onClick={(e) => handlePostClick(e, post.id)}>
+
+
+                            {/* <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> */}
+                            <div className='post-image-container'>
+
+                                <img className='post-image' src={post.images[0]} />
+                            </div>
 
 
 
-                  )}
+                            <div className='post-text'>
+                                <div className='post-title'>
+                                    <div className='post-title-text'>{post.title}</div>
+                                    {/* handle date later */}
+                                    <div className='post-date'>{post.createdDate ? post.createdDate.toString() : ""}</div>
+                                </div>
+                                <div className='post-description'>
+                                    {post.description}
+                                </div>
+                            </div>
+                        </div>
 
-              </div>
 
-          </div>
 
-    </div>
-  )
+                    )}
+
+                </div>
+
+            </div>
+
+        </div>
+    )
 }
 
 export default Blog
