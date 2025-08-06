@@ -185,10 +185,16 @@ export const findPostByCategory = async (id: number): Promise<PostInterface[] | 
 
 
     console.log("findPostByCategory");
+    console.log("category id", id);
+
     try {
 
         // will be get request
-        const { data } = await axios.get(`${API_BASE_URL}/posts?category=${id}`);
+        const { data } = await axios.get(`${API_BASE_URL}/posts`, {
+            params: {
+                categoryId: id
+            }
+        });
 
 
         console.log("original", data);
@@ -291,7 +297,7 @@ export const searchPostByKeyword = async (q: string): Promise<PostInterface[] | 
         // TODO: Define type for axios response
         const response = await axios.get(`${API_BASE_URL}/posts`, {
             params: {
-                title: q
+                q: q
             }
         });
 

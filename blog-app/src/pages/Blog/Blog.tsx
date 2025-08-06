@@ -7,7 +7,7 @@ import { PostInterface } from '../../types/post';
 // import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import { findAllPosts, findPostByCategory, searchPostByKeyword } from '../../api/postService';
 import { findAllCategories } from '../../api/categoryService';
-import { Button, TextField } from '@radix-ui/themes';
+import { Button, Select, TextField } from '@radix-ui/themes';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 
 // the following page will be the main blog page
@@ -56,13 +56,13 @@ function Blog() {
 
 
     // this will be done on the actual posts from api
-    const filterCategories = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const filterCategories = async (value: string) => {
 
 
+        console.log(value);
         console.log("filterCategories")
-        console.log(e.target.value)
 
-        const selectCategory: number = parseInt(e.target.value)
+        const selectCategory: number = parseInt(value)
 
 
 
@@ -88,19 +88,13 @@ function Blog() {
 
     // should fetch from api once again or take from cache
     const resetFilter = () => {
-
         console.log("reset filter")
-
         const query = "";
 
         setQuery(query);
-
-
         setFilteredPosts([...posts])
 
         console.log("posts ", posts)
-
-
         console.log("filteredPosts ", filteredPosts)
     }
 
@@ -110,33 +104,17 @@ function Blog() {
     // set time limit before calling backend to avoid api crash
     const searchBlog = async (e: React.ChangeEvent<HTMLInputElement>) => {
 
-        const query = e.target.value
-
-
+        const query = e.target.value;
         console.log("query", query)
 
         
-        
         setQuery(query);
 
-        // const filteredPostsResult = posts.filter(post =>
-        //         post.title.toLowerCase().match(query) || post.description.toLowerCase().match(query)
-        //     )
-
-
-        // console.log("filteredPostsResult", filteredPostsResult)
-
-        // setFilteredPosts(filteredPostsResult)
-
         const filteredPostsResult: PostInterface[] | null = await searchPostByKeyword(query);
-
-
-        // const posts: await searchPostByKeyword(query);
 
         setFilteredPosts(filteredPostsResult || []);
 
         console.log(filteredPostsResult);
-
     }
 
 
@@ -158,7 +136,7 @@ function Blog() {
         navigate(`/posts/${postId}`);
     }
 
-    // const selectMenuProps: SelectMenuInterface =  {
+
     //     id: 1,
     //     name: 'Categories',
     //     labelName: 'Post Categories',
@@ -220,39 +198,30 @@ function Blog() {
 
                 <div className='search-area' >
 
-                    {/* <input
-                        type='search'
-                        className='search-field'
-                        id='post-search'
-                        onInput={searchBlog}
-                        value={query} /> */}
-
                     <TextField.Root type="search" placeholder='search posts' value={query} onInput={searchBlog}>
                         <TextField.Slot>
                             <MagnifyingGlassIcon height="16" width="16" />
                         </TextField.Slot>
                     </TextField.Root>
-                    {/* <button id='post-search-btn' style={{ backgroundColor: 'var(--secondary-light-color)' }}>Search</button> */}
 
-                    <Button id='' type='button'>
+                    <Button id='post-search-btn' type='button'>
                         Search
                     </Button>
 
-                    <select name='post-type' id='post-type' className='category-filter' onInput={filterCategories}>
+                    <Select.Root defaultValue="-1" onValueChange={filterCategories} >
+                        <Select.Trigger />
+                        <Select.Content>
+                            <Select.Item key={-1} value={String(-1)}>{'All'}</Select.Item>
+                            {categories.map(category => (
+                                <Select.Item key={category.id} value={String(category.id)}>{category.name}</Select.Item>
+                                ))
+                            }
+                        </Select.Content>
+                    </Select.Root>
 
-                        <option key={-1} value={-1}>{"All"}</option>
-                        {categories.map(category => (
-
-                            <option key={category.id} value={category.id}>{category.name}</option>
-                        ))}
-
-                    </select>
-
-                    {/* How can i get the selected option from here */}
-                    {/* <SelectMenu {...selectMenuProps}/> */}
-
-                    <button id='reset-btn' onClick={resetFilter}>Reset</button>
-
+                    <Button id='reset-btn' type='button' onClick={resetFilter}>
+                        Reset
+                    </Button>
                 </div>
 
                 <div className='posts'>
@@ -263,7 +232,6 @@ function Blog() {
 
 
                         <div className='post-card' key={post.id} id={post.id.toString()} onClick={(e) => handlePostClick(e, post.id)}>
-
 
                             {/* <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> */}
                             <div className='post-image-container'>

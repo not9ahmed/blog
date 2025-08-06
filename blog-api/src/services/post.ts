@@ -11,7 +11,8 @@ type UserWhere  = Prisma.PostWhereInput
 
 
 interface IPostService {
-    findAll(userWhere: UserWhere | null): Promise<IPost[]>;
+    // findAll(userWhere?: UserWhere, q?: string): Promise<IPost[]>;
+    findAll(query?: string): Promise<IPost[]>;
     findById(id: number): Promise<IPost>;
     create(post: IPostCreate): Promise<IPost>;
     createMany(posts: IPostCreate[]): Promise<BatchPayload>;
@@ -26,21 +27,39 @@ export default class PostService implements IPostService {
         console.log("PostService Construct");
     }
     
-    findAll = async (userWhere: UserWhere| null): Promise<Post[]> => {
+    findAll = async (query: any): Promise<Post[]> => {
         
         try {
 
-            if(!userWhere) {
-                const posts = await prisma.post.findMany(); 
-                return posts;              
+            const q: string = query['q'];
+            console.log('q', q);
+
+            // TODO: handle other search ways
+            if(query['q']) {
+                const posts = await prisma.post.findMany({
+                    where: {
+                        title: {
+                            contains: q,
+                            mode: 'insensitive'
+                        }
+                    }
+                });
+                return posts;
             }
+
+            if(query['categoryId']) {
+                const posts = await prisma.post.findMany({
+                    where: {
+                        categoryId: parseInt(query['categoryId'])
+                    }
+                });
+                return posts;
+            }
+
+        
+            const posts = await prisma.post.findMany(); 
+            return posts;              
             
-            console.log(userWhere);
-            const posts = await prisma.post.findMany({
-                where: userWhere
-            });
-            
-            return posts;
             
         } catch (err) {
             console.log(err);
