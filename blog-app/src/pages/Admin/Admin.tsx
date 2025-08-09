@@ -2,7 +2,8 @@ import Category from './Category'
 import Skills from './Skills'
 import Projects from './Projects'
 import SkillType from './SkillType'
-import { Box, Tabs } from '@radix-ui/themes'
+import { Box, Callout, Tabs } from '@radix-ui/themes'
+import { InfoCircledIcon } from '@radix-ui/react-icons'
 
 // Will manage all the admin related tasks like
 // view, create, edit, delete categories
@@ -15,14 +16,20 @@ export default function Admin() {
         <Box>
             <h1>Hello NotAhmed</h1>
             <p>Main Page to manage all the main entities in the web app</p>
+            
+            <Box>
+                <Callout.Root size={'2'}>
+                    <Callout.Icon>
+                        <InfoCircledIcon />
+                    </Callout.Icon>
+                    <Callout.Text>
+                        You will need admin privileges to install and access this application.
+                    </Callout.Text>
+                </Callout.Root>
+            </Box>
         </Box>
 
-        {/* Add the main categories here and other related admin */}
-        {/* each will have a table to easily modify existing list */}
-        {/* <SkillType/>
-        <Skills/>
-        <Project/>
-        <Category/> */}
+       
 
         <Tabs.Root defaultValue="skills">
             <Tabs.List size={"2"}>

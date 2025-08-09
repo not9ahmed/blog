@@ -1,4 +1,4 @@
-import { Post, Prisma } from "@prisma/client";
+import { Post, Prisma, User } from "@prisma/client";
 import prisma from "../utils/dbClient";
 import { IPost, IPostCreate, IPostUpdate } from "../types/post";
 
@@ -35,6 +35,10 @@ export default class PostService implements IPostService {
             console.log('q', q);
 
             // TODO: handle other search ways
+            const whereClause: Partial<User | {q: string}> = query;
+            console.log("whereCondition", whereClause);
+
+
             if(query['q']) {
                 const posts = await prisma.post.findMany({
                     where: {
@@ -47,6 +51,8 @@ export default class PostService implements IPostService {
                 return posts;
             }
 
+
+
             if(query['categoryId']) {
                 const posts = await prisma.post.findMany({
                     where: {
@@ -55,6 +61,19 @@ export default class PostService implements IPostService {
                 });
                 return posts;
             }
+
+
+            // validate that keys are correct first
+
+            // if (query) {
+
+            //     const posts = await prisma.post.findMany({
+            //         where: {
+            //             categoryId: parseInt(query['categoryId'])
+            //         }
+            //     });
+            //     return posts;
+            // }
 
         
             const posts = await prisma.post.findMany(); 

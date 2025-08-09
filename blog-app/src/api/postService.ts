@@ -194,12 +194,7 @@ export const findPostByCategory = async (id: number): Promise<PostInterface[] | 
             params: {
                 categoryId: id
             }
-        });
-
-
-        console.log("original", data);
-
-        
+        });        
 
         return data;
     } catch (error) {

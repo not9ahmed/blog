@@ -7,7 +7,7 @@ import { PostInterface } from '../../types/post';
 // import { SelectMenuInterface } from '../../components/SelectMenu/SelectMenuInterface';
 import { findAllPosts, findPostByCategory, searchPostByKeyword } from '../../api/postService';
 import { findAllCategories } from '../../api/categoryService';
-import { Button, Select, TextField } from '@radix-ui/themes';
+import { Box, Button, Flex, Heading, Select, TextField } from '@radix-ui/themes';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 
 // the following page will be the main blog page
@@ -192,7 +192,10 @@ function Blog() {
 // TODO: Replace with radix components
     return (
         <div className='content'>
-            <h1>My Cool Blog</h1>
+            {/* <h1>My Cool Blog</h1> */}
+            <Box p={'6'}>
+                <Heading as='h1' size={'8'} align={'center'}>My Cool Blog</Heading>
+            </Box>
 
             <div className='blog'>
 
@@ -224,27 +227,46 @@ function Blog() {
                     </Button>
                 </div>
 
+
+                <Flex display={'flex'} direction={'column'} align={'center'} content='center' gap='4'>
+                    {filteredPosts.map(post =>
+                            <div className='post-card' key={post.id} id={post.id.toString()} onClick={(e) => handlePostClick(e, post.id)}>
+
+                                {/* <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> */}
+                                <div className='post-image-container'>
+                                    <img className='post-image' src={post.images[0]} />
+                                </div>
+
+                                <div className='post-text'>
+                                    <div className='post-title'>
+                                        <div className='post-title-text'>{post.title}</div>
+                                        <div className='post-date'>{post.createdDate ? post.createdDate.toString() : ""}</div>
+                                    </div>
+                                    <div className='post-description'>
+                                        {post.description}
+                                    </div>
+                                </div>
+                            </div>
+
+                        )}
+
+                </Flex>
+
+
                 <div className='posts'>
 
                     {/* loop over this */}
-                    {filteredPosts.map(post =>
-
-
-
+                    {/* {filteredPosts.map(post =>
                         <div className='post-card' key={post.id} id={post.id.toString()} onClick={(e) => handlePostClick(e, post.id)}>
 
-                            {/* <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> */}
+                            // <div className='post-image' style={{ background: 'url('+post.images[0]+')'}}></div> 
                             <div className='post-image-container'>
-
                                 <img className='post-image' src={post.images[0]} />
                             </div>
-
-
 
                             <div className='post-text'>
                                 <div className='post-title'>
                                     <div className='post-title-text'>{post.title}</div>
-                                    {/* handle date later */}
                                     <div className='post-date'>{post.createdDate ? post.createdDate.toString() : ""}</div>
                                 </div>
                                 <div className='post-description'>
@@ -253,9 +275,7 @@ function Blog() {
                             </div>
                         </div>
 
-
-
-                    )}
+                    )} */}
 
                 </div>
 
